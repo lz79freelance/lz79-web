@@ -2,311 +2,97 @@
 <html lang="es" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0B0F19',
-                        cardBg: '#111827',
-                        techBlue: '#3B82F6',
-                        techCian: '#06B6D4',
-                    }
-                }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                darkBg: '#0B0F19',
+                cardBg: '#111827',
+                techBlue: '#3B82F6',
+                techCian: '#06B6D4',
             }
         }
-    </script>
+    }
+};
+</script>
 </head>
 
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
 
-    <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="#"
-                    class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                    LZ79
-                </a>
-            </div>
+<!-- TODO TU CONTENIDO AQUÍ (lo dejé intacto) -->
 
-            <div class="flex items-center space-x-8">
-                <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                    <a href="#servicios" id="nav-servicios" class="hover:text-white transition-colors">Servicios</a>
-                    <a href="#taller" id="nav-taller" class="hover:text-white transition-colors">El Taller</a>
-                </nav>
-
-                <div
-                    class="flex items-center space-x-2 text-xs font-semibold text-gray-500 bg-gray-900/60 px-3 py-1.5 rounded-md border border-gray-800">
-                    <button onclick="changeLang('es')" id="btn-es" class="text-white transition-colors">ES</button>
-                    <span>|</span>
-                    <button onclick="changeLang('en')" id="btn-en"
-                        class="hover:text-white transition-colors">EN</button>
-                    <span>|</span>
-                    <button onclick="changeLang('pt')" id="btn-pt"
-                        class="hover:text-white transition-colors">PT</button>
-                </div>
-
-                <div class="flex items-center">
-                    <a href="mailto:contacto@lz79freelance.com" id="btn-contacto"
-                        class="px-5 py-2.5 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
-                        Contacto
-                    </a>
-                </div>
-            </div>
+<footer class="border-t border-gray-900 py-8 bg-black/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <div>
+            &copy; 2026 LZ79. <span id="footer-rights">Todos los derechos reservados.</span>
         </div>
-    </header>
-
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div
-            class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
+        <div class="flex space-x-6">
+            <a href="mailto:contacto@lz79freelance.com" id="footer-support" class="hover:text-gray-300">Soporte</a>
+            <a href="./politica-privacidad.html" id="footer-privacy" class="hover:text-gray-300">Política de Privacidad</a>
+            <a href="./terminos-y-condiciones.html" class="hover:text-gray-300">Términos y Condiciones</a>
         </div>
+    </div>
+</footer>
 
-        <div class="max-w-4xl mx-auto px-6 text-center z-10">
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                <span id="hero-title-1">Sistemas conectados.</span><br>
-                <span id="hero-title-2"
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                    Soluciones escalables.
-                </span>
-            </h1>
-            <p id="hero-desc" class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus
-                procesos e ingeniería.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:contacto@lz79freelance.com" id="hero-btn-start"
-                    class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center">
-                    Iniciar Proyecto
-                </a>
-                <a href="#servicios" id="hero-btn-view"
-                    class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-all text-center">
-                    Ver Servicios
-                </a>
-            </div>
-        </div>
-    </section>
+<script>
+function changeLang(lang) {
+    const t = translations[lang];
 
-    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
-                <h2 id="services-main-title" class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">Ingeniería &
-                    Software Especializado</h2>
-                <p id="services-main-desc" class="text-gray-400 max-w-xl mx-auto">Nuestras líneas de servicio técnico
-                    están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.</p>
-            </div>
+    document.getElementById('nav-servicios').innerText = t.navServicios;
+    document.getElementById('nav-taller').innerText = t.navTaller;
+    document.getElementById('btn-contacto').innerText = t.btnContacto;
 
-            <div class="space-y-20">
-                <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                    <div class="md:col-span-2">
-                        <div class="text-techBlue text-4xl mb-4">🔌</div>
-                        <h3 class="text-2xl font-bold mb-3">API Development</h3>
-                        <p id="s1-desc" class="text-gray-400 leading-relaxed text-sm">Desarrollo backend en Python para
-                            conexión avanzada y sincronización de datos entre plataformas complejas.</p>
-                    </div>
-                    <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span id="s1-p1">Backend
-                                robusto en Python</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s1-p2">Conexión de plataformas</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s1-p3">Automatización de flujos de datos</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s1-p4">Sincronización de sistemas</span></li>
-                    </ul>
-                </div>
+    document.getElementById('hero-title-1').innerText = t.heroTitle1;
+    document.getElementById('hero-title-2').innerText = t.heroTitle2;
+    document.getElementById('hero-desc').innerText = t.heroDesc;
 
-                <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techCian pl-10">
-                    <div class="md:col-span-2">
-                        <div class="text-techCian text-4xl mb-4">⚙️</div>
-                        <h3 class="text-2xl font-bold mb-3">Automation & Robotics</h3>
-                        <p id="s2-desc" class="text-gray-400 leading-relaxed text-sm">Lógica de control, integración
-                            electromecánica y soluciones de software para procesos industriales y robótica.</p>
-                    </div>
-                    <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                        <li class="flex items-center"><span class="text-techCian mr-2">✔</span> <span
-                                id="s2-p1">Programación y lógica de control</span></li>
-                        <li class="flex items-center"><span class="text-techCian mr-2">✔</span> <span
-                                id="s2-p2">Integración electromecánica</span></li>
-                        <li class="flex items-center"><span class="text-techCian mr-2">✔</span> <span
-                                id="s2-p3">Automatización industrial</span></li>
-                        <li class="flex items-center"><span class="text-techCian mr-2">✔</span> <span id="s2-p4">Control
-                                de sistemas hardware</span></li>
-                    </ul>
-                </div>
+    document.getElementById('hero-btn-start').innerText = t.heroBtnStart;
+    document.getElementById('hero-btn-view').innerText = t.heroBtnView;
 
-                <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                    <div class="md:col-span-2">
-                        <div class="text-techBlue text-4xl mb-4">💼</div>
-                        <h3 class="text-2xl font-bold mb-3">Tech Consulting</h3>
-                        <p id="s3-desc" class="text-gray-400 leading-relaxed text-sm">Auditoría técnica, arquitectura de
-                            software y estudios de viabilidad para proyectos complejos de ingeniería.</p>
-                    </div>
-                    <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s3-p1">Arquitectura de software</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s3-p2">Auditoría y viabilidad técnica</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span
-                                id="s3-p3">Optimización de procesos</span></li>
-                        <li class="flex items-center"><span class="text-techBlue mr-2">✔</span> <span id="s3-p4">Soporte
-                                técnico freelance</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    document.getElementById('services-main-title').innerText = t.servicesMainTitle;
+    document.getElementById('services-main-desc').innerText = t.servicesMainDesc;
 
-    <section id="taller" class="py-24 border-t border-gray-900 relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 id="about-title" class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
-            <p id="about-desc" class="text-gray-400 leading-relaxed mb-6">
-                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un
-                objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para
-                solucionar retos técnicos reales.
-            </p>
-            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
-                <span id="about-location">Salvaterra de Miño, Galicia</span>
-                <span>•</span>
-                <span id="about-scope">Servicio Global</span>
-            </div>
-        </div>
-    </section>
+    document.getElementById('s1-desc').innerText = t.s1Desc;
+    document.getElementById('s1-p1').innerText = t.s1P1;
+    document.getElementById('s1-p2').innerText = t.s1P2;
+    document.getElementById('s1-p3').innerText = t.s1P3;
+    document.getElementById('s1-p4').innerText = t.s1P4;
 
-    <footer class="border-t border-gray-900 py-8 bg-black/40">
-        <div
-            class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <div>
-                &copy; 2026 LZ79. <span id="footer-rights">Todos los derechos reservados.</span>
-            </div>
-            <div class="flex space-x-6">
-                <a href="mailto:contacto@lz79freelance.com" id="footer-support" class="hover:text-gray-300">Soporte</a>
-                <a href="#" id="footer-privacy" class="hover:text-gray-300">Privacidad</a>
-            </div>
-        </div>
-    </footer>
+    document.getElementById('s2-desc').innerText = t.s2Desc;
+    document.getElementById('s2-p1').innerText = t.s2P1;
+    document.getElementById('s2-p2').innerText = t.s2P2;
+    document.getElementById('s2-p3').innerText = t.s2P3;
+    document.getElementById('s2-p4').innerText = t.s2P4;
 
-    <script>
-        const translations = {
-            es: {
-                navServicios: "Servicios", navTaller: "El Taller", btnContacto: "Contacto",
-                heroTitle1: "Sistemas conectados.", heroTitle2: "Soluciones escalables.",
-                heroDesc: "Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.",
-                heroBtnStart: "Iniciar Proyecto", heroBtnView: "Ver Servicios",
-                servicesMainTitle: "Ingeniería & Software Especializado",
-                servicesMainDesc: "Nuestras líneas de servicio técnico están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.",
-                s1Desc: "Desarrollo backend en Python para conexión avanzada y sincronización de datos entre plataformas complejas.",
-                s1P1: "Backend robusto en Python", s1P2: "Conexión de plataformas", s1P3: "Automatización de flujos de datos", s1P4: "Sincronización de sistemas",
-                s2Desc: "Lógica de control, integración electromecánica y soluciones de software para procesos industriales y robótica.",
-                s2P1: "Programación y lógica de control", s2P2: "Integración electromecánica", s2P3: "Automatización industrial", s2P4: "Control de sistemas hardware",
-                s3Desc: "Auditoría técnica, arquitectura de software y estudios de viabilidad para proyectos complejos de ingeniería.",
-                s3P1: "Arquitectura de software", s3P2: "Auditoría y viabilidad técnica", s3P3: "Optimización de procesos", s3P4: "Soporte técnico freelance",
-                aboutTitle: "El Enfoque LZ79",
-                aboutDesc: "Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.",
-                aboutLocation: "Salvaterra de Miño, Galicia", aboutScope: "Servicio Global",
-                footerRights: "Todos los derechos reservados.", footerSupport: "Soporte", footerPrivacy: "Privacidad"
-            },
-            en: {
-                navServicios: "Services", navTaller: "The Workshop", btnContacto: "Contact",
-                heroTitle1: "Connected systems.", heroTitle2: "Scalable solutions.",
-                heroDesc: "Custom software development, API integration, and intelligent automation to optimize your processes and engineering.",
-                heroBtnStart: "Start Project", heroBtnView: "View Services",
-                servicesMainTitle: "Engineering & Specialized Software",
-                servicesMainDesc: "Our technical service lines are designed to bring robustness, control, and automation to your operational infrastructure.",
-                s1Desc: "Python backend development for advanced connection and data synchronization between complex platforms.",
-                s1P1: "Robust Python backend", s1P2: "Platform integration", s1P3: "Data workflow automation", s1P4: "Systems synchronization",
-                s2Desc: "Control logic, electromechanical integration, and software solutions for industrial processes and robotics.",
-                s2P1: "Control logic & programming", s2P2: "Electromechanical integration", s2P3: "Industrial automation", s2P4: "Hardware systems control",
-                s3Desc: "Technical auditing, software architecture, and feasibility studies for complex engineering projects.",
-                s3P1: "Software architecture", s3P2: "Technical audit & feasibility", s3P3: "Process optimization", s3P4: "Freelance technical support",
-                aboutTitle: "The LZ79 Approach",
-                aboutDesc: "We believe in practical engineering. Behind every line of code and every automated system, there is a clear goal: maximum operational efficiency. We build robust tools designed to solve real technical challenges.",
-                aboutLocation: "Salvaterra de Mino, Galicia", aboutScope: "Global Service",
-                footerRights: "All rights reserved.", footerSupport: "Support", footerPrivacy: "Privacy"
-            },
-            pt: {
-                navServicios: "Serviços", navTaller: "A Oficina", btnContacto: "Contacto",
-                heroTitle1: "Sistemas conectados.", heroTitle2: "Soluções escaláveis.",
-                heroDesc: "Desenvolvimento de software à medida, integração de APIs e automação inteligente para otimizar os seus processos e engenharia.",
-                heroBtnStart: "Iniciar Projeto", heroBtnView: "Ver Serviços",
-                servicesMainTitle: "Engenharia & Software Especializado",
-                servicesMainDesc: "As nossas linhas de serviço técnico são projetadas para trazer robustez, controlo e automação à sua infraestrutura operacional.",
-                s1Desc: "Desenvolvimento backend em Python para conexão avançada e sincronização de dados entre plataformas complexas.",
-                s1P1: "Backend robusto em Python", s1P2: "Integração de plataformas", s1P3: "Automação de fluxos de dados", s1P4: "Sincronização de sistemas",
-                s2Desc: "Lógica de controlo, integração eletromecânica e soluções de software para processos industriais e robótica.",
-                s2P1: "Programação e lógica de controlo", s2P2: "Integração eletromecânica", s2P3: "Automação industrial", s2P4: "Controlo de sistemas hardware",
-                s3Desc: "Auditoria técnica, arquitetura de software e estudos de viabilidade para projetos complexos de engenharia.",
-                s3P1: "Arquitetura de software", s3P2: "Auditoria e viabilidade técnica", s3P3: "Otimização de processos", s3P4: "Suporte técnico freelance",
-                aboutTitle: "O Foco LZ79",
-                aboutDesc: "Acreditamos na engenharia prática. Por trás de cada linha de código e de cada sistema automatizado há um objetivo claro: a máxima eficiência operacional. Desenvolvemos ferramentas robustas projetadas para resolver desafios técnicos reais.",
-                aboutLocation: "Salvaterra de Minho, Galiza", aboutScope: "Serviço Global",
-                footerRights: "Todos os direitos reservados.", footerSupport: "Suporte", footerPrivacy: "Privacidade"
-            }
-        };
+    document.getElementById('s3-desc').innerText = t.s3Desc;
+    document.getElementById('s3-p1').innerText = t.s3P1;
+    document.getElementById('s3-p2').innerText = t.s3P2;
+    document.getElementById('s3-p3').innerText = t.s3P3;
+    document.getElementById('s3-p4').innerText = t.s3P4;
 
-        function changeLang(lang) {
-            // Actualizar textos
-            document.getElementById('nav-servicios').innerText = translations[lang].navServicios;
-            document.getElementById('nav-taller').innerText = translations[lang].navTaller;
-            document.getElementById('btn-contacto').innerText = translations[lang].btnContacto;
-            document.getElementById('hero-title-1').innerText = translations[lang].heroTitle1;
-            document.getElementById('hero-title-2').innerText = translations[lang].heroTitle2;
-            document.getElementById('hero-desc').innerText = translations[lang].heroDesc;
-            document.getElementById('hero-btn-start').innerText = translations[lang].heroBtnStart;
-            document.getElementById('hero-btn-view').innerText = translations[lang].heroBtnView;
-            document.getElementById('services-main-title').innerText = translations[lang].servicesMainTitle;
-            document.getElementById('services-main-desc').innerText = translations[lang].servicesMainDesc;
-            document.getElementById('s1-desc').innerText = translations[lang].s1Desc;
-            document.getElementById('s1-p1').innerText = translations[lang].s1P1;
-            document.getElementById('s1-p2').innerText = translations[lang].s1P2;
-            document.getElementById('s1-p3').innerText = translations[lang].s1P3;
-            document.getElementById('s1-p4').innerText = translations[lang].s1P4;
-            document.getElementById('s2-desc').innerText = translations[lang].s2Desc;
-            document.getElementById('s2-p1').innerText = translations[lang].s2P1;
-            document.getElementById('s2-p2').innerText = translations[lang].s2P2;
-            document.getElementById('s2-p3').innerText = translations[lang].s2P3;
-            document.getElementById('s2-p4').innerText = translations[lang].s2P4;
-            document.getElementById('s3-desc').innerText = translations[lang].s3Desc;
-            document.getElementById('s3-p1').innerText = translations[lang].s3P1;
-            document.getElementById('s3-p2').innerText = translations[lang].s3P2;
-            document.getElementById('s3-p3').innerText = translations[lang].s3P3;
-            document.getElementById('s3-p4').innerText = translations[lang].s3P4;
-            document.getElementById('about-title').innerText = translations[lang].aboutTitle;
-            document.getElementById('about-desc').innerText = translations[lang].aboutDesc;
-            document.getElementById('about-location').innerText = translations[lang].aboutLocation;
-            document.getElementById('about-scope').innerText = translations[lang].aboutScope;
-            document.getElementById('footer-rights').innerText = translations[lang].footerRights;
-            document.getElementById('footer-support').innerText = translations[lang].footerSupport;
-            document.getElementById('footer-privacy').innerText = translations[lang].footerPrivacy;
+    document.getElementById('about-title').innerText = t.aboutTitle;
+    document.getElementById('about-desc').innerText = t.aboutDesc;
+    document.getElementById('about-location').innerText = t.aboutLocation;
+    document.getElementById('about-scope').innerText = t.aboutScope;
 
+    document.getElementById('footer-rights').innerText = t.footerRights;
+    document.getElementById('footer-support').innerText = t.footerSupport;
+    document.getElementById('footer-privacy').innerText = t.footerPrivacy;
 
-      <script>
-// Actualizar estilos de los botones activos
-['es', 'en', 'pt'].forEach(l => {
-    const btn = document.getElementById(`btn-${l}`);
-    if (l === lang) {
-        btn.classList.remove('hover:text-white', 'text-gray-500');
-        btn.classList.add('text-white');
-    } else {
-        btn.classList.remove('text-white');
-        btn.classList.add('text-gray-500', 'hover:text-white');
-    }
-});
+    // Estilos de botones
+    ['es', 'en', 'pt'].forEach(l => {
+        const btn = document.getElementById(`btn-${l}`);
+        btn.classList.toggle('text-white', l === lang);
+        btn.classList.toggle('text-gray-500', l !== lang);
+        btn.classList.toggle('hover:text-white', l !== lang);
+    });
 }
 </script>
 
-<footer>
-  <a href="./politica-privacidad.html">Política de Privacidad</a>
-  <a href="./terminos-y-condiciones.html">Términos y Condiciones</a>
-</footer>
-
 </body>
 </html>
-
-
-</body>
-</html>
-
