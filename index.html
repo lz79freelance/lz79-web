@@ -2,27 +2,111 @@
 <html lang="es" class="scroll-smooth">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                darkBg: '#0B0F19',
-                cardBg: '#111827',
-                techBlue: '#3B82F6',
-                techCian: '#06B6D4',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0F19',
+                        cardBg: '#111827',
+                        techBlue: '#3B82F6',
+                        techCian: '#06B6D4',
+                    }
+                }
             }
-        }
-    }
-};
-</script>
+        };
+    </script>
 </head>
 
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
+
+    <!-- ⚠️ Aquí va TODO tu contenido original (hero, servicios, taller, etc.) -->
+    <!-- Cuando quieras, me lo pasas y lo integro limpio -->
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-900 py-8 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+            <div>
+                &copy; 2026 LZ79. <span id="footer-rights">Todos los derechos reservados.</span>
+            </div>
+
+            <div class="flex space-x-6">
+                <a href="mailto:contacto@lz79freelance.com" id="footer-support" class="hover:text-gray-300">Soporte</a>
+                <a href="./politica-privacidad.html" id="footer-privacy" class="hover:text-gray-300">Política de Privacidad</a>
+                <a href="./terminos-y-condiciones.html" class="hover:text-gray-300">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+        function changeLang(lang) {
+            const t = translations[lang];
+
+            // Navegación
+            document.getElementById('nav-servicios').innerText = t.navServicios;
+            document.getElementById('nav-taller').innerText = t.navTaller;
+            document.getElementById('btn-contacto').innerText = t.btnContacto;
+
+            // Hero
+            document.getElementById('hero-title-1').innerText = t.heroTitle1;
+            document.getElementById('hero-title-2').innerText = t.heroTitle2;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('hero-btn-start').innerText = t.heroBtnStart;
+            document.getElementById('hero-btn-view').innerText = t.heroBtnView;
+
+            // Servicios
+            document.getElementById('services-main-title').innerText = t.servicesMainTitle;
+            document.getElementById('services-main-desc').innerText = t.servicesMainDesc;
+
+            document.getElementById('s1-desc').innerText = t.s1Desc;
+            document.getElementById('s1-p1').innerText = t.s1P1;
+            document.getElementById('s1-p2').innerText = t.s1P2;
+            document.getElementById('s1-p3').innerText = t.s1P3;
+            document.getElementById('s1-p4').innerText = t.s1P4;
+
+            document.getElementById('s2-desc').innerText = t.s2Desc;
+            document.getElementById('s2-p1').innerText = t.s2P1;
+            document.getElementById('s2-p2').innerText = t.s2P2;
+            document.getElementById('s2-p3').innerText = t.s2P3;
+            document.getElementById('s2-p4').innerText = t.s2P4;
+
+            document.getElementById('s3-desc').innerText = t.s3Desc;
+            document.getElementById('s3-p1').innerText = t.s3P1;
+            document.getElementById('s3-p2').innerText = t.s3P2;
+            document.getElementById('s3-p3').innerText = t.s3P3;
+            document.getElementById('s3-p4').innerText = t.s3P4;
+
+            // Taller
+            document.getElementById('about-title').innerText = t.aboutTitle;
+            document.getElementById('about-desc').innerText = t.aboutDesc;
+            document.getElementById('about-location').innerText = t.aboutLocation;
+            document.getElementById('about-scope').innerText = t.aboutScope;
+
+            // Footer
+            document.getElementById('footer-rights').innerText = t.footerRights;
+            document.getElementById('footer-support').innerText = t.footerSupport;
+            document.getElementById('footer-privacy').innerText = t.footerPrivacy;
+
+            // Botones de idioma
+            ['es', 'en', 'pt'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                btn.classList.toggle('text-white', l === lang);
+                btn.classList.toggle('text-gray-500', l !== lang);
+                btn.classList.toggle('hover:text-white', l !== lang);
+            });
+        }
+    </script>
+
+</body>
+</html>
+
 
 <!-- TODO TU CONTENIDO AQUÍ (lo dejé intacto) -->
 
