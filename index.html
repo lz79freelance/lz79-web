@@ -283,25 +283,26 @@
             document.getElementById('footer-privacy').innerText = translations[lang].footerPrivacy;
 
 
-            // Actualizar estilos de los botones activos
-            ['es', 'en', 'pt'].forEach(l => {
-                const btn = document.getElementById(`btn-${l}`);
-                if (l === lang) {
-                    btn.classList.remove('hover:text-white', 'text-gray-500');
-                    btn.classList.add('text-white');
-                } else {
-                    btn.classList.remove('text-white');
-                    btn.classList.add('text-gray-500', 'hover:text-white');
-                }
-            });
-        }
-                      <footer>
+           <script>
+// Actualizar estilos de los botones activos
+['es', 'en', 'pt'].forEach(l => {
+    const btn = document.getElementById(`btn-${l}`);
+    if (l === lang) {
+        btn.classList.remove('hover:text-white', 'text-gray-500');
+        btn.classList.add('text-white');
+    } else {
+        btn.classList.remove('text-white');
+        btn.classList.add('text-gray-500', 'hover:text-white');
+    }
+});
+}
+</script>
+
+<footer>
   <a href="./politica-privacidad.html">Política de Privacidad</a>
   <a href="./terminos-y-condiciones.html">Términos y Condiciones</a>
 </footer>
-      
 
-    </script>
 </body>
-
 </html>
+
