@@ -1,238 +1,29 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0B0F19',
-                        cardBg: '#111827',
-                        techBlue: '#3B82F6',
-                        techCian: '#06B6D4',
-                    }
-                }
-            }
-        };
-    </script>
-</head>
-
-<body class="bg-darkBg text-gray-100 font-sans antialiased">
-
-<!-- HEADER ORIGINAL -->
-<header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex items-center">
-            <a href="#" class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                LZ79
-            </a>
-        </div>
-
-        <div class="flex items-center space-x-8">
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#servicios" id="nav-servicios" class="hover:text-white transition-colors">Servicios</a>
-                <a href="#taller" id="nav-taller" class="hover:text-white transition-colors">El Taller</a>
-            </nav>
-
-            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 bg-gray-900/60 px-3 py-1.5 rounded-md border border-gray-800">
-                <button onclick="changeLang('es')" id="btn-es" class="text-white transition-colors">ES</button>
-                <span>|</span>
-                <button onclick="changeLang('en')" id="btn-en" class="hover:text-white transition-colors">EN</button>
-                <span>|</span>
-                <button onclick="changeLang('pt')" id="btn-pt" class="hover:text-white transition-colors">PT</button>
-            </div>
-
-            <div class="flex items-center">
-                <a href="mailto:contacto@lz79freelance.com" id="btn-contacto"
-                   class="px-5 py-2.5 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
-                    Contacto
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- HERO ORIGINAL -->
-<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-    <div class="max-w-4xl mx-auto px-6 text-center z-10">
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-            <span id="hero-title-1">Sistemas conectados.</span><br>
-            <span id="hero-title-2" class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                Soluciones escalables.
-            </span>
-        </h1>
-
-        <p id="hero-desc" class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-            Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="mailto:contacto@lz79freelance.com" id="hero-btn-start"
-               class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center">
-                Iniciar Proyecto
-            </a>
-
-            <a href="#servicios" id="hero-btn-view"
-               class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-all text-center">
-                Ver Servicios
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- SERVICIOS ORIGINAL -->
-<section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-24">
-            <h2 id="services-main-title" class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
-                Ingeniería & Software Especializado
-            </h2>
-            <p id="services-main-desc" class="text-gray-400 max-w-xl mx-auto">
-                Nuestras líneas de servicio técnico están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.
-            </p>
-        </div>
-
-        <!-- API Development -->
-        <div class="space-y-20">
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">API Development</h3>
-                    <p id="s1-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Desarrollo backend en Python para conexión avanzada y sincronización de datos entre plataformas complejas.
-                    </p>
-                </div>
-
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span class="text-techBlue mr-2"></span><span id="s1-p1">Backend robusto en Python</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s1-p2">Conexión de plataformas</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s1-p3">Automatización de flujos de datos</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s1-p4">Sincronización de sistemas</span></li>
-                </ul>
-            </div>
-
-            <!-- Automation & Robotics -->
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techCian pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">Automation & Robotics</h3>
-                    <p id="s2-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Lógica de control, integración electromecánica y soluciones de software para procesos industriales y robótica.
-                    </p>
-                </div>
-
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span class="text-techCian mr-2"></span><span id="s2-p1">Programación y lógica de control</span></li>
-                    <li><span class="text-techCian mr-2"></span><span id="s2-p2">Integración electromecánica</span></li>
-                    <li><span class="text-techCian mr-2"></span><span id="s2-p3">Automatización industrial</span></li>
-                    <li><span class="text-techCian mr-2"></span><span id="s2-p4">Control de sistemas hardware</span></li>
-                </ul>
-            </div>
-
-            <!-- Tech Consulting -->
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">Tech Consulting</h3>
-                    <p id="s3-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Auditoría técnica, arquitectura de software y estudios de viabilidad para proyectos complejos de ingeniería.
-                    </p>
-                </div>
-
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span class="text-techBlue mr-2"></span><span id="s3-p1">Arquitectura de software</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s3-p2">Auditoría y viabilidad técnica</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s3-p3">Optimización de procesos</span></li>
-                    <li><span class="text-techBlue mr-2"></span><span id="s3-p4">Soporte técnico freelance</span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- TALLER ORIGINAL -->
-<section id="taller" class="py-24 border-t border-gray-900 relative">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 id="about-title" class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
-
-        <p id="about-desc" class="text-gray-400 leading-relaxed mb-6">
-            Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
-        </p>
-
-        <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
-            <span id="about-location">Salvaterra de Miño, Galicia</span>
-            <span>.</span>
-            <span id="about-scope">Servicio Global</span>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER CORREGIDO -->
-<footer class="border-t border-gray-900 py-8 bg-black/40">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-
-        <div>
-            &copy; 2026 LZ79. <span id="footer-rights">Todos los derechos reservados.</span>
-        </div>
-
-        <div class="flex space-x-6">
-            <a href="mailto:contacto@lz79freelance.com" id="footer-support" class="hover:text-gray-300">Soporte</a>
-
-            <a href="./politica-privacidad.html" id="footer-privacy" class="hover:text-gray-300">
-                Política de Privacidad
-            </a>
-
-            <a href="./terminos-y-condiciones.html" class="hover:text-gray-300">
-                Términos y Condiciones
-            </a>
-        </div>
-
-    </div>
-</footer>
-
-<!-- WIDGET DE CHAT FLOTANTE LZ79 -->
-<div id="lz79-chat-widget" class="fixed bottom-6 right-6 z-50 font-sans">
-    <!-- Botón flotante para abrir/cerrar -->
-    <button id="chat-toggle-btn" onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-techBlue to-techCian rounded-full shadow-lg shadow-techBlue/30 flex items-center justify-center text-white hover:scale-105 transition-all focus:outline-none">
-        <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </button>
-
-    <!-- Ventana de Chat -->
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 bg-cardBg border border-gray-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all">
-        <!-- Cabecera del chat -->
-        <div class="bg-gray-900 px-4 py-3 border-b border-gray-800 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="font-bold text-sm text-white">Asistente LZ79</span>
-            </div>
-            <span class="text-xs text-gray-400">Online</span>
-        </div>
-
-        <!-- Historial de mensajes -->
-        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm flex flex-col">
-            <div class="bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start">
-                ¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?
-            </div>
-        </div>
-
-        <!-- Barra de entrada de texto -->
-        <div class="p-3 bg-gray-900 border-t border-gray-800 flex items-center space-x-2">
-            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 text-gray-100 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-techBlue border border-gray-700" onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()" class="bg-techBlue hover:bg-techBlue/90 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">
-                Enviar
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- SCRIPT DE LÓGICA DEL CHAT Y TRADUCCIONES -->
+<!-- SCRIPT DE LÓGICA DEL CHAT Y MULTIDIOMA -->
 <script>
+    // Textos del chat en los tres idiomas
+    const chatTranslations = {
+        es: {
+            welcome: "¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?",
+            placeholder: "Escribe tu consulta...",
+            send: "Enviar",
+            response: "He registrado tu consulta. Para proyectos personalizados, facturación o soporte directo, puedes escribirnos en contacto@lz79freelance.com."
+        },
+        en: {
+            welcome: "Hello! I am the LZ79 virtual assistant. How can I help you today with your development, app, or automation?",
+            placeholder: "Type your query...",
+            send: "Send",
+            response: "Your query has been logged. For custom projects, billing, or direct support, you can email us at contacto@lz79freelance.com."
+        },
+        pt: {
+            welcome: "Olá! Sou o assistente virtual da LZ79. Como posso ajudar você hoje com seu desenvolvimento, app ou automação?",
+            placeholder: "Digite sua dúvida...",
+            send: "Enviar",
+            response: "Sua consulta foi registrada. Para projetos personalizados, faturamento ou suporte direto, você pode nos escrever em contacto@lz79freelance.com."
+        }
+    };
+
+    let currentLanguage = 'es';
+
     function toggleChat() {
         const window = document.getElementById('chat-window');
         const iconOpen = document.getElementById('chat-icon-open');
@@ -269,19 +60,23 @@
         input.value = "";
         messages.scrollTop = messages.scrollHeight;
 
-        // Simulación de respuesta automática del bot (Aquí puedes conectar tu API de Python/Backend más adelante)
+        // Respuesta automática del bot en el idioma activo
         setTimeout(() => {
             const botMsg = document.createElement('div');
             botMsg.className = "bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start break-words";
-            botMsg.innerText = "He registrado tu consulta. Para proyectos personalizados, facturación o soporte directo, puedes escribirnos en contacto@lz79freelance.com.";
+            botMsg.innerText = chatTranslations[currentLanguage].response;
             messages.appendChild(botMsg);
             messages.scrollTop = messages.scrollHeight;
         }, 1000);
     }
 
+    // Función unificada que actualiza la web y el chat
     function changeLang(lang) {
+        currentLanguage = lang;
         const t = translations[lang];
+        const ct = chatTranslations[lang];
 
+        // Actualizar textos de la web original
         document.getElementById('nav-servicios').innerText = t.navServicios;
         document.getElementById('nav-taller').innerText = t.navTaller;
         document.getElementById('btn-contacto').innerText = t.btnContacto;
@@ -323,6 +118,16 @@
         document.getElementById('footer-support').innerText = t.footerSupport;
         document.getElementById('footer-privacy').innerText = t.footerPrivacy;
 
+        // Actualizar textos del chat flotante
+        document.getElementById('chat-input').placeholder = ct.placeholder;
+        
+        // Si quieres actualizar el mensaje de bienvenida inicial del chat al cambiar idioma:
+        const firstMessage = document.querySelector('#chat-messages > div');
+        if (firstMessage) {
+            firstMessage.innerText = ct.welcome;
+        }
+
+        // Estilos visuales de los botones de idioma de la cabecera
         ['es', 'en', 'pt'].forEach(l => {
             const btn = document.getElementById(`btn-${l}`);
             btn.classList.toggle('text-white', l === lang);
@@ -331,6 +136,3 @@
         });
     }
 </script>
-
-</body>
-</html>
