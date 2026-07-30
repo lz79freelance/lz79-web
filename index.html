@@ -144,19 +144,19 @@
         <div class="lz79-small-carousel">
             <div class="carousel-track" id="carouselTrack">
                 <div class="carousel-slide">
-                    <img src="img/slide1.png" alt="Cálculo de Costes Industriales">
+                    <img src="Img/slide1.png" alt="Cálculo de Costes Industriales">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/slide2.png" alt="TPV Hostelería - Plano de Mesas">
+                    <img src="Img/slide2.png" alt="TPV Hostelería - Plano de Mesas">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/slide3.png" alt="Comandas a Barra y Cocina">
+                    <img src="Img/slide3.png" alt="Comandas a Barra y Cocina">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/slide4.png" alt="Gestión de Almacén SGA">
+                    <img src="Img/slide4.png" alt="Gestión de Almacén SGA">
                 </div>
                 <div class="carousel-slide">
-                    <img src="img/slide5.png" alt="Dashboard IA y Stock">
+                    <img src="Img/slide5.png" alt="Dashboard IA y Stock">
                 </div>
             </div>
 
@@ -294,7 +294,6 @@
 
 <!-- SCRIPTS Y TRADUCCIONES -->
 <script>
-    // Lógica del carrusel pequeño
     let currentIndex = 0;
 
     function moveSlide(direction) {
@@ -314,12 +313,10 @@
         track.style.transform = `translateX(${offset}%)`;
     }
 
-    // Auto-play cada 5 segundos
     setInterval(() => {
         moveSlide(1);
     }, 5000);
 
-    // Traducciones de la Web
     const translations = {
         es: {
             navServicios: "Servicios",
@@ -386,7 +383,7 @@
             s1P1: "Backend robusto em Python", s1P2: "Conexão de plataformas", s1P3: "Automação de fluxos de dados", s1P4: "Sincronização de sistemas",
             s2Desc: "Lógica de controle, integração eletromecânica e soluções de software para processos industriais e robótica.",
             s2P1: "Programação e lógica de controle", s2P2: "Integração eletromecânica", s2P3: "Automação industrial", s2P4: "Controle de sistemas de hardware",
-            s3Desc: "Auditoria técnica, arquitetura de software e estudos de viabilidad para projetos complexos de engenharia.",
+            s3Desc: "Auditoria técnica, arquitetura de software e estudos de viabilidade para projetos complexos de engenharia.",
             s3P1: "Arquitetura de software", s3P2: "Auditoria e viabilidade técnica", s3P3: "Otimização de processos", s3P4: "Suporte técnico freelance",
             aboutTitle: "A Abordagem LZ79",
             aboutDesc: "Acreditamos na engenharia prática. Por trás de cada linha de código e sistema automatizado há um objetivo claro: máxima eficiência operacional. Desenvolvemos ferramentas robustas projetadas para resolver desafios técnicos reais.",
@@ -398,7 +395,6 @@
         }
     };
 
-    // Traducciones del Chat
     const chatTranslations = {
         es: {
             welcome: "¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?",
