@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LZ79 Freelance - Proyectos y Soluciones</title>
+  <title>LZ79 Freelance</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -70,7 +70,6 @@
       padding: 15px;
       font-size: 16px;
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
 
     .carousel-btn {
@@ -106,34 +105,28 @@
 
   <div class="lz79-carousel-container">
     <div class="carousel-track" id="carouselTrack">
-      <!-- Diapositiva 1 -->
       <div class="carousel-slide">
         <img src="img/slide1.png" alt="Cálculo de Costes Industriales">
         <div class="slide-caption">Cálculo de Costes Industriales y Márgenes</div>
       </div>
-      <!-- Diapositiva 2 -->
       <div class="carousel-slide">
         <img src="img/slide2.png" alt="TPV Hostelería - Plano de Mesas">
         <div class="slide-caption">Sistema TPV Hostelería: Gestión de Mesas</div>
       </div>
-      <!-- Diapositiva 3 -->
       <div class="carousel-slide">
         <img src="img/slide3.png" alt="Comandas a Barra y Cocina">
         <div class="slide-caption">Envío Instantáneo a Barra y Cocina</div>
       </div>
-      <!-- Diapositiva 4 -->
       <div class="carousel-slide">
         <img src="img/slide4.png" alt="Gestión de Almacén SGA">
         <div class="slide-caption">Control de Almacén y Logística (SGA)</div>
       </div>
-      <!-- Diapositiva 5 -->
       <div class="carousel-slide">
         <img src="img/slide5.png" alt="Dashboard IA y Stock">
         <div class="slide-caption">Predicción de Demanda y Alertas con IA</div>
       </div>
     </div>
 
-    <!-- Botones de navegación -->
     <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
     <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
   </div>
@@ -158,7 +151,6 @@
       track.style.transform = `translateX(${offset}%)`;
     }
 
-    // Auto-play cada 5 segundos
     setInterval(() => {
       moveSlide(1);
     }, 5000);
