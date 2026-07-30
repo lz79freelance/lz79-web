@@ -21,58 +21,6 @@
             }
         };
     </script>
-    <style>
-        /* Estilos minimalistas para el carrusel sin contenedor */
-        .lz79-clean-carousel {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            max-height: 550px;
-            object-fit: contain;
-            display: block;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 20px;
-            border-radius: 50%;
-            transition: background 0.3s;
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(59, 130, 246, 0.8);
-        }
-
-        .carousel-btn.prev { left: 10px; }
-        .carousel-btn.next { right: 10px; }
-    </style>
 </head>
 
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
@@ -111,10 +59,10 @@
 </header>
 
 <!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="max-w-4xl mx-auto px-6 text-center z-10 w-full">
+    <div class="max-w-4xl mx-auto px-6 text-center z-10">
         <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
             <span id="hero-title-1">Sistemas conectados.</span><br>
             <span id="hero-title-2" class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
@@ -126,7 +74,7 @@
             Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="mailto:contacto@lz79freelance.com" id="hero-btn-start"
                class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center">
                 Iniciar Proyecto
@@ -137,32 +85,6 @@
                 Ver Servicios
             </a>
         </div>
-
-        <!-- CARRUSEL SIN CONTENEDOR (LIMPIO) -->
-        <div class="lz79-clean-carousel my-8">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <img src="./Img/slide1.png" alt="Proyecto 1">
-                </div>
-                <div class="carousel-slide">
-                    <img src="./Img/slide2.png" alt="Proyecto 2">
-                </div>
-                <div class="carousel-slide">
-                    <img src="./Img/slide3.png" alt="Proyecto 3">
-                </div>
-                <div class="carousel-slide">
-                    <img src="./Img/slide4.png" alt="Proyecto 4">
-                </div>
-                <div class="carousel-slide">
-                    <img src="./Img/slide5.png" alt="Proyecto 5">
-                </div>
-            </div>
-
-            <!-- Botones de navegación -->
-            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
-        </div>
-
     </div>
 </section>
 
@@ -292,29 +214,6 @@
 
 <!-- SCRIPTS Y TRADUCCIONES -->
 <script>
-    let currentIndex = 0;
-
-    function moveSlide(direction) {
-        const track = document.getElementById('carouselTrack');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
-
-        currentIndex += direction;
-
-        if (currentIndex >= totalSlides) {
-            currentIndex = 0;
-        } else if (currentIndex < 0) {
-            currentIndex = totalSlides - 1;
-        }
-
-        const offset = -currentIndex * 100;
-        track.style.transform = `translateX(${offset}%)`;
-    }
-
-    setInterval(() => {
-        moveSlide(1);
-    }, 5000);
-
     const translations = {
         es: {
             navServicios: "Servicios",
