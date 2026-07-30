@@ -195,8 +195,90 @@
     </div>
 </footer>
 
-<!-- SCRIPT ORIGINAL CORREGIDO -->
+<!-- WIDGET DE CHAT FLOTANTE LZ79 -->
+<div id="lz79-chat-widget" class="fixed bottom-6 right-6 z-50 font-sans">
+    <!-- Botón flotante para abrir/cerrar -->
+    <button id="chat-toggle-btn" onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-techBlue to-techCian rounded-full shadow-lg shadow-techBlue/30 flex items-center justify-center text-white hover:scale-105 transition-all focus:outline-none">
+        <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
+    <!-- Ventana de Chat -->
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 bg-cardBg border border-gray-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all">
+        <!-- Cabecera del chat -->
+        <div class="bg-gray-900 px-4 py-3 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="font-bold text-sm text-white">Asistente LZ79</span>
+            </div>
+            <span class="text-xs text-gray-400">Online</span>
+        </div>
+
+        <!-- Historial de mensajes -->
+        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm flex flex-col">
+            <div class="bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start">
+                ¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?
+            </div>
+        </div>
+
+        <!-- Barra de entrada de texto -->
+        <div class="p-3 bg-gray-900 border-t border-gray-800 flex items-center space-x-2">
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 text-gray-100 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-techBlue border border-gray-700" onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" class="bg-techBlue hover:bg-techBlue/90 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">
+                Enviar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPT DE LÓGICA DEL CHAT Y TRADUCCIONES -->
 <script>
+    function toggleChat() {
+        const window = document.getElementById('chat-window');
+        const iconOpen = document.getElementById('chat-icon-open');
+        const iconClose = document.getElementById('chat-icon-close');
+        
+        window.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+        
+        if (!window.classList.contains('hidden')) {
+            document.getElementById('chat-input').focus();
+        }
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const messages = document.getElementById('chat-messages');
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        // Mensaje del usuario
+        const userMsg = document.createElement('div');
+        userMsg.className = "bg-techBlue text-white p-3 rounded-xl rounded-tr-none max-w-[85%] self-end break-words";
+        userMsg.innerText = text;
+        messages.appendChild(userMsg);
+
+        input.value = "";
+        messages.scrollTop = messages.scrollHeight;
+
+        // Simulación de respuesta automática del bot (Aquí puedes conectar tu API de Python/Backend más adelante)
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = "bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start break-words";
+            botMsg.innerText = "He registrado tu consulta. Para proyectos personalizados, facturación o soporte directo, puedes escribirnos en contacto@lz79freelance.com.";
+            messages.appendChild(botMsg);
+            messages.scrollTop = messages.scrollHeight;
+        }, 1000);
+    }
+
     function changeLang(lang) {
         const t = translations[lang];
 
