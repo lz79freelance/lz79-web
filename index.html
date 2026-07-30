@@ -3,157 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LZ79 Freelance</title>
+  <title>LZ79 Freelance - Galería</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0d1117;
-      color: #f3f4f6;
+    /* Estilos Minimalistas a Pantalla Completa */
+    body, html {
       margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #0d1117; /* Fondo oscuro */
+      overflow: hidden; /* Evita barras de desplazamiento */
+      font-family: sans-serif;
     }
 
-    .projects-header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .header-logo {
-      max-height: 50px;
-      margin-bottom: 10px;
-    }
-
-    .projects-header h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #ffffff;
-      margin: 0;
-    }
-
+    /* Contenedor Principal del Carrusel */
     .lz79-carousel-container {
       position: relative;
-      width: 100%;
-      max-width: 900px;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-      background: #111827;
-      border: 1px solid #374151;
+      height: 100vh; /* Ocupa toda la altura de la ventana */
+      width: 100vw;  /* Ocupa toda la anchura */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Carrusel Track (donde se mueven las imágenes) */
     .carousel-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .carousel-slide img {
+      height: 100%;
       width: 100%;
-      height: auto;
+      transition: transform 0.6s ease-in-out; /* Transición suave */
+    }
+
+    /* Diapositiva individual */
+    .carousel-slide {
+      min-width: 100%; /* Cada imagen ocupa el 100% del contenedor */
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* La imagen en sí */
+    .carousel-slide img {
+      max-width: 100%;  /* Se ajusta al ancho sin deformarse */
+      max-height: 100%; /* Se ajusta al alto sin deformarse */
+      object-fit: contain; /* Mantiene la relación de aspecto (letterboxing si es necesario) */
       display: block;
-      border-bottom: 3px solid #3b82f6;
     }
 
-    .slide-caption {
-      background: #1f2937;
-      color: #ffffff;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
+    /* Botones de Navegación (Flechas) */
     .carousel-btn {
       position: absolute;
-      top: 42%;
+      top: 50%;
       transform: translateY(-50%);
-      background: rgba(17, 24, 39, 0.8);
+      background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
       color: white;
-      border: 1px solid #4b5563;
-      padding: 12px 18px;
+      border: none;
+      padding: 20px;
       cursor: pointer;
-      font-size: 18px;
-      border-radius: 50%;
-      transition: background 0.3s, transform 0.2s;
+      font-size: 30px;
+      z-index: 10; /* Asegura que estén encima de las imágenes */
+      transition: background 0.3s;
+      border-radius: 50%; /* Botones redondos */
+      line-height: 1;
     }
 
     .carousel-btn:hover {
-      background: #3b82f6;
-      border-color: #3b82f6;
-      transform: translateY(-50%) scale(1.05);
+      background: rgba(255, 255, 255, 0.2); /* Efecto hover suave */
     }
 
-    .carousel-btn.prev { left: 15px; }
-    .carousel-btn.next { right: 15px; }
+    .carousel-btn.prev { left: 20px; }
+    .carousel-btn.next { right: 20px; }
+
+    /* Indicadores de posición (opcional, puntitos abajo) */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .indicator-dot {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .indicator-dot.active {
+      background: white;
+    }
   </style>
 </head>
 <body>
 
-  <div class="projects-header">
-    <img src="img/logo.png" alt="LZ79 Freelance Logo" class="header-logo">
-    <h2>Soluciones de Software y Gestión Industrial</h2>
-  </div>
-
   <div class="lz79-carousel-container">
     <div class="carousel-track" id="carouselTrack">
+      <!-- Imagen 1: Coste de Fabricación -->
       <div class="carousel-slide">
         <img src="img/slide1.png" alt="Cálculo de Costes Industriales">
-        <div class="slide-caption">Cálculo de Costes Industriales y Márgenes</div>
       </div>
+      <!-- Imagen 2: TPV Mesas -->
       <div class="carousel-slide">
         <img src="img/slide2.png" alt="TPV Hostelería - Plano de Mesas">
-        <div class="slide-caption">Sistema TPV Hostelería: Gestión de Mesas</div>
       </div>
+      <!-- Imagen 3: Enviar a Barra / Cocina -->
       <div class="carousel-slide">
         <img src="img/slide3.png" alt="Comandas a Barra y Cocina">
-        <div class="slide-caption">Envío Instantáneo a Barra y Cocina</div>
       </div>
+      <!-- Imagen 4: Almacén / SGA -->
       <div class="carousel-slide">
         <img src="img/slide4.png" alt="Gestión de Almacén SGA">
-        <div class="slide-caption">Control de Almacén y Logística (SGA)</div>
       </div>
+      <!-- Imagen 5: IA y Stock -->
       <div class="carousel-slide">
         <img src="img/slide5.png" alt="Dashboard IA y Stock">
-        <div class="slide-caption">Predicción de Demanda y Alertas con IA</div>
       </div>
     </div>
 
-    <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+    <!-- Botones de navegación -->
+    <button class="carousel-btn prev" onclick="moveSlide(-1)" aria-label="Anterior">&#10094;</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)" aria-label="Siguiente">&#10095;</button>
+
+    <!-- Indicadores de puntos -->
+    <div class="carousel-indicators" id="carouselIndicators">
+      <div class="indicator-dot active" onclick="jumpToSlide(0)"></div>
+      <div class="indicator-dot" onclick="jumpToSlide(1)"></div>
+      <div class="indicator-dot" onclick="jumpToSlide(2)"></div>
+      <div class="indicator-dot" onclick="jumpToSlide(3)"></div>
+      <div class="indicator-dot" onclick="jumpToSlide(4)"></div>
+    </div>
   </div>
 
   <script>
     let currentIndex = 0;
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.indicator-dot');
+    const totalSlides = slides.length;
 
+    // Función principal para mover el carrusel
     function moveSlide(direction) {
-      const track = document.getElementById('carouselTrack');
-      const slides = document.querySelectorAll('.carousel-slide');
-      const totalSlides = slides.length;
-
-      currentIndex += direction;
-
-      if (currentIndex >= totalSlides) {
-        currentIndex = 0;
-      } else if (currentIndex < 0) {
-        currentIndex = totalSlides - 1;
-      }
-
-      const offset = -currentIndex * 100;
-      track.style.transform = `translateX(${offset}%)`;
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      updateCarousel();
     }
 
+    // Función para saltar a un punto específico
+    function jumpToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    // Actualiza la posición visual y los puntos indicadores
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      track.style.transform = `translateX(${offset}%)`;
+
+      // Actualiza los puntos (dots)
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    // Auto-play (puedes comentar esta línea si no quieres que pase solo)
     setInterval(() => {
       moveSlide(1);
-    }, 5000);
+    }, 6000); // Cambia cada 6 segundos
   </script>
 
 </body>
