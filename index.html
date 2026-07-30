@@ -1,431 +1,168 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LZ79 Freelance - Proyectos y Soluciones</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d1117;
+      color: #f3f4f6;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0B0F19',
-                        cardBg: '#111827',
-                        techBlue: '#3B82F6',
-                        techCian: '#06B6D4',
-                    }
-                }
-            }
-        };
-    </script>
+    .projects-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header-logo {
+      max-height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .projects-header h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .lz79-carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      background: #111827;
+      border: 1px solid #374151;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 3px solid #3b82f6;
+    }
+
+    .slide-caption {
+      background: #1f2937;
+      color: #ffffff;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 42%;
+      transform: translateY(-50%);
+      background: rgba(17, 24, 39, 0.8);
+      color: white;
+      border: 1px solid #4b5563;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .carousel-btn:hover {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .carousel-btn.prev { left: 15px; }
+    .carousel-btn.next { right: 15px; }
+  </style>
 </head>
+<body>
 
-<body class="bg-darkBg text-gray-100 font-sans antialiased">
+  <div class="projects-header">
+    <img src="img/logo.png" alt="LZ79 Freelance Logo" class="header-logo">
+    <h2>Soluciones de Software y Gestión Industrial</h2>
+  </div>
 
-<!-- HEADER -->
-<header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex items-center">
-            <a href="#" class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                LZ79
-            </a>
-        </div>
-
-        <div class="flex items-center space-x-8">
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#servicios" id="nav-servicios" class="hover:text-white transition-colors">Servicios</a>
-                <a href="#taller" id="nav-taller" class="hover:text-white transition-colors">El Taller</a>
-            </nav>
-
-            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 bg-gray-900/60 px-3 py-1.5 rounded-md border border-gray-800">
-                <button onclick="changeLang('es')" id="btn-es" class="text-white transition-colors">ES</button>
-                <span>|</span>
-                <button onclick="changeLang('en')" id="btn-en" class="hover:text-white transition-colors">EN</button>
-                <span>|</span>
-                <button onclick="changeLang('pt')" id="btn-pt" class="hover:text-white transition-colors">PT</button>
-            </div>
-
-            <div class="flex items-center">
-                <a href="mailto:contacto@lz79freelance.com" id="btn-contacto"
-                   class="px-5 py-2.5 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
-                    Contacto
-                </a>
-            </div>
-        </div>
+  <div class="lz79-carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Diapositiva 1 -->
+      <div class="carousel-slide">
+        <img src="img/slide1.png" alt="Cálculo de Costes Industriales">
+        <div class="slide-caption">Cálculo de Costes Industriales y Márgenes</div>
+      </div>
+      <!-- Diapositiva 2 -->
+      <div class="carousel-slide">
+        <img src="img/slide2.png" alt="TPV Hostelería - Plano de Mesas">
+        <div class="slide-caption">Sistema TPV Hostelería: Gestión de Mesas</div>
+      </div>
+      <!-- Diapositiva 3 -->
+      <div class="carousel-slide">
+        <img src="img/slide3.png" alt="Comandas a Barra y Cocina">
+        <div class="slide-caption">Envío Instantáneo a Barra y Cocina</div>
+      </div>
+      <!-- Diapositiva 4 -->
+      <div class="carousel-slide">
+        <img src="img/slide4.png" alt="Gestión de Almacén SGA">
+        <div class="slide-caption">Control de Almacén y Logística (SGA)</div>
+      </div>
+      <!-- Diapositiva 5 -->
+      <div class="carousel-slide">
+        <img src="img/slide5.png" alt="Dashboard IA y Stock">
+        <div class="slide-caption">Predicción de Demanda y Alertas con IA</div>
+      </div>
     </div>
-</header>
 
-<!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Botones de navegación -->
+    <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
 
-    <div class="max-w-4xl mx-auto px-6 text-center z-10">
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-            <span id="hero-title-1">Sistemas conectados.</span><br>
-            <span id="hero-title-2" class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                Soluciones escalables.
-            </span>
-        </h1>
+  <script>
+    let currentIndex = 0;
 
-        <p id="hero-desc" class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-            Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.
-        </p>
+    function moveSlide(direction) {
+      const track = document.getElementById('carouselTrack');
+      const slides = document.querySelectorAll('.carousel-slide');
+      const totalSlides = slides.length;
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="mailto:contacto@lz79freelance.com" id="hero-btn-start"
-               class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center">
-                Iniciar Proyecto
-            </a>
+      currentIndex += direction;
 
-            <a href="#servicios" id="hero-btn-view"
-               class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-all text-center">
-                Ver Servicios
-            </a>
-        </div>
-    </div>
-</section>
+      if (currentIndex >= totalSlides) {
+        currentIndex = 0;
+      } else if (currentIndex < 0) {
+        currentIndex = totalSlides - 1;
+      }
 
-<!-- SERVICIOS -->
-<section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-24">
-            <h2 id="services-main-title" class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
-                Ingeniería & Software Especializado
-            </h2>
-            <p id="services-main-desc" class="text-gray-400 max-w-xl mx-auto">
-                Nuestras líneas de servicio técnico están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.
-            </p>
-        </div>
-
-        <div class="space-y-20">
-            <!-- API Development -->
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">API Development</h3>
-                    <p id="s1-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Desarrollo backend en Python para conexión avanzada y sincronización de datos entre plataformas complejas.
-                    </p>
-                </div>
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span id="s1-p1">Backend robusto en Python</span></li>
-                    <li><span id="s1-p2">Conexión de plataformas</span></li>
-                    <li><span id="s1-p3">Automatización de flujos de datos</span></li>
-                    <li><span id="s1-p4">Sincronización de sistemas</span></li>
-                </ul>
-            </div>
-
-            <!-- Automation & Robotics -->
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techCian pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">Automation & Robotics</h3>
-                    <p id="s2-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Lógica de control, integración electromecánica y soluciones de software para procesos industriales y robótica.
-                    </p>
-                </div>
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span id="s2-p1">Programación y lógica de control</span></li>
-                    <li><span id="s2-p2">Integración electromecánica</span></li>
-                    <li><span id="s2-p3">Automatización industrial</span></li>
-                    <li><span id="s2-p4">Control de sistemas hardware</span></li>
-                </ul>
-            </div>
-
-            <!-- Tech Consulting -->
-            <div class="grid md:grid-cols-5 gap-12 items-start border-l-2 border-techBlue pl-10">
-                <div class="md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-3">Tech Consulting</h3>
-                    <p id="s3-desc" class="text-gray-400 leading-relaxed text-sm">
-                        Auditoría técnica, arquitectura de software y estudios de viabilidad para proyectos complejos de ingeniería.
-                    </p>
-                </div>
-                <ul class="md:col-span-3 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-gray-300">
-                    <li><span id="s3-p1">Arquitectura de software</span></li>
-                    <li><span id="s3-p2">Auditoría y viabilidad técnica</span></li>
-                    <li><span id="s3-p3">Optimización de procesos</span></li>
-                    <li><span id="s3-p4">Soporte técnico freelance</span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- TALLER -->
-<section id="taller" class="py-24 border-t border-gray-900 relative">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 id="about-title" class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
-        <p id="about-desc" class="text-gray-400 leading-relaxed mb-6">
-            Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
-        </p>
-        <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
-            <span id="about-location">Salvaterra de Miño, Galicia</span>
-            <span>.</span>
-            <span id="about-scope">Servicio Global</span>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="border-t border-gray-900 py-8 bg-black/40">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-        <div>
-            &copy; 2026 LZ79. <span id="footer-rights">Todos los derechos reservados.</span>
-        </div>
-        <div class="flex space-x-6">
-            <a href="mailto:contacto@lz79freelance.com" id="footer-support" class="hover:text-gray-300">Soporte</a>
-            <a href="./politica-privacidad.html" id="footer-privacy" class="hover:text-gray-300">Política de Privacidad</a>
-            <a href="./terminos-y-condiciones.html" class="hover:text-gray-300">Términos y Condiciones</a>
-        </div>
-    </div>
-</footer>
-
-<!-- WIDGET DE CHAT FLOTANTE -->
-<div id="lz79-chat-widget" class="fixed bottom-6 right-6 z-50 font-sans">
-    <button id="chat-toggle-btn" onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-techBlue to-techCian rounded-full shadow-lg shadow-techBlue/30 flex items-center justify-center text-white hover:scale-105 transition-all focus:outline-none">
-        <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </button>
-
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 bg-cardBg border border-gray-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all">
-        <div class="bg-gray-900 px-4 py-3 border-b border-gray-800 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span id="chat-header-title" class="font-bold text-sm text-white">Asistente LZ79</span>
-            </div>
-            <span class="text-xs text-gray-400">Online</span>
-        </div>
-
-        <div id="chat-messages" class="p-4 h-80 overflow-y-auto space-y-3 text-sm flex flex-col">
-            <div class="bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start">
-                ¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?
-            </div>
-        </div>
-
-        <div class="p-3 bg-gray-900 border-t border-gray-800 flex items-center space-x-2">
-            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 text-gray-100 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-techBlue border border-gray-700" onkeypress="handleKeyPress(event)">
-            <button id="chat-send-btn" onclick="sendMessage()" class="bg-techBlue hover:bg-techBlue/90 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">
-                Enviar
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- SCRIPTS Y TRADUCCIONES -->
-<script>
-    // Traducciones de la Web
-    const translations = {
-        es: {
-            navServicios: "Servicios",
-            navTaller: "El Taller",
-            btnContacto: "Contacto",
-            heroTitle1: "Sistemas conectados.",
-            heroTitle2: "Soluciones escalables.",
-            heroDesc: "Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.",
-            heroBtnStart: "Iniciar Proyecto",
-            heroBtnView: "Ver Servicios",
-            servicesMainTitle: "Ingeniería & Software Especializado",
-            servicesMainDesc: "Nuestras líneas de servicio técnico están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.",
-            s1Desc: "Desarrollo backend en Python para conexión avanzada y sincronización de datos entre plataformas complejas.",
-            s1P1: "Backend robusto en Python", s1P2: "Conexión de plataformas", s1P3: "Automatización de flujos de datos", s1P4: "Sincronización de sistemas",
-            s2Desc: "Lógica de control, integración electromecánica y soluciones de software para procesos industriales y robótica.",
-            s2P1: "Programación y lógica de control", s2P2: "Integración electromecánica", s2P3: "Automatización industrial", s2P4: "Control de sistemas hardware",
-            s3Desc: "Auditoría técnica, arquitectura de software y estudios de viabilidad para proyectos complejos de ingeniería.",
-            s3P1: "Arquitectura de software", s3P2: "Auditoría y viabilidad técnica", s3P3: "Optimización de procesos", s3P4: "Soporte técnico freelance",
-            aboutTitle: "El Enfoque LZ79",
-            aboutDesc: "Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.",
-            aboutLocation: "Salvaterra de Miño, Galicia",
-            aboutScope: "Servicio Global",
-            footerRights: "Todos los derechos reservados.",
-            footerSupport: "Soporte",
-            footerPrivacy: "Política de Privacidad"
-        },
-        en: {
-            navServicios: "Services",
-            navTaller: "The Workshop",
-            btnContacto: "Contact",
-            heroTitle1: "Connected systems.",
-            heroTitle2: "Scalable solutions.",
-            heroDesc: "Custom software development, API integration, and intelligent automation to optimize your processes and engineering.",
-            heroBtnStart: "Start Project",
-            heroBtnView: "View Services",
-            servicesMainTitle: "Engineering & Specialized Software",
-            servicesMainDesc: "Our technical service lines are designed to bring robustness, control, and automation to your operational infrastructure.",
-            s1Desc: "Python backend development for advanced connection and data synchronization between complex platforms.",
-            s1P1: "Robust Python backend", s1P2: "Platform connection", s1P3: "Data flow automation", s1P4: "System synchronization",
-            s2Desc: "Control logic, electromechanical integration, and software solutions for industrial processes and robotics.",
-            s2P1: "Programming and control logic", s2P2: "Electromechanical integration", s2P3: "Industrial automation", s2P4: "Hardware system control",
-            s3Desc: "Technical audit, software architecture, and feasibility studies for complex engineering projects.",
-            s3P1: "Software architecture", s3P2: "Technical audit and feasibility", s3P3: "Process optimization", s3P4: "Freelance technical support",
-            aboutTitle: "The LZ79 Approach",
-            aboutDesc: "We believe in practical engineering. Behind every line of code and automated system lies a clear objective: maximum operational efficiency. We develop robust tools designed to solve real technical challenges.",
-            aboutLocation: "Salvaterra de Miño, Galicia",
-            aboutScope: "Global Service",
-            footerRights: "All rights reserved.",
-            footerSupport: "Support",
-            footerPrivacy: "Privacy Policy"
-        },
-        pt: {
-            navServicios: "Serviços",
-            navTaller: "A Oficina",
-            btnContacto: "Contato",
-            heroTitle1: "Sistemas conectados.",
-            heroTitle2: "Soluções escaláveis.",
-            heroDesc: "Desenvolvimento de software personalizado, integração de APIs e automação inteligente para otimizar seus processos e engenharia.",
-            heroBtnStart: "Iniciar Projeto",
-            heroBtnView: "Ver Serviços",
-            servicesMainTitle: "Engenharia & Software Especializado",
-            servicesMainDesc: "Nossas linhas de serviços técnicos são projetadas para trazer robustez, controle e automação à sua infraestrutura operacional.",
-            s1Desc: "Desenvolvimento backend em Python para conexão avançada e sincronização de dados entre plataformas complexas.",
-            s1P1: "Backend robusto em Python", s1P2: "Conexão de plataformas", s1P3: "Automação de fluxos de dados", s1P4: "Sincronização de sistemas",
-            s2Desc: "Lógica de controle, integração eletromecânica e soluções de software para processos industriais e robótica.",
-            s2P1: "Programação e lógica de controle", s2P2: "Integração eletromecânica", s2P3: "Automação industrial", s2P4: "Controle de sistemas de hardware",
-            s3Desc: "Auditoria técnica, arquitetura de software e estudos de viabilidade para projetos complexos de engenharia.",
-            s3P1: "Arquitetura de software", s3P2: "Auditoria e viabilidade técnica", s3P3: "Otimização de processos", s3P4: "Suporte técnico freelance",
-            aboutTitle: "A Abordagem LZ79",
-            aboutDesc: "Acreditamos na engenharia prática. Por trás de cada linha de código e sistema automatizado há um objetivo claro: máxima eficiência operacional. Desenvolvemos ferramentas robustas projetadas para resolver desafios técnicos reais.",
-            aboutLocation: "Salvaterra de Miño, Galicia",
-            aboutScope: "Serviço Global",
-            footerRights: "Todos os direitos reservados.",
-            footerSupport: "Suporte",
-            footerPrivacy: "Política de Privacidade"
-        }
-    };
-
-    // Traducciones del Chat
-    const chatTranslations = {
-        es: {
-            welcome: "¡Hola! Soy el asistente virtual de LZ79. ¿En qué puedo ayudarte hoy con tu desarrollo, app o automatización?",
-            placeholder: "Escribe tu consulta...",
-            send: "Enviar",
-            response: "He registrado tu consulta. Para proyectos personalizados, facturación o soporte directo, puedes escribirnos en contacto@lz79freelance.com."
-        },
-        en: {
-            welcome: "Hello! I am the LZ79 virtual assistant. How can I help you today with your development, app, or automation?",
-            placeholder: "Type your query...",
-            send: "Send",
-            response: "Your query has been logged. For custom projects, billing, or direct support, you can email us at contacto@lz79freelance.com."
-        },
-        pt: {
-            welcome: "Olá! Sou o assistente virtual da LZ79. Como posso ajudar você hoje com seu desenvolvimento, app ou automação?",
-            placeholder: "Digite sua dúvida...",
-            send: "Enviar",
-            response: "Sua consulta foi registrada. Para projetos personalizados, faturamento ou suporte direto, você pode nos escrever em contacto@lz79freelance.com."
-        }
-    };
-
-    let currentLanguage = 'es';
-
-    function toggleChat() {
-        const window = document.getElementById('chat-window');
-        const iconOpen = document.getElementById('chat-icon-open');
-        const iconClose = document.getElementById('chat-icon-close');
-        
-        window.classList.toggle('hidden');
-        iconOpen.classList.toggle('hidden');
-        iconClose.classList.toggle('hidden');
-        
-        if (!window.classList.contains('hidden')) {
-            document.getElementById('chat-input').focus();
-        }
+      const offset = -currentIndex * 100;
+      track.style.transform = `translateX(${offset}%)`;
     }
 
-    function handleKeyPress(e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    }
-
-    function sendMessage() {
-        const input = document.getElementById('chat-input');
-        const messages = document.getElementById('chat-messages');
-        const text = input.value.trim();
-
-        if (!text) return;
-
-        const userMsg = document.createElement('div');
-        userMsg.className = "bg-techBlue text-white p-3 rounded-xl rounded-tr-none max-w-[85%] self-end break-words";
-        userMsg.innerText = text;
-        messages.appendChild(userMsg);
-
-        input.value = "";
-        messages.scrollTop = messages.scrollHeight;
-
-        setTimeout(() => {
-            const botMsg = document.createElement('div');
-            botMsg.className = "bg-gray-800/80 text-gray-200 p-3 rounded-xl rounded-tl-none max-w-[85%] self-start break-words";
-            botMsg.innerText = chatTranslations[currentLanguage].response;
-            messages.appendChild(botMsg);
-            messages.scrollTop = messages.scrollHeight;
-        }, 1000);
-    }
-
-    function changeLang(lang) {
-        currentLanguage = lang;
-        const t = translations[lang];
-        const ct = chatTranslations[lang];
-
-        // Textos de la web
-        document.getElementById('nav-servicios').innerText = t.navServicios;
-        document.getElementById('nav-taller').innerText = t.navTaller;
-        document.getElementById('btn-contacto').innerText = t.btnContacto;
-
-        document.getElementById('hero-title-1').innerText = t.heroTitle1;
-        document.getElementById('hero-title-2').innerText = t.heroTitle2;
-        document.getElementById('hero-desc').innerText = t.heroDesc;
-
-        document.getElementById('hero-btn-start').innerText = t.heroBtnStart;
-        document.getElementById('hero-btn-view').innerText = t.heroBtnView;
-
-        document.getElementById('services-main-title').innerText = t.servicesMainTitle;
-        document.getElementById('services-main-desc').innerText = t.servicesMainDesc;
-
-        document.getElementById('s1-desc').innerText = t.s1Desc;
-        document.getElementById('s1-p1').innerText = t.s1P1;
-        document.getElementById('s1-p2').innerText = t.s1P2;
-        document.getElementById('s1-p3').innerText = t.s1P3;
-        document.getElementById('s1-p4').innerText = t.s1P4;
-
-        document.getElementById('s2-desc').innerText = t.s2Desc;
-        document.getElementById('s2-p1').innerText = t.s2P1;
-        document.getElementById('s2-p2').innerText = t.s2P2;
-        document.getElementById('s2-p3').innerText = t.s2P3;
-        document.getElementById('s2-p4').innerText = t.s2P4;
-
-        document.getElementById('s3-desc').innerText = t.s3Desc;
-        document.getElementById('s3-p1').innerText = t.s3P1;
-        document.getElementById('s3-p2').innerText = t.s3P2;
-        document.getElementById('s3-p3').innerText = t.s3P3;
-        document.getElementById('s3-p4').innerText = t.s3P4;
-
-        document.getElementById('about-title').innerText = t.aboutTitle;
-        document.getElementById('about-desc').innerText = t.aboutDesc;
-        document.getElementById('about-location').innerText = t.aboutLocation;
-        document.getElementById('about-scope').innerText = t.aboutScope;
-
-        document.getElementById('footer-rights').innerText = t.footerRights;
-        document.getElementById('footer-support').innerText = t.footerSupport;
-        document.getElementById('footer-privacy').innerText = t.footerPrivacy;
-
-        // Textos del chat
-        document.getElementById('chat-input').placeholder = ct.placeholder;
-        document.getElementById('chat-send-btn').innerText = ct.send;
-        
-        const firstMessage = document.querySelector('#chat-messages > div');
-        if (firstMessage) {
-            firstMessage.innerText = ct.welcome;
-        }
-
-        // Estilo de botones de idioma
-        ['es', 'en', 'pt'].forEach(l => {
-            const btn = document.getElementById(`btn-${l}`);
-            btn.classList.toggle('text-white', l === lang);
-            btn.classList.toggle('text-gray-500', l !== lang);
-            btn.classList.toggle('hover:text-white', l !== lang);
-        });
-    }
-</script>
+    // Auto-play cada 5 segundos
+    setInterval(() => {
+      moveSlide(1);
+    }, 5000);
+  </script>
 
 </body>
 </html>
