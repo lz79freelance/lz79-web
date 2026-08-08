@@ -29,8 +29,11 @@
 <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div class="flex items-center">
-            <a href="#" class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                LZ79
+            <a href="#" class="flex items-center">
+                <img src="logo.png" alt="LZ79 logo" class="h-10 w-auto mr-3 rounded" />
+                <span class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+                    LZ79
+                </span>
             </a>
         </div>
 
@@ -157,7 +160,7 @@
     <div class="max-w-4xl mx-auto px-6 text-center">
         <h2 id="about-title" class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
         <p id="about-desc" class="text-gray-400 leading-relaxed mb-6">
-            Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
+            Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramienta[...]
         </p>
         <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
             <span id="about-location">Salvaterra de Miño, Galicia</span>
@@ -183,9 +186,9 @@
 
 <!-- WIDGET DE CHAT FLOTANTE -->
 <div id="lz79-chat-widget" class="fixed bottom-6 right-6 z-50 font-sans">
-    <button id="chat-toggle-btn" onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-techBlue to-techCian rounded-full shadow-lg shadow-techBlue/30 flex items-center justify-center text-white hover:scale-105 transition-all focus:outline-none">
-        <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-        <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <button id="chat-toggle-btn" onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-r from-techBlue to-techCian rounded-full shadow-lg shadow-techBlue/30 flex items-center justify-center text[...]
+        <svg id="chat-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01[...]
+        <svg id="chat-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M[...]
     </button>
 
     <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 bg-cardBg border border-gray-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all">
@@ -204,7 +207,7 @@
         </div>
 
         <div class="p-3 bg-gray-900 border-t border-gray-800 flex items-center space-x-2">
-            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 text-gray-100 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-techBlue border border-gray-700" onkeypress="handleKeyPress(event)">
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 text-gray-100 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring[...]
             <button id="chat-send-btn" onclick="sendMessage()" class="bg-techBlue hover:bg-techBlue/90 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">
                 Enviar
             </button>
@@ -233,7 +236,7 @@
             s3Desc: "Auditoría técnica, arquitectura de software y estudios de viabilidad para proyectos complejos de ingeniería.",
             s3P1: "Arquitectura de software", s3P2: "Auditoría y viabilidad técnica", s3P3: "Optimización de procesos", s3P4: "Soporte técnico freelance",
             aboutTitle: "El Enfoque LZ79",
-            aboutDesc: "Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.",
+            aboutDesc: "Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos[...]",
             aboutLocation: "Salvaterra de Miño, Galicia",
             aboutScope: "Servicio Global",
             footerRights: "Todos los derechos reservados.",
@@ -258,7 +261,7 @@
             s3Desc: "Technical audit, software architecture, and feasibility studies for complex engineering projects.",
             s3P1: "Software architecture", s3P2: "Technical audit and feasibility", s3P3: "Process optimization", s3P4: "Freelance technical support",
             aboutTitle: "The LZ79 Approach",
-            aboutDesc: "We believe in practical engineering. Behind every line of code and automated system lies a clear objective: maximum operational efficiency. We develop robust tools designed to solve real technical challenges.",
+            aboutDesc: "We believe in practical engineering. Behind every line of code and automated system lies a clear objective: maximum operational efficiency. We develop robust tools designe[...]",
             aboutLocation: "Salvaterra de Miño, Galicia",
             aboutScope: "Global Service",
             footerRights: "All rights reserved.",
@@ -283,7 +286,7 @@
             s3Desc: "Auditoria técnica, arquitetura de software e estudos de viabilidade para projetos complexos de engenharia.",
             s3P1: "Arquitetura de software", s3P2: "Auditoria e viabilidade técnica", s3P3: "Otimização de processos", s3P4: "Suporte técnico freelance",
             aboutTitle: "A Abordagem LZ79",
-            aboutDesc: "Acreditamos na engenharia prática. Por trás de cada linha de código e sistema automatizado há um objetivo claro: máxima eficiência operacional. Desenvolvemos ferramentas robustas projetadas para resolver desafios técnicos reais.",
+            aboutDesc: "Acreditamos na engenharia prática. Por trás de cada linha de código e sistema automatizado há um objetivo claro: máxima eficiência operacional. Desenvolvemos ferrame[...]",
             aboutLocation: "Salvaterra de Miño, Galicia",
             aboutScope: "Serviço Global",
             footerRights: "Todos os direitos reservados.",
