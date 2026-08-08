@@ -39,8 +39,8 @@
 
         <div class="flex items-center space-x-8">
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#servicios" id="nav-servicios" class="hover:text-white transition-colors">Servicios</a>
                 <a href="#app" id="nav-app" class="hover:text-white transition-colors">App</a>
+                <a href="#servicios" id="nav-servicios" class="hover:text-white transition-colors">Servicios</a>
                 <a href="#taller" id="nav-taller" class="hover:text-white transition-colors">El Taller</a>
             </nav>
 
@@ -63,7 +63,7 @@
 </header>
 
 <!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+<section class="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 overflow-hidden">
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="max-w-4xl mx-auto px-6 text-center z-10">
@@ -84,10 +84,65 @@
                 Iniciar Proyecto
             </a>
 
-            <a href="#servicios" id="hero-btn-view"
+            <a href="#app" id="hero-btn-app"
                class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-all text-center">
-                Ver Servicios
+                Ver Aplicación
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN DE CAPTURAS DE LA APLICACIÓN (CARTA DE PRESENTACIÓN ALTA) -->
+<section id="app" class="py-20 border-t border-gray-900 bg-gray-950/60 relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 id="app-section-title" class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+                LZ79 Essential Edition
+            </h2>
+            <p id="app-section-desc" class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+                Solución integral de gestión y contabilidad diseñada para un control rápido, intuitivo y eficiente de tu negocio.
+            </p>
+        </div>
+
+        <!-- Grid de Capturas -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Tarjeta 1: Menú Principal -->
+            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
+                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
+                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131854.png" alt="Menú Principal LZ79" class="w-full h-auto object-cover">
+                </div>
+                <h3 class="font-bold text-base text-white mb-1">Panel General</h3>
+                <p class="text-xs text-gray-400 text-center">Acceso directo a todos los módulos y visión global de la aplicación.</p>
+            </div>
+
+            <!-- Tarjeta 2: Facturación e IVA -->
+            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
+                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
+                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131907.png" alt="Módulo Facturación" class="w-full h-auto object-cover">
+                </div>
+                <h3 class="font-bold text-base text-white mb-1">Facturación e IVA</h3>
+                <p class="text-xs text-gray-400 text-center">Control de conceptos, bases y selección dinámica de tipos de IVA.</p>
+            </div>
+
+            <!-- Tarjeta 3: Inventario / Almacén -->
+            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
+                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
+                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131938.png" alt="Gestión de Inventario" class="w-full h-auto object-cover">
+                </div>
+                <h3 class="font-bold text-base text-white mb-1">Gestión de Inventario</h3>
+                <p class="text-xs text-gray-400 text-center">SKU, control de stock actual, valoración y opciones de sincronización.</p>
+            </div>
+
+            <!-- Tarjeta 4: Balance -->
+            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
+                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
+                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20132034.png" alt="Balance Financiero" class="w-full h-auto object-cover">
+                </div>
+                <h3 class="font-bold text-base text-white mb-1">Balance Financiero</h3>
+                <p class="text-xs text-gray-400 text-center">Resumen inmediato de ingresos, gastos y diferencia global en tiempo real.</p>
+            </div>
+
         </div>
     </div>
 </section>
@@ -156,61 +211,6 @@
     </div>
 </section>
 
-<!-- SECCIÓN DE CAPTURAS DE LA APLICACIÓN -->
-<section id="app" class="py-24 border-t border-gray-900 bg-gray-950/50 relative">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 id="app-section-title" class="text-3xl sm:text-4xl font-bold mb-4 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                LZ79 Essential Edition
-            </h2>
-            <p id="app-section-desc" class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-                Solución integral de gestión y contabilidad diseñada para un control rápido, intuitivo y eficiente de tu negocio.
-            </p>
-        </div>
-
-        <!-- Grid de Capturas -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <!-- Tarjeta 1: Menú Principal -->
-            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
-                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
-                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131854.png" alt="Menú Principal LZ79" class="w-full h-auto object-cover">
-                </div>
-                <h3 class="font-bold text-base text-white mb-1">Panel General</h3>
-                <p class="text-xs text-gray-400 text-center">Acceso directo a todos los módulos y visión global de la aplicación.</p>
-            </div>
-
-            <!-- Tarjeta 2: Facturación e IVA -->
-            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
-                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
-                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131907.png" alt="Módulo Facturación" class="w-full h-auto object-cover">
-                </div>
-                <h3 class="font-bold text-base text-white mb-1">Facturación e IVA</h3>
-                <p class="text-xs text-gray-400 text-center">Control de conceptos, bases y selección dinámica de tipos de IVA.</p>
-            </div>
-
-            <!-- Tarjeta 3: Inventario / Almacén -->
-            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
-                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
-                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20131938.png" alt="Gestión de Inventario" class="w-full h-auto object-cover">
-                </div>
-                <h3 class="font-bold text-base text-white mb-1">Gestión de Inventario</h3>
-                <p class="text-xs text-gray-400 text-center">SKU, control de stock actual, valoración y opciones de sincronización.</p>
-            </div>
-
-            <!-- Tarjeta 4: Balance -->
-            <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col items-center shadow-xl hover:border-techBlue/50 transition-all">
-                <div class="rounded-xl overflow-hidden border border-gray-800 mb-4 bg-darkBg">
-                    <img src="https://raw.githubusercontent.com/lz79freelance/lz79-web/main/Captura%20de%20pantalla%202026-08-08%20132034.png" alt="Balance Financiero" class="w-full h-auto object-cover">
-                </div>
-                <h3 class="font-bold text-base text-white mb-1">Balance Financiero</h3>
-                <p class="text-xs text-gray-400 text-center">Resumen inmediato de ingresos, gastos y diferencia global en tiempo real.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 <!-- TALLER -->
 <section id="taller" class="py-24 border-t border-gray-900 relative">
     <div class="max-w-4xl mx-auto px-6 text-center">
@@ -275,15 +275,15 @@
 <script>
     const translations = {
         es: {
-            navServicios: "Servicios",
             navApp: "App",
+            navServicios: "Servicios",
             navTaller: "El Taller",
             btnContacto: "Contacto",
             heroTitle1: "Sistemas conectados.",
             heroTitle2: "Soluciones escalables.",
             heroDesc: "Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos e ingeniería.",
             heroBtnStart: "Iniciar Proyecto",
-            heroBtnView: "Ver Servicios",
+            heroBtnApp: "Ver Aplicación",
             servicesMainTitle: "Ingeniería & Software Especializado",
             servicesMainDesc: "Nuestras líneas de servicio técnico están diseñadas para aportar robustez, control y automatización a tu infraestructura operativa.",
             s1Desc: "Desarrollo backend en Python para conexión avanzada y sincronización de datos entre plataformas complejas.",
@@ -301,15 +301,15 @@
             footerPrivacy: "Política de Privacidad"
         },
         en: {
-            navServicios: "Services",
             navApp: "App",
+            navServicios: "Services",
             navTaller: "The Workshop",
             btnContacto: "Contact",
             heroTitle1: "Connected systems.",
             heroTitle2: "Scalable solutions.",
             heroDesc: "Custom software development, API integration, and intelligent automation to optimize your processes and engineering.",
             heroBtnStart: "Start Project",
-            heroBtnView: "View Services",
+            heroBtnApp: "View Application",
             servicesMainTitle: "Engineering & Specialized Software",
             servicesMainDesc: "Our technical service lines are designed to bring robustness, control, and automation to your operational infrastructure.",
             s1Desc: "Python backend development for advanced connection and data synchronization between complex platforms.",
@@ -327,15 +327,15 @@
             footerPrivacy: "Privacy Policy"
         },
         pt: {
-            navServicios: "Serviços",
             navApp: "App",
+            navServicios: "Serviços",
             navTaller: "A Oficina",
             btnContacto: "Contato",
             heroTitle1: "Sistemas conectados.",
             heroTitle2: "Soluções escaláveis.",
             heroDesc: "Desenvolvimento de software personalizado, integração de APIs e automação inteligente para otimizar seus processos e engenharia.",
             heroBtnStart: "Iniciar Projeto",
-            heroBtnView: "Ver Serviços",
+            heroBtnApp: "Ver Aplicação",
             servicesMainTitle: "Engenharia & Software Especializado",
             servicesMainDesc: "Nossas linhas de serviços técnicos são projetadas para trazer robustez, controle e automação à sua infraestrutura operacional.",
             s1Desc: "Desenvolvimento backend em Python para conexão avançada e sincronização de dados entre plataformas complexas.",
@@ -426,8 +426,8 @@
         const t = translations[lang];
         const ct = chatTranslations[lang];
 
-        document.getElementById('nav-servicios').innerText = t.navServicios;
         document.getElementById('nav-app').innerText = t.navApp;
+        document.getElementById('nav-servicios').innerText = t.navServicios;
         document.getElementById('nav-taller').innerText = t.navTaller;
         document.getElementById('btn-contacto').innerText = t.btnContacto;
 
@@ -436,7 +436,7 @@
         document.getElementById('hero-desc').innerText = t.heroDesc;
 
         document.getElementById('hero-btn-start').innerText = t.heroBtnStart;
-        document.getElementById('hero-btn-view').innerText = t.heroBtnView;
+        document.getElementById('hero-btn-app').innerText = t.heroBtnApp;
 
         document.getElementById('services-main-title').innerText = t.servicesMainTitle;
         document.getElementById('services-main-desc').innerText = t.servicesMainDesc;
