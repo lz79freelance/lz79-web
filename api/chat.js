@@ -15,7 +15,15 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { messages, language = "es" } = req.body || {};
+    if (!process.env.OPENAI_API_KEY) {
+      return res.status(500).json({
+        error: "Falta configurar OPENAI_API_KEY en Vercel",
+      });
+    }
+
+    const body = req.body || {};
+    const messages = body.messages;
+    const language = body.language || "es";
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({
@@ -26,43 +34,41 @@ module.exports = async function handler(req, res) {
     const cleanMessages = messages
       .slice(-MAX_MESSAGES)
       .filter(
-        (m) =>
-          m &&
-          (m.role === "user" || m.role === "assistant") &&
-          typeof m.content === "string"
+        (message) =>
+          message &&
+          (message.role === "user" || message.role === "assistant") &&
+          typeof message.content === "string"
       )
-      .map((m) => ({
-        role: m.role,
-        content: m.content.slice(0, MAX_MESSAGE_LENGTH),
+      .map((message) => ({
+        role: message.role,
+        content: message.content.slice(0, MAX_MESSAGE_LENGTH),
       }));
 
-    if (!cleanMessages.length) {
+    if (cleanMessages.length === 0) {
       return res.status(400).json({
         error: "Mensajes inválidos",
       });
     }
 
-    const languageNames = {
+    const languages = {
       es: "español",
       gl: "gallego",
       eu: "euskera",
       cat: "catalán",
     };
 
-    const selectedLanguage =
-      languageNames[language] || languageNames.es;
+    const selectedLanguage = languages[language] || "español";
 
     const response = await client.responses.create({
       model: "gpt-5-mini",
       instructions: `
 Eres Galia, el asistente inteligente de LZ79.
 
-Responde siempre en ${selectedLanguage}, salvo que el usuario pida explícitamente otro idioma.
+Responde en ${selectedLanguage}, salvo que el usuario solicite expresamente otro idioma.
 
-Tu función es ayudar de forma clara, útil y natural.
-Si el usuario pregunta por LZ79, sus servicios o el proyecto Galia,
-utiliza únicamente la información que esté disponible en la conversación
-y no inventes datos.
+Ayuda de forma clara, natural y útil.
+No inventes información sobre LZ79 ni sobre sus servicios.
+Si no conoces un dato, dilo claramente.
 
 Sé concisa pero útil.
       `,
@@ -70,14 +76,24 @@ Sé concisa pero útil.
       max_output_tokens: 700,
     });
 
+    const reply = response.output_text?.trim();
+
+    if (!reply) {
+      return res.status(502).json({
+        error: "OpenAI no devolvió texto",
+      });
+    }
+
     return res.status(200).json({
-      reply: response.output_text || "No he podido generar una respuesta.",
+      reply,
     });
   } catch (error) {
     console.error("Galia API error:", error);
 
     return res.status(500).json({
-      error: "Error interno del servidor",
+      error:
+        error?.message ||
+        "Error al comunicarse con OpenAI",
     });
   }
 };
