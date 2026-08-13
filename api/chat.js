@@ -4,9 +4,6 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const MAX_MESSAGE_LENGTH = 4000;
-const MAX_MESSAGES = 12;
-
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -15,15 +12,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    if (!process.env.OPENAI_API_KEY) {
-      return res.status(500).json({
-        error: "Falta configurar OPENAI_API_KEY en Vercel",
-      });
-    }
-
-    const body = req.body || {};
-    const messages = body.messages;
-    const language = body.language || "es";
+    const { messages, language = "es" } = req.body || {};
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({
@@ -31,69 +20,30 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const cleanMessages = messages
-      .slice(-MAX_MESSAGES)
-      .filter(
-        (message) =>
-          message &&
-          (message.role === "user" || message.role === "assistant") &&
-          typeof message.content === "string"
-      )
-      .map((message) => ({
-        role: message.role,
-        content: message.content.slice(0, MAX_MESSAGE_LENGTH),
-      }));
-
-    if (cleanMessages.length === 0) {
-      return res.status(400).json({
-        error: "Mensajes inválidos",
-      });
-    }
-
-    const languages = {
+    const languageNames = {
       es: "español",
       gl: "gallego",
       eu: "euskera",
       cat: "catalán",
     };
 
-    const selectedLanguage = languages[language] || "español";
+    const idioma = languageNames[language] || "español";
 
     const response = await client.responses.create({
       model: "gpt-5-mini",
-      instructions: `
-Eres Galia, el asistente inteligente de LZ79.
-
-Responde en ${selectedLanguage}, salvo que el usuario solicite expresamente otro idioma.
-
-Ayuda de forma clara, natural y útil.
-No inventes información sobre LZ79 ni sobre sus servicios.
-Si no conoces un dato, dilo claramente.
-
-Sé concisa pero útil.
-      `,
-      input: cleanMessages,
-      max_output_tokens: 700,
+      instructions: `Eres Galia, el asistente de LZ79. Responde en ${idioma}. Sé clara, útil y natural.`,
+      input: messages.slice(-12),
     });
-
-    const reply = response.output_text?.trim();
-
-    if (!reply) {
-      return res.status(502).json({
-        error: "OpenAI no devolvió texto",
-      });
-    }
 
     return res.status(200).json({
-      reply,
+      reply: response.output_text || "No he podido generar una respuesta.",
     });
+
   } catch (error) {
-    console.error("Galia API error:", error);
+    console.error("GALIA ERROR:", error);
 
     return res.status(500).json({
-      error:
-        error?.message ||
-        "Error al comunicarse con OpenAI",
+      error: error.message || "Error de OpenAI",
     });
   }
 };
