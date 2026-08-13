@@ -1,0 +1,7 @@
+lz79-web/
+├── api/
+│   └── chat.js
+├── package.json   ← ESTE
+├── index.html
+├── CNAME
+└── ...
