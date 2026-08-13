@@ -23,19 +23,26 @@
             align-items: center;
             min-height: 100vh;
         }
-        header {
+        .ecosystem-banner {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin: 40px 20px 20px;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--accent-cyan);
+            margin-bottom: 30px;
         }
-        header h1 {
+        .ecosystem-banner h1 {
             font-size: 2.5rem;
             margin: 0;
             color: var(--text-white);
         }
-        header p {
+        .ecosystem-banner p {
             color: var(--accent-cyan);
             font-size: 1.1rem;
             margin-top: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .container {
             width: 90%;
@@ -103,10 +110,11 @@
 </head>
 <body>
 
-    <header>
-        <h1>LZ79 / Galia</h1>
-        <p>Tecnología, innovación y desarrollo sin ideología</p>
-    </header>
+    <!-- Ecosistema arriba del todo -->
+    <div class="ecosystem-banner">
+        <h1>Ecosistema Galia / LZ79</h1>
+        <p>Tecnología, innovación y desarrollo independiente. Un conjunto de herramientas diseñadas para el futuro.</p>
+    </div>
 
     <div class="container">
         <!-- Producto Activo: Galia Chat -->
@@ -115,7 +123,7 @@
                 Galia Chat 
                 <span class="badge testing">En Pruebas</span>
             </h2>
-            <p>Interactúa con nuestro sistema de chat inteligente impulsado por IA y optimizado para darte respuestas rápidas y fluidas.</p>
+            <p>Interactúa con nuestro sistema de chat inteligente optimizado para darte respuestas rápidas y fluidas.</p>
             <a href="#" class="btn">Probar Chat</a>
             <div class="metrics-section">
                 📊 Métricas iniciales: Monitoreando rendimiento y feedback de usuarios poco a poco.
