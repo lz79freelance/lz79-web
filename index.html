@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galia - Ecosistema Tecnológico</title>
+    <title>Ecosistema Galia / LZ79</title>
     <style>
         :root {
             --bg-color: #0b3c5d;
@@ -86,7 +86,9 @@
             border: 1px solid var(--text-gray);
         }
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background-color: var(--accent-cyan);
             color: var(--bg-color);
             padding: 10px 20px;
@@ -124,7 +126,16 @@
                 <span class="badge testing">En Pruebas</span>
             </h2>
             <p>Interactúa con nuestro sistema de chat inteligente optimizado para darte respuestas rápidas y fluidas.</p>
-            <a href="#" class="btn">Probar Chat</a>
+            
+            <a href="#" class="btn">
+                <!-- Dos símbolos pequeños de conversación integrados en el botón -->
+                <svg width="20" height="16" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 1H5C2.79 1 1 2.79 1 5V13C1 15.21 2.79 17 5 17H9L13 21V17H19C21.21 17 23 15.21 23 13V5C23 2.79 21.21 1 19 1Z" fill="currentColor"/>
+                    <path d="M25 5H27C28.1 5 29 5.9 29 7V15L25 13H23V11H25V5Z" fill="currentColor" opacity="0.6"/>
+                </svg>
+                Probar Chat
+            </a>
+
             <div class="metrics-section">
                 📊 Métricas iniciales: Monitoreando rendimiento y feedback de usuarios poco a poco.
             </div>
