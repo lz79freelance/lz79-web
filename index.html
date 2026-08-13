@@ -40,7 +40,6 @@
             </nav>
 
             <div class="flex items-center space-x-4">
-                <!-- Selector de Idiomas Funcional -->
                 <div class="hidden sm:flex items-center space-x-1 bg-gray-900 border border-gray-800 rounded-lg p-1 text-xs font-semibold text-gray-400">
                     <button onclick="cambiarIdioma('gl')" id="btn-gl" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">GL</button>
                     <button onclick="cambiarIdioma('eu')" id="btn-eu" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">EU</button>
@@ -291,7 +290,7 @@
                 chat_subtitle: "Intelixencia Artificial",
                 chat_title: "Galia Chat Activo",
                 chat_desc: "Interactúa en tempo real co asistente intelixente do ecosistema.",
-                chat_welcome: " Ola! Son Galia Chat. En que podo axudarte hoxe dentro do ecosistema LZ79?",
+                chat_welcome: "¡Ola! Son Galia Chat. En que podo axudarte hoxe dentro do ecosistema LZ79?",
                 chat_placeholder: "Escribe a túa consulta...",
                 chat_send: "Enviar",
                 gallery_tag: "Interface de Usuario",
@@ -434,7 +433,7 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             try {
-                // AQUÍ DEBES APUNTAR A TU ENDPOINT DE BACKEND (PYTHON / FASTAPI / FLASK) QUE CONECTA CON OPENAI
+                // Configura aquí la llamada a tu endpoint de backend para OpenAI
                 setTimeout(() => {
                     document.getElementById('loading-ai').remove();
                     const aiMsg = document.createElement('div');
