@@ -118,7 +118,129 @@
         </div>
     </section>
 
-    <!-- Diccionario de Idiomas y Lógica JS -->
+    <!-- Sección Interactiva: Galia Chat -->
+    <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block" data-i18n="chat_subtitle">Inteligencia Artificial</span>
+                <h2 class="text-3xl font-bold mb-4" data-i18n="chat_title">Galia Chat Activo</h2>
+                <p class="text-gray-400" data-i18n="chat_desc">Interactúa en tiempo real con el asistente inteligente del ecosistema.</p>
+            </div>
+
+            <div class="bg-cardBg border border-techBlue/30 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="font-semibold text-sm text-white">Galia Assistant</span>
+                    </div>
+                    <span class="text-xs text-gray-400" data-i18n="badge_testing">Pruebas</span>
+                </div>
+
+                <div class="p-6 h-80 overflow-y-auto flex flex-col space-y-4 text-sm" id="chat-messages">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
+                        <div class="bg-gray-800 text-gray-200 p-4 rounded-2xl max-w-md leading-relaxed" data-i18n="chat_welcome">
+                            ¡Hola! Soy Galia Chat. ¿En qué puedo ayudarte hoy dentro del ecosistema LZ79?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-900 border-t border-gray-800 flex items-center space-x-3">
+                    <input type="text" id="chat-input" placeholder="Escribe tu consulta..." data-i18n-placeholder="chat_placeholder" class="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
+                    <button onclick="enviarMensaje()" data-i18n="chat_send" class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Capturas de la App -->
+    <section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block" data-i18n="gallery_tag">Interfaz de Usuario</span>
+                <h2 class="text-3xl font-bold mb-4" data-i18n="gallery_title">Vista Previa de la Aplicación</h2>
+                <p class="text-gray-400" data-i18n="gallery_desc">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura app 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura app 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura app 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura app 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4" data-i18n="services_title">Líneas de Negocio</h2>
+                <p class="text-gray-400" data-i18n="services_desc">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_1_desc">
+                        Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_2_desc">
+                        Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_3_desc">
+                        Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="taller" class="py-24 border-t border-gray-900 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6" data-i18n="workshop_title">El Enfoque LZ79</h2>
+            <p class="text-gray-400 leading-relaxed mb-6" data-i18n="workshop_desc">
+                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
+            </p>
+            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
+                <span>O Porriño, Galicia</span>
+                <span>•</span>
+                <span data-i18n="global_service">Servicio Global</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-900 py-8 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+            <div data-i18n="footer_rights">
+                &copy; 2026 LZ79. Todos los derechos reservados.
+            </div>
+            <div class="flex space-x-6">
+                <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300" data-i18n="footer_support">Soporte</a>
+                <a href="politica-privacidad.html" class="hover:text-gray-300" data-i18n="footer_privacy">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de Traducción y Chat -->
     <script>
         const traducciones = {
             es: {
@@ -132,7 +254,27 @@
                 badge_testing: "Pruebas",
                 badge_soon: "Próximamente",
                 hosting_title: "DOMINIOS Y HOSTING",
-                btn_start: "Iniciar Proyecto"
+                btn_start: "Iniciar Proyecto",
+                chat_subtitle: "Inteligencia Artificial",
+                chat_title: "Galia Chat Activo",
+                chat_desc: "Interactúa en tiempo real con el asistente inteligente del ecosistema.",
+                chat_welcome: "¡Hola! Soy Galia Chat. ¿En qué puedo ayudarte hoy dentro del ecosistema LZ79?",
+                chat_placeholder: "Escribe tu consulta...",
+                chat_send: "Enviar",
+                gallery_tag: "Interfaz de Usuario",
+                gallery_title: "Vista Previa de la Aplicación",
+                gallery_desc: "Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.",
+                services_title: "Líneas de Negocio",
+                services_desc: "Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.",
+                service_1_desc: "Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.",
+                service_2_desc: "Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.",
+                service_3_desc: "Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.",
+                workshop_title: "El Enfoque LZ79",
+                workshop_desc: "Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.",
+                global_service: "Servicio Global",
+                footer_rights: "© 2026 LZ79. Todos los derechos reservados.",
+                footer_support: "Soporte",
+                footer_privacy: "Privacidad"
             },
             gl: {
                 nav_services: "Servizos",
@@ -145,7 +287,27 @@
                 badge_testing: "Probas",
                 badge_soon: "Próximamente",
                 hosting_title: "DOMINIOS E HOSTING",
-                btn_start: "Iniciar Proxecto"
+                btn_start: "Iniciar Proxecto",
+                chat_subtitle: "Intelixencia Artificial",
+                chat_title: "Galia Chat Activo",
+                chat_desc: "Interactúa en tempo real co asistente intelixente do ecosistema.",
+                chat_welcome: " Ola! Son Galia Chat. En que podo axudarte hoxe dentro do ecosistema LZ79?",
+                chat_placeholder: "Escribe a túa consulta...",
+                chat_send: "Enviar",
+                gallery_tag: "Interface de Usuario",
+                gallery_title: "Vista Previa da Aplicación",
+                gallery_desc: "Deseños limpos, modernos e funcionais optimizados para cada fluxo de traballo.",
+                services_title: "Liñas de Negocio",
+                services_desc: "Servizos técnicos especializados para transformar problemas complexos en sistemas eficientes.",
+                service_1_desc: "Conexión de sistemas, sincronización de plataformas e automatización do fluxo de datos mediante código limpo e estruturado en Python.",
+                service_2_desc: "Deseño e implementación de solucións lóxicas e mecánicas orientadas á optimización de procesos industriais, robótica e contornas conectadas.",
+                service_3_desc: "Auditoría técnica, viabilidade de proxectos de enxeñaría e deseño de arquitectura de software antes do despregue de produción.",
+                workshop_title: "O Enfoque LZ79",
+                workshop_desc: "Creemos na enxeñaría práctica. Detrás de cada liña de código e de cada sistema automatizado hai un obxectivo claro: a máxima eficiencia operativa. Desenvolvemos ferramentas robustas pensadas para solucionar retos técnicos reais.",
+                global_service: "Servizo Global",
+                footer_rights: "© 2026 LZ79. Todos os dereitos reservados.",
+                footer_support: "Soporte",
+                footer_privacy: "Privacidade"
             },
             eu: {
                 nav_services: "Zerbitzuak",
@@ -158,7 +320,27 @@
                 badge_testing: "Probak",
                 badge_soon: "Laster",
                 hosting_title: "DOMEINUAK ETA HOSTING",
-                btn_start: "Proiektua Hasi"
+                btn_start: "Proiektua Hasi",
+                chat_subtitle: "Adimen Artifiziala",
+                chat_title: "Galia Chat Aktibo",
+                chat_desc: "Elkarrekintza denbora errealean ekosistemako laguntzaile adimendunarekin.",
+                chat_welcome: "Kaixo! Galia Chat naiz. Nola lagundu dezaket gaur LZ79 ekosisteman?",
+                chat_placeholder: "Idatzi zure kontsulta...",
+                chat_send: "Bidali",
+                gallery_tag: "Erabiltzaile Interfazea",
+                gallery_title: "Aplikazioaren Aurrebista",
+                gallery_desc: "Lan-fluxu bakoitzarentzat optimizatutako diseinu garbi, moderno eta funtzionalak.",
+                services_title: "Negozio Lerroak",
+                services_desc: "Arazo konplexuak sistema eraginkor bihurtzeko zerbitzu teknikorako espezializatuak.",
+                service_1_desc: "Sistemen konexioa, plataformen sinkronizazioa eta datu-fluxuaren automatizazioa Python-en egituratutako kode garbiaren bidez.",
+                service_2_desc: "Prozesu industrialen optimizaziora, robotikara eta ingurune konektatuetara bideratutako soluzio logiko eta mekanikoen diseinua eta ezarpena.",
+                service_3_desc: "Ikuskaritza teknikoa, ingeniaritza proiektuen bideragarritasuna eta software arkitekturaren diseinua produkzioan jarri aurretik.",
+                workshop_title: "LZ79 Ikuspegia",
+                workshop_desc: "Ingeniaritza praktikoan sinesten dugu. Kode lerro bakoitzaren eta sistema automatizatu bakoitzaren atzean helburu argi bat dago: eraginkortasun operatibo maximoa. Erronka tekniko errealak konpontzeko pentsatutako tresna sendoak garatzen ditugu.",
+                global_service: "Zerbitzu Globala",
+                footer_rights: "© 2026 LZ79. Eskubide guztiak erreserbatuta.",
+                footer_support: "Laguntza",
+                footer_privacy: "Pribatutasuna"
             },
             cat: {
                 nav_services: "Serveis",
@@ -171,12 +353,31 @@
                 badge_testing: "Proves",
                 badge_soon: "Pròximament",
                 hosting_title: "DOMINIS I HOSTING",
-                btn_start: "Iniciar Projecte"
+                btn_start: "Iniciar Projecte",
+                chat_subtitle: "Intel·ligència Artificial",
+                chat_title: "Galia Chat Actiu",
+                chat_desc: "Interacciona en temps real amb l'assistent intel·ligent de l'ecosistema.",
+                chat_welcome: "Hola! Soc Galia Chat. En què et puc ajudar avui dins de l'ecosistema LZ79?",
+                chat_placeholder: "Escriu la teva consulta...",
+                chat_send: "Enviar",
+                gallery_tag: "Interfície d'Usuari",
+                gallery_title: "Vista Prèvia de l'Aplicació",
+                gallery_desc: "Dissenys nets, moderns i funcionals optimitzats per a cada flux de treball.",
+                services_title: "Línies de Negoci",
+                services_desc: "Serveis tècnics especialitzats per transformar problemes complexos en sistemes eficients.",
+                service_1_desc: "Connexió de sistemes, sincronització de plataformes i automatització del flux de dades mitjançant codi net i estructurat en Python.",
+                service_2_desc: "Disseny i implementació de solucions lògiques i mecàniques orientades a l'optimització de processos industrials, robòtica i entorns connectats.",
+                service_3_desc: "Auditoria tècnica, viabilitat de projectes d'enginyeria i disseny d'arquitectura de programari abans del desplegament de producció.",
+                workshop_title: "L'Enfocament LZ79",
+                workshop_desc: "Creiem en l'enginyeria pràctica. Darrere de cada línia de codi i de cada sistema automatitzat hi ha un objectiu clar: la màxima eficiència operativa. Desenvolupem eines robustes pensades per solucionar reptes tècnics reals.",
+                global_service: "Servei Global",
+                footer_rights: "© 2026 LZ79. Tots els drets reservats.",
+                footer_support: "Suport",
+                footer_privacy: "Privacitat"
             }
         };
 
         function cambiarIdioma(lang) {
-            // Actualizar textos según atributo data-i18n
             document.querySelectorAll("[data-i18n]").forEach(el => {
                 const key = el.getAttribute("data-i18n");
                 if (traducciones[lang] && traducciones[lang][key]) {
@@ -184,7 +385,13 @@
                 }
             });
 
-            // Resaltar botón activo en el menú
+            document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+                const key = el.getAttribute("data-i18n-placeholder");
+                if (traducciones[lang] && traducciones[lang][key]) {
+                    el.placeholder = traducciones[lang][key];
+                }
+            });
+
             ['es', 'gl', 'eu', 'cat'].forEach(l => {
                 const btn = document.getElementById(`btn-${l}`);
                 if(btn) {
@@ -195,6 +402,57 @@
                     }
                 }
             });
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                enviarMensaje();
+            }
+        }
+
+        async function enviarMensaje() {
+            const input = document.getElementById('chat-input');
+            const messagesContainer = document.getElementById('chat-messages');
+            const textoUsuario = input.value.trim();
+            
+            if(!textoUsuario) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = "flex items-start justify-end space-x-3";
+            userMsg.innerHTML = `<div class="bg-techBlue text-white p-4 rounded-2xl max-w-md leading-relaxed">${textoUsuario}</div>`;
+            messagesContainer.appendChild(userMsg);
+
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            const aiLoadingMsg = document.createElement('div');
+            aiLoadingMsg.id = "loading-ai";
+            aiLoadingMsg.className = "flex items-start space-x-3";
+            aiLoadingMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
+                                      <div class="bg-gray-800 text-gray-400 p-4 rounded-2xl max-w-md italic">Conectando con OpenAI...</div>`;
+            messagesContainer.appendChild(aiLoadingMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            try {
+                // AQUÍ DEBES APUNTAR A TU ENDPOINT DE BACKEND (PYTHON / FASTAPI / FLASK) QUE CONECTA CON OPENAI
+                setTimeout(() => {
+                    document.getElementById('loading-ai').remove();
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = "flex items-start space-x-3";
+                    aiMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
+                                       <div class="bg-gray-800 text-gray-200 p-4 rounded-2xl max-w-md leading-relaxed">Respuesta de OpenAI para: "${textoUsuario}". (Configura tu endpoint backend para producción).</div>`;
+                    messagesContainer.appendChild(aiMsg);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+
+            } catch (error) {
+                document.getElementById('loading-ai').remove();
+                const errorMsg = document.createElement('div');
+                errorMsg.className = "flex items-start space-x-3";
+                errorMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-xs">!</div>
+                                      <div class="bg-red-950/40 text-red-300 p-4 rounded-2xl max-w-md">Error al conectar con el servicio de IA.</div>`;
+                messagesContainer.appendChild(errorMsg);
+            }
         }
     </script>
 
