@@ -1,81 +1,203 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79freelance - Términos y Condiciones</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0F172A;
-            color: #F8FAFC;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0F19',
+                        cardBg: '#111827',
+                        techBlue: '#3B82F6',
+                        techCian: '#06B6D4',
+                    }
+                }
+            }
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #1E293B;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        h1, h2 {
-            color: #38BDF8;
-            border-bottom: 2px solid #38BDF8;
-            padding-bottom: 8px;
-        }
-        h1 { font-size: 24px; margin-top: 0; }
-        h2 { font-size: 18px; margin-top: 25px; }
-        p, li { font-size: 14px; color: #CBD5E1; }
-        ul { padding-left: 20px; }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: #94A3B8;
-            border-top: 1px solid #334155;
-            padding-top: 15px;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h1>Términos y Condiciones de Uso – LZ79freelance</h1>
-        
-        <h2>1. Información general</h2>
-        <p>El presente documento regula el uso de la aplicación <strong>LZ79freelance</strong>, operada por Antonio, con domicilio en O Porriño, Galicia, España. El acceso y uso de la aplicación implica la aceptación plena de estos Términos y Condiciones.</p>
 
-        <h2>2. Objeto de la aplicación</h2>
-        <p>LZ79freelance es una herramienta de gestión orientada a autónomos para el control de contabilidad, emisión de facturas, albaranes, gestión de clientes/proveedores y generación de informes trimestrales y anuales.</p>
+<body class="bg-darkBg text-gray-100 font-sans antialiased">
 
-        <h2>3. Condiciones de acceso y uso</h2>
-        <ul>
-            <li>El usuario se compromete a utilizar la aplicación de forma lícita y conforme a la normativa vigente.</li>
-            <li>Queda prohibido el uso de la aplicación para actividades fraudulentas o falsificación de datos mercantiles.</li>
-            <li>El usuario es el único responsable de la veracidad de los datos fiscales y numéricos introducidos.</li>
-        </ul>
-
-        <h2>4. Almacenamiento local de datos</h2>
-        <p>LZ79freelance almacena toda la información contable, de facturación y de contactos de manera <strong>local en el dispositivo del usuario</strong> mediante bases de datos SQLite integradas. El usuario es responsable de realizar las copias de seguridad de sus archivos de datos locales.</p>
-
-        <h2>5. Propiedad intelectual</h2>
-        <p>Todos los códigos fuente, diseños, interfaces y elementos de la aplicación son propiedad exclusiva del desarrollador. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
-
-        <h2>6. Responsabilidad</h2>
-        <p>LZ79freelance se proporciona como una herramienta de apoyo a la gestión profesional. El desarrollador no se hace responsable de errores derivados de un mal uso, fallos del hardware del dispositivo o interpretaciones incorrectas de las obligaciones fiscales.</p>
-
-        <h2>7. Legislación aplicable</h2>
-        <p>Estos Términos y Condiciones se rigen por la legislación española. En caso de conflicto, las partes se someterán a los juzgados y tribunales de Pontevedra / Galicia.</p>
-
-        <div class="footer">
-            <p>&copy; 2026 LZ79freelance. Todos los derechos reservados.</p>
+    <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div
+                class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+                LZ79
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+                <a href="#galeria" class="hover:text-white transition-colors">Capturas</a>
+                <a href="#taller" class="hover:text-white transition-colors">El Taller</a>
+            </nav>
+            <div>
+                <a href="mailto:contacto@lz79freelance.com"
+                    class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
+                    Contacto
+                </a>
+            </div>
         </div>
-    </div>
-</body>
-</html>
-    </p>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <div
+            class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center z-10">
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
+                Ecosistema Galia.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+                    Soluciones escalables y conectadas.
+                </span>
+            </h1>
+            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
+                Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
+                <a href="#" class="flex items-center rounded-xl overflow-hidden border border-techBlue/50 bg-cardBg hover:border-techBlue transition-all group">
+                    <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center">
+                        <svg width="22" height="18" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 1H5C2.79 1 1 2.79 1 5V13C1 15.21 2.79 17 5 17H9L13 21V17H19C21.21 17 23 15.21 23 13V5C23 2.79 21.21 1 19 1Z" fill="currentColor"/>
+                            <path d="M25 5H27C28.1 5 29 5.9 29 7V15L25 13H23V11H25V5Z" fill="currentColor" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                        <span class="font-semibold text-white tracking-wide text-sm">GALIA CHAT</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Pruebas</span>
+                    </div>
+                </a>
+
+                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        🔍
+                    </div>
+                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                        <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA BUSCADOR</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        💳
+                    </div>
+                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                        <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        🌐
+                    </div>
+                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                        <span class="font-semibold text-gray-300 tracking-wide text-sm">DOMINIOS Y HOSTING</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <a href="mailto:contacto@lz79freelance.com"
+                    class="px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center text-sm">
+                    Iniciar Proyecto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Capturas de la App -->
+    <section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Interfaz de Usuario</span>
+                <h2 class="text-3xl font-bold mb-4">Vista Previa de la Aplicación</h2>
+                <p class="text-gray-400">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura app 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura app 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura app 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura app 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Líneas de Negocio</h2>
+                <p class="text-gray-400">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
+                    </p>
+                </div>
+                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="taller" class="py-24 border-t border-gray-900 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
+            <p class="text-gray-400 leading-relaxed mb-6">
+                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
+            </p>
+            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
+                <span>O Porriño, Galicia</span>
+                <span>•</span>
+                <span>Servicio Global</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-900 py-8 bg-black/40">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+            <div>
+                &copy; 2026 LZ79. Todos los derechos reservados.
+            </div>
+            <div class="flex space-x-6">
+                <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300">Soporte</a>
+                <a href="politica-privacidad.html" class="hover:text-gray-300">Privacidad</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
