@@ -34,20 +34,21 @@
             </div>
 
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
-                <a href="#galeria" class="hover:text-white transition-colors">Capturas</a>
-                <a href="#taller" class="hover:text-white transition-colors">El Taller</a>
+                <a href="#servicios" class="hover:text-white transition-colors" data-i18n="nav_services">Servicios</a>
+                <a href="#galeria" class="hover:text-white transition-colors" data-i18n="nav_gallery">Capturas</a>
+                <a href="#taller" class="hover:text-white transition-colors" data-i18n="nav_workshop">El Taller</a>
             </nav>
 
             <div class="flex items-center space-x-4">
+                <!-- Selector de Idiomas Funcional -->
                 <div class="hidden sm:flex items-center space-x-1 bg-gray-900 border border-gray-800 rounded-lg p-1 text-xs font-semibold text-gray-400">
-                    <a href="#gl" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">GL</a>
-                    <a href="#eu" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">EU</a>
-                    <a href="#cat" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">CAT</a>
-                    <a href="#es" class="px-2 py-1 rounded bg-gray-800 text-white transition-all">ES</a>
+                    <button onclick="cambiarIdioma('gl')" id="btn-gl" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">GL</button>
+                    <button onclick="cambiarIdioma('eu')" id="btn-eu" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">EU</button>
+                    <button onclick="cambiarIdioma('cat')" id="btn-cat" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">CAT</button>
+                    <button onclick="cambiarIdioma('es')" id="btn-es" class="px-2 py-1 rounded bg-gray-800 text-white transition-all">ES</button>
                 </div>
 
-                <a href="mailto:contacto@lz79freelance.com"
+                <a href="mailto:contacto@lz79freelance.com" data-i18n="nav_contact"
                     class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
                     Contacto
                 </a>
@@ -56,18 +57,16 @@
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-        <div
-            class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
-        </div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-5xl mx-auto px-6 text-center z-10">
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
-                Ecosistema Galia.<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+                <span data-i18n="hero_title_1">Ecosistema Galia.</span><br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian" data-i18n="hero_title_2">
                     Soluciones escalables y conectadas.
                 </span>
             </h1>
-            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
+            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10" data-i18n="hero_desc">
                 Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos.
             </p>
 
@@ -81,43 +80,37 @@
                     </div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-white tracking-wide text-sm">GALIA CHAT</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Pruebas</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" data-i18n="badge_testing">Pruebas</span>
                     </div>
                 </a>
 
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        🔍
-                    </div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🔍</div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA BUSCADOR</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
                     </div>
                 </div>
 
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        💳
-                    </div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">💳</div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
                     </div>
                 </div>
 
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        🌐
-                    </div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🌐</div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                        <span class="font-semibold text-gray-300 tracking-wide text-sm">DOMINIOS Y HOSTING</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
+                        <span class="font-semibold text-gray-300 tracking-wide text-sm" data-i18n="hosting_title">DOMINIOS Y HOSTING</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center justify-center">
-                <a href="mailto:contacto@lz79freelance.com"
+                <a href="mailto:contacto@lz79freelance.com" data-i18n="btn_start"
                     class="px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center text-sm">
                     Iniciar Proyecto
                 </a>
@@ -125,194 +118,85 @@
         </div>
     </section>
 
-    <!-- Sección Interactiva: Galia Chat (Listo para conectar al endpoint de OpenAI) -->
-    <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Inteligencia Artificial con OpenAI</span>
-                <h2 class="text-3xl font-bold mb-4">Galia Chat Activo</h2>
-                <p class="text-gray-400">Interactúa en tiempo real con el asistente inteligente del ecosistema.</p>
-            </div>
-
-            <div class="bg-cardBg border border-techBlue/30 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="font-semibold text-sm text-white">Galia Assistant (OpenAI Powered)</span>
-                    </div>
-                    <span class="text-xs text-gray-400">Modo Pruebas</span>
-                </div>
-
-                <div class="p-6 h-80 overflow-y-auto flex flex-col space-y-4 text-sm" id="chat-messages">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
-                        <div class="bg-gray-800 text-gray-200 p-4 rounded-2xl max-w-md leading-relaxed">
-                            ¡Hola! Soy Galia Chat impulsado por OpenAI. ¿En qué puedo ayudarte hoy dentro del ecosistema LZ79?
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-4 bg-gray-900 border-t border-gray-800 flex items-center space-x-3">
-                    <input type="text" id="chat-input" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
-                    <button onclick="enviarMensaje()" class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm">
-                        Enviar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Script de integración preparado para la API -->
+    <!-- Diccionario de Idiomas y Lógica JS -->
     <script>
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                enviarMensaje();
+        const traducciones = {
+            es: {
+                nav_services: "Servicios",
+                nav_gallery: "Capturas",
+                nav_workshop: "El Taller",
+                nav_contact: "Contacto",
+                hero_title_1: "Ecosistema Galia.",
+                hero_title_2: "Soluciones escalables y conectadas.",
+                hero_desc: "Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos.",
+                badge_testing: "Pruebas",
+                badge_soon: "Próximamente",
+                hosting_title: "DOMINIOS Y HOSTING",
+                btn_start: "Iniciar Proyecto"
+            },
+            gl: {
+                nav_services: "Servizos",
+                nav_gallery: "Capturas",
+                nav_workshop: "O Obradoiro",
+                nav_contact: "Contacto",
+                hero_title_1: "Ecosistema Galia.",
+                hero_title_2: "Solucións escalables e conectadas.",
+                hero_desc: "Desenvolvemento de software a medida, integración de APIs e automatización intelixente para optimizar os teus procesos.",
+                badge_testing: "Probas",
+                badge_soon: "Próximamente",
+                hosting_title: "DOMINIOS E HOSTING",
+                btn_start: "Iniciar Proxecto"
+            },
+            eu: {
+                nav_services: "Zerbitzuak",
+                nav_gallery: "Argazkiak",
+                nav_workshop: "Tailerra",
+                nav_contact: "Kontaktua",
+                hero_title_1: "Galia Ekosistema.",
+                hero_title_2: "Irtenbide eskalagarri eta konektatuak.",
+                hero_desc: "Neurrira egindako software garapena, APIen integrazioa eta automatizazio adimenduna zure prozesuak optimizatzeko.",
+                badge_testing: "Probak",
+                badge_soon: "Laster",
+                hosting_title: "DOMEINUAK ETA HOSTING",
+                btn_start: "Proiektua Hasi"
+            },
+            cat: {
+                nav_services: "Serveis",
+                nav_gallery: "Captures",
+                nav_workshop: "El Taller",
+                nav_contact: "Contacte",
+                hero_title_1: "Ecosistema Galia.",
+                hero_title_2: "Solucions escalables i connectades.",
+                hero_desc: "Desenvolupament de programari a mida, integració d'APIs i automatització intel·ligent per optimitzar els teus processos.",
+                badge_testing: "Proves",
+                badge_soon: "Pròximament",
+                hosting_title: "DOMINIS I HOSTING",
+                btn_start: "Iniciar Projecte"
             }
-        }
+        };
 
-        async function enviarMensaje() {
-            const input = document.getElementById('chat-input');
-            const messagesContainer = document.getElementById('chat-messages');
-            const textoUsuario = input.value.trim();
-            
-            if(!textoUsuario) return;
+        function cambiarIdioma(lang) {
+            // Actualizar textos según atributo data-i18n
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (traducciones[lang] && traducciones[lang][key]) {
+                    el.textContent = traducciones[lang][key];
+                }
+            });
 
-            // Añadir mensaje del usuario a la interfaz
-            const userMsg = document.createElement('div');
-            userMsg.className = "flex items-start justify-end space-x-3";
-            userMsg.innerHTML = `<div class="bg-techBlue text-white p-4 rounded-2xl max-w-md leading-relaxed">${textoUsuario}</div>`;
-            messagesContainer.appendChild(userMsg);
-
-            input.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            // Indicador de escritura o procesamiento con OpenAI
-            const aiLoadingMsg = document.createElement('div');
-            aiLoadingMsg.id = "loading-ai";
-            aiLoadingMsg.className = "flex items-start space-x-3";
-            aiLoadingMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
-                                      <div class="bg-gray-800 text-gray-400 p-4 rounded-2xl max-w-md italic">Conectando con OpenAI...</div>`;
-            messagesContainer.appendChild(aiLoadingMsg);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            try {
-                // AQUÍ DEBES APUNTAR A TU ENDPOINT DE BACKEND (PYTHON / FASTAPI / FLASK) QUE CONECTA CON OPENAI
-                /*
-                const response = await fetch('https://tu-backend-api.com/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: textoUsuario })
-                });
-                const data = await response.json();
-                const respuestaOpenAI = data.reply;
-                */
-
-                // Simulación de respuesta conectada mientras configuras tu backend en Python
-                setTimeout(() => {
-                    document.getElementById('loading-ai').remove();
-                    const aiMsg = document.createElement('div');
-                    aiMsg.className = "flex items-start space-x-3";
-                    aiMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs">AI</div>
-                                       <div class="bg-gray-800 text-gray-200 p-4 rounded-2xl max-w-md leading-relaxed">Respuesta de OpenAI para: "${textoUsuario}". (Configura tu endpoint backend para producción).</div>`;
-                    messagesContainer.appendChild(aiMsg);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                }, 1000);
-
-            } catch (error) {
-                document.getElementById('loading-ai').remove();
-                const errorMsg = document.createElement('div');
-                errorMsg.className = "flex items-start space-x-3";
-                errorMsg.innerHTML = `<div class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-xs">!</div>
-                                      <div class="bg-red-950/40 text-red-300 p-4 rounded-2xl max-w-md">Error al conectar con el servicio de IA.</div>`;
-                messagesContainer.appendChild(errorMsg);
-            }
+            // Resaltar botón activo en el menú
+            ['es', 'gl', 'eu', 'cat'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                if(btn) {
+                    if(l === lang) {
+                        btn.className = "px-2 py-1 rounded bg-gray-800 text-white transition-all";
+                    } else {
+                        btn.className = "px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all text-gray-400";
+                    }
+                }
+            });
         }
     </script>
 
-    <section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Interfaz de Usuario</span>
-                <h2 class="text-3xl font-bold mb-4">Vista Previa de la Aplicación</h2>
-                <p class="text-gray-400">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura app 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura app 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura app 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura app 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Líneas de Negocio</h2>
-                <p class="text-gray-400">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
-                    </p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
-                    </p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="taller" class="py-24 border-t border-gray-900 relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
-            <p class="text-gray-400 leading-relaxed mb-6">
-                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
-            </p>
-            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
-                <span>O Porriño, Galicia</span>
-                <span>•</span>
-                <span>Servicio Global</span>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-gray-900 py-8 bg-black/40">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <div>
-                &copy; 2026 LZ79. Todos los derechos reservados.
-            </div>
-            <div class="flex space-x-6">
-                <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300">Soporte</a>
-                <a href="politica-privacidad.html" class="hover:text-gray-300">Privacidad</a>
-            </div>
-        </div>
-    </footer>
-
 </body>
-
 </html>
