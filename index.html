@@ -57,7 +57,6 @@
             </p>
 
             <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
-                <!-- BOTÓN GALIA CHAT QUE ABRE LA VENTANA CENTRADA -->
                 <button onclick="toggleGaliaChat()" class="w-full flex items-center rounded-xl overflow-hidden border border-techBlue/50 bg-cardBg hover:border-techBlue transition-all group text-left cursor-pointer">
                     <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center">
                         <svg width="22" height="18" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,7 +272,7 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // 2. Simular respuesta automática de Galia tras un breve instante
+            // 2. Respuesta automática de Galia
             setTimeout(() => {
                 const galiaBubble = document.createElement('div');
                 galiaBubble.className = "bg-gray-800 p-4 rounded-xl max-w-[80%] border border-gray-700";
