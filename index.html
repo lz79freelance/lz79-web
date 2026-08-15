@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,14 +21,15 @@
         }
     </script>
 </head>
+
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
 
-    <!-- Header -->
     <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+            <div
+                class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
                 LZ79
-            </a>
+            </div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
                 <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
                 <a href="#galeria" class="hover:text-white transition-colors">Capturas</a>
@@ -42,9 +44,10 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div
+            class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
 
         <div class="max-w-5xl mx-auto px-6 text-center z-10">
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
@@ -70,22 +73,31 @@
                         <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Pruebas</span>
                     </div>
                 </a>
+
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🔍</div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        🔍
+                    </div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA BUSCADOR</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
                     </div>
                 </div>
+
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">💳</div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        💳
+                    </div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
                     </div>
                 </div>
+
                 <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🌐</div>
+                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
+                        🌐
+                    </div>
                     <div class="px-5 py-3 flex-1 flex items-center justify-between">
                         <span class="font-semibold text-gray-300 tracking-wide text-sm">DOMINIOS Y HOSTING</span>
                         <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
@@ -102,55 +114,91 @@
         </div>
     </section>
 
-    <!-- Galería -->
+    <!-- Sección de Capturas de la App -->
     <section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Interfaz de Usuario</span>
                 <h2 class="text-3xl font-bold mb-4">Vista Previa de la Aplicación</h2>
+                <p class="text-gray-400">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
             </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group"><img src="Captura de pantalla 2026-08-08 131854.png" alt="App 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"></div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group"><img src="Captura de pantalla 2026-08-08 131907.png" alt="App 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"></div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group"><img src="Captura de pantalla 2026-08-08 131918.png" alt="App 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"></div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group"><img src="Captura de pantalla 2026-08-08 131938.png" alt="App 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"></div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura app 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura app 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura app 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura app 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Servicios -->
     <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">Líneas de Negocio</h2>
+                <p class="text-gray-400">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
             </div>
+
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
                     <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
-                    <h3 class="text-xl font-semibold mb-3">API Development</h3>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
+                    </p>
                 </div>
                 <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
                     <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
-                    <h3 class="text-xl font-semibold mb-3">Automation & Robotics</h3>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
+                    </p>
                 </div>
                 <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
                     <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
-                    <h3 class="text-xl font-semibold mb-3">Tech Consulting</h3>
+                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="taller" class="py-24 border-t border-gray-900 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
+            <p class="text-gray-400 leading-relaxed mb-6">
+                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.
+            </p>
+            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
+                <span>O Porriño, Galicia</span>
+                <span>•</span>
+                <span>Servicio Global</span>
+            </div>
+        </div>
+    </section>
+
     <footer class="border-t border-gray-900 py-8 bg-black/40">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <div>&copy; 2026 LZ79. Todos los derechos reservados.</div>
+            <div>
+                &copy; 2026 LZ79. Todos los derechos reservados.
+            </div>
             <div class="flex space-x-6">
                 <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300">Soporte</a>
-                <a href="terminos-y-condiciones.html" class="hover:text-gray-300">Términos</a>
                 <a href="politica-privacidad.html" class="hover:text-gray-300">Privacidad</a>
             </div>
         </div>
     </footer>
+
 </body>
+
 </html>
