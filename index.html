@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +20,11 @@
         }
     </script>
 </head>
-
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
 
     <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div
-                class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
+            <div class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
                 LZ79
             </div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
@@ -45,8 +42,7 @@
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-        <div
-            class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
         </div>
 
         <div class="max-w-5xl mx-auto px-6 text-center z-10">
@@ -187,6 +183,29 @@
         </div>
     </section>
 
+    <!-- Sección de Términos y Condiciones Integrada -->
+    <section id="terminos" class="py-20 border-t border-gray-900 bg-cardBg/30 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-white">Términos y Condiciones</h2>
+            <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                <p>Las presentes condiciones regulan el acceso y uso de los servicios ofrecidos en el sitio web de LZ79 Freelance.</p>
+                <p>Los desarrollos de software, integraciones y consultorías se rigen por presupuestos y alcances particulares acordados de forma individualizada.</p>
+                <p>Todos los contenidos e interfaces del Ecosistema Galia son propiedad intelectual de LZ79.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Política de Privacidad Integrada -->
+    <section id="privacidad" class="py-20 border-t border-gray-900 bg-black/40 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-white">Política de Privacidad</h2>
+            <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                <p>Los datos introducidos en la aplicación se almacenan de forma local en el dispositivo del usuario, garantizando la privacidad bajo el principio de minimización de datos.</p>
+                <p>No se ceden ni transmiten datos personales a servidores externos o nubes de terceros.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="border-t border-gray-900 py-8 bg-black/40">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
             <div>
@@ -194,11 +213,11 @@
             </div>
             <div class="flex space-x-6">
                 <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300">Soporte</a>
-                <a href="politica-privacidad.html" class="hover:text-gray-300">Privacidad</a>
+                <a href="#terminos" class="hover:text-gray-300">Términos</a>
+                <a href="#privacidad" class="hover:text-gray-300">Privacidad</a>
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>
