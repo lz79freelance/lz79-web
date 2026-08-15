@@ -1,56 +1,17 @@
-const { GoogleGenAI } = require('@google/genai');
-
-const MAX_MESSAGE_LENGTH = 4000;
-const MAX_MESSAGES = 12;
-
-const ai = new GoogleGenAI();
-
 exports.handler = async function(event, context) {
   if (event.httpMethod !== "POST") {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ error: "Método no permitido" })
-    };
+    return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido" }) };
   }
 
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "Falta configurar GEMINI_API_KEY en las variables de entorno de Netlify" })
-      };
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return { statusCode: 500, body: JSON.stringify({ error: "Falta configurar GEMINI_API_KEY en Netlify" }) };
     }
 
     const body = JSON.parse(event.body || "{}");
-    const messages = body.messages;
+    const messages = body.messages || [];
     const language = body.language || "es";
-
-    if (!Array.isArray(messages) || messages.length === 0) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "No se han recibido mensajes" })
-      };
-    }
-
-    const cleanMessages = messages
-      .slice(-MAX_MESSAGES)
-      .filter(
-        (message) =>
-          message &&
-          (message.role === "user" || message.role === "assistant") &&
-          typeof message.content === "string"
-      )
-      .map((message) => ({
-        role: message.role,
-        content: message.content.slice(0, MAX_MESSAGE_LENGTH),
-      }));
-
-    if (cleanMessages.length === 0) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Mensajes inválidos" })
-      };
-    }
 
     const languageNames = {
       es: "español",
@@ -58,30 +19,32 @@ exports.handler = async function(event, context) {
       eu: "euskera",
       cat: "catalán",
     };
-
     const idioma = languageNames[language] || "español";
 
-    const historialFormateado = cleanMessages.map(msg => ({
+    // Transformar historial al formato de la API REST de Gemini
+    const contents = messages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: msg.content }]
     }));
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: historialFormateado,
-      config: {
-        systemInstruction: `Eres Galia, el asistente inteligente de LZ79. Responde en ${idioma}, salvo que el usuario solicite expresamente otro idioma. Ayuda de forma clara, natural y útil. No inventes información sobre LZ79 ni sobre sus servicios. Si no conoces un dato, dilo claramente. Sé concisa pero útil.`,
-      }
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: {
+          parts: [{ text: `Eres Galia, el asistente inteligente de LZ79. Responde en ${idioma}, de forma clara, concisa y útil.` }]
+        },
+        contents: contents
+      })
     });
 
-    const reply = response.text?.trim();
+    const data = await response.json();
 
-    if (!reply) {
-      return {
-        statusCode: 502,
-        body: JSON.stringify({ error: "Google Gemini no devolvió texto" })
-      };
+    if (!response.ok) {
+      throw new Error(data.error?.message || "Error en la API de Gemini");
     }
+
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "Sin respuesta generada";
 
     return {
       statusCode: 200,
@@ -90,11 +53,10 @@ exports.handler = async function(event, context) {
     };
 
   } catch (error) {
-    console.error("GALIA ERROR:", error);
+    console.error("ERROR EN CHAT:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error?.message || "Error al comunicarse con Google Gemini" })
+      body: JSON.stringify({ error: error.message || "Error interno del servidor" })
     };
   }
-};
 };
