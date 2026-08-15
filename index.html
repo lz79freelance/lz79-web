@@ -23,8 +23,7 @@
         };
     </script>
 
-    <!-- Markdown seguro para las respuestas de Galia.
-         El backend sigue siendo responsable de la seguridad de la API key. -->
+    <!-- Markdown y Purify para las respuestas seguras de Galia -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 
@@ -72,13 +71,6 @@
         @keyframes typing {
             0%, 60%, 100% { opacity: .25; transform: translateY(0); }
             30% { opacity: 1; transform: translateY(-3px); }
-        }
-        .toast {
-            animation: toast-in .2s ease-out;
-        }
-        @keyframes toast-in {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -141,41 +133,10 @@
                 </div>
                 <div class="px-5 py-3 flex-1 flex items-center justify-between">
                     <span class="font-semibold text-white tracking-wide text-sm">GALIA CHAT</span>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" data-i18n="badge_testing">
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
                         Modo pruebas
                     </span>
                 </div>
-            </a>
-
-            <a href="#galia-buscador" class="flex items-center rounded-xl overflow-hidden border border-techCian/40 bg-cardBg hover:border-techCian transition-all group">
-                <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center font-bold">🔍</div>
-                <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                    <span class="font-semibold text-white tracking-wide text-sm">GALIA BUSCADOR</span>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" data-i18n="badge_testing">Modo prueb[...]</span>
-                </div>
-            </a>
-
-            <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">💳</div>
-                <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                    <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
-                </div>
-            </div>
-
-            <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🌐</div>
-                <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                    <span class="font-semibold text-gray-300 tracking-wide text-sm" data-i18n="hosting_title">DOMINIOS Y HOSTING</span>
-                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex items-center justify-center">
-            <a href="mailto:contacto@lz79freelance.com" data-i18n="btn_start"
-               class="px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center text-sm">
-                Iniciar Proyecto
             </a>
         </div>
     </div>
@@ -185,11 +146,11 @@
 <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
     <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-12">
-            <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block" data-i18n="chat_subtitle">
+            <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">
                 Inteligencia Artificial
             </span>
-            <h2 class="text-3xl font-bold mb-4" data-i18n="chat_title">Galia Chat · Modo pruebas</h2>
-            <p class="text-gray-400" data-i18n="chat_desc">
+            <h2 class="text-3xl font-bold mb-4">Galia Chat · Modo pruebas</h2>
+            <p class="text-gray-400">
                 Interactúa en tiempo real con el asistente inteligente del ecosistema.
             </p>
         </div>
@@ -200,21 +161,15 @@
                     <div id="status-dot" class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
                     <span class="font-semibold text-sm text-white">Galia Assistant</span>
                 </div>
-
-                <div class="flex items-center gap-3">
-                    <span id="usage-counter" class="text-xs text-gray-400" aria-live="polite"></span>
-                    <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1" data-i18n="badge_testing">
-                        Modo pruebas
-                    </span>
-                </div>
+                <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1">
+                    Modo pruebas
+                </span>
             </div>
 
             <div id="chat-messages"
                  class="p-6 h-[26rem] overflow-y-auto chat-scrollbar flex flex-col space-y-4 text-sm"
                  aria-live="polite">
             </div>
-
-            <div id="suggestions" class="px-4 pb-3 bg-gray-900 flex flex-wrap gap-2"></div>
 
             <div class="p-4 bg-gray-900 border-t border-gray-800">
                 <div class="flex items-end gap-3">
@@ -223,7 +178,6 @@
                         rows="1"
                         maxlength="4000"
                         placeholder="Escribe tu consulta..."
-                        data-i18n-placeholder="chat_placeholder"
                         class="flex-1 resize-none bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techBlue"
                         aria-label="Mensaje para Galia"
                     ></textarea>
@@ -231,8 +185,7 @@
                     <button id="send-button"
                             type="button"
                             onclick="enviarMensaje()"
-                            data-i18n="chat_send"
-                            class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm disabled:opacity-50 disabled:curso[...]
+                            class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm">
                         Enviar
                     </button>
 
@@ -245,32 +198,127 @@
                 </div>
 
                 <div class="flex justify-between items-center mt-2 text-[11px] text-gray-500">
-                    <span data-i18n="chat_limit_note">Modo pruebas · uso limitado por usuario</span>
+                    <span>Modo pruebas · uso limitado por usuario</span>
                     <span><span id="char-count">0</span>/4000</span>
                 </div>
             </div>
         </div>
 
         <div class="mt-4 flex justify-center">
-            <button onclick="limpiarChat()"
-                    class="text-xs text-gray-500 hover:text-gray-300 transition-colors"
-                    data-i18n="chat_clear">
+            <button onclick="limpiarChat()" class="text-xs text-gray-500 hover:text-gray-300 transition-colors">
                 Limpiar conversación
             </button>
         </div>
     </div>
 </section>
 
+<script>
+    let historialChat = [];
+    let idiomaActual = 'es';
+    let controllerActual = null;
 
-<!-- GALIA GALICIA · BUSCADOR REGIONAL Y LOCAL -->
-<section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.08),transparent_45%)]"></div>
+    const inputChat = document.getElementById('chat-input');
+    const charCount = document.getElementById('char-count');
 
-    <div class="max-w-6xl mx-auto px-6 relative">
-        <div class="text-center mb-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Modo pruebas
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA GALICIA</h2>
-            <p id="galia-subtitle" class="text-xl md:text-2xl text-gray-3[...]
+    inputChat.addEventListener('input', () => {
+        charCount.textContent = inputChat.value.length;
+    });
+
+    function cambiarIdioma(lang) {
+        idiomaActual = lang;
+        ['es', 'gl', 'eu', 'cat'].forEach(l => {
+            const btn = document.getElementById(`btn-${l}`);
+            if (btn) {
+                if (l === lang) {
+                    btn.classList.add('bg-gray-800', 'text-white');
+                } else {
+                    btn.classList.remove('bg-gray-800', 'text-white');
+                }
+            }
+        });
+    }
+
+    function limpiarChat() {
+        historialChat = [];
+        document.getElementById('chat-messages').innerHTML = '';
+    }
+
+    function cancelarRespuesta() {
+        if (controllerActual) {
+            controllerActual.abort();
+            controllerActual = null;
+        }
+        document.getElementById('send-button').classList.remove('hidden');
+        document.getElementById('stop-button').classList.add('hidden');
+    }
+
+    async function enviarMensaje() {
+        const texto = inputChat.value.trim();
+        if (!texto) return;
+
+        inputChat.value = '';
+        charCount.textContent = '0';
+
+        const contenedor = document.getElementById('chat-messages');
+
+        // Pintar mensaje del usuario
+        const divUsuario = document.createElement('div');
+        divUsuario.className = 'flex justify-end';
+        divUsuario.innerHTML = `<div class="bg-techBlue text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[85%]">${DOMPurify.sanitize(texto)}</div>`;
+        contenedor.appendChild(divUsuario);
+        contenedor.scrollTop = contenedor.scrollHeight;
+
+        historialChat.push({ role: 'user', content: texto });
+
+        // Cambiar botones a modo "Detener"
+        document.getElementById('send-button').classList.add('hidden');
+        document.getElementById('stop-button').classList.remove('hidden');
+
+        // Burbuja de carga
+        const divCarga = document.createElement('div');
+        divCarga.className = 'flex justify-start';
+        divCarga.innerHTML = `<div class="bg-gray-800 text-gray-300 rounded-2xl rounded-tl-none px-4 py-3 flex space-x-1.5 items-center"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+        contenedor.appendChild(divCarga);
+        contenedor.scrollTop = contenedor.scrollHeight;
+
+        controllerActual = new AbortController();
+
+        try {
+            const respuesta = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: historialChat, language: idiomaActual }),
+                signal: controllerActual.signal
+            });
+
+            const data = await respuesta.json();
+            contenedor.removeChild(divCarga);
+
+            if (respuesta.ok && data.reply) {
+                historialChat.push({ role: 'assistant', content: data.reply });
+                const divGalia = document.createElement('div');
+                divGalia.className = 'flex justify-start';
+                divGalia.innerHTML = `<div class="bg-gray-800 text-gray-100 rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%] message-content">${DOMPurify.sanitize(marked.parse(data.reply))}</div>`;
+                contenedor.appendChild(divGalia);
+            } else {
+                throw new Error(data.error || 'Error al procesar la respuesta');
+            }
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                if (divCarga.parentNode) contenedor.removeChild(divCarga);
+                const divError = document.createElement('div');
+                divError.className = 'flex justify-start';
+                divError.innerHTML = `<div class="bg-red-900/50 border border-red-500/30 text-red-200 rounded-2xl px-4 py-3 text-xs">Error: ${error.message}</div>`;
+                contenedor.appendChild(divError);
+            }
+        } finally {
+            controllerActual = null;
+            document.getElementById('send-button').classList.remove('hidden');
+            document.getElementById('stop-button').classList.add('hidden');
+            contenedor.scrollTop = contenedor.scrollHeight;
+        }
+    }
+</script>
+
+</body>
+</html>
