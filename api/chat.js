@@ -3,29 +3,22 @@ import { GoogleGenAI } from '@google/genai';
 const MAX_MESSAGE_LENGTH = 4000;
 const MAX_MESSAGES = 12;
 
-// Inicializa el SDK usando automáticamente process.env.GEMINI_API_KEY
 const ai = new GoogleGenAI();
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({
-      error: "Método no permitido",
-    });
+    return res.status(405).json({ error: "Método no permitido" });
   }
 
   try {
     if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({
-        error: "Falta configurar GEMINI_API_KEY en Vercel",
-      });
+      return res.status(500).json({ error: "Falta configurar GEMINI_API_KEY en Vercel" });
     }
 
     const { messages, language = "es" } = req.body || {};
 
     if (!Array.isArray(messages) || messages.length === 0) {
-      return res.status(400).json({
-        error: "No se han recibido mensajes",
-      });
+      return res.status(400).json({ error: "No se han recibido mensajes" });
     }
 
     const cleanMessages = messages
@@ -42,9 +35,7 @@ export default async function handler(req, res) {
       }));
 
     if (cleanMessages.length === 0) {
-      return res.status(400).json({
-        error: "Mensajes inválidos",
-      });
+      return res.status(400).json({ error: "Mensajes inválidos" });
     }
 
     const languageNames = {
@@ -56,7 +47,6 @@ export default async function handler(req, res) {
 
     const idioma = languageNames[language] || "español";
 
-    // Formatear al estándar de Google GenAI (los roles de asistente se mapean como 'model')
     const historialFormateado = cleanMessages.map(msg => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: msg.content }]
@@ -73,18 +63,13 @@ export default async function handler(req, res) {
     const reply = response.text?.trim();
 
     if (!reply) {
-      return res.status(502).json({
-        error: "Google Gemini no devolvió texto",
-      });
+      return res.status(502).json({ error: "Google Gemini no devolvió texto" });
     }
 
-    return res.status(200).json({
-      reply,
-    });
+    return res.status(200).json({ reply });
 
   } catch (error) {
     console.error("GALIA ERROR:", error);
-
     return res.status(500).json({
       error: error?.message || "Error al comunicarse con Google Gemini",
     });
