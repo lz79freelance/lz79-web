@@ -234,19 +234,19 @@
             <!-- Cuerpo / Historial de Mensajes -->
             <div id="chatMessages" class="p-6 flex-1 overflow-y-auto space-y-4 bg-[#0d1322] text-sm text-gray-200">
                 <div class="bg-gray-800 p-4 rounded-xl max-w-[85%] border border-gray-700">
-                    ¡Kaixo! ¡Ola! ¡Hola! Soy Galia, nacida en O Porriño de la mano de LZ79freelance. ¿De qué charlamos hoy? Te leo en gallego, euskera o castellano. ¡Dale!
+                    ¡Kaixo! ¡Ola! ¡Hola! Son Galia, nada en O Porriño da man de LZ79freelance. De que falamos hoxe? Léote en galego, euskera ou castelán. Dálle!
                 </div>
             </div>
 
             <!-- Input y Botón de Enviar Funcional -->
             <div class="p-4 bg-gray-900 border-t border-gray-800 flex items-center space-x-3">
-                <input type="text" id="chatInput" placeholder="Escribe tu mensaje (gallego, euskera, castellano)..." class="flex-1 bg-darkBg text-sm text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
+                <input type="text" id="chatInput" placeholder="Escribe en galego, euskera o castellano..." class="flex-1 bg-darkBg text-sm text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
                 <button onclick="enviarMensaje()" class="bg-gradient-to-r from-techBlue to-techCian text-white px-6 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer">Enviar</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DE GALIA: IDENTIDAD DE O PORRIÑO Y LZ79FREELANCE -->
+    <!-- SCRIPT DE GALIA: FILTRADO ESTRICTO DE IDIOMAS -->
     <script>
         function toggleGaliaChat() {
             const chatWindow = document.getElementById('galiaChatWindow');
@@ -272,36 +272,38 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // 2. Respuesta de Galia con su identidad local y multilingüe
+            // 2. Lógica inteligente de idiomas refinada
             setTimeout(() => {
                 const msgLower = mensaje.toLowerCase();
-                let respuesta = "¡Eso mola! Desde LZ79freelance en O Porriño le damos vueltas a cualquier idea que nos traigas.";
+                let respuesta = "";
 
-                // Detección de Euskera
-                if (msgLower.includes("kaixo") || msgLower.includes("zer") || msgLower.includes("egun on") || msgLower.includes("lagundu") || msgLower.includes("nola") || msgLower.includes("bai")) {
+                // Detección estricta de Euskera
+                const palabrasEuskera = ["kaixo", "zer", "egun", "on", "eskerrik", "asko", "nola", "bai", "ez", "gustura", "agur", "hau"];
+                const esEuskera = palabrasEuskera.some(palabra => msgLower.includes(palabra));
+
+                // Detección estricta de Gallego
+                const palabrasGalego = ["ola", "como", "ben", "porriño", "galicia", "grazias", "iso", "ti", "hoxe", "falar", "che", "camiño", "maior", "xa", "tamén", "logo"];
+                const esGalego = palabrasGalego.some(palabra => msgLower.includes(palabra));
+
+                if (esEuskera) {
                     const respEuskera = [
-                        "Aupa! O Porriñotik mundura gaude edo zer? Zein proiektu dugu esku artean?",
-                        "Noski! Euskadin zein Galizian, LZ79freelance-n lan egiteko prest gaude beti.",
-                        "Primeran! Zer asmo daukazu gaurkoan?"
+                        "Aupa! O Porriñotik bertatik ari naiz erantzuten. Zer dugu gaurkoan?",
+                        "Noski! Euskaraz eta primeran moldatzen naiz hemen, LZ79freelance-ren ekosisteman.",
+                        "Primeran entzuten da hori. Jarraitu dezagun euskaraz!"
                     ];
                     respuesta = respEuskera[Math.floor(Math.random() * respEuskera.length)];
-                } 
-                // Detección de Gallego
-                else if (msgLower.includes("ola") || msgLower.includes("como") || msgLower.includes("galicia") || msgLower.includes("porriño") || msgLower.includes("ben") || msgLower.includes("iso") || msgLower.includes("ti")) {
+                } else if (esGalego) {
                     const respGalego = [
-                        "Ola! Dende O Porriño para todo o mundo con LZ79freelance. Que tal andamos?",
-                        "Iso é! Aquí na terra, dándolle a coia ao código e ás aplicacións a medida.",
-                        "Xa che digo! Cóntame, que che parece o que estamos montando por aquí?"
+                        "Iso é! Dende O Porriño para todo o mundo con LZ79freelance. Todo ben por aí?",
+                        "Xa che digo! En galego nos entendemos perfectamente. Cóntame máis sobre o que tes en mente.",
+                        "Pois claro que si, dálle caña ao tema que aquí o galego flúe só con LZ79freelance!"
                     ];
                     respuesta = respGalego[Math.floor(Math.random() * respGalego.length)];
-                } 
-                // Castellano / Conversación libre
-                else {
+                } else {
                     const respCastellano = [
-                        "¡Jajaja, total! Desde O Porriño y con sello LZ79freelance no hay sistema que se nos resista.",
-                        "¡Me encanta la idea! Al final, crear herramientas limpias y útiles es lo que nos mueve por aquí.",
-                        "¡Vaya temazo! ¿Lo enfocamos hacia la parte de desarrollo con Python, automatización o prefieres hablar de otra cosa?",
-                        "¡Eso está hecho! Anotado por el equipo de LZ79freelance. ¿Qué más se te ocurre?"
+                        "¡Entendido! Desde O Porriño y con el sello de LZ79freelance le damos forma a cualquier idea.",
+                        "¡Totalmente de acuerdo! Crear herramientas limpias y funcionales es lo nuestro.",
+                        "¡Vaya temazo! ¿Lo enfocamos hacia la parte de desarrollo, automatización o prefieres comentar otra cosa?"
                     ];
                     respuesta = respCastellano[Math.floor(Math.random() * respCastellano.length)];
                 }
