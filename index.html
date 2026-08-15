@@ -26,7 +26,7 @@
             overflow-x: hidden;
         }
 
-        /* Barra de Navegación Superior */
+        /* Barra de Navegación */
         nav {
             display: flex;
             justify-content: space-between;
@@ -81,7 +81,7 @@
         /* Hero Section tipo Ecosistema */
         .hero {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 30px;
             background: radial-gradient(circle at center, #0f1c3f 0%, var(--bg-main) 70%);
             border-radius: 24px;
             border: 1px solid var(--border-color);
@@ -89,43 +89,48 @@
         }
 
         .hero h2 {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             color: var(--text-main);
             margin-bottom: 15px;
             font-weight: 800;
+            line-height: 1.2;
         }
 
         .hero h1 span { color: var(--accent-blue); }
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.15rem;
-            max-width: 700px;
+            font-size: 1.1rem;
+            max-width: 650px;
             margin: 0 auto 40px auto;
         }
 
-        /* Grid de Módulos (Ecosistema Galia) */
+        /* Grid Simétrico 2x2 para el Ecosistema Galia */
         .ecosystem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto 40px auto;
+        }
+
+        @media (max-width: 768px) {
+            .ecosystem-grid { grid-template-columns: 1fr; }
         }
 
         .eco-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 22px;
             text-align: left;
             display: flex;
             justify-content: space-between;
@@ -135,21 +140,22 @@
 
         .eco-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
 
-        .eco-info h3 { font-size: 1rem; color: var(--text-main); margin-bottom: 4px; }
-        .eco-info span { font-size: 0.8rem; color: var(--text-muted); }
+        .eco-info h3 { font-size: 1.05rem; color: var(--text-main); margin-bottom: 4px; }
+        .eco-info span { font-size: 0.85rem; color: var(--text-muted); }
 
         .badge {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 5px 10px;
+            border-radius: 6px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .badge.pruebas { background-color: #0369a1; color: #f0f9ff; }
         .badge.soon { background-color: #1e293b; color: var(--text-muted); border: 1px solid var(--border-color); }
 
-        /* Botón de Acción Principal */
+        /* Botón Principal */
         .btn-main {
             display: inline-block;
             background: var(--accent-gradient);
@@ -164,7 +170,7 @@
 
         .btn-main:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* Secciones de Contenido General */
+        /* Tarjetas de Contenido General */
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -203,7 +209,7 @@
 
         .img-box span { font-size: 0.85rem; font-weight: bold; color: var(--accent-blue); }
 
-        /* Chat Integrado */
+        /* Chat */
         #chat-box {
             height: 350px;
             overflow-y: auto;
@@ -253,7 +259,7 @@
     </nav>
 
     <div class="wrapper">
-        <!-- Hero Ecosistema -->
+        <!-- Hero Ecosistema (Simétrico 2x2) -->
         <section class="hero">
             <h2>Ecosistema Galia</h2>
             <h1>Soluciones escalables <br><span>y conectadas.</span></h1>
