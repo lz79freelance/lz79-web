@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 | Ingeniería, Desarrollo de Software y Automatización Freelance</title>
+    <meta name="theme-color" content="#0B0F19">
+    <meta name="description" content="LZ79 · Ecosistema Galia · Software, automatización, APIs y Galia Chat.">
+    <title>LZ79 | Ecosistema Galia</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,312 +16,1286 @@
                         darkBg: '#0B0F19',
                         cardBg: '#111827',
                         techBlue: '#3B82F6',
-                        techCian: '#06B6D4',
+                        techCian: '#06B6D4'
                     }
                 }
             }
-        }
+        };
     </script>
+
+    <!-- Markdown seguro para las respuestas de Galia -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <style>
+        html { color-scheme: dark; }
+        body { min-height: 100vh; }
+        .chat-scrollbar::-webkit-scrollbar { width: 8px; }
+        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .chat-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 999px;
+        }
+        .message-content p { margin: 0 0 .65rem; }
+        .message-content p:last-child { margin-bottom: 0; }
+        .message-content ul, .message-content ol {
+            margin: .5rem 0 .75rem 1.25rem;
+        }
+        .message-content code {
+            background: rgba(0,0,0,.35);
+            padding: .12rem .35rem;
+            border-radius: .35rem;
+            font-size: .9em;
+        }
+        .message-content pre {
+            overflow-x: auto;
+            background: #030712;
+            border: 1px solid #1f2937;
+            padding: .85rem;
+            border-radius: .75rem;
+            margin-top: .65rem;
+        }
+        .message-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9ca3af;
+            animation: typing 1.2s infinite ease-in-out;
+        }
+        .typing-dot:nth-child(2) { animation-delay: .15s; }
+        .typing-dot:nth-child(3) { animation-delay: .30s; }
+        @keyframes typing {
+            0%, 60%, 100% { opacity: .25; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-3px); }
+        }
+        .toast {
+            animation: toast-in .2s ease-out;
+        }
+        @keyframes toast-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
+
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
 
-    <header class="fixed top-0 w-full bg-darkBg/80 backdrop-blur-md border-b border-gray-800 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<header class="fixed top-0 w-full bg-darkBg/85 backdrop-blur-md border-b border-gray-800 z-50">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center space-x-3" aria-label="LZ79">
             <div class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
                 LZ79
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
-                <a href="#galeria" class="hover:text-white transition-colors">Capturas</a>
-                <a href="#taller" class="hover:text-white transition-colors">El Taller</a>
-            </nav>
-            <div>
-                <a href="mailto:contacto@lz79freelance.com"
-                    class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
-                    Contacto
-                </a>
+        </a>
+
+        <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400" aria-label="Navegación">
+            <a href="#servicios" class="hover:text-white transition-colors" data-i18n="nav_services">Servicios</a>
+            <a href="#galeria" class="hover:text-white transition-colors" data-i18n="nav_gallery">Capturas</a>
+            <a href="#taller" class="hover:text-white transition-colors" data-i18n="nav_workshop">El Taller</a>
+        </nav>
+
+        <div class="flex items-center space-x-3">
+            <div class="hidden sm:flex items-center space-x-1 bg-gray-900 border border-gray-800 rounded-lg p-1 text-xs font-semibold text-gray-400">
+                <button onclick="cambiarIdioma('gl')" id="btn-gl" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">GL</button>
+                <button onclick="cambiarIdioma('eu')" id="btn-eu" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">EU</button>
+                <button onclick="cambiarIdioma('cat')" id="btn-cat" class="px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all">CAT</button>
+                <button onclick="cambiarIdioma('es')" id="btn-es" class="px-2 py-1 rounded bg-gray-800 text-white transition-all">ES</button>
+            </div>
+
+            <a href="mailto:contacto@lz79freelance.com" data-i18n="nav_contact"
+               class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
+                Contacto
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-6 text-center z-10">
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
+            <span data-i18n="hero_title_1">Ecosistema Galia.</span><br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian" data-i18n="hero_title_2">
+                Soluciones escalables y conectadas.
+            </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10" data-i18n="hero_desc">
+            Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos desde O Porriño.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
+            <a href="#galia-chat" class="flex items-center rounded-xl overflow-hidden border border-techBlue/50 bg-cardBg hover:border-techBlue transition-all group">
+                <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center">
+                    <svg width="22" height="18" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+                        <path d="M19 1H5C2.79 1 1 2.79 1 5V13C1 15.21 2.79 17 5 17H9L13 21V17H19C21.21 17 23 15.21 23 13V5C23 2.79 21.21 1 19 1Z" fill="currentColor"/>
+                        <path d="M25 5H27C28.1 5 29 5.9 29 7V15L25 13H23V11H25V5Z" fill="currentColor" opacity=".6"/>
+                    </svg>
+                </div>
+                <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                    <span class="font-semibold text-white tracking-wide text-sm">GALIA CHAT</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" data-i18n="badge_testing">
+                        Modo pruebas
+                    </span>
+                </div>
+            </a>
+
+            <a href="#galia-buscador" class="flex items-center rounded-xl overflow-hidden border border-techCian/40 bg-cardBg hover:border-techCian transition-all group">
+                <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center font-bold">🔍</div>
+                <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                    <span class="font-semibold text-white tracking-wide text-sm">GALIA BUSCADOR</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" data-i18n="badge_testing">Modo pruebas</span>
+                </div>
+            </a>
+
+            <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
+                <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">💳</div>
+                <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                    <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
+                </div>
+            </div>
+
+            <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
+                <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">🌐</div>
+                <div class="px-5 py-3 flex-1 flex items-center justify-between">
+                    <span class="font-semibold text-gray-300 tracking-wide text-sm" data-i18n="hosting_title">DOMINIOS Y HOSTING</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700" data-i18n="badge_soon">Próximamente</span>
+                </div>
             </div>
         </div>
-    </header>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-techBlue/10 rounded-full blur-[120px] pointer-events-none">
+        <div class="flex items-center justify-center">
+            <a href="mailto:contacto@lz79freelance.com" data-i18n="btn_start"
+               class="px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center text-sm">
+                Iniciar Proyecto
+            </a>
         </div>
+    </div>
+</section>
 
-        <div class="max-w-5xl mx-auto px-6 text-center z-10">
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
-                Ecosistema Galia.<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
-                    Soluciones escalables y conectadas.
-                </span>
-            </h1>
-            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
-                Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos desde O Porriño para el mundo.
+<!-- GALIA CHAT -->
+<section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block" data-i18n="chat_subtitle">
+                Inteligencia Artificial
+            </span>
+            <h2 class="text-3xl font-bold mb-4" data-i18n="chat_title">Galia Chat · Modo pruebas</h2>
+            <p class="text-gray-400" data-i18n="chat_desc">
+                Interactúa en tiempo real con el asistente inteligente del ecosistema.
             </p>
-
-            <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
-                <button onclick="toggleGaliaChat()" class="w-full flex items-center rounded-xl overflow-hidden border border-techBlue/50 bg-cardBg hover:border-techBlue transition-all group text-left cursor-pointer">
-                    <div class="bg-techCian text-darkBg px-5 py-4 flex items-center justify-center">
-                        <svg width="22" height="18" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 1H5C2.79 1 1 2.79 1 5V13C1 15.21 2.79 17 5 17H9L13 21V17H19C21.21 17 23 15.21 23 13V5C23 2.79 21.21 1 19 1Z" fill="currentColor"/>
-                            <path d="M25 5H27C28.1 5 29 5.9 29 7V15L25 13H23V11H25V5Z" fill="currentColor" opacity="0.6"/>
-                        </svg>
-                    </div>
-                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                        <span class="font-semibold text-white tracking-wide text-sm">GALIA CHAT</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Pruebas</span>
-                    </div>
-                </button>
-
-                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        🔍
-                    </div>
-                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                        <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA BUSCADOR</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        💳
-                    </div>
-                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                        <span class="font-semibold text-gray-300 tracking-wide text-sm">GALIA PAY</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center rounded-xl overflow-hidden border border-gray-800 bg-cardBg opacity-70">
-                    <div class="bg-gray-800 text-gray-300 px-5 py-4 flex items-center justify-center font-bold">
-                        🌐
-                    </div>
-                    <div class="px-5 py-3 flex-1 flex items-center justify-between">
-                        <span class="font-semibold text-gray-300 tracking-wide text-sm">DOMINIOS Y HOSTING</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">Próximamente</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center justify-center">
-                <a href="mailto:contacto@lz79freelance.com"
-                    class="px-8 py-4 font-semibold rounded-xl bg-gradient-to-r from-techBlue to-techCian hover:opacity-90 transition-all shadow-lg shadow-techBlue/20 text-center text-sm">
-                    Iniciar Proyecto
-                </a>
-            </div>
         </div>
-    </section>
 
-    <!-- Sección de Capturas de la App -->
-    <section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Interfaz de Usuario</span>
-                <h2 class="text-3xl font-bold mb-4">Vista Previa de la Aplicación</h2>
-                <p class="text-gray-400">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura app 1" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura app 2" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura app 3" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
-                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura app 4" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Líneas de Negocio</h2>
-                <p class="text-gray-400">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
-                    </p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
-                    </p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
-                    <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
-                    <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="taller" class="py-24 border-t border-gray-900 relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-6">El Enfoque LZ79</h2>
-            <p class="text-gray-400 leading-relaxed mb-6">
-                Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales desde O Porriño (Galicia).
-            </p>
-            <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
-                <span>O Porriño, Galicia</span>
-                <span>•</span>
-                <span>LZ79freelance</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Términos y Condiciones Integrada -->
-    <section id="terminos" class="py-20 border-t border-gray-900 bg-cardBg/30 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-white">Términos y Condiciones</h2>
-            <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                <p>Las presentes condiciones regulan el acceso y uso de los servicios ofrecidos en el sitio web de LZ79freelance.</p>
-                <p>Los desarrollos de software, integraciones y consultorías se rigen por presupuestos y alcances particulares acordados de forma individualizada.</p>
-                <p>Todos los contenidos e interfaces del Ecosistema Galia son propiedad intelectual de LZ79freelance.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de Política de Privacidad Integrada -->
-    <section id="privacidad" class="py-20 border-t border-gray-900 bg-black/40 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-white">Política de Privacidad</h2>
-            <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
-                <p>Los datos introducidos en la aplicación se almacenan de forma local en el dispositivo del usuario, garantizando la privacidad bajo el principio de minimización de datos.</p>
-                <p>No se ceden ni transmiten datos personales a servidores externos o nubes de terceros.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-gray-900 py-8 bg-black/40">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <div>
-                &copy; 2026 LZ79freelance. Todos los derechos reservados.
-            </div>
-            <div class="flex space-x-6">
-                <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300">Soporte</a>
-                <a href="#terminos" class="hover:text-gray-300">Términos</a>
-                <a href="#privacidad" class="hover:text-gray-300">Privacidad</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- VENTANA MODAL GRANDE Y CENTRADA DE GALIA CHAT -->
-    <div id="galiaChatWindow" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-gray-700 w-full max-w-2xl h-[550px] rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-            <!-- Header del Chat -->
-            <div class="bg-gray-900 px-6 py-4 flex items-center justify-between border-b border-gray-800">
+        <div class="bg-cardBg border border-techBlue/30 rounded-2xl overflow-hidden shadow-2xl">
+            <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <span class="w-3.5 h-3.5 bg-techCian rounded-full animate-pulse"></span>
-                    <span class="font-bold text-base text-white">Galia Chat | LZ79freelance (O Porriño)</span>
+                    <div id="status-dot" class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <span class="font-semibold text-sm text-white">Galia Assistant</span>
                 </div>
-                <button onclick="toggleGaliaChat()" class="text-gray-400 hover:text-white text-2xl font-bold px-2 cursor-pointer">&times;</button>
-            </div>
-            
-            <!-- Cuerpo / Historial de Mensajes -->
-            <div id="chatMessages" class="p-6 flex-1 overflow-y-auto space-y-4 bg-[#0d1322] text-sm text-gray-200">
-                <div class="bg-gray-800 p-4 rounded-xl max-w-[85%] border border-gray-700">
-                    ¡Kaixo! ¡Ola! ¡Hola! Son Galia, nada en O Porriño da man de LZ79freelance. De que falamos hoxe? Léote en galego, euskera ou castelán. Dálle!
+
+                <div class="flex items-center gap-3">
+                    <span id="usage-counter" class="text-xs text-gray-400" aria-live="polite"></span>
+                    <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1" data-i18n="badge_testing">
+                        Modo pruebas
+                    </span>
                 </div>
             </div>
 
-            <!-- Input y Botón de Enviar Funcional -->
-            <div class="p-4 bg-gray-900 border-t border-gray-800 flex items-center space-x-3">
-                <input type="text" id="chatInput" placeholder="Escribe en galego, euskera ou castellano..." class="flex-1 bg-darkBg text-sm text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
-                <button onclick="enviarMensaje()" class="bg-gradient-to-r from-techBlue to-techCian text-white px-6 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer">Enviar</button>
+            <div id="chat-messages"
+                 class="p-6 h-[26rem] overflow-y-auto chat-scrollbar flex flex-col space-y-4 text-sm"
+                 aria-live="polite">
+            </div>
+
+            <div id="suggestions" class="px-4 pb-3 bg-gray-900 flex flex-wrap gap-2"></div>
+
+            <div class="p-4 bg-gray-900 border-t border-gray-800">
+                <div class="flex items-end gap-3">
+                    <textarea
+                        id="chat-input"
+                        rows="1"
+                        maxlength="4000"
+                        placeholder="Escribe tu consulta..."
+                        data-i18n-placeholder="chat_placeholder"
+                        class="flex-1 resize-none bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techBlue"
+                        aria-label="Mensaje para Galia"
+                    ></textarea>
+
+                    <button id="send-button"
+                            type="button"
+                            onclick="enviarMensaje()"
+                            data-i18n="chat_send"
+                            class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        Enviar
+                    </button>
+
+                    <button id="stop-button"
+                            type="button"
+                            onclick="cancelarRespuesta()"
+                            class="hidden bg-gray-700 text-white font-semibold px-4 py-3 rounded-xl hover:bg-gray-600 transition-all text-sm">
+                        Detener
+                    </button>
+                </div>
+
+                <div class="flex justify-between items-center mt-2 text-[11px] text-gray-500">
+                    <span data-i18n="chat_limit_note">Modo pruebas · uso limitado por usuario</span>
+                    <span><span id="char-count">0</span>/4000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 flex justify-center">
+            <button onclick="limpiarChat()"
+                    class="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                    data-i18n="chat_clear">
+                Limpiar conversación
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- GALIA GALICIA · BUSCADOR REGIONAL Y LOCAL -->
+<section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.08),transparent_45%)]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Modo pruebas
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA GALICIA</h2>
+            <p id="galia-subtitle" class="text-xl md:text-2xl text-gray-300 mt-3 font-semibold">
+                Pregunta · Busca · Descubre Galicia
+            </p>
+            <p id="galia-description" class="text-gray-500 max-w-2xl mx-auto mt-4">
+                Un espacio regional y local para encontrar información de Galicia, tanto si vives aquí como si vienes de visita.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+                <button class="galia-lang active px-4 py-2 rounded-lg border border-techCian/50 bg-techCian/10 text-techCian text-xs font-bold" data-galia-lang="es">🇪🇸 Español</button>
+                <button class="galia-lang px-4 py-2 rounded-lg border border-gray-700 text-gray-400 text-xs font-bold hover:border-techCian/40 hover:text-white" data-galia-lang="gl">🇬🇦 Galego</button>
+                <button class="galia-lang px-4 py-2 rounded-lg border border-gray-700 text-gray-400 text-xs font-bold hover:border-techCian/40 hover:text-white" data-galia-lang="eu">🇪🇺 Euskera</button>
+                <button class="galia-lang px-4 py-2 rounded-lg border border-gray-700 text-gray-400 text-xs font-bold hover:border-techCian/40 hover:text-white" data-galia-lang="cat">🟨 Català</button>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-[1fr_330px] gap-6">
+            <div class="bg-cardBg border border-techCian/25 rounded-3xl shadow-2xl overflow-hidden">
+                <div class="px-5 py-4 border-b border-gray-800 flex items-center justify-between bg-gray-950/60">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-techCian/10 border border-techCian/20 flex items-center justify-center">🔎</div>
+                        <div>
+                            <div id="search-heading" class="font-bold text-sm">Galia Buscador</div>
+                            <div id="search-caption" class="text-[11px] text-gray-500">Búsqueda regional y local</div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded-full px-3 py-1">Pruebas</span>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input id="search-input" type="search" maxlength="300"
+                            placeholder="¿Qué quieres saber de Galicia?"
+                            class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-5 py-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-techCian focus:ring-1 focus:ring-techCian/30">
+                        <button id="search-button" type="button"
+                            class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-black px-7 py-4 rounded-2xl hover:opacity-90 transition-all shadow-lg">
+                            Buscar
+                        </button>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Casa rural en Galicia">🏡 Casa rural en Galicia</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Qué visitar en Galicia">🧳 Qué visitar en Galicia</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Restaurantes cerca de Santiago">🍽️ Restaurantes cerca de Santiago</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Rutas de senderismo en Galicia">🥾 Rutas de senderismo en Galicia</button>
+                    </div>
+
+                    <div id="search-status" class="mt-6 text-xs text-gray-500"></div>
+                    <div id="search-results" class="mt-4 space-y-3"></div>
+                </div>
+            </div>
+
+            <aside class="bg-cardBg border border-gray-800 rounded-3xl p-5">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <div class="text-[10px] uppercase tracking-widest text-techCian font-bold">Galia Metrics</div>
+                        <h3 class="text-lg font-black mt-1">Prueba local</h3>
+                    </div>
+                    <span class="text-[10px] text-gray-600 border border-gray-800 rounded-full px-2 py-1">demo</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
+                        <div class="text-[11px] text-gray-500">Visitas</div>
+                        <div id="metric-visits" class="text-2xl font-black mt-1">0</div>
+                    </div>
+                    <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
+                        <div class="text-[11px] text-gray-500">Búsquedas</div>
+                        <div id="metric-searches" class="text-2xl font-black mt-1">0</div>
+                    </div>
+                    <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
+                        <div class="text-[11px] text-gray-500">Sesiones</div>
+                        <div id="metric-sessions" class="text-2xl font-black mt-1">0</div>
+                    </div>
+                    <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
+                        <div class="text-[11px] text-gray-500">Idioma</div>
+                        <div id="metric-language" class="text-2xl font-black mt-1">ES</div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <div class="text-[11px] text-gray-500 mb-3">Búsquedas por idioma</div>
+                    <div class="space-y-3">
+                        <div><div class="flex justify-between text-xs mb-1"><span>🇪🇸 Español</span><span id="m-es">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-es" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span>🇬🇦 Galego</span><span id="m-gl">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-gl" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span>🇪🇺 Euskera</span><span id="m-eu">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-eu" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span>🟨 Català</span><span id="m-cat">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-cat" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-gray-800">
+                    <div class="text-[11px] text-gray-500">Idea de Galia</div>
+                    <p id="metric-note" class="text-xs text-gray-400 leading-relaxed mt-2">
+                        Medir primero la demanda real. Aumentar capacidad y buscar acuerdos cuando el uso lo justifique.
+                    </p>
+                </div>
+
+                <button id="reset-metrics" type="button" class="mt-5 w-full text-xs text-gray-500 hover:text-white border border-gray-800 hover:border-gray-600 rounded-xl py-2.5">
+                    Reiniciar métricas de prueba
+                </button>
+            </aside>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Turismo en Galicia">
+                <div class="text-xl">🧳</div><div class="font-bold text-sm mt-2">Turismo</div><div class="text-[11px] text-gray-500 mt-1">Qué ver y hacer</div>
+            </button>
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Gastronomía de Galicia">
+                <div class="text-xl">🍽️</div><div class="font-bold text-sm mt-2">Gastronomía</div><div class="text-[11px] text-gray-500 mt-1">Comer y descubrir</div>
+            </button>
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Cultura y fiestas de Galicia">
+                <div class="text-xl">🎭</div><div class="font-bold text-sm mt-2">Cultura</div><div class="text-[11px] text-gray-500 mt-1">Historia y fiestas</div>
+            </button>
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Naturaleza y rutas de Galicia">
+                <div class="text-xl">🌊</div><div class="font-bold text-sm mt-2">Naturaleza</div><div class="text-[11px] text-gray-500 mt-1">Rutas y paisajes</div>
+            </button>
+        </div>
+
+        <div class="mt-7 rounded-2xl border border-techCian/20 bg-techCian/5 p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="text-sm font-black">🤖 ¿No sabes exactamente qué buscar?</div>
+                <div id="chat-promo" class="text-xs text-gray-500 mt-1">Pregúntale a Galia y continúa la conversación.</div>
+            </div>
+            <a href="#galia-chat" class="inline-flex justify-center items-center px-5 py-3 rounded-xl bg-techCian text-darkBg font-black text-xs hover:opacity-90">
+                Hablar con Galia
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="galeria" class="py-24 border-t border-gray-900 bg-cardBg/20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block" data-i18n="gallery_tag">Interfaz de Usuario</span>
+            <h2 class="text-3xl font-bold mb-4" data-i18n="gallery_title">Vista Previa de la Aplicación</h2>
+            <p class="text-gray-400" data-i18n="gallery_desc">Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                <img src="Captura de pantalla 2026-08-08 131854.png" alt="Captura 1" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                <img src="Captura de pantalla 2026-08-08 131907.png" alt="Captura 2" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                <img src="Captura de pantalla 2026-08-08 131918.png" alt="Captura 3" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="rounded-xl overflow-hidden border border-gray-800 bg-cardBg group">
+                <img src="Captura de pantalla 2026-08-08 131938.png" alt="Captura 4" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300">
             </div>
         </div>
     </div>
+</section>
 
-    <!-- SCRIPT DE GALIA: FILTRADO ESTRICTO Y TONO PROFESIONAL -->
-    <script>
-        function toggleGaliaChat() {
-            const chatWindow = document.getElementById('galiaChatWindow');
-            chatWindow.classList.toggle('hidden');
-            if(!chatWindow.classList.contains('hidden')) {
-                document.getElementById('chatInput').focus();
-            }
+<section id="servicios" class="py-24 border-t border-gray-900 bg-black/20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4" data-i18n="services_title">Líneas de Negocio</h2>
+            <p class="text-gray-400" data-i18n="services_desc">Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">🔌</div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">API Development</h3>
+                <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_1_desc">
+                    Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.
+                </p>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-techCian transition-colors">Automation & Robotics</h3>
+                <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_2_desc">
+                    Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.
+                </p>
+            </div>
+
+            <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techBlue/50 transition-all group">
+                <div class="w-12 h-12 rounded-xl bg-techBlue/10 flex items-center justify-center text-techBlue mb-6 text-xl font-bold">💼</div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-techBlue transition-colors">Tech Consulting</h3>
+                <p class="text-sm text-gray-400 leading-relaxed" data-i18n="service_3_desc">
+                    Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="taller" class="py-24 border-t border-gray-900 relative">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-6" data-i18n="workshop_title">El Enfoque LZ79</h2>
+        <p class="text-gray-400 leading-relaxed mb-6" data-i18n="workshop_desc">
+            Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales desde O Porriño.
+        </p>
+        <div class="inline-flex items-center space-x-2 text-sm font-semibold text-techCian">
+            <span>O Porriño, Galicia</span>
+            <span>•</span>
+            <span data-i18n="global_service">Servicio Global</span>
+        </div>
+    </div>
+</section>
+
+<footer class="border-t border-gray-900 py-8 bg-black/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <div data-i18n="footer_rights">© 2026 LZ79. Todos los derechos reservados.</div>
+        <div class="flex space-x-6">
+            <a href="mailto:contacto@lz79freelance.com" class="hover:text-gray-300" data-i18n="footer_support">Soporte</a>
+        </div>
+    </div>
+</footer>
+
+<div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-2" aria-live="polite"></div>
+
+<script>
+const CONFIG = {
+    CHAT_ENDPOINT: "/api/chat",
+    DAILY_LIMIT: 20,
+    MAX_HISTORY_MESSAGES: 12,
+    MAX_MESSAGE_LENGTH: 4000,
+    STORAGE_KEY: "galia_chat_v2",
+    USAGE_KEY: "galia_usage_v2"
+};
+
+const traducciones = {
+    es: {
+        nav_services:"Servicios", nav_gallery:"Capturas", nav_workshop:"El Taller", nav_contact:"Contacto",
+        hero_title_1:"Ecosistema Galia.", hero_title_2:"Soluciones escalables y conectadas.",
+        hero_desc:"Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos desde O Porriño.",
+        badge_testing:"Modo pruebas", badge_soon:"Próximamente", hosting_title:"DOMINIOS Y HOSTING",
+        btn_start:"Iniciar Proyecto", chat_subtitle:"Inteligencia Artificial", chat_title:"Galia Chat · Modo pruebas",
+        chat_desc:"Interactúa en tiempo real con el asistente inteligente del ecosistema.",
+        chat_welcome:"¡Kaixo! ¡Ola! ¡Hola! Son Galia, nada en O Porriño da man de LZ79freelance. De que falamos hoxe? Léote en galego, euskera ou castelán. Dálle!",
+        chat_placeholder:"Escribe tu consulta...", chat_send:"Enviar",
+        chat_limit_note:"Modo pruebas · uso limitado por usuario", chat_clear:"Limpiar conversación",
+        chat_limit:"Has alcanzado el límite diario de pruebas. Vuelve mañana.",
+        chat_connecting:"Galia está pensando…", chat_error:"No se ha podido conectar con Galia.",
+        chat_cancel:"Detener", gallery_tag:"Interfaz de Usuario", gallery_title:"Vista Previa de la Aplicación",
+        gallery_desc:"Diseños limpios, modernos y funcionales optimizados para cada flujo de trabajo.",
+        services_title:"Líneas de Negocio",
+        services_desc:"Servicios técnicos especializados para transformar problemas complejos en sistemas eficientes.",
+        service_1_desc:"Conexión de sistemas, sincronización de plataformas y automatización del flujo de datos mediante código limpio y estructurado en Python.",
+        service_2_desc:"Diseño e implementación de soluciones lógicas y mecánicas orientadas a la optimización de procesos industriales, robótica y entornos conectados.",
+        service_3_desc:"Auditoría técnica, viabilidad de proyectos de ingeniería y diseño de arquitectura de software antes del despliegue de producción.",
+        workshop_title:"El Enfoque LZ79",
+        workshop_desc:"Creemos en la ingeniería práctica. Detrás de cada línea de código y de cada sistema automatizado hay un objetivo claro: la máxima eficiencia operativa. Desarrollamos herramientas robustas pensadas para solucionar retos técnicos reales.",
+        global_service:"Servicio Global", footer_rights:"© 2026 LZ79. Todos los derechos reservados.",
+        footer_support:"Soporte",
+        suggestion_1:"¿Qué es Galia?", suggestion_2:"¿Qué servicios ofrecéis?", suggestion_3:"Ayúdame con una idea"
+    },
+    gl: {
+        nav_services:"Servizos", nav_gallery:"Capturas", nav_workshop:"O Obradoiro", nav_contact:"Contacto",
+        hero_title_1:"Ecosistema Galia.", hero_title_2:"Solucións escalables e conectadas.",
+        hero_desc:"Desenvolvemento de software a medida, integración de APIs e automatización intelixente para optimizar os teus procesos dende O Porriño.",
+        badge_testing:"Modo probas", badge_soon:"Próximamente", hosting_title:"DOMINIOS E HOSTING",
+        btn_start:"Iniciar Proxecto", chat_subtitle:"Intelixencia Artificial", chat_title:"Galia Chat · Modo probas",
+        chat_desc:"Interactúa en tempo real co asistente intelixente do ecosistema.",
+        chat_welcome:"Ola! Dende O Porriño para todo o mundo con LZ79freelance. De que falamos hoxe?",
+        chat_placeholder:"Escribe a túa consulta...", chat_send:"Enviar",
+        chat_limit_note:"Modo probas · uso limitado por usuario", chat_clear:"Limpar conversa",
+        chat_limit:"Acadaches o límite diario de probas. Volve mañá.",
+        chat_connecting:"Galia está pensando…", chat_error:"Non foi posible conectar con Galia.",
+        chat_cancel:"Deter", gallery_tag:"Interface de Usuario", gallery_title:"Vista Previa da Aplicación",
+        gallery_desc:"Deseños limpos, modernos e funcionais optimizados para cada fluxo de traballo.",
+        services_title:"Liñas de Negocio",
+        services_desc:"Servizos técnicos especializados para transformar problemas complexos en sistemas eficientes.",
+        service_1_desc:"Conexión de sistemas, sincronización de plataformas e automatización do fluxo de datos mediante código limpo e estruturado en Python.",
+        service_2_desc:"Deseño e implementación de solucións lóxicas e mecánicas orientadas á optimización de procesos industriais, robótica e contornas conectadas.",
+        service_3_desc:"Auditoria técnica, viabilidade de proxectos de enxeñaría e deseño de arquitectura de software antes do despregue de produción.",
+        workshop_title:"O Enfoque LZ79",
+        workshop_desc:"Cremos na enxeñaría práctica. Detrás de cada liña de código e de cada sistema automatizado hai un obxectivo claro: a máxima eficiencia operativa. Desenvolvemos ferramentas robustas pensadas para solucionar retos técnicos reais.",
+        global_service:"Servizo Global", footer_rights:"© 2026 LZ79. Todos os dereitos reservados.",
+        footer_support:"Soporte",
+        suggestion_1:"Que é Galia?", suggestion_2:"Que servizos ofrecédes?", suggestion_3:"Axúdame cunha idea"
+    },
+    eu: {
+        nav_services:"Zerbitzuak", nav_gallery:"Argazkiak", nav_workshop:"Tailerra", nav_contact:"Kontaktua",
+        hero_title_1:"Galia Ekosistema.", hero_title_2:"Irtenbide eskalagarri eta konektatuak.",
+        hero_desc:"Neurrira egindako software garapena, APIen integrazioa eta automatizazio adimenduna zure prozesuak optimizatzeko O Porriñotik.",
+        badge_testing:"Proba modua", badge_soon:"Laster", hosting_title:"DOMEINUAK ETA HOSTING",
+        btn_start:"Proiektua Hasi", chat_subtitle:"Adimen Artifiziala", chat_title:"Galia Chat · Proba modua",
+        chat_desc:"Elkarrekintza denbora errealean ekosistemako laguntzaile adimendunarekin.",
+        chat_welcome:"Kaixo! O Porriñotik bertatik ari naiz erantzuten. Zein da zure kontsulta?",
+        chat_placeholder:"Idatzi zure kontsulta...", chat_send:"Bidali",
+        chat_limit_note:"Proba modua · erabiltzaile bakoitzarentzat erabilera mugatua", chat_clear:"Elkarrizketa garbitu",
+        chat_limit:"Eguneko proba-mugara iritsi zara. Itzuli bihar.",
+        chat_connecting:"Galia pentsatzen ari da…", chat_error:"Ezin izan da Galiarekin konektatu.",
+        chat_cancel:"Gelditu", gallery_tag:"Erabiltzaile Interfazea", gallery_title:"Aplikazioaren Aurrebista",
+        gallery_desc:"Lan-fluxu bakoitzarentzat optimizatutako diseinu garbi, moderno eta funtzionalak.",
+        services_title:"Negozio Lerroak",
+        services_desc:"Arazo konplexuak sistema eraginkor bihurtzeko zerbitzu teknikorako espezializatuak.",
+        service_1_desc:"Sistemen konexioa, plataformen sinkronizazioa eta datu-fluxuaren automatizazioa Python-en egituratutako kode garbiaren bidez.",
+        service_2_desc:"Prozesu industrialen optimizaziora, robotikara eta ingurune konektatuetara bideratutako soluzio logiko eta mekanikoen diseinua eta ezarpena.",
+        service_3_desc:"Ikuskaritza teknikoa, ingeniaritza proiektuen bideragarritasuna eta software arkitekturaren diseinua produkzioan jarri aurretik.",
+        workshop_title:"LZ79 Ikuspegia",
+        workshop_desc:"Ingeniaritza praktikoan sinesten dugu. Kode lerro bakoitzaren eta sistema automatizatu bakoitzaren atzean helburu argi bat dago: eraginkortasun operatibo maximoa. Erronka tekniko errealak konpontzeko pentsatutako tresna sendoak garatzen ditugu.",
+        global_service:"Zerbitzu Globala", footer_rights:"© 2026 LZ79. Eskubide guztiak erreserbatuta.",
+        footer_support:"Laguntza",
+        suggestion_1:"Zer da Galia?", suggestion_2:"Zer zerbitzu eskaintzen dituzue?", suggestion_3:"Lagundu ideia batekin"
+    },
+    cat: {
+        nav_services:"Serveis", nav_gallery:"Captures", nav_workshop:"El Taller", nav_contact:"Contacte",
+        hero_title_1:"Ecosistema Galia.", hero_title_2:"Solucions escalables i connectades.",
+        hero_desc:"Desenvolupament de programari a mida, integració d'APIs i automatització intel·ligent per optimitzar els teus processos des d'O Porriño.",
+        badge_testing:"Mode proves", badge_soon:"Pròximament", hosting_title:"DOMINIS I HOSTING",
+        btn_start:"Iniciar Projecte", chat_subtitle:"Intel·ligència Artificial", chat_title:"Galia Chat · Mode proves",
+        chat_desc:"Interacciona en temps real amb l'assistent intel·ligent de l'ecosistema.",
+        chat_welcome:"Hola! Soc Galia. Estic en mode proves des d'O Porriño. En què et puc ajudar?",
+        chat_placeholder:"Escriu la teva consulta...", chat_send:"Enviar",
+        chat_limit_note:"Mode proves · ús limitat per usuari", chat_clear:"Netejar conversa",
+        chat_limit:"Has assolit el límit diari de proves. Torna demà.",
+        chat_connecting:"Galia està pensant…", chat_error:"No s'ha pogut connectar con Galia.",
+        chat_cancel:"Aturar", gallery_tag:"Interfície d'Usuari", gallery_title:"Vista Prèvia de l'Aplicació",
+        gallery_desc:"Dissenys nets, moderns i funcionals optimitzats per a cada flux de treball.",
+        services_title:"Línies de Negoci",
+        services_desc:"Serveis tècnics especialitzats per transformar problemes complexos en sistemes eficients.",
+        service_1_desc:"Connexió de sistemes, sincronització de plataformes i automatització del flux de dades mitjançant codi net i estructurat en Python.",
+        service_2_desc:"Disseny i implementació de solucions lògiques i mecàniques orientades a l'optimització de processos industrials, robòtica i entorns connectats.",
+        service_3_desc:"Auditoria tècnica, viabilitat de projectes d'enginyeria i disseny d'arquitectura de programari abans del desplegament de producció.",
+        workshop_title:"L'Enfocament LZ79",
+        workshop_desc:"Creiem en l'enginyeria pràctica. Darrere de cada línia de codi i de cada sistema automatitzat hi ha un objectiu clar: la màxima eficiència operativa. Desenvolupem eines robustes pensades per solucionar reptes tècnics reals.",
+        global_service:"Servei Global", footer_rights:"© 2026 LZ79. Tots els drets reservats.",
+        footer_support:"Suport",
+        suggestion_1:"Què és Galia?", suggestion_2:"Quins serveis oferiu?", suggestion_3:"Ajuda'm amb una idea"
+    }
+};
+
+let idiomaActual = localStorage.getItem("galia_language") || detectarIdioma();
+let historial = [];
+let abortController = null;
+let isSending = false;
+
+function detectarIdioma() {
+    const lang = (navigator.language || "es").toLowerCase();
+    if (lang.startsWith("gl")) return "gl";
+    if (lang.startsWith("eu")) return "eu";
+    if (lang.startsWith("ca")) return "cat";
+    return "es";
+}
+
+function cambiarIdioma(lang) {
+    if (!traducciones[lang]) lang = "es";
+    idiomaActual = lang;
+    localStorage.setItem("galia_language", lang);
+
+    document.documentElement.lang = lang === "cat" ? "ca" : lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (traducciones[lang][key]) el.textContent = traducciones[lang][key];
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (traducciones[lang][key]) el.placeholder = traducciones[lang][key];
+    });
+
+    ["es", "gl", "eu", "cat"].forEach(l => {
+        const btn = document.getElementById(`btn-${l}`);
+        if (!btn) return;
+        btn.className = l === lang
+            ? "px-2 py-1 rounded bg-gray-800 text-white transition-all"
+            : "px-2 py-1 rounded hover:bg-gray-800 hover:text-white transition-all text-gray-400";
+    });
+
+    renderSugerencias();
+    actualizarContador();
+    actualizarIdiomaGalia(lang);
+}
+
+function guardarEstado() {
+    try {
+        localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(historial.slice(-CONFIG.MAX_HISTORY_MESSAGES)));
+    } catch (_) {}
+}
+
+function cargarEstado() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEY) || "[]");
+        if (Array.isArray(saved)) historial = saved.filter(
+            m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string"
+        );
+    } catch (_) {
+        historial = [];
+    }
+}
+
+function limpiarChat() {
+    historial = [];
+    guardarEstado();
+    renderMensajes();
+    showToast(traducciones[idiomaActual].chat_clear);
+}
+
+function renderMensajes() {
+    const container = document.getElementById("chat-messages");
+    container.innerHTML = "";
+
+    if (!historial.length) {
+        addAssistantMessage(traducciones[idiomaActual].chat_welcome, false);
+        return;
+    }
+
+    historial.forEach(m => {
+        if (m.role === "user") addUserMessage(m.content, false);
+        else addAssistantMessage(m.content, false);
+    });
+
+    scrollChat();
+}
+
+function addUserMessage(text, save = true) {
+    const container = document.getElementById("chat-messages");
+    const row = document.createElement("div");
+    row.className = "flex items-start justify-end";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bg-techBlue text-white p-4 rounded-2xl max-w-[85%] leading-relaxed whitespace-pre-wrap break-words";
+    bubble.textContent = text;
+
+    row.appendChild(bubble);
+    container.appendChild(row);
+
+    if (save) scrollChat();
+}
+
+function markdownToSafeHtml(text) {
+    if (!window.marked || !window.DOMPurify) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML.replace(/\n/g, "<br>");
+    }
+    marked.setOptions({ breaks: true, gfm: true });
+    return DOMPurify.sanitize(marked.parse(text));
+}
+
+function addAssistantMessage(text, save = true) {
+    const container = document.getElementById("chat-messages");
+    const row = document.createElement("div");
+    row.className = "flex items-start space-x-3";
+
+    const avatar = document.createElement("div");
+    avatar.className = "w-8 h-8 shrink-0 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs";
+    avatar.textContent = "AI";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "max-w-[85%]";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bg-gray-800 text-gray-200 p-4 rounded-2xl leading-relaxed message-content break-words";
+    bubble.innerHTML = markdownToSafeHtml(text);
+
+    wrapper.appendChild(bubble);
+
+    if (save && text) {
+        const copy = document.createElement("button");
+        copy.type = "button";
+        copy.className = "mt-1 text-[10px] text-gray-500 hover:text-gray-300";
+        copy.textContent = "Copiar";
+        copy.onclick = () => copiarTexto(text);
+        wrapper.appendChild(copy);
+    }
+
+    row.appendChild(avatar);
+    row.appendChild(wrapper);
+    container.appendChild(row);
+
+    if (save) scrollChat();
+}
+
+function mostrarTyping() {
+    quitarTyping();
+
+    const container = document.getElementById("chat-messages");
+    const row = document.createElement("div");
+    row.id = "galia-typing";
+    row.className = "flex items-start space-x-3";
+
+    const avatar = document.createElement("div");
+    avatar.className = "w-8 h-8 shrink-0 rounded-lg bg-techBlue/20 text-techBlue flex items-center justify-center font-bold text-xs";
+    avatar.textContent = "AI";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bg-gray-800 text-gray-400 p-4 rounded-2xl max-w-md";
+
+    const label = document.createElement("div");
+    label.className = "text-xs mb-2";
+    label.textContent = traducciones[idiomaActual].chat_connecting;
+
+    const dots = document.createElement("div");
+    dots.className = "flex gap-1 items-center";
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement("span");
+        dot.className = "typing-dot";
+        dots.appendChild(dot);
+    }
+
+    bubble.append(label, dots);
+    row.append(avatar, bubble);
+    container.appendChild(row);
+    scrollChat();
+}
+
+function quitarTyping() {
+    document.getElementById("galia-typing")?.remove();
+}
+
+function scrollChat() {
+    const container = document.getElementById("chat-messages");
+    requestAnimationFrame(() => {
+        container.scrollTop = container.scrollHeight;
+    });
+}
+
+function obtenerUso() {
+    const hoy = new Date().toISOString().slice(0, 10);
+    let data;
+
+    try {
+        data = JSON.parse(localStorage.getItem(CONFIG.USAGE_KEY) || "{}");
+    } catch (_) {
+        data = {};
+    }
+
+    if (!data || data.date !== hoy) {
+        data = { date: hoy, count: 0 };
+        localStorage.setItem(CONFIG.USAGE_KEY, JSON.stringify(data));
+    }
+
+    return data;
+}
+
+function incrementarUso() {
+    const data = obtenerUso();
+    data.count += 1;
+    localStorage.setItem(CONFIG.USAGE_KEY, JSON.stringify(data));
+    actualizarContador();
+}
+
+function actualizarContador() {
+    const el = document.getElementById("usage-counter");
+    if (!el) return;
+
+    const data = obtenerUso();
+    el.textContent = `${data.count}/${CONFIG.DAILY_LIMIT}`;
+}
+
+function puedeEnviar() {
+    return obtenerUso().count < CONFIG.DAILY_LIMIT;
+}
+
+function renderSugerencias() {
+    const container = document.getElementById("suggestions");
+    container.innerHTML = "";
+
+    ["suggestion_1", "suggestion_2", "suggestion_3"].forEach(key => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "text-[11px] px-3 py-1.5 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-techBlue transition-all";
+        button.textContent = traducciones[idiomaActual][key];
+        button.onclick = () => {
+            const input = document.getElementById("chat-input");
+            input.value = button.textContent;
+            actualizarContadorCaracteres();
+            input.focus();
+        };
+        container.appendChild(button);
+    });
+}
+
+function actualizarContadorCaracteres() {
+    const input = document.getElementById("chat-input");
+    document.getElementById("char-count").textContent = input.value.length;
+}
+
+function ajustarTextarea() {
+    const input = document.getElementById("chat-input");
+    input.style.height = "auto";
+    input.style.height = Math.min(input.scrollHeight, 160) + "px";
+}
+
+async function enviarMensaje() {
+    if (isSending) return;
+
+    const input = document.getElementById("chat-input");
+    const textoUsuario = input.value.trim();
+
+    if (!textoUsuario) return;
+
+    if (textoUsuario.length > CONFIG.MAX_MESSAGE_LENGTH) {
+        showToast(`Máximo ${CONFIG.MAX_MESSAGE_LENGTH} caracteres.`);
+        return;
+    }
+
+    if (!puedeEnviar()) {
+        addAssistantMessage(traducciones[idiomaActual].chat_limit);
+        return;
+    }
+
+    isSending = true;
+    actualizarEstadoUI(true);
+
+    addUserMessage(textoUsuario);
+    historial.push({ role: "user", content: textoUsuario });
+    historial = historial.slice(-CONFIG.MAX_HISTORY_MESSAGES);
+    guardarEstado();
+
+    input.value = "";
+    actualizarContadorCaracteres();
+    ajustarTextarea();
+
+    mostrarTyping();
+
+    abortController = new AbortController();
+
+    try {
+        const response = await fetch(CONFIG.CHAT_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                language: idiomaActual,
+                messages: historial
+            }),
+            signal: abortController.signal
+        });
+
+        if (!response.ok) {
+            let errorText = "";
+            try {
+                const data = await response.json();
+                errorText = data.error || "";
+            } catch (_) {}
+            throw new Error(errorText || `HTTP ${response.status}`);
         }
 
-        function enviarMensaje() {
-            const input = document.getElementById('chatInput');
-            const mensaje = input.value.trim();
-            if(mensaje === "") return;
+        const data = await response.json();
+        const respuesta = typeof data.reply === "string"
+            ? data.reply.trim()
+            : "";
 
-            const chatMessages = document.getElementById('chatMessages');
-
-            // 1. Burbuja del usuario
-            const userBubble = document.createElement('div');
-            userBubble.className = "bg-techBlue text-white p-4 rounded-xl max-w-[85%] ml-auto border border-blue-400";
-            userBubble.textContent = mensaje;
-            chatMessages.appendChild(userBubble);
-
-            input.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            // 2. Lógica estricta de idiomas y tono formal corporativo
-            setTimeout(() => {
-                const msgLower = mensaje.toLowerCase();
-                let respuesta = "";
-
-                const palabrasEuskera = ["kaixo", "zer", "egun", "on", "eskerrik", "asko", "nola", "bai", "ez", "gustura", "agur", "hau", "egin", "duzu"];
-                const esEuskera = palabrasEuskera.some(palabra => msgLower.includes(palabra));
-
-                const palabrasGalego = ["ola", "como", "ben", "bem", "porriño", "galicia", "grazias", "grazas", "iso", "ti", "hoxe", "falar", "che", "camiño", "maior", "xa", "tamén", "logo", "si", "non", "está", "todo"];
-                const esGalego = palabrasGalego.some(palabra => msgLower.includes(palabra));
-
-                if (esEuskera) {
-                    const respEuskera = [
-                        "Kaixo. LZ79freelance-ko sistema teknikoaren bidez erantzuten dizut O Porriñotik. Zein da zure kontsulta?",
-                        "Ados nago. Nola lagun zaitzakegu garapen edo automatizazio lanetan?"
-                    ];
-                    respuesta = respEuskera[Math.floor(Math.random() * respEuskera.length)];
-                } else if (esGalego) {
-                    const respGalego = [
-                        "Entendido. Dende LZ79freelance en O Porriño analizamos a súa solicitude técnica.",
-                        "Correcto. Indique se precisa asistencia en desenvolvemento de software, APIs ou automatización.",
-                        "Perfecto. Estamos a disposición para calquera consulta técnica dende o noso sistema."
-                    ];
-                    respuesta = respGalego[Math.floor(Math.random() * respGalego.length)];
-                } else {
-                    const respCastellano = [
-                        "Entendido. Desde LZ79freelance en O Porriño procesamos su consulta técnica.",
-                        "Correcto. Indique si requiere asistencia en desarrollo de software, integración de APIs o automatización de procesos.",
-                        "Perfecto. Quedamos a su disposición para evaluar los requerimientos técnicos de su proyecto."
-                    ];
-                    respuesta = respCastellano[Math.floor(Math.random() * respCastellano.length)];
-                }
-
-                const galiaBubble = document.createElement('div');
-                galiaBubble.className = "bg-gray-800 p-4 rounded-xl max-w-[85%] border border-gray-700";
-                galiaBubble.textContent = respuesta;
-                chatMessages.appendChild(galiaBubble);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 600);
+        if (!respuesta) {
+            throw new Error("Respuesta vacía del servidor.");
         }
 
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                enviarMensaje();
-            }
+        quitarTyping();
+
+        historial.push({ role: "assistant", content: respuesta });
+        historial = historial.slice(-CONFIG.MAX_HISTORY_MESSAGES);
+        guardarEstado();
+
+        addAssistantMessage(respuesta);
+        incrementarUso();
+
+    } catch (error) {
+        quitarTyping();
+
+        if (error.name === "AbortError") {
+            addAssistantMessage("Respuesta detenida.");
+        } else {
+            console.error("Galia Chat:", error);
+            addAssistantMessage(traducciones[idiomaActual].chat_error);
+            showToast("Revisa la configuración de /api/chat.");
         }
-    </script>
+    } finally {
+        abortController = null;
+        isSending = false;
+        actualizarEstadoUI(false);
+    }
+}
+
+function cancelarRespuesta() {
+    if (abortController) abortController.abort();
+}
+
+function actualizarEstadoUI(enviando) {
+    const send = document.getElementById("send-button");
+    const stop = document.getElementById("stop-button");
+    const input = document.getElementById("chat-input");
+    const dot = document.getElementById("status-dot");
+
+    send.disabled = enviando;
+    input.disabled = enviando;
+    stop.classList.toggle("hidden", !enviando);
+
+    dot.classList.toggle("bg-emerald-500", !enviando);
+    dot.classList.toggle("bg-amber-400", enviando);
+}
+
+async function copiarTexto(texto) {
+    try {
+        await navigator.clipboard.writeText(texto);
+        showToast("Copiado.");
+    } catch (_) {
+        showToast("No se pudo copiar.");
+    }
+}
+
+function showToast(message) {
+    const container = document.getElementById("toast-container");
+    const toast = document.createElement("div");
+    toast.className = "toast bg-gray-900 border border-gray-700 text-gray-200 text-sm px-4 py-3 rounded-xl shadow-xl";
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 2800);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarEstado();
+    cambiarIdioma(idiomaActual);
+    renderMensajes();
+    actualizarContador();
+
+    const input = document.getElementById("chat-input");
+
+    input.addEventListener("input", () => {
+        actualizarContadorCaracteres();
+        ajustarTextarea();
+    });
+
+    input.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            enviarMensaje();
+        }
+    });
+
+    window.addEventListener("beforeunload", () => {
+        if (abortController) abortController.abort();
+    });
+});
+</script>
+
+<script>
+const GALIA_UI = {
+    es: {
+        subtitle: "Pregunta · Busca · Descubre Galicia",
+        description: "Un espacio regional y local para encontrar información de Galicia, tanto si vives aquí como si vienes de visita.",
+        heading: "Galia Buscador",
+        caption: "Búsqueda regional y local",
+        placeholder: "¿Qué quieres saber de Galicia?",
+        button: "Buscar",
+        chat: "Pregúntale a Galia y continúa la conversación.",
+        note: "Medir primero la demanda real. Aumentar capacidad y buscar acuerdos cuando el uso lo justifique."
+    },
+    gl: {
+        subtitle: "Pregunta · Busca · Descobre Galicia",
+        description: "Un espazo rexional e local para atopar información de Galicia, tanto se vives aquí como se vés de visita.",
+        heading: "Galia Buscador",
+        caption: "Busca rexional e local",
+        placeholder: "Que queres saber de Galicia?",
+        button: "Buscar",
+        chat: "Pregúntalle a Galia e continúa a conversa.",
+        note: "Medir primeiro a demanda real. Aumentar capacidade e buscar acordos cando o uso o xustifique."
+    },
+    eu: {
+        subtitle: "Galdetu · Bilatu · Ezagutu Galizia",
+        description: "Galiziari buruzko informazioa aurkitzeko espazio erregional eta lokala, bertan bizi bazara zein bisitan bazatoz.",
+        heading: "Galia Bilatzailea",
+        caption: "Bilaketa erregionala eta lokala",
+        placeholder: "Zer jakin nahi duzu Galiziari buruz?",
+        button: "Bilatu",
+        chat: "Galdetu Galiari eta jarraitu elkarrizketarekin.",
+        note: "Lehenik benetako eskaria neurtu. Erabilerak justifikatzen duenean gaitasuna handitu eta akordioak bilatu."
+    },
+    cat: {
+        subtitle: "Pregunta · Busca · Descobreix Galícia",
+        description: "Un espai regional i local per trobar informació de Galícia, tant si hi vius com si hi vens de visita.",
+        heading: "Galia Cercador",
+        caption: "Cerca regional i local",
+        placeholder: "Què vols saber de Galícia?",
+        button: "Buscar",
+        chat: "Pregunta-li a Galia i continua la conversa.",
+        note: "Primer mesurem la demanda real. Augmentem capacitat i busquem acords quan l'ús ho justifiqui."
+    }
+};
+
+function actualizarIdiomaGalia(lang) {
+    const t = GALIA_UI[lang] || GALIA_UI.es;
+    document.getElementById("galia-subtitle").textContent = t.subtitle;
+    document.getElementById("galia-description").textContent = t.description;
+    document.getElementById("search-heading").textContent = t.heading;
+    document.getElementById("search-caption").textContent = t.caption;
+    document.getElementById("search-input").placeholder = t.placeholder;
+    document.getElementById("search-button").textContent = t.button;
+    document.getElementById("chat-promo").textContent = t.chat;
+    document.getElementById("metric-note").textContent = t.note;
+
+    document.querySelectorAll(".galia-lang").forEach(btn => {
+        const active = btn.dataset.galiaLang === lang;
+        btn.classList.toggle("active", active);
+        btn.classList.toggle("border-techCian/50", active);
+        btn.classList.toggle("bg-techCian/10", active);
+        btn.classList.toggle("text-techCian", active);
+        btn.classList.toggle("border-gray-700", !active);
+        btn.classList.toggle("text-gray-400", !active);
+    });
+
+    const metricLang = document.getElementById("metric-language");
+    if (metricLang) metricLang.textContent = lang.toUpperCase();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".galia-lang").forEach(btn => {
+        btn.addEventListener("click", () => cambiarIdioma(btn.dataset.galiaLang));
+    });
+
+    document.querySelectorAll(".galia-category").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const input = document.getElementById("search-input");
+            input.value = btn.dataset.query || "";
+            input.focus();
+            document.getElementById("search-button").click();
+        });
+    });
+});
+</script>
+
+<script>
+const GALIA_SEARCH = {
+    ENDPOINT: "/api/search",
+    METRICS_ENDPOINT: "/api/metrics",
+    STORAGE_KEY: "galia_metrics_v1",
+    SESSION_KEY: "galia_session_v1"
+};
+
+const DEMO_RESULTS = [
+    {
+        title: "Turismo de Galicia",
+        url: "https://www.turismo.gal/",
+        snippet: "Información turística, destinos, rutas, patrimonio y experiencias para descubrir Galicia."
+    },
+    {
+        title: "Visit Galicia",
+        url: "https://www.turismo.gal/",
+        snippet: "Ideas para planificar viajes, naturaleza, cultura y gastronomía en Galicia."
+    },
+    {
+        title: "Resultados de prueba de Galia",
+        url: "#",
+        snippet: "Resultado de demostración. Conecta /api/search para utilizar un proveedor real."
+    }
+];
+
+function idiomaBusqueda(texto) {
+    const t = texto.toLowerCase();
+    const eu = /(zer|zein|nola|non|noiz|bilatu|bilatzen|turismoa|jatetxe|etxe|landa|galizia|nahi|dezake|daiteke|egingo|ikusi)/.test(t);
+    const cat = /(què|quina|quin|com|on|quan|buscar|cerca|restaurants|turisme|casa rural|galícia|puc|pots|vull|fer|veure)/.test(t);
+    const gl = /(onde|como|canto|podo|podes|quero|queres|hai|unha|unhas|facer|atopar|buscar|casa rural|galicia|visitar|comer)/.test(t);
+    const es = /(qué|dónde|cómo|cuánto|puedo|puedes|quiero|quieres|hay|una|unas|hacer|encontrar|buscar|casa rural|galicia|visitar|comer)/.test(t);
+
+    if (eu && !cat && !gl && !es) return "eu";
+    if (cat && !eu && !gl && !es) return "cat";
+    if (gl && !eu && !cat && !es) return "gl";
+    if (es && !eu && !cat && !gl) return "es";
+
+    return document.querySelector(".galia-lang.active")?.dataset.galiaLang || idiomaActual || "es";
+}
+
+function cargarMetricas() {
+    let data;
+    try { data = JSON.parse(localStorage.getItem(GALIA_SEARCH.STORAGE_KEY) || "{}"); }
+    catch (_) { data = {}; }
+
+    if (!data.date) data.date = new Date().toISOString().slice(0,10);
+    if (!data.visits) data.visits = 0;
+    if (!data.searches) data.searches = 0;
+    if (!data.sessions) data.sessions = 0;
+    if (!data.languages) data.languages = {es:0, gl:0, eu:0, cat:0};
+    return data;
+}
+
+function guardarMetricas(data) {
+    localStorage.setItem(GALIA_SEARCH.STORAGE_KEY, JSON.stringify(data));
+}
+
+function registrarVisita() {
+    const data = cargarMetricas();
+    const session = sessionStorage.getItem(GALIA_SEARCH.SESSION_KEY);
+    if (!session) {
+        sessionStorage.setItem(GALIA_SEARCH.SESSION_KEY, "1");
+        data.sessions += 1;
+    }
+    data.visits += 1;
+    guardarMetricas(data);
+    renderMetricas();
+}
+
+function registrarBusqueda(query, lang) {
+    const data = cargarMetricas();
+    data.searches += 1;
+    data.languages[lang] = (data.languages[lang] || 0) + 1;
+    guardarMetricas(data);
+
+    try {
+        if (GALIA_SEARCH.METRICS_ENDPOINT) {
+            fetch(GALIA_SEARCH.METRICS_ENDPOINT, {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    event: "search",
+                    language: lang,
+                    query_length: query.length,
+                    timestamp: new Date().toISOString()
+                }),
+                keepalive: true
+            }).catch(() => {});
+        }
+    } catch (_) {}
+
+    renderMetricas();
+}
+
+function renderMetricas() {
+    const data = cargarMetricas();
+    document.getElementById("metric-visits").textContent = data.visits;
+    document.getElementById("metric-searches").textContent = data.searches;
+    document.getElementById("metric-sessions").textContent = data.sessions;
+    document.getElementById("metric-language").textContent = (idiomaActual || "es").toUpperCase();
+    ["es","gl","eu","cat"].forEach(l => {
+        const el = document.getElementById("m-" + l);
+        if (el) el.textContent = data.languages[l] || 0;
+    });
+    const total = (data.languages.es || 0) + (data.languages.gl || 0);
+    ["es","gl","eu","cat"].forEach(l => {
+        const bar = document.getElementById("bar-" + l);
+        if (bar) bar.style.width = total ? Math.round(((data.languages[l] || 0) / total) * 100) + "%" : "0%";
+    });
+}
+
+function mostrarResultados(results, query, demo=false) {
+    const container = document.getElementById("search-results");
+    container.innerHTML = "";
+
+    results.forEach(r => {
+        const card = document.createElement("a");
+        card.href = r.url || "#";
+        card.target = r.url && r.url !== "#" ? "_blank" : "_self";
+        card.rel = "noopener noreferrer";
+        card.className = "block bg-gray-900 border border-gray-800 hover:border-techCian/50 rounded-xl p-4 transition-all";
+
+        const title = document.createElement("div");
+        title.className = "font-semibold text-white";
+        title.textContent = r.title || "Resultado";
+
+        const url = document.createElement("div");
+        url.className = "text-[11px] text-techCian mt-1 break-all";
+        url.textContent = r.url || "";
+
+        const snippet = document.createElement("div");
+        snippet.className = "text-sm text-gray-400 mt-2 leading-relaxed";
+        snippet.textContent = r.snippet || "";
+
+        card.append(title, url, snippet);
+        container.appendChild(card);
+    });
+
+    document.getElementById("search-status").textContent =
+        `${results.length} resultados · ${demo ? "modo demostración" : "búsqueda real"} · "${query}"`;
+}
+
+async function ejecutarBusqueda() {
+    const input = document.getElementById("search-input");
+    const query = input.value.trim();
+    if (!query) return;
+
+    const button = document.getElementById("search-button");
+    const status = document.getElementById("search-status");
+    const lang = idiomaBusqueda(query);
+
+    button.disabled = true;
+    button.classList.add("opacity-50");
+    status.textContent = "Galia está buscando…";
+
+    registrarBusqueda(query, lang);
+
+    try {
+        const response = await fetch(GALIA_SEARCH.ENDPOINT, {
+            method: "POST",
+            headers: {"Content-Type":"application/json","Accept":"application/json"},
+            body: JSON.stringify({query, language: lang})
+        });
+
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.json();
+        if (!Array.isArray(data.results)) throw new Error("Formato inválido");
+
+        mostrarResultados(data.results, query, false);
+    } catch (_) {
+        mostrarResultados(DEMO_RESULTS, query, true);
+    } finally {
+        button.disabled = false;
+        button.classList.remove("opacity-50");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    registrarVisita();
+    renderMetricas();
+
+    document.getElementById("search-button").addEventListener("click", ejecutarBusqueda);
+    document.getElementById("search-input").addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            ejecutarBusqueda();
+        }
+    });
+
+    document.querySelectorAll(".search-suggestion").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const input = document.getElementById("search-input");
+            input.value = btn.dataset.query || "";
+            input.focus();
+        });
+    });
+
+    document.getElementById("reset-metrics").addEventListener("click", () => {
+        localStorage.removeItem(GALIA_SEARCH.STORAGE_KEY);
+        renderMetricas();
+        showToast("Métricas de prueba reiniciadas.");
+    });
+});
+</script>
 
 </body>
 </html>
