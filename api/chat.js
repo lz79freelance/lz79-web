@@ -1,24 +1,35 @@
-import { GoogleGenAI } from '@google/genai';
+const { GoogleGenAI } = require('@google/genai');
 
 const MAX_MESSAGE_LENGTH = 4000;
 const MAX_MESSAGES = 12;
 
 const ai = new GoogleGenAI();
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Método no permitido" });
+exports.handler = async function(event, context) {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Método no permitido" })
+    };
   }
 
   try {
     if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: "Falta configurar GEMINI_API_KEY en las variables de entorno de Netlify" });
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Falta configurar GEMINI_API_KEY en las variables de entorno de Netlify" })
+      };
     }
 
-    const { messages, language = "es" } = req.body || {};
+    const body = JSON.parse(event.body || "{}");
+    const messages = body.messages;
+    const language = body.language || "es";
 
     if (!Array.isArray(messages) || messages.length === 0) {
-      return res.status(400).json({ error: "No se han recibido mensajes" });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "No se han recibido mensajes" })
+      };
     }
 
     const cleanMessages = messages
@@ -35,7 +46,10 @@ export default async function handler(req, res) {
       }));
 
     if (cleanMessages.length === 0) {
-      return res.status(400).json({ error: "Mensajes inválidos" });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Mensajes inválidos" })
+      };
     }
 
     const languageNames = {
@@ -63,15 +77,24 @@ export default async function handler(req, res) {
     const reply = response.text?.trim();
 
     if (!reply) {
-      return res.status(502).json({ error: "Google Gemini no devolvió texto" });
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: "Google Gemini no devolvió texto" })
+      };
     }
 
-    return res.status(200).json({ reply });
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reply })
+    };
 
   } catch (error) {
     console.error("GALIA ERROR:", error);
-    return res.status(500).json({
-      error: error?.message || "Error al comunicarse con Google Gemini",
-    });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error?.message || "Error al comunicarse con Google Gemini" })
+    };
   }
-}
+};
+};
