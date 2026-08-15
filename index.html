@@ -170,8 +170,8 @@
 
         .btn-main:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* Tarjetas de Contenido General */
-        .card {
+        /* Secciones de Contenido */
+        .section-block {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 20px;
@@ -179,8 +179,8 @@
             margin-bottom: 35px;
         }
 
-        .card h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
-        .card p { color: var(--text-muted); margin-bottom: 15px; }
+        .section-block h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .section-block p { color: var(--text-muted); margin-bottom: 15px; font-size: 1.05rem; }
 
         /* Galería de Capturas */
         .gallery {
@@ -191,7 +191,7 @@
         }
 
         .img-box {
-            background: #090d16;
+            background: #060913;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 15px;
@@ -253,14 +253,14 @@
         <ul class="nav-links">
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#capturas">Capturas</a></li>
-            <li><a href="#legal">Legal</a></li>
+            <li><a href="#contacto">Contacto</a></li>
         </ul>
         <a href="#contacto" class="btn-contact">Contacto</a>
     </nav>
 
     <div class="wrapper">
-        <!-- Hero Ecosistema (Simétrico 2x2) -->
-        <section class="hero">
+        <!-- Hero Ecosistema (2x2 simétrico) -->
+        <section class="hero" id="inicio">
             <h2>Ecosistema Galia</h2>
             <h1>Soluciones escalables <br><span>y conectadas.</span></h1>
             <p>Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos.</p>
@@ -299,14 +299,14 @@
             <a href="#contacto" class="btn-main">Iniciar Proyecto</a>
         </section>
 
-        <!-- Servicios / Desarrollo -->
-        <section class="card" id="servicios">
+        <!-- Servicios / Ingeniería -->
+        <section class="section-block" id="servicios">
             <h2>Ingeniería y Automatización</h2>
             <p>En LZ79freelance combinamos arquitectura de software moderna con un enfoque local y seguro. Especialistas en bases de datos SQLite, Python y flet para el desarrollo de herramientas de alto rendimiento enfocadas en autónomos y pequeños negocios desde <strong>O Porriño, Galicia</strong>.</p>
         </section>
 
         <!-- Galería de Capturas -->
-        <section class="card" id="capturas">
+        <section class="section-block" id="capturas">
             <h2>Suite LZ79 Essential & Pro</h2>
             <p>Visualiza el entorno de trabajo optimizado para control de stock, contabilidad y facturación.</p>
             <div class="gallery">
@@ -329,14 +329,14 @@
             </div>
         </section>
 
-        <!-- Términos Legales -->
-        <section class="card" id="legal">
-            <h2>Términos y Condiciones de Uso</h2>
-            <p>Operado por Antonio desde O Porriño, Galicia. LZ79freelance garantiza la privacidad absoluta mediante bases de datos locales <strong>SQLite</strong> alojadas en el dispositivo del usuario, eximiendo al desarrollador de responsabilidades por hardware externo u obligaciones fiscales particulares.</p>
+        <!-- Términos Legales Breves en el Index -->
+        <section class="section-block">
+            <h2>Términos y Condiciones</h2>
+            <p>Operado por Antonio desde O Porriño, Galicia. LZ79freelance garantiza la privacidad absoluta mediante bases de datos locales <strong>SQLite</strong> alojadas en el dispositivo del usuario, eximiendo al desarrollador de responsabilidades por hardware externo u obligaciones fiscales particulares. Para consultar el texto íntegro, visita nuestra página de <a href="terminos-y-condiciones.html" style="color: var(--accent-blue);">Términos Legales</a>.</p>
         </section>
 
         <!-- Chat con Galia -->
-        <section class="card" id="contacto">
+        <section class="section-block" id="contacto">
             <h2>🤖 Asistente Galia AI</h2>
             <p>Consulta cualquier duda directamente con la IA integrada en la plataforma.</p>
             
