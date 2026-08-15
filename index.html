@@ -87,9 +87,9 @@
         </a>
 
         <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400" aria-label="Navegación">
-            <a href="#servicios" class="hover:text-white transition-colors" data-i18n="nav_services">Servicios</a>
-            <a href="#galeria" class="hover:text-white transition-colors" data-i18n="nav_gallery">Capturas</a>
-            <a href="#taller" class="hover:text-white transition-colors" data-i18n="nav_workshop">El Taller</a>
+            <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+            <a href="#galeria" class="hover:text-white transition-colors">Capturas</a>
+            <a href="#taller" class="hover:text-white transition-colors">El Taller</a>
         </nav>
 
         <div class="flex items-center space-x-3">
@@ -100,7 +100,7 @@
                 <button onclick="cambiarIdioma('es')" id="btn-es" class="px-2 py-1 rounded bg-gray-800 text-white transition-all">ES</button>
             </div>
 
-            <a href="mailto:contacto@lz79freelance.com" data-i18n="nav_contact"
+            <a href="mailto:contacto@lz79freelance.com"
                class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all">
                 Contacto
             </a>
@@ -113,13 +113,13 @@
 
     <div class="max-w-5xl mx-auto px-6 text-center z-10">
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            <span data-i18n="hero_title_1">Ecosistema Galia.</span><br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian" data-i18n="hero_title_2">
+            <span>Ecosistema Galia.</span><br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techCian">
                 Soluciones escalables y conectadas.
             </span>
         </h1>
 
-        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10" data-i18n="hero_desc">
+        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
             Desarrollo de software a medida, integración de APIs y automatización inteligente para optimizar tus procesos.
         </p>
 
@@ -284,7 +284,7 @@
         controllerActual = new AbortController();
 
         try {
-            const respuesta = await fetch('/api/chat', {
+            const respuesta = await fetch('/.netlify/functions/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ messages: historialChat, language: idiomaActual }),
