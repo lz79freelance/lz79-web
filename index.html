@@ -246,7 +246,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE GALIA: FILTRADO DE IDIOMAS Y SALUDOS AFINADOS -->
+    <!-- SCRIPT DE GALIA: FILTRADO ESTRICTO Y TONO PROFESIONAL -->
     <script>
         function toggleGaliaChat() {
             const chatWindow = document.getElementById('galiaChatWindow');
@@ -272,36 +272,35 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // 2. Lógica inteligente de idiomas refinada con saludos fijos
+            // 2. Lógica estricta de idiomas y tono formal corporativo
             setTimeout(() => {
                 const msgLower = mensaje.toLowerCase();
                 let respuesta = "";
 
-                const palabrasEuskera = ["kaixo", "zer", "egun", "on", "eskerrik", "asko", "nola", "bai", "ez", "gustura", "agur", "hau"];
+                const palabrasEuskera = ["kaixo", "zer", "egun", "on", "eskerrik", "asko", "nola", "bai", "ez", "gustura", "agur", "hau", "egin", "duzu"];
                 const esEuskera = palabrasEuskera.some(palabra => msgLower.includes(palabra));
 
-                const palabrasGalego = ["ola", "como", "ben", "porriño", "galicia", "grazias", "iso", "ti", "hoxe", "falar", "che", "camiño", "maior", "xa", "tamén", "logo"];
+                const palabrasGalego = ["ola", "como", "ben", "bem", "porriño", "galicia", "grazias", "grazas", "iso", "ti", "hoxe", "falar", "che", "camiño", "maior", "xa", "tamén", "logo", "si", "non", "está", "todo"];
                 const esGalego = palabrasGalego.some(palabra => msgLower.includes(palabra));
 
                 if (esEuskera) {
                     const respEuskera = [
-                        "Kaixo! O Porriñotik bertatik ari naiz erantzuten. Zer dugu gaurkoan?",
-                        "Aupa! Euskaraz eta primeran moldatzen naiz hemen, LZ79freelance-ren ekosisteman.",
-                        "Kaixo! Primeran entzuten da hori. Jarraitu dezagun euskaraz!"
+                        "Kaixo. LZ79freelance-ko sistema teknikoaren bidez erantzuten dizut O Porriñotik. Zein da zure kontsulta?",
+                        "Ados nago. Nola lagun zaitzakegu garapen edo automatizazio lanetan?"
                     ];
                     respuesta = respEuskera[Math.floor(Math.random() * respEuskera.length)];
                 } else if (esGalego) {
                     const respGalego = [
-                        "Ola! Dende O Porriño para todo o mundo con LZ79freelance. Todo ben por aí?",
-                        "Ola, chaval! En galego nos entendemos perfectamente. Cóntame máis sobre o que tes en mente.",
-                        "Ola! Pois claro que si, dálle caña ao tema que aquí o galego flúe só con LZ79freelance!"
+                        "Entendido. Dende LZ79freelance en O Porriño analizamos a súa solicitude técnica.",
+                        "Correcto. Indique se precisa asistencia en desenvolvemento de software, APIs ou automatización.",
+                        "Perfecto. Estamos a disposición para calquera consulta técnica dende o noso sistema."
                     ];
                     respuesta = respGalego[Math.floor(Math.random() * respGalego.length)];
                 } else {
                     const respCastellano = [
-                        "¡Hola! Desde O Porriño y con el sello de LZ79freelance le damos forma a cualquier idea.",
-                        "¡Hola! Totalmente de acuerdo, crear herramientas limpias y funcionales es lo nuestro.",
-                        "¡Hola! Vaya temazo. ¿Lo enfocamos hacia la parte de desarrollo, automatización o prefieres comentar otra cosa?"
+                        "Entendido. Desde LZ79freelance en O Porriño procesamos su consulta técnica.",
+                        "Correcto. Indique si requiere asistencia en desarrollo de software, integración de APIs o automatización de procesos.",
+                        "Perfecto. Quedamos a su disposición para evaluar los requerimientos técnicos de su proyecto."
                     ];
                     respuesta = respCastellano[Math.floor(Math.random() * respCastellano.length)];
                 }
