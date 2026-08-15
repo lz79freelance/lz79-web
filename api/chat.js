@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   try {
     if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: "Falta configurar GEMINI_API_KEY en las variables de entorno" });
+      return res.status(500).json({ error: "Falta configurar GEMINI_API_KEY en las variables de entorno de Netlify" });
     }
 
     const { messages, language = "es" } = req.body || {};
