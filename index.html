@@ -3,291 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 - Ecosistema de Gestión y Facturación</title>
+    <title>LZ79 | Ecosistema Profesional</title>
     <style>
-        :root {
-            --primary: #2563eb;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
+        /* Reset y Estilos Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #0f172a; 
+            color: #f1f5f9; 
+            line-height: 1.6; 
+            padding: 40px 20px;
         }
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* Header */
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-size: 2.5rem; color: #38bdf8; margin-bottom: 10px; }
+        header p { color: #94a3b8; font-size: 1.1rem; }
+
+        /* Layout Grid */
+        .main-grid { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 850px) { .main-grid { grid-template-columns: 1fr; } }
+
+        /* Tarjetas */
+        .card { 
+            background: #1e293b; 
+            padding: 25px; 
+            border-radius: 12px; 
+            border: 1px solid #334155; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        h2 { margin-bottom: 20px; color: #e2e8f0; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+
+        /* Galería */
+        .app-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .screenshot { 
+            background: #0f172a; 
+            height: 150px; 
+            border-radius: 8px; 
+            border: 1px solid #475569;
+            display: flex; align-items: center; justify-content: center;
+            color: #64748b; font-size: 0.8rem; text-align: center;
         }
 
-        .main-container {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        /* Botones */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button { 
+            padding: 12px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; 
         }
+        .btn-primary { background: #38bdf8; color: #0f172a; }
+        .btn-primary:hover { background: #7dd3fc; }
+        .btn-soon { background: #334155; color: #94a3b8; cursor: not-allowed; }
 
-        header {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        header h1 {
-            margin: 0;
-            color: var(--primary);
-            font-size: 2.2rem;
-        }
-
-        header p {
-            color: #64748b;
-            margin-top: 5px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Sección Galería de la App */
-        .app-showcase h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .app-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .app-screenshot {
-            background: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.9rem;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .app-screenshot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .buttons-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .btn {
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        .btn-soon {
-            background-color: #e2e8f0;
-            color: #64748b;
-            cursor: not-allowed;
-        }
-
-        /* Sección Chat de Galia */
-        .chat-section h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #chat-container {
-            height: 350px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            overflow-y: auto;
-            background: #fdfdfd;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .message {
-            padding: 10px 14px;
-            border-radius: 8px;
-            max-width: 80%;
-            line-height: 1.4;
-            font-size: 0.95rem;
-        }
-
-        .message.user {
-            background-color: #eff6ff;
-            color: #1e40af;
-            align-self: flex-end;
-            border-bottom-right-index: 2px;
-        }
-
-        .message.assistant {
-            background-color: #f1f5f9;
-            color: #334155;
-            align-self: flex-start;
-            border-bottom-left-index: 2px;
-        }
-
-        .chat-input-area {
-            display: flex;
-            gap: 10px;
-        }
-
-        #userInput {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        #userInput:focus {
-            border-color: var(--primary);
+        /* Chat */
+        #chat-box { height: 350px; overflow-y: auto; background: #0f172a; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 1px solid #334155; }
+        .msg { margin-bottom: 10px; font-size: 0.95rem; }
+        .msg b { color: #38bdf8; }
+        .input-area { display: flex; gap: 10px; }
+        input { 
+            flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #475569; 
+            background: #1e293b; color: white;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <header>
-            <h1>LZ79 Suite</h1>
-            <p>Control de inventario, gestión eficiente y asistencia inteligente</p>
-        </header>
+<div class="container">
+    <header>
+        <h1>LZ79 Ecosistema</h1>
+        <p>Soluciones inteligentes de gestión, contabilidad e inventario</p>
+    </header>
 
-        <!-- Sección de Presentación y Fotos de la App -->
-        <section class="card app-showcase">
-            <h2>LZ79 Essential & Pro</h2>
-            <p>Descubre el ecosistema diseñado para optimizar tu negocio con estándares de seguridad y trazabilidad.</p>
-            
+    <div class="main-grid">
+        <!-- Columna Izquierda: App Showcase -->
+        <section class="card">
+            <h2>Suite LZ79</h2>
             <div class="app-gallery">
-                <!-- Sustituye el texto dentro de estas cajas por tus etiquetas <img src="..." alt="..."> cuando tengas las fotos -->
-                <div class="app-screenshot">
-                    <span>Captura Panel Principal<br>(LZ79 Pro)</span>
-                </div>
-                <div class="app-screenshot">
-                    <span>Módulo de Inventario<br>y Facturación</span>
-                </div>
+                <div class="screenshot">CAPTURA LZ79 ESSENTIAL</div>
+                <div class="screenshot">CAPTURA LZ79 PRO</div>
             </div>
-
-            <div class="buttons-group">
-                <button class="btn btn-primary">Descargar Versión Essential</button>
-                <button class="btn btn-soon">Próximamente: LZ79 Pro Cloud</button>
-                <button class="btn btn-soon">Próximamente: App Móvil APK</button>
+            <div class="btn-group">
+                <button class="btn-primary">Descargar Versión Essential</button>
+                <button class="btn-soon">Próximamente: App Móvil (APK)</button>
+                <button class="btn-soon">Próximamente: Integración Cloud</button>
             </div>
         </section>
 
-        <!-- Sección del Asistente Galia -->
-        <section class="card chat-section">
-            <h2>🤖 Habla con Galia</h2>
-            <div id="chat-container">
-                <div class="message assistant">¡Hola! Soy Galia, el asistente inteligente de LZ79. ¿En qué te puedo ayudar hoy?</div>
+        <!-- Columna Derecha: Chat Galia -->
+        <section class="card">
+            <h2>Galia AI</h2>
+            <div id="chat-box">
+                <div class="msg"><b>Galia:</b> Hola, ¿en qué puedo ayudarte hoy con tu gestión?</div>
             </div>
-            
-            <div class="chat-input-area">
-                <input type="text" id="userInput" placeholder="Escribe tu consulta aquí..." autocomplete="off">
-                <button id="sendButton" class="btn btn-primary">Enviar</button>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Escribe tu mensaje...">
+                <button class="btn-primary" id="sendButton">></button>
             </div>
         </section>
     </div>
+</div>
 
-    <script>
-        const chatContainer = document.getElementById('chat-container');
-        const userInput = document.getElementById('userInput');
-        const sendButton = document.getElementById('sendButton');
+<script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendButton');
 
-        function appendMessage(sender, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.textContent = text;
-            chatContainer.appendChild(msgDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+    async function sendMsg() {
+        const text = userInput.value.trim();
+        if(!text) return;
+
+        chatBox.innerHTML += `<div class="msg"><b>Tú:</b> ${text}</div>`;
+        userInput.value = '';
+        
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: [{role: 'user', content: text}] })
+            });
+            const data = await res.json();
+            chatBox.innerHTML += `<div class="msg"><b>Galia:</b> ${data.reply}</div>`;
+        } catch(e) {
+            chatBox.innerHTML += `<div class="msg" style="color:#f87171;"><b>Error:</b> No se pudo conectar con Galia.</div>`;
         }
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
 
-        async function sendMessage() {
-            const message = userInput.value.trim();
-            if (!message) return;
-            
-            // Mostrar mensaje del usuario
-            appendMessage('user', message);
-            userInput.value = '';
-            userInput.disabled = true;
-            sendButton.disabled = true;
+    sendBtn.onclick = sendMsg;
+    userInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendMsg(); });
+</script>
 
-            try {
-                // Petición a la función serverless de Netlify (/api/chat)
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        messages: [{ role: 'user', content: message }],
-                        language: 'es'
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(data.error || "Error al conectar con el servidor.");
-                }
-
-                appendMessage('assistant', data.reply);
-            } catch (error) {
-                appendMessage('assistant', "⚠️ Ocurrió un error: " + error.message);
-            } finally {
-                userInput.disabled = false;
-                sendButton.disabled = false;
-                userInput.focus();
-            }
-        }
-
-        // Evento click en el botón enviar
-        sendButton.addEventListener('click', sendMessage);
-
-        // Evento Intro (Enter) para enviar el mensaje sin recargar
-        userInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                sendMessage();
-            }
-        });
-    </script>
 </body>
 </html>
