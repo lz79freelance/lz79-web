@@ -24,28 +24,11 @@
             padding: 40px 20px;
         }
 
-        .wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .wrapper { max-width: 1200px; margin: 0 auto; }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-        }
-
-        header h1 {
-            font-size: 2.8rem;
-            color: var(--accent-blue);
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-        }
+        header { text-align: center; margin-bottom: 40px; padding: 20px; }
+        header h1 { font-size: 2.8rem; color: var(--accent-blue); margin-bottom: 10px; }
+        header p { color: var(--text-muted); font-size: 1.2rem; }
 
         .dashboard-grid {
             display: grid;
@@ -54,9 +37,7 @@
         }
 
         @media (max-width: 900px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
+            .dashboard-grid { grid-template-columns: 1fr; }
         }
 
         .card {
@@ -81,33 +62,38 @@
             font-size: 0.95rem;
         }
 
-        /* Galería de Capturas */
+        /* Galería con tus capturas reales */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 25px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
-        .screenshot-box {
+        .screenshot-card {
             background-color: #090d16;
-            border: 2px dashed #2a374d;
-            border-radius: 10px;
-            height: 180px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 10px;
-            overflow: hidden;
         }
 
-        .screenshot-box span {
-            margin-top: 8px;
-            font-weight: 500;
+        .screenshot-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .screenshot-card span {
+            padding: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
         }
 
         /* Botones de acción y próximamente */
@@ -129,14 +115,8 @@
             text-decoration: none;
         }
 
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: #0b0f19;
-        }
-
-        .btn-primary:hover {
-            background-color: #7dd3fc;
-        }
+        .btn-primary { background-color: var(--accent-blue); color: #0b0f19; }
+        .btn-primary:hover { background-color: #7dd3fc; }
 
         .btn-soon {
             background-color: #1e293b;
@@ -181,10 +161,7 @@
             border-bottom-left-radius: 2px;
         }
 
-        .input-group {
-            display: flex;
-            gap: 10px;
-        }
+        .input-group { display: flex; gap: 10px; }
 
         input[type="text"] {
             flex: 1;
@@ -198,9 +175,7 @@
             transition: border-color 0.2s;
         }
 
-        input[type="text"]:focus {
-            border-color: var(--accent-blue);
-        }
+        input[type="text"]:focus { border-color: var(--accent-blue); }
 
         footer {
             text-align: center;
@@ -219,17 +194,27 @@
         </header>
 
         <div class="dashboard-grid">
-            <!-- Columna Izquierda: Presentación y Módulos -->
+            <!-- Columna Izquierda: Presentación y tus Capturas Reales -->
             <section class="card">
                 <h2>Suite LZ79 Essential & Pro</h2>
-                <p>Diseñado para optimizar flujos de trabajo diarios, control de stock y requerimientos normativos con absoluta precisión.</p>
+                <p>Visualiza el rendimiento, control de stock y requerimientos normativos integrados en la aplicación.</p>
                 
                 <div class="gallery-container">
-                    <div class="screenshot-box">
-                        <span>📊 Panel Principal (LZ79 Pro)</span>
+                    <div class="screenshot-card">
+                        <img src="Captura de pantalla 2026-08-08 131854.png" alt="LZ79 Vista 1">
+                        <span>Panel Principal</span>
                     </div>
-                    <div class="screenshot-box">
-                        <span>📦 Módulo de Inventario</span>
+                    <div class="screenshot-card">
+                        <img src="Captura de pantalla 2026-08-08 131907.png" alt="LZ79 Vista 2">
+                        <span>Módulo de Inventario</span>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="Captura de pantalla 2026-08-08 131918.png" alt="LZ79 Vista 3">
+                        <span>Gestión y Flujo</span>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="Captura de pantalla 2026-08-08 131938.png" alt="LZ79 Vista 4">
+                        <span>Métricas y Reportes</span>
                     </div>
                 </div>
 
@@ -243,10 +228,10 @@
             <!-- Columna Derecha: Asistente IA Galia -->
             <section class="card">
                 <h2>🤖 Galia AI</h2>
-                <p>Asistente virtual integrado con modelos avanzados para resolver tus dudas técnicas y operativas.</p>
+                <p>Asistente virtual integrado con modelos avanzados para resolver tus dudas.</p>
                 
                 <div id="chat-box">
-                    <div class="message assistant">¡Hola! Soy Galia, tu asistente en LZ79. ¿En qué puedo ayudarte con la gestión hoy?</div>
+                    <div class="message assistant">¡Hola! Soy Galia, tu asistente en LZ79. ¿En qué puedo ayudarte hoy?</div>
                 </div>
 
                 <div class="input-group">
@@ -257,7 +242,7 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 LZ79 Freelance. Todos los derechos reservados.</p>
+            <p>&copy; 2026 LZ79 Freelance. <a href="politica-privacidad.html" style="color: var(--accent-blue);">Política de Privacidad</a> | <a href="terminos-y-condiciones.html" style="color: var(--accent-blue);">Términos</a></p>
         </footer>
     </div>
 
