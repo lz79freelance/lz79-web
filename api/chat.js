@@ -1,71 +1,49 @@
-exports.handler = async function(event, context) {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido" }) };
+import { GoogleGenAI } from "@google/genai";
+
+export default async (req, context) => {
+  // Asegurarse de que sea una petición POST
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return { statusCode: 500, body: JSON.stringify({ error: "Falta configurar GEMINI_API_KEY en Netlify" }) };
-    }
-
-    const body = JSON.parse(event.body || "{}");
-    const messages = body.messages || [];
+    const body = await req.json();
     const language = body.language || "es";
+    const messages = body.messages || [];
 
-    const languageNames = {
-      es: "español",
-      gl: "gallego",
-      eu: "euskera",
-      cat: "catalán",
-    };
-    const idioma = languageNames[language] || "español";
+    // Inicializar el cliente oficial de Gemini usando la variable de entorno de Netlify
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-    // Transformar historial al formato de la API REST de Gemini
-    const contents = messages.map(msg => ({
-      role: msg.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: msg.content }]
+    // Instrucciones estrictas de sistema para fijar la identidad, ubicación y tono de Galia
+    const systemInstruction = `Eres Galia, el asistente inteligente oficial de LZ79freelance basado en O Porriño. Tu tono debe ser profesional, formal y técnico. El usuario se está comunicando en el idioma: ${language}. Responde estrictamente en ese idioma (Gallego, Euskera, Castellano o Catalán), manteniendo una coherencia absoluta sin saltos de idioma inesperados.`;
+
+    // Mapear el historial al formato que exige el SDK de Gemini en Node.js
+    const contents = messages.map((m) => ({
+      role: m.role === "user" ? "user" : "model",
+      parts: [{ text: m.content || "" }],
     }));
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: `[Instrucción de sistema: Eres Galia, el asistente inteligente de LZ79. Responde en ${idioma}, de forma clara, concisa y útil]. Mensaje del usuario: ${contents[contents.length - 1]?.parts[0]?.text || ''}` }]
-          }
-        ]
-      })
+    // Llamada al modelo oficial de Gemini
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: contents,
+      config: {
+        systemInstruction: systemInstruction,
+        temperature: 0.3,
+      },
     });
 
-    const responseText = await response.text();
-    let data;
-    try {
-      data = JSON.parse(responseText);
-    } catch (e) {
-      throw new Error("Respuesta inválida de la API: " + responseText);
-    }
-
-    if (!response.ok) {
-      throw new Error(data.error?.message || "Error en la API de Gemini");
-    }
-
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "Sin respuesta generada";
-
-    return {
-      statusCode: 200,
+    return new Response(JSON.stringify({ reply: response.text }), {
+      status: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ reply })
-    };
-
+    });
   } catch (error) {
-    console.error("ERROR EN CHAT:", error);
-    return {
-      statusCode: 500,
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: error.message || "Error interno del servidor" })
-    };
+    });
   }
 };
