@@ -31,14 +31,22 @@ exports.handler = async function(event, context) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: `Eres Galia, el asistente inteligente de LZ79. Responde en ${idioma}, de forma clara, concisa y útil.` }]
-        },
-        contents: contents
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: `[Instrucción de sistema: Eres Galia, el asistente inteligente de LZ79. Responde en ${idioma}, de forma clara, concisa y útil]. Mensaje del usuario: ${contents[contents.length - 1]?.parts[0]?.text || ''}` }]
+          }
+        ]
       })
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      throw new Error("Respuesta inválida de la API: " + responseText);
+    }
 
     if (!response.ok) {
       throw new Error(data.error?.message || "Error en la API de Gemini");
@@ -56,6 +64,7 @@ exports.handler = async function(event, context) {
     console.error("ERROR EN CHAT:", error);
     return {
       statusCode: 500,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ error: error.message || "Error interno del servidor" })
     };
   }
