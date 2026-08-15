@@ -240,13 +240,13 @@
 
             <!-- Input y Botón de Enviar Funcional -->
             <div class="p-4 bg-gray-900 border-t border-gray-800 flex items-center space-x-3">
-                <input type="text" id="chatInput" placeholder="Escribe en galego, euskera o castellano..." class="flex-1 bg-darkBg text-sm text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
+                <input type="text" id="chatInput" placeholder="Escribe en galego, euskera ou castellano..." class="flex-1 bg-darkBg text-sm text-white px-4 py-3 rounded-xl border border-gray-700 focus:outline-none focus:border-techBlue" onkeypress="handleKeyPress(event)">
                 <button onclick="enviarMensaje()" class="bg-gradient-to-r from-techBlue to-techCian text-white px-6 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity cursor-pointer">Enviar</button>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DE GALIA: FILTRADO ESTRICTO DE IDIOMAS -->
+    <!-- SCRIPT DE GALIA: FILTRADO DE IDIOMAS Y SALUDOS AFINADOS -->
     <script>
         function toggleGaliaChat() {
             const chatWindow = document.getElementById('galiaChatWindow');
@@ -272,38 +272,36 @@
             input.value = "";
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // 2. Lógica inteligente de idiomas refinada
+            // 2. Lógica inteligente de idiomas refinada con saludos fijos
             setTimeout(() => {
                 const msgLower = mensaje.toLowerCase();
                 let respuesta = "";
 
-                // Detección estricta de Euskera
                 const palabrasEuskera = ["kaixo", "zer", "egun", "on", "eskerrik", "asko", "nola", "bai", "ez", "gustura", "agur", "hau"];
                 const esEuskera = palabrasEuskera.some(palabra => msgLower.includes(palabra));
 
-                // Detección estricta de Gallego
                 const palabrasGalego = ["ola", "como", "ben", "porriño", "galicia", "grazias", "iso", "ti", "hoxe", "falar", "che", "camiño", "maior", "xa", "tamén", "logo"];
                 const esGalego = palabrasGalego.some(palabra => msgLower.includes(palabra));
 
                 if (esEuskera) {
                     const respEuskera = [
-                        "Aupa! O Porriñotik bertatik ari naiz erantzuten. Zer dugu gaurkoan?",
-                        "Noski! Euskaraz eta primeran moldatzen naiz hemen, LZ79freelance-ren ekosisteman.",
-                        "Primeran entzuten da hori. Jarraitu dezagun euskaraz!"
+                        "Kaixo! O Porriñotik bertatik ari naiz erantzuten. Zer dugu gaurkoan?",
+                        "Aupa! Euskaraz eta primeran moldatzen naiz hemen, LZ79freelance-ren ekosisteman.",
+                        "Kaixo! Primeran entzuten da hori. Jarraitu dezagun euskaraz!"
                     ];
                     respuesta = respEuskera[Math.floor(Math.random() * respEuskera.length)];
                 } else if (esGalego) {
                     const respGalego = [
-                        "Iso é! Dende O Porriño para todo o mundo con LZ79freelance. Todo ben por aí?",
-                        "Xa che digo! En galego nos entendemos perfectamente. Cóntame máis sobre o que tes en mente.",
-                        "Pois claro que si, dálle caña ao tema que aquí o galego flúe só con LZ79freelance!"
+                        "Ola! Dende O Porriño para todo o mundo con LZ79freelance. Todo ben por aí?",
+                        "Ola, chaval! En galego nos entendemos perfectamente. Cóntame máis sobre o que tes en mente.",
+                        "Ola! Pois claro que si, dálle caña ao tema que aquí o galego flúe só con LZ79freelance!"
                     ];
                     respuesta = respGalego[Math.floor(Math.random() * respGalego.length)];
                 } else {
                     const respCastellano = [
-                        "¡Entendido! Desde O Porriño y con el sello de LZ79freelance le damos forma a cualquier idea.",
-                        "¡Totalmente de acuerdo! Crear herramientas limpias y funcionales es lo nuestro.",
-                        "¡Vaya temazo! ¿Lo enfocamos hacia la parte de desarrollo, automatización o prefieres comentar otra cosa?"
+                        "¡Hola! Desde O Porriño y con el sello de LZ79freelance le damos forma a cualquier idea.",
+                        "¡Hola! Totalmente de acuerdo, crear herramientas limpias y funcionales es lo nuestro.",
+                        "¡Hola! Vaya temazo. ¿Lo enfocamos hacia la parte de desarrollo, automatización o prefieres comentar otra cosa?"
                     ];
                     respuesta = respCastellano[Math.floor(Math.random() * respCastellano.length)];
                 }
