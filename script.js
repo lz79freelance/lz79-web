@@ -1,7 +1,6 @@
 /* =========================================================
    LZ79 FREELANCE · GALIA
-   Buscador + Chat + Menú + Modo pruebas
-   Sin API externa
+   Buscador real + Chat + Menú + Modo pruebas
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,11 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "galiaSearchCta",
         "contactGalia"
     ].forEach(id => {
-
         document
             .getElementById(id)
             ?.addEventListener("click", openGalia);
-
     });
 
     document
@@ -68,24 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
         ?.addEventListener("click", closeGalia);
 
     overlay?.addEventListener("click", event => {
-
         if (event.target === overlay) {
             closeGalia();
         }
-
     });
 
     document.addEventListener("keydown", event => {
-
         if (event.key === "Escape") {
             closeGalia();
         }
-
     });
 
 
     /* =====================================================
-       CONTADOR DE BÚSQUEDAS
+       CONTADOR
        ===================================================== */
 
     let searches = 0;
@@ -93,336 +86,273 @@ document.addEventListener("DOMContentLoaded", () => {
     const metric = document.querySelector("#metricText");
 
     function updateMetric() {
-
         if (!metric) return;
 
         metric.textContent =
             `${searches} ${searches === 1 ? "busca" : "buscas"}`;
-
     }
 
 
     /* =====================================================
-       SEGURIDAD HTML
+       SEGURIDAD
        ===================================================== */
 
     function esc(value) {
-
-        return String(value).replace(/[&<>'"]/g, char => {
-
-            const entities = {
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                "'": "&#39;",
-                '"': "&quot;"
-            };
-
-            return entities[char];
-
-        });
-
+        return String(value).replace(/[&<>'"]/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            "'": "&#39;",
+            '"': "&quot;"
+        }[char]));
     }
 
 
     /* =====================================================
-       BASE DE DATOS LOCAL DE GALIA
+       ICONO SEGÚN RESULTADO
        ===================================================== */
 
-    const places = [
+    function getIcon(title = "") {
 
-        {
-            keys: [
-                "porriño",
-                "o porriño",
-                "porrino"
-            ],
-            title: "O Porriño",
-            place: "Pontevedra · Galicia",
-            icon: "📍",
-            text:
-                "Localidade galega coñecida pola súa relación coa arquitectura de Antonio Palacios, o granito e a súa situación no sur de Galicia."
-        },
+        const text = title.toLowerCase();
 
-        {
-            keys: [
-                "antonio palacios",
-                "palacios"
-            ],
-            title: "Antonio Palacios",
-            place: "O Porriño · Galicia",
-            icon: "🏛️",
-            text:
-                "Arquitecto nacido en O Porriño. Galia pode conectar patrimonio, arquitectura, historia local e lugares relacionados coa súa obra."
-        },
-
-        {
-            keys: [
-                "torre de hércules",
-                "torre de hercules"
-            ],
-            title: "Torre de Hércules",
-            place: "A Coruña · Galicia",
-            icon: "🌊",
-            text:
-                "Faro romano situado na cidade da Coruña. Un dos grandes símbolos do patrimonio de Galicia."
-        },
-
-        {
-            keys: [
-                "praia das catedrais",
-                "playa de las catedrales"
-            ],
-            title: "Praia das Catedrais",
-            place: "Ribadeo · Lugo · Galicia",
-            icon: "🏖️",
-            text:
-                "Un dos espazos naturais máis coñecidos da costa galega, famoso polos seus arcos e formacións rochosas."
-        },
-
-        {
-            keys: [
-                "camiño de santiago",
-                "camino de santiago"
-            ],
-            title: "Camiño de Santiago",
-            place: "Galicia",
-            icon: "🥾",
-            text:
-                "Galia pode axudar a descubrir etapas, localidades, lugares para comer, durmir, transporte e servizos para peregrinos."
-        },
-
-        {
-            keys: [
-                "castro de vigo",
-                "o castro de vigo"
-            ],
-            title: "O Castro de Vigo",
-            place: "Vigo · Pontevedra",
-            icon: "🏛️",
-            text:
-                "Espazo histórico e natural de Vigo con vistas sobre a cidade e a ría."
-        },
-
-        {
-            keys: [
-                "vigo"
-            ],
-            title: "Vigo",
-            place: "Pontevedra · Galicia",
-            icon: "📍",
-            text:
-                "Busca local de proba sobre Vigo: patrimonio, praias, gastronomía, eventos, negocios e lugares para descubrir."
-        },
-
-        {
-            keys: [
-                "restaurante",
-                "restaurantes",
-                "onde comer",
-                "comer"
-            ],
-            title: "Restaurantes en Galicia",
-            place: "Galicia",
-            icon: "🍽️",
-            text:
-                "Galia poderá utilizar buscas locais para descubrir restaurantes, bares, cafeterías e outros negocios da zona."
-        },
-
-        {
-            keys: [
-                "eventos",
-                "evento",
-                "que facer",
-                "hoxe"
-            ],
-            title: "Hoxe en Galicia",
-            place: "Galicia",
-            icon: "📅",
-            text:
-                "O módulo Hoxe está pensado para mostrar eventos, festas, actividades, cultura e cousas que facer segundo a localidade."
-        },
-
-        {
-            keys: [
-                "galicia"
-            ],
-            title: "Galicia",
-            place: "Galicia",
-            icon: "🌿",
-            text:
-                "Galia nace como unha porta dixital a Galicia para descubrir lugares, patrimonio, turismo, negocios, festas e información local."
-        },
-
-        {
-            keys: [
-                "contabilidade",
-                "contable",
-                "essential"
-            ],
-            title: "LZ79 Essential",
-            place: "LZ79 Freelance",
-            icon: "💼",
-            text:
-                "Aplicación de xestión e contabilidade orientada a autónomos e pequenas empresas."
-        },
-
-        {
-            keys: [
-                "comandas"
-            ],
-            title: "Comandas e mesas",
-            place: "LZ79 Freelance",
-            icon: "🍽️",
-            text:
-                "Solución LZ79 en desenvolvemento para hostalaría, mesas, pedidos, barra e cociña."
-        },
-
-        {
-            keys: [
-                "inventario"
-            ],
-            title: "Inventario e operacións",
-            place: "LZ79 Freelance",
-            icon: "📦",
-            text:
-                "Ferramentas para controlar produtos, entradas, saídas e operacións dun negocio."
+        if (
+            text.includes("praia") ||
+            text.includes("playa") ||
+            text.includes("costa")
+        ) {
+            return "🏖️";
         }
 
-    ];
-
-
-    /* =====================================================
-       BUSCADOR
-       ===================================================== */
-
-    function findResult(query) {
-
-        const original = query.trim();
-        const text = original
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
-
-        if (!text) {
-            return null;
+        if (
+            text.includes("torre") ||
+            text.includes("faro")
+        ) {
+            return "🌊";
         }
 
-        for (const item of places) {
-
-            for (const key of item.keys) {
-
-                const normalizedKey = key
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "");
-
-                if (text.includes(normalizedKey)) {
-                    return item;
-                }
-
-            }
-
+        if (
+            text.includes("camino") ||
+            text.includes("camiño")
+        ) {
+            return "🥾";
         }
 
-        /* Resultado genérico para cualquier búsqueda */
+        if (
+            text.includes("restaurante") ||
+            text.includes("gastronom")
+        ) {
+            return "🍽️";
+        }
 
-        return {
-            title: original,
-            place: "Resultados de proba · Galia",
-            icon: "🐝",
-            text:
-                `Galia recibiu a túa busca «${original}». Nesta versión de proba aínda non está conectado o buscador de Internet. O seguinte paso será conectar o motor de busca real.`
-        };
+        if (
+            text.includes("arquitect") ||
+            text.includes("palacios") ||
+            text.includes("monumento")
+        ) {
+            return "🏛️";
+        }
 
+        if (
+            text.includes("galicia") ||
+            text.includes("españa") ||
+            text.includes("espana")
+        ) {
+            return "🌿";
+        }
+
+        return "🐝";
     }
 
 
     /* =====================================================
-       MOSTRAR RESULTADO
+       RENDER RESULTADOS REALES
        ===================================================== */
 
-    function renderResult(query, target) {
+    function renderResults(data, target, query) {
 
         if (!target) return;
 
-        const result = findResult(query);
+        if (!data || !Array.isArray(data.results)) {
 
-        if (!result) {
-            target.innerHTML = "";
-            target.classList.add("hidden");
+            target.innerHTML = `
+                <div class="empty-state">
+                    <strong>🐝 Galia</strong>
+                    <p>
+                        Non se recibiron resultados.
+                        Proba con outra busca.
+                    </p>
+                </div>
+            `;
+
+            target.classList.remove("hidden");
+            return;
+        }
+
+        if (data.results.length === 0) {
+
+            target.innerHTML = `
+                <div class="empty-state">
+                    <strong>🐝 Sen resultados</strong>
+                    <p>
+                        Non atopamos resultados para
+                        <b>${esc(query)}</b>.
+                    </p>
+                </div>
+            `;
+
+            target.classList.remove("hidden");
             return;
         }
 
         target.classList.remove("hidden");
 
-        target.innerHTML = `
-            <article class="result-card">
+        target.innerHTML = data.results.map(result => {
 
-                <div class="result-icon">
-                    ${esc(result.icon)}
-                </div>
+            const title = result.title || "Sen título";
+            const extract =
+                result.extract ||
+                "Non hai descrición dispoñible.";
 
-                <div>
+            const url = result.url || "#";
+            const image = result.image || "";
 
-                    <span class="result-place">
-                        ${esc(result.place)}
-                    </span>
+            return `
+                <article class="result-card">
 
-                    <h3>
-                        ${esc(result.title)}
-                    </h3>
+                    <div class="result-icon">
+                        ${
+                            image
+                                ? `<img src="${esc(image)}"
+                                    alt="${esc(title)}"
+                                    style="width:64px;height:64px;object-fit:cover;border-radius:14px;">`
+                                : getIcon(title)
+                        }
+                    </div>
 
-                    <p>
-                        ${esc(result.text)}
-                    </p>
+                    <div style="flex:1">
 
-                    <div class="result-links">
-
-                        <button
-                            type="button"
-                            class="result-more"
-                            data-query="${esc(query)}">
-                            Ver máis
-                        </button>
-
-                        <span>
-                            Galia · modo probas
+                        <span class="result-place">
+                            GALIA · WIKIPEDIA
                         </span>
+
+                        <h3>
+                            ${esc(title)}
+                        </h3>
+
+                        <p>
+                            ${esc(extract)}
+                        </p>
+
+                        <div class="result-links">
+
+                            <a
+                                href="${esc(url)}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ver máis →
+                            </a>
+
+                            <span>
+                                Resultado real
+                            </span>
+
+                        </div>
 
                     </div>
 
-                </div>
+                </article>
+            `;
 
-            </article>
-        `;
-
+        }).join("");
     }
 
 
     /* =====================================================
-       EJECUTAR BUSQUEDA
+       BUSCAR EN LA API
        ===================================================== */
 
-    function doSearch(query, target) {
+    async function searchAPI(query, target) {
 
         const value = String(query || "").trim();
 
-        if (!value) {
+        if (!value || !target) {
             return;
         }
 
         searches++;
-
         updateMetric();
 
-        renderResult(value, target);
+        target.classList.remove("hidden");
 
+        target.innerHTML = `
+            <div class="empty-state">
+                🐝 <strong>Buscando...</strong>
+                <p>
+                    Galia está consultando os resultados.
+                </p>
+            </div>
+        `;
+
+        try {
+
+            const response = await fetch(
+                `/api/search?q=${encodeURIComponent(value)}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Erro HTTP ${response.status}`
+                );
+
+            }
+
+            const data = await response.json();
+
+            renderResults(
+                data,
+                target,
+                value
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Erro buscando en Galia:",
+                error
+            );
+
+            target.classList.remove("hidden");
+
+            target.innerHTML = `
+                <div class="empty-state">
+
+                    <strong>⚠️ Galia non puido realizar a busca</strong>
+
+                    <p>
+                        O servizo de busca non respondeu correctamente.
+                    </p>
+
+                    <small>
+                        ${esc(error.message)}
+                    </small>
+
+                </div>
+            `;
+        }
     }
 
 
     /* =====================================================
-       BUSCADOR PRINCIPAL DE LA WEB
+       BUSCADOR PRINCIPAL
        ===================================================== */
 
     const searchInput =
@@ -434,16 +364,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchResult =
         document.querySelector("#searchResult");
 
-
     searchBtn?.addEventListener("click", () => {
 
-        doSearch(
+        searchAPI(
             searchInput?.value,
             searchResult
         );
 
     });
-
 
     searchInput?.addEventListener("keydown", event => {
 
@@ -451,18 +379,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
 
-            doSearch(
+            searchAPI(
                 searchInput.value,
                 searchResult
             );
-
         }
 
     });
 
 
     /* =====================================================
-       BUSCADOR DE GALIA
+       BUSCADOR DEL OVERLAY GALIA
        ===================================================== */
 
     const overlaySearch =
@@ -474,16 +401,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlayResults =
         document.querySelector("#overlayResults");
 
-
     overlayBtn?.addEventListener("click", () => {
 
-        doSearch(
+        searchAPI(
             overlaySearch?.value,
             overlayResults
         );
 
     });
-
 
     overlaySearch?.addEventListener("keydown", event => {
 
@@ -491,18 +416,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
 
-            doSearch(
+            searchAPI(
                 overlaySearch.value,
                 overlayResults
             );
-
         }
 
     });
 
 
     /* =====================================================
-       BOTONES data-query
+       BOTONES DE EJEMPLO
        ===================================================== */
 
     document
@@ -524,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     overlaySearch.value = query;
                 }
 
-                doSearch(
+                searchAPI(
                     query,
                     overlayResults
                 );
@@ -546,15 +470,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 document
                     .querySelectorAll(".tab")
-                    .forEach(item =>
-                        item.classList.remove("active")
-                    );
+                    .forEach(item => {
+                        item.classList.remove("active");
+                    });
 
                 document
                     .querySelectorAll(".tab-panel")
-                    .forEach(panel =>
-                        panel.classList.remove("active")
-                    );
+                    .forEach(panel => {
+                        panel.classList.remove("active");
+                    });
 
                 tab.classList.add("active");
 
@@ -564,26 +488,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
                 panel?.classList.add("active");
-
             });
 
         });
 
 
     /* =====================================================
-       CHAT
+       CHAT DEMO
        ===================================================== */
 
     const responses = [
 
         [
             "camiño",
-            "Podo orientarte sobre etapas, localidades, lugares para comer, durmir e servizos do Camiño. Nesta versión o contido é ilustrativo."
+            "Podo orientarte sobre etapas, localidades, lugares para comer, durmir e servizos do Camiño."
         ],
 
         [
             "camino",
-            "Podo orientarte sobre etapas, localidades, lugares para comer, durmir e servizos do Camiño. Nesta versión o contido é ilustrativo."
+            "Podo orientarte sobre etapas, localidades, lugares para comer, durmir e servizos do Camiño."
         ],
 
         [
@@ -593,12 +516,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         [
             "porriño",
-            "O Porriño é unha localidade moi ligada a Antonio Palacios e ao granito. Galia poderá ofrecer información local, patrimonio, negocios e turismo."
+            "O Porriño está moi ligado a Antonio Palacios, ao granito e ao patrimonio galego."
         ],
 
         [
             "porrino",
-            "O Porriño é unha localidade moi ligada a Antonio Palacios e ao granito. Galia poderá ofrecer información local, patrimonio, negocios e turismo."
+            "O Porriño está moi ligado a Antonio Palacios, ao granito e ao patrimonio galego."
         ],
 
         [
@@ -631,34 +554,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function answer(text) {
 
-        const normalized = String(text)
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
+        const normalized =
+            String(text)
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
 
         for (const [key, message] of responses) {
 
-            const normalizedKey = key
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "");
+            const normalizedKey =
+                key
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "");
 
             if (normalized.includes(normalizedKey)) {
                 return message;
             }
-
         }
 
         return (
-            "🐝 Nesta versión de proba podo falarche de Galicia, " +
-            "O Porriño, Vigo, lugares, Camiño e solucións LZ79. " +
-            "Proba con «Porriño», «Vigo», «Antonio Palacios» ou «Camiño de Santiago»."
+            "🐝 Nesta versión podo falarche de Galicia, " +
+            "O Porriño, Vigo, lugares, Camiño e solucións LZ79."
         );
-
     }
 
 
     /* =====================================================
-       FORMULARIO CHAT
+       CHAT
        ===================================================== */
 
     const form =
@@ -669,7 +591,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const messages =
         document.querySelector("#chatMessages");
-
 
     form?.addEventListener("submit", event => {
 
@@ -695,7 +616,6 @@ document.addEventListener("DOMContentLoaded", () => {
         userMessage.textContent =
             text;
 
-
         const botMessage =
             document.createElement("div");
 
@@ -705,7 +625,6 @@ document.addEventListener("DOMContentLoaded", () => {
         botMessage.textContent =
             answer(text);
 
-
         messages.appendChild(userMessage);
         messages.appendChild(botMessage);
 
@@ -713,32 +632,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         messages.scrollTop =
             messages.scrollHeight;
-
-    });
-
-
-    /* =====================================================
-       "VER MÁS"
-       ===================================================== */
-
-    document.addEventListener("click", event => {
-
-        const button =
-            event.target.closest(".result-more");
-
-        if (!button) return;
-
-        const query =
-            button.dataset.query || "";
-
-        if (overlayResults) {
-
-            doSearch(
-                query,
-                overlayResults
-            );
-
-        }
 
     });
 
