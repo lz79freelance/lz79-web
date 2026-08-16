@@ -259,7 +259,7 @@
     </div>
 </section>
 
-<!-- GALIA GALICIA · BUSCADOR REGIONAL Y LOCAL -->
+<!-- GALIA GALICIA · MOTOR DE ENTREGA INTERNO (BUSCADOR) -->
 <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,229,255,0.08),transparent_45%)]"></div>
 
@@ -267,14 +267,14 @@
         <div class="text-center mb-10">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Modo pruebas
+                Motor de Entrega LZ79
             </div>
             <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA GALICIA</h2>
             <p id="galia-subtitle" class="text-xl md:text-2xl text-gray-300 mt-3 font-semibold">
-                Pregunta · Busca · Descubre Galicia
+                Consulta · Información · Ecosistema LZ79
             </p>
             <p id="galia-description" class="text-gray-500 max-w-2xl mx-auto mt-4">
-                Un espacio regional y local para encontrar información de Galicia, tanto si vives aquí como si vienes de visita.
+                Consulta nuestra base de conocimiento interna sin salir de la plataforma.
             </p>
 
             <div class="flex flex-wrap justify-center gap-2 mt-6">
@@ -291,33 +291,39 @@
                     <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-techCian/10 border border-techCian/20 flex items-center justify-center">🔎</div>
                         <div>
-                            <div id="search-heading" class="font-bold text-sm">Galia Buscador</div>
-                            <div id="search-caption" class="text-[11px] text-gray-500">Búsqueda regional y local</div>
+                            <div id="search-heading" class="font-bold text-sm">Galia Motor Interno</div>
+                            <div id="search-caption" class="text-[11px] text-gray-500">Base de conocimiento LZ79</div>
                         </div>
                     </div>
-                    <span class="text-[10px] uppercase tracking-widest text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded-full px-3 py-1">Pruebas</span>
+                    <span class="text-[10px] uppercase tracking-widest text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded-full px-3 py-1">Soberano</span>
                 </div>
 
                 <div class="p-6">
                     <div class="flex flex-col sm:flex-row gap-3">
                         <input id="search-input" type="search" maxlength="300"
-                            placeholder="¿Qué quieres saber de Galicia?"
+                            placeholder="¿Qué necesitas consultar?"
                             class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-5 py-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-techCian focus:ring-1 focus:ring-techCian/30">
-                        <button id="search-button" type="button"
+                        <button id="search-button" type="button" onclick="ejecutarBusquedaInterna()"
                             class="bg-gradient-to-r from-techBlue to-techCian text-darkBg font-black px-7 py-4 rounded-2xl hover:opacity-90 transition-all shadow-lg">
-                            Buscar
+                            Consultar
                         </button>
                     </div>
 
                     <div class="flex flex-wrap gap-2 mt-4">
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Casa rural en Galicia">🏡 Casa rural en Galicia</button>
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Qué visitar en Galicia">🧳 Qué visitar en Galicia</button>
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Restaurantes cerca de Santiago">🍽️ Restaurantes cerca de Santiago</button>
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Rutas de senderismo en Galicia">🥾 Rutas de senderismo en Galicia</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" onclick="usarSugerencia('precios')">💼 Precios y Tarifas</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" onclick="usarSugerencia('desarrollo')">⚙️ Stack Tecnológico</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" onclick="usarSugerencia('contacto')">📬 Contacto directo</button>
                     </div>
 
                     <div id="search-status" class="mt-6 text-xs text-gray-500"></div>
-                    <div id="search-results" class="mt-4 space-y-3"></div>
+                    <div id="search-results" class="mt-4 space-y-3">
+                        <!-- Tarjeta de Resultados Internos -->
+                        <div id="resultado-interno" class="p-5 bg-gray-950 rounded-2xl border border-gray-800 hidden">
+                            <h4 id="res-titulo" class="font-bold text-techCian text-base"></h4>
+                            <p id="res-cuerpo" class="text-sm text-gray-300 mt-2 leading-relaxed"></p>
+                            <a id="res-link" href="#" class="inline-block mt-4 text-xs font-semibold text-techBlue hover:underline">Acceder al recurso →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -336,7 +342,7 @@
                         <div id="metric-visits" class="text-2xl font-black mt-1">0</div>
                     </div>
                     <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
-                        <div class="text-[11px] text-gray-500">Búsquedas</div>
+                        <div class="text-[11px] text-gray-500">Consultas</div>
                         <div id="metric-searches" class="text-2xl font-black mt-1">0</div>
                     </div>
                     <div class="rounded-2xl bg-gray-950 border border-gray-800 p-4">
@@ -350,7 +356,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <div class="text-[11px] text-gray-500 mb-3">Búsquedas por idioma</div>
+                    <div class="text-[11px] text-gray-500 mb-3">Consultas por idioma</div>
                     <div class="space-y-3">
                         <div><div class="flex justify-between text-xs mb-1"><span>🇪🇸 Español</span><span id="m-es">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-es" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
                         <div><div class="flex justify-between text-xs mb-1"><span>🇬🇦 Galego</span><span id="m-gl">0</span></div><div class="h-1.5 bg-gray-800 rounded-full overflow-hidden"><div id="bar-gl" class="h-full bg-techCian rounded-full" style="width:0%"></div></div></div>
@@ -373,16 +379,16 @@
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Turismo en Galicia">
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" onclick="usarSugerencia('turismo')">
                 <div class="text-xl">🧳</div><div class="font-bold text-sm mt-2">Turismo</div><div class="text-[11px] text-gray-500 mt-1">Qué ver y hacer</div>
             </button>
-            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Gastronomía de Galicia">
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" onclick="usarSugerencia('gastronomia')">
                 <div class="text-xl">🍽️</div><div class="font-bold text-sm mt-2">Gastronomía</div><div class="text-[11px] text-gray-500 mt-1">Comer y descubrir</div>
             </button>
-            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Cultura y fiestas de Galicia">
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" onclick="usarSugerencia('cultura')">
                 <div class="text-xl">🎭</div><div class="font-bold text-sm mt-2">Cultura</div><div class="text-[11px] text-gray-500 mt-1">Historia y fiestas</div>
             </button>
-            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" data-query="Naturaleza y rutas de Galicia">
+            <button class="galia-category rounded-2xl border border-gray-800 bg-cardBg hover:border-techCian/40 p-4 text-left" onclick="usarSugerencia('naturaleza')">
                 <div class="text-xl">🌊</div><div class="font-bold text-sm mt-2">Naturaleza</div><div class="text-[11px] text-gray-500 mt-1">Rutas y paisajes</div>
             </button>
         </div>
@@ -1012,42 +1018,42 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 const GALIA_UI = {
     es: {
-        subtitle: "Pregunta · Busca · Descubre Galicia",
-        description: "Un espacio regional y local para encontrar información de Galicia, tanto si vives aquí como si vienes de visita.",
-        heading: "Galia Buscador",
-        caption: "Búsqueda regional y local",
-        placeholder: "¿Qué quieres saber de Galicia?",
-        button: "Buscar",
+        subtitle: "Consulta · Información · Ecosistema LZ79",
+        description: "Consulta nuestra base de conocimiento interna sin salir de la plataforma.",
+        heading: "Galia Motor Interno",
+        caption: "Base de conocimiento LZ79",
+        placeholder: "¿Qué necesitas consultar?",
+        button: "Consultar",
         chat: "Pregúntale a Galia y continúa la conversación.",
         note: "Medir primero la demanda real. Aumentar capacidad y buscar acuerdos cuando el uso lo justifique."
     },
     gl: {
-        subtitle: "Pregunta · Busca · Descobre Galicia",
-        description: "Un espazo rexional e local para atopar información de Galicia, tanto se vives aquí como se vés de visita.",
-        heading: "Galia Buscador",
-        caption: "Busca rexional e local",
-        placeholder: "Que queres saber de Galicia?",
-        button: "Buscar",
+        subtitle: "Consulta · Información · Ecosistema LZ79",
+        description: "Consulta a nosa base de coñecemento interna sen saír da plataforma.",
+        heading: "Galia Motor Interno",
+        caption: "Base de coñecemento LZ79",
+        placeholder: "Que necesitas consultar?",
+        button: "Consultar",
         chat: "Pregúntalle a Galia e continúa a conversa.",
         note: "Medir primeiro a demanda real. Aumentar capacidade e buscar acordos cando o uso o xustifique."
     },
     eu: {
-        subtitle: "Galdetu · Bilatu · Ezagutu Galizia",
-        description: "Galiziari buruzko informazioa aurkitzeko espazio erregional eta lokala, bertan bizi bazara zein bisitan bazatoz.",
-        heading: "Galia Bilatzailea",
-        caption: "Bilaketa erregionala eta lokala",
-        placeholder: "Zer jakin nahi duzu Galiziari buruz?",
-        button: "Bilatu",
+        subtitle: "Kontsulta · Informazioa · LZ79 Ekosistema",
+        description: "Kontsultatu gure barneko ezagutza-basea plataformatik irten gabe.",
+        heading: "Galia Barne Motorra",
+        caption: "LZ79 ezagutza-basea",
+        placeholder: "Zer kontsultatu behar duzu?",
+        button: "Kontsultatu",
         chat: "Galdetu Galiari eta jarraitu elkarrizketarekin.",
         note: "Lehenik benetako eskaria neurtu. Erabilerak justifikatzen duenean gaitasuna handitu eta akordioak bilatu."
     },
     cat: {
-        subtitle: "Pregunta · Busca · Descobreix Galícia",
-        description: "Un espai regional i local per trobar informació de Galícia, tant si hi vius com si hi vens de visita.",
-        heading: "Galia Cercador",
-        caption: "Cerca regional i local",
-        placeholder: "Què vols saber de Galícia?",
-        button: "Buscar",
+        subtitle: "Consulta · Informació · Ecosistema LZ79",
+        description: "Consulta la nostra base de coneixement interna sense sortir de la plataforma.",
+        heading: "Galia Motor Intern",
+        caption: "Base de coneixement LZ79",
+        placeholder: "Què necessites consultar?",
+        button: "Consultar",
         chat: "Pregunta-li a Galia i continua la conversa.",
         note: "Primer mesurem la demanda real. Augmentem capacitat i busquem acords quan l'ús ho justifiqui."
     }
@@ -1082,58 +1088,25 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".galia-lang").forEach(btn => {
         btn.addEventListener("click", () => cambiarIdioma(btn.dataset.galiaLang));
     });
-
-    document.querySelectorAll(".galia-category").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const input = document.getElementById("search-input");
-            input.value = btn.dataset.query || "";
-            input.focus();
-            document.getElementById("search-button").click();
-        });
-    });
 });
 </script>
 
 <script>
+// MOTOR DE ENTREGA INTERNO Y MÉTRICAS LOCALES
 const GALIA_SEARCH = {
-    ENDPOINT: "/api/search",
-    METRICS_ENDPOINT: "/api/metrics",
     STORAGE_KEY: "galia_metrics_v1",
     SESSION_KEY: "galia_session_v1"
 };
 
-const DEMO_RESULTS = [
-    {
-        title: "Turismo de Galicia",
-        url: "https://www.turismo.gal/",
-        snippet: "Información turística, destinos, rutas, patrimonio y experiencias para descubrir Galicia."
-    },
-    {
-        title: "Visit Galicia",
-        url: "https://www.turismo.gal/",
-        snippet: "Ideas para planificar viajes, naturaleza, cultura y gastronomía en Galicia."
-    },
-    {
-        title: "Resultados de prueba de Galia",
-        url: "#",
-        snippet: "Resultado de demostración. Conecta /api/search para utilizar un proveedor real."
-    }
+const BASE_CONOCIMIENTO = [
+    { q: "precios", title: "Tarifas y Modelos LZ79", url: "mailto:contacto@lz79freelance.com", snippet: "Nuestros proyectos a medida comienzan desde una consultoría inicial sin coste. Contacta con nosotros para un presupuesto detallado." },
+    { q: "desarrollo", title: "Stack Tecnológico LZ79", url: "#servicios", snippet: "Utilizamos Python, Flet, Tailwind CSS y arquitecturas web ligeras para garantizar cero costes de servidor y máxima velocidad." },
+    { q: "contacto", title: "Soporte y Contacto Directo", url: "mailto:contacto@lz79freelance.com", snippet: "Puedes escribirnos directamente a contacto@lz79freelance.com para cualquier consulta técnica o comercial." },
+    { q: "turismo", title: "Turismo de Galicia", url: "https://www.turismo.gal/", snippet: "Información turística, destinos, rutas, patrimonio y experiencias para descubrir Galicia." },
+    { q: "gastronomia", title: "Gastronomía Gallega", url: "https://www.turismo.gal/", snippet: "Descubre la rica tradición culinaria, productos con denominación de origen y restaurantes en Galicia." },
+    { q: "cultura", title: "Cultura y Fiestas", url: "https://www.turismo.gal/", snippet: "Patrimonio histórico, Camino de Santiago, festivales y eventos culturales en el territorio gallego." },
+    { q: "naturaleza", title: "Naturaleza y Senderismo", url: "https://www.turismo.gal/", snippet: "Parques naturales, Rías Baixas, Costa da Morte y rutas de senderismo emblemáticas." }
 ];
-
-function idiomaBusqueda(texto) {
-    const t = texto.toLowerCase();
-    const eu = /(zer|zein|nola|non|noiz|bilatu|bilatzen|turismoa|jatetxe|etxe|landa|galizia|nahi|dezake|daiteke|egingo|ikusi)/.test(t);
-    const cat = /(què|quina|quin|com|on|quan|buscar|cerca|restaurants|turisme|casa rural|galícia|puc|pots|vull|fer|veure)/.test(t);
-    const gl = /(onde|como|canto|podo|podes|quero|queres|hai|unha|unhas|facer|atopar|buscar|casa rural|galicia|visitar|comer)/.test(t);
-    const es = /(qué|dónde|cómo|cuánto|puedo|puedes|quiero|quieres|hay|una|unas|hacer|encontrar|buscar|casa rural|galicia|visitar|comer)/.test(t);
-
-    if (eu && !cat && !gl && !es) return "eu";
-    if (cat && !eu && !gl && !es) return "cat";
-    if (gl && !eu && !cat && !es) return "gl";
-    if (es && !eu && !cat && !gl) return "es";
-
-    return document.querySelector(".galia-lang.active")?.dataset.galiaLang || idiomaActual || "es";
-}
 
 function cargarMetricas() {
     let data;
@@ -1164,28 +1137,11 @@ function registrarVisita() {
     renderMetricas();
 }
 
-function registrarBusqueda(query, lang) {
+function registrarBusqueda(lang) {
     const data = cargarMetricas();
     data.searches += 1;
     data.languages[lang] = (data.languages[lang] || 0) + 1;
     guardarMetricas(data);
-
-    try {
-        if (GALIA_SEARCH.METRICS_ENDPOINT) {
-            fetch(GALIA_SEARCH.METRICS_ENDPOINT, {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    event: "search",
-                    language: lang,
-                    query_length: query.length,
-                    timestamp: new Date().toISOString()
-                }),
-                keepalive: true
-            }).catch(() => {});
-        }
-    } catch (_) {}
-
     renderMetricas();
 }
 
@@ -1199,97 +1155,58 @@ function renderMetricas() {
         const el = document.getElementById("m-" + l);
         if (el) el.textContent = data.languages[l] || 0;
     });
-    const total = (data.languages.es || 0) + (data.languages.gl || 0);
+    const total = (data.languages.es || 0) + (data.languages.gl || 0) + (data.languages.eu || 0) + (data.languages.cat || 0);
     ["es","gl","eu","cat"].forEach(l => {
         const bar = document.getElementById("bar-" + l);
         if (bar) bar.style.width = total ? Math.round(((data.languages[l] || 0) / total) * 100) + "%" : "0%";
     });
 }
 
-function mostrarResultados(results, query, demo=false) {
-    const container = document.getElementById("search-results");
-    container.innerHTML = "";
-
-    results.forEach(r => {
-        const card = document.createElement("a");
-        card.href = r.url || "#";
-        card.target = r.url && r.url !== "#" ? "_blank" : "_self";
-        card.rel = "noopener noreferrer";
-        card.className = "block bg-gray-900 border border-gray-800 hover:border-techCian/50 rounded-xl p-4 transition-all";
-
-        const title = document.createElement("div");
-        title.className = "font-semibold text-white";
-        title.textContent = r.title || "Resultado";
-
-        const url = document.createElement("div");
-        url.className = "text-[11px] text-techCian mt-1 break-all";
-        url.textContent = r.url || "";
-
-        const snippet = document.createElement("div");
-        snippet.className = "text-sm text-gray-400 mt-2 leading-relaxed";
-        snippet.textContent = r.snippet || "";
-
-        card.append(title, url, snippet);
-        container.appendChild(card);
-    });
-
-    document.getElementById("search-status").textContent =
-        `${results.length} resultados · ${demo ? "modo demostración" : "búsqueda real"} · "${query}"`;
-}
-
-async function ejecutarBusqueda() {
+function ejecutarBusquedaInterna() {
     const input = document.getElementById("search-input");
-    const query = input.value.trim();
+    const query = input.value.toLowerCase().trim();
     if (!query) return;
 
-    const button = document.getElementById("search-button");
+    const lang = idiomaActual || "es";
+    registrarBusqueda(lang);
+
+    const item = BASE_CONOCIMIENTO.find(i => query.includes(i.q) || i.title.toLowerCase().includes(query) || i.snippet.toLowerCase().includes(query));
+    const contenedor = document.getElementById("resultado-interno");
     const status = document.getElementById("search-status");
-    const lang = idiomaBusqueda(query);
 
-    button.disabled = true;
-    button.classList.add("opacity-50");
-    status.textContent = "Galia está buscando…";
-
-    registrarBusqueda(query, lang);
-
-    try {
-        const response = await fetch(GALIA_SEARCH.ENDPOINT, {
-            method: "POST",
-            headers: {"Content-Type":"application/json","Accept":"application/json"},
-            body: JSON.stringify({query, language: lang})
-        });
-
-        if (!response.ok) throw new Error("HTTP " + response.status);
-        const data = await response.json();
-        if (!Array.isArray(data.results)) throw new Error("Formato inválido");
-
-        mostrarResultados(data.results, query, false);
-    } catch (_) {
-        mostrarResultados(DEMO_RESULTS, query, true);
-    } finally {
-        button.disabled = false;
-        button.classList.remove("opacity-50");
+    if (item) {
+        document.getElementById("res-titulo").textContent = item.title;
+        document.getElementById("res-cuerpo").textContent = item.snippet;
+        const linkEl = document.getElementById("res-link");
+        linkEl.href = item.url;
+        linkEl.textContent = "Acceder al recurso o servicio →";
+        contenedor.classList.remove("hidden");
+        status.textContent = `1 resultado interno para "${query}"`;
+    } else {
+        document.getElementById("res-titulo").textContent = "Sin coincidencia exacta en base interna";
+        document.getElementById("res-cuerpo").textContent = "No hemos encontrado un término exacto. Te invitamos a consultarlo directamente con Galia Chat en el asistente de inteligencia artificial.";
+        const linkEl = document.getElementById("res-link");
+        linkEl.href = "#galia-chat";
+        linkEl.textContent = "Preguntar en Galia Chat →";
+        contenedor.classList.remove("hidden");
+        status.textContent = `Búsqueda completada · "${query}"`;
     }
+}
+
+function usarSugerencia(query) {
+    document.getElementById("search-input").value = query;
+    ejecutarBusquedaInterna();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     registrarVisita();
     renderMetricas();
 
-    document.getElementById("search-button").addEventListener("click", ejecutarBusqueda);
     document.getElementById("search-input").addEventListener("keydown", e => {
         if (e.key === "Enter") {
             e.preventDefault();
-            ejecutarBusqueda();
+            ejecutarBusquedaInterna();
         }
-    });
-
-    document.querySelectorAll(".search-suggestion").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const input = document.getElementById("search-input");
-            input.value = btn.dataset.query || "";
-            input.focus();
-        });
     });
 
     document.getElementById("reset-metrics").addEventListener("click", () => {
@@ -1301,4 +1218,5 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 </body>
+</html>
 </html>
