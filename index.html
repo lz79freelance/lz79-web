@@ -295,7 +295,7 @@
                             <div id="search-caption" class="text-[11px] text-gray-500">Búsqueda regional y local (ES/GL)</div>
                         </div>
                     </div>
-                    <span class="text-[10px] uppercase tracking-widest text-emerald-400 border border-emerald-500/20 bg-emerald-500/10 rounded-full px-3 py-1">Activo</span>
+                    <span class="text-[10px] uppercase tracking-widest text-emerald-400 border border-emerald-500/20 bg-emerald-500/10 rounded-full px-3 py-1">Galicia · Activo</span>
                 </div>
 
                 <div class="p-6">
@@ -312,8 +312,8 @@
                     <div class="flex flex-wrap gap-2 mt-4">
                         <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Casa rural en Galicia">🏡 Casa rural en Galicia</button>
                         <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Onde comer en Galicia">🍽️ Onde comer en Galicia</button>
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Qué visitar en Galicia">🧳 Qué visitar en Galicia</button>
-                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Rutas de sendeirismo">🥾 Rutas de sendeirismo</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Que visitar en Galicia">🧳 Que visitar en Galicia</button>
+                        <button class="search-suggestion px-3.5 py-2 rounded-full border border-gray-700 bg-gray-950 hover:border-techCian/50 hover:text-white text-xs text-gray-400" data-query="Rutas de sendeirismo en Galicia">🥾 Rutas de sendeirismo</button>
                     </div>
 
                     <div id="search-status" class="mt-6 text-xs text-gray-500"></div>
@@ -493,9 +493,35 @@ const CONFIG = {
     DAILY_LIMIT: 20,
     MAX_HISTORY_MESSAGES: 12,
     MAX_MESSAGE_LENGTH: 4000,
-    STORAGE_KEY: "galia_chat_v2",
-    USAGE_KEY: "galia_usage_v2"
+    STORAGE_KEY: "galia_chat_v3",
+    USAGE_KEY: "galia_usage_v3",
+    REGION: "Galicia, España",
+    DEFAULT_LANGUAGE: "gl"
 };
+
+// Perfil regional de Galia: Galicia primeiro, español como idioma de apoio.
+const GALIA_REGIONAL_PROFILE = {
+    region: "Galicia",
+    country: "España",
+    primaryLanguage: "gl",
+    secondaryLanguage: "es",
+    focus: [
+        "información local e comarcal de Galicia",
+        "turismo, patrimonio, cultura e festas",
+        "gastronomía e produtos galegos",
+        "natureza, rutas, praias e Camiño de Santiago",
+        "comercio local, autónomos e PEMEs galegas",
+        "servizos públicos e información útil para vivir en Galicia"
+    ]
+};
+
+function idiomaRespuestaGalia(texto) {
+    const t = (texto || "").toLowerCase();
+    const es = /\b(qué|que|dónde|donde|cómo|como|cuánto|cuanto|puedo|puedes|quiero|quieres|hay|hacer|buscar|encuentra|necesito|gracias|hola)\b/.test(t);
+    const gl = /\b(que|onde|como|canto|podo|podes|quero|queres|hai|facer|buscar|atopa|preciso|grazas|ola|boas)\b/.test(t);
+    if (es && !gl) return "es";
+    return "gl";
+}
 
 const traducciones = {
     es: {
@@ -896,8 +922,12 @@ async function enviarMensaje() {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                language: idiomaActual,
-                messages: historial
+                language: idiomaRespuestaGalia(textoUsuario),
+                messages: historial,
+                region: GALIA_REGIONAL_PROFILE.region,
+                country: GALIA_REGIONAL_PROFILE.country,
+                regional_profile: GALIA_REGIONAL_PROFILE,
+                instruction: "Responde como Galia, asistente regional de Galicia. Prioriza o galego. Usa español só cando o usuario escriba en español ou o solicite. Prioriza información galega, local, comarcal e útil para persoas e PEMEs. Non inventes datos: se non tes información suficiente, dilo claramente."
             }),
             signal: abortController.signal
         });
@@ -1095,39 +1125,43 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-// BUSCADOR REAL DE GALICIA (ESPAÑOL Y GALEGO) CON MÉTRICAS
+// GALIA BUSCADOR · ÍNDICE REGIONAL GALICIA · GALEGO PRIORITARIO / ESPAÑOL DE APOIO
 const GALIA_SEARCH = {
-    STORAGE_KEY: "galia_metrics_v1",
-    SESSION_KEY: "galia_session_v1"
+    STORAGE_KEY: "galia_metrics_v2",
+    SESSION_KEY: "galia_session_v2",
+    ENDPOINT: "/api/search",
+    MAX_RESULTS: 8
 };
 
 const BASE_GALICIA = [
-    { title: "Turismo de Galicia", url: "https://www.turismo.gal/", snippet: "Información turística oficial, destinos, rutas, patrimonio y experiencias para descubrir Galicia.", lang: "es" },
-    { title: "Turismo de Galicia (Galego)", url: "https://www.turismo.gal/", snippet: "Información turística oficial, destinos, rutas, patrimonio e experiencias para descubrir Galicia.", lang: "gl" },
-    { title: "Onde comer en Galicia", url: "https://www.turismo.gal/", snippet: "Guía gastronómica, restaurantes con encanto, mariscos y productos con denominación de origen.", lang: "gl" },
-    { title: "Gastronomía y Restaurantes", url: "https://www.turismo.gal/", snippet: "Descubre la rica tradición culinaria gallega, los mejores platos y dónde comer por toda la comunidad.", lang: "es" },
-    { title: "Rutas de Sendeirismo en Galicia", url: "https://www.turismo.gal/", snippet: "Camiño de Santiago, sendeiros costeiros, parques naturais e rutas de montaña en Galicia.", lang: "gl" },
-    { title: "Rutas de senderismo y naturaleza", url: "https://www.turismo.gal/", snippet: "Parques naturales, Rías Baixas, Costa da Morte y las mejores rutas para hacer a pie en Galicia.", lang: "es" },
-    { title: "Casas Rurais e Turísticas", url: "https://www.turismo.gal/", snippet: "Alojamiento rural con encanto, turismo de descanso y casas tradicionales gallegas.", lang: "gl" },
-    { title: "Casas rurales y alojamientos", url: "https://www.turismo.gal/", snippet: "Encuentra casas rurales, hoteles con encanto y opciones de alojamiento en entornos naturales de Galicia.", lang: "es" },
-    { title: "LZ79 · Ecosistema Galia O Porriño", url: "mailto:contacto@lz79freelance.com", snippet: "Desarrollo de software a medida, automatización y herramientas digitales desde O Porriño para toda Galicia.", lang: "es" }
+    { title: "Turismo de Galicia", url: "https://www.turismo.gal/", snippet: "Información turística oficial, destinos, rutas, patrimonio e experiencias para descubrir Galicia.", lang: "gl", topics: ["turismo", "viaxes", "patrimonio", "rutas", "praias", "camiño"] },
+    { title: "Turismo de Galicia", url: "https://www.turismo.gal/", snippet: "Información turística oficial de Galicia para visitantes e residentes.", lang: "es", topics: ["turismo", "viajes", "patrimonio", "rutas"] },
+    { title: "Onde comer en Galicia", url: "https://www.turismo.gal/", snippet: "Gastronomía galega, produtos locais, restaurantes e experiencias gastronómicas.", lang: "gl", topics: ["comer", "restaurantes", "gastronomía", "marisco", "queixo", "viño"] },
+    { title: "Gastronomía de Galicia", url: "https://www.turismo.gal/", snippet: "Información para descubrir a gastronomía galega e os seus produtos tradicionais.", lang: "es", topics: ["gastronomía", "restaurantes", "comida"] },
+    { title: "Rutas de Sendeirismo en Galicia", url: "https://www.turismo.gal/", snippet: "Camiños, sendeiros costeiros, natureza, montes, ríos e espazos naturais de Galicia.", lang: "gl", topics: ["sendeirismo", "rutas", "natureza", "monte", "praia", "camiño"] },
+    { title: "Rutas de senderismo y naturaleza", url: "https://www.turismo.gal/", snippet: "Rutas, parques naturais, costa e paisaxes de Galicia.", lang: "es", topics: ["senderismo", "rutas", "naturaleza"] },
+    { title: "Casas Rurais e Turismo Rural", url: "https://www.turismo.gal/", snippet: "Aloxamento rural, casas tradicionais e experiencias para coñecer a Galicia interior.", lang: "gl", topics: ["casa rural", "aloxamento", "turismo rural", "aldea"] },
+    { title: "Casas rurales y alojamientos", url: "https://www.turismo.gal/", snippet: "Alojamientos rurales y opciones para conocer Galicia.", lang: "es", topics: ["casa rural", "alojamiento", "turismo rural"] },
+    { title: "LZ79 · Ecosistema Galia O Porriño", url: "mailto:contacto@lz79freelance.com", snippet: "Software, automatización e ferramentas dixitais desde O Porriño para Galicia.", lang: "gl", topics: ["empresa", "software", "pemE", "porriño", "tecnoloxía"] }
 ];
 
-function idiomaBusqueda(texto) {
-    const t = texto.toLowerCase();
-    const gl = /(onde|como|canto|podo|podes|quero|queres|hai|unha|unhas|facer|atopar|buscar|sendeirismo|comercio|galicia)/.test(t);
-    const es = /(qué|dónde|cómo|cuánto|puedo|puedes|quiero|quieres|hay|una|unas|hacer|encontrar|buscar|senderismo|galicia)/.test(t);
+const STOPWORDS = new Set("o a os as un unha uns unhas de do da dos das en no na nos nas e ou que para por con sen como onde cando cual cal isto isto é es se ao aos ás unha unha me te lle eu ti que do qué dónde cómo y el la los las una unos de del en para por con sin como donde cuando esto es se al las".toLowerCase().split(/\s+/));
 
-    if (gl && !es) return "gl";
+function normalizarTexto(texto) {
+    return (texto || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function idiomaBusqueda(texto) {
+    const t = normalizarTexto(texto);
+    const gl = /\b(onde|canto|podo|podes|quero|queres|hai|facer|atopar|atopa|sendeirismo|comer|casa|rural|galego|galicia|praia|monte|festa|concello|aldea|pequena empresa|peme)\b/.test(t);
+    const es = /\b(que|donde|cuanto|puedo|puedes|quiero|quieres|hay|hacer|encontrar|senderismo|comer|casa|rural|espanol|galicia|playa|monte|fiesta|ayuntamiento|empresa)\b/.test(t);
     if (es && !gl) return "es";
-    return document.querySelector(".galia-lang.active")?.dataset.galiaLang || idiomaActual || "es";
+    return "gl";
 }
 
 function cargarMetricas() {
     let data;
-    try { data = JSON.parse(localStorage.getItem(GALIA_SEARCH.STORAGE_KEY) || "{}"); }
-    catch (_) { data = {}; }
-
+    try { data = JSON.parse(localStorage.getItem(GALIA_SEARCH.STORAGE_KEY) || "{}"); } catch (_) { data = {}; }
     if (!data.date) data.date = new Date().toISOString().slice(0,10);
     if (!data.visits) data.visits = 0;
     if (!data.searches) data.searches = 0;
@@ -1136,14 +1170,11 @@ function cargarMetricas() {
     return data;
 }
 
-function guardarMetricas(data) {
-    localStorage.setItem(GALIA_SEARCH.STORAGE_KEY, JSON.stringify(data));
-}
+function guardarMetricas(data) { localStorage.setItem(GALIA_SEARCH.STORAGE_KEY, JSON.stringify(data)); }
 
 function registrarVisita() {
     const data = cargarMetricas();
-    const session = sessionStorage.getItem(GALIA_SEARCH.SESSION_KEY);
-    if (!session) {
+    if (!sessionStorage.getItem(GALIA_SEARCH.SESSION_KEY)) {
         sessionStorage.setItem(GALIA_SEARCH.SESSION_KEY, "1");
         data.sessions += 1;
     }
@@ -1165,99 +1196,145 @@ function renderMetricas() {
     document.getElementById("metric-visits").textContent = data.visits;
     document.getElementById("metric-searches").textContent = data.searches;
     document.getElementById("metric-sessions").textContent = data.sessions;
-    document.getElementById("metric-language").textContent = (idiomaActual || "es").toUpperCase();
+    document.getElementById("metric-language").textContent = (idiomaActual || "gl").toUpperCase();
     ["es","gl","eu","cat"].forEach(l => {
         const el = document.getElementById("m-" + l);
         if (el) el.textContent = data.languages[l] || 0;
-    });
-    const total = (data.languages.es || 0) + (data.languages.gl || 0) + (data.languages.eu || 0) + (data.languages.cat || 0);
-    ["es","gl","eu","cat"].forEach(l => {
         const bar = document.getElementById("bar-" + l);
+        const total = Object.values(data.languages).reduce((a,b) => a + (b || 0), 0);
         if (bar) bar.style.width = total ? Math.round(((data.languages[l] || 0) / total) * 100) + "%" : "0%";
     });
 }
 
-function mostrarResultados(results, query) {
+function puntuacionResultado(item, query, lang) {
+    const q = normalizarTexto(query);
+    const palabras = q.split(/\s+/).filter(w => w.length > 1 && !STOPWORDS.has(w));
+    const titulo = normalizarTexto(item.title);
+    const texto = normalizarTexto(item.title + " " + item.snippet + " " + (item.topics || []).join(" "));
+    let score = 0;
+    if (item.lang === "gl" && lang === "gl") score += 5;
+    if (item.lang === lang) score += 2;
+    if (titulo.includes(q)) score += 10;
+    palabras.forEach(p => {
+        if (titulo.includes(p)) score += 4;
+        else if (texto.includes(p)) score += 2;
+    });
+    if (q.includes("galicia")) score += 2;
+    return score;
+}
+
+function buscarLocal(query, lang) {
+    return BASE_GALICIA
+        .map(item => ({ item, score: puntuacionResultado(item, query, lang) }))
+        .filter(x => x.score > 0)
+        .sort((a,b) => b.score - a.score)
+        .slice(0, GALIA_SEARCH.MAX_RESULTS)
+        .map(x => x.item);
+}
+
+function mostrarResultados(results, query, source = "local") {
     const container = document.getElementById("search-results");
     container.innerHTML = "";
-
     results.forEach(r => {
         const card = document.createElement("a");
         card.href = r.url || "#";
-        card.target = "_blank";
+        card.target = r.url && r.url.startsWith("http") ? "_blank" : "_self";
         card.rel = "noopener noreferrer";
         card.className = "block bg-gray-900 border border-gray-800 hover:border-techCian/50 rounded-xl p-4 transition-all";
 
         const title = document.createElement("div");
-        title.className = "font-semibold text-white flex items-center justify-between";
-        title.innerHTML = `<span>${r.title}</span> <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded uppercase">${r.lang || 'es'}</span>`;
+        title.className = "font-semibold text-white flex items-center justify-between gap-3";
+        const titleText = document.createElement("span");
+        titleText.textContent = r.title || "Resultado";
+        const badge = document.createElement("span");
+        badge.className = "shrink-0 text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded uppercase";
+        badge.textContent = r.lang || "gl";
+        title.append(titleText, badge);
 
         const url = document.createElement("div");
         url.className = "text-[11px] text-techCian mt-1 break-all";
         url.textContent = r.url || "";
-
         const snippet = document.createElement("div");
         snippet.className = "text-sm text-gray-400 mt-2 leading-relaxed";
         snippet.textContent = r.snippet || "";
-
         card.append(title, url, snippet);
         container.appendChild(card);
     });
-
-    document.getElementById("search-status").textContent = `${results.length} resultados encontrados para "${query}"`;
+    const sourceText = source === "api" ? " · busca rexional" : " · índice local de probas";
+    document.getElementById("search-status").textContent = `${results.length} resultados para "${query}"${sourceText}`;
 }
 
-function ejecutarBusquedaReal() {
+async function ejecutarBusquedaReal() {
     const input = document.getElementById("search-input");
+    const button = document.getElementById("search-button");
+    const status = document.getElementById("search-status");
     const query = input.value.trim();
     if (!query) return;
 
     const lang = idiomaBusqueda(query);
     registrarBusqueda(query, lang);
+    button.disabled = true;
+    button.classList.add("opacity-60");
+    status.textContent = lang === "gl" ? "Buscando en Galicia…" : "Buscando en Galicia…";
 
-    // Filtrar coincidencias por palabras clave en la base de datos gallega/española
-    const terminos = query.toLowerCase().split(/\s+/);
-    const resultados = BASE_GALICIA.filter(item => {
-        const textoItem = (item.title + " " + item.snippet).toLowerCase();
-        return terminos.some(t => textoItem.includes(t));
-    });
+    try {
+        const response = await fetch(GALIA_SEARCH.ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+                query,
+                language: lang,
+                region: "Galicia",
+                country: "España",
+                primary_language: "gl",
+                secondary_language: "es",
+                max_results: GALIA_SEARCH.MAX_RESULTS,
+                regional_only: true
+            })
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const results = Array.isArray(data.results) ? data.results : [];
+        if (results.length) {
+            mostrarResultados(results.slice(0, GALIA_SEARCH.MAX_RESULTS), query, "api");
+            return;
+        }
+    } catch (error) {
+        console.info("Galia buscador: API regional no disponible, usando índice local.");
+    } finally {
+        button.disabled = false;
+        button.classList.remove("opacity-60");
+    }
 
-    if (resultados.length > 0) {
-        mostrarResultados(resultados, query);
+    const resultados = buscarLocal(query, lang);
+    if (resultados.length) {
+        mostrarResultados(resultados, query, "local");
     } else {
-        // Si no hay coincidencia directa, generamos un resultado dinámico de ayuda guiada
-        const fallback = [
-            {
-                title: lang === 'gl' ? "Atopa o que buscas con Galia Chat" : "Encuentra lo que buscas con Galia Chat",
-                url: "#galia-chat",
-                snippet: lang === 'gl' ? `Non atopamos resultados exactos para "${query}", pero podes preguntarlle directamente ao asistente intelixente.` : `No hemos encontrado resultados exactos para "${query}", pero puedes consultarlo directamente con el asistente de inteligencia artificial.`,
-                lang: lang
-            }
-        ];
-        mostrarResultados(fallback, query);
+        mostrarResultados([{
+            title: lang === "gl" ? "Pregunta directamente a Galia" : "Pregunta directamente a Galia",
+            url: "#galia-chat",
+            snippet: lang === "gl"
+                ? `Non hai resultados no índice local para "${query}". Podes preguntarlle a Galia e obter unha resposta máis ampla.`
+                : `No hay resultados en el índice local para "${query}". Puedes preguntarle a Galia para obtener una respuesta más amplia.`,
+            lang
+        }], query, "local");
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     registrarVisita();
     renderMetricas();
-
-    document.getElementById("search-input").addEventListener("keydown", e => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            ejecutarBusquedaReal();
-        }
+    const input = document.getElementById("search-input");
+    input.addEventListener("keydown", e => {
+        if (e.key === "Enter") { e.preventDefault(); ejecutarBusquedaReal(); }
     });
-
     document.querySelectorAll(".search-suggestion").forEach(btn => {
         btn.addEventListener("click", () => {
-            const input = document.getElementById("search-input");
             input.value = btn.dataset.query || "";
             input.focus();
             ejecutarBusquedaReal();
         });
     });
-
     document.getElementById("reset-metrics").addEventListener("click", () => {
         localStorage.removeItem(GALIA_SEARCH.STORAGE_KEY);
         renderMetricas();
