@@ -33,9 +33,9 @@ class handler(BaseHTTPRequestHandler):
                 temperature=0.7,
             )
 
-            # Llamada al modelo Gemini 2.0 Flash-Lite
+            # Llamada al modelo Gemini 2.0 Flash
             response = client.models.generate_content(
-                model='gemini-2.0-flash-lite',
+                model='gemini-2.0-flash',
                 contents=user_message,
                 config=config
             )
