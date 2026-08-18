@@ -17,8 +17,8 @@
 <body class="bg-darkBg text-gray-100 min-h-screen flex flex-col justify-between">
 
 <main class="flex-1 flex items-center justify-center p-6">
-    <div class="w-full max-w-3xl">
-        <h2 class="text-5xl font-black text-center mb-10 text-white tracking-wider">GALIA BEE</h2>
+    <div class="w-full max-w-3xl text-center">
+        <h2 class="text-5xl font-black mb-10 text-white tracking-wider">GALIA BEE</h2>
         <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
             <div class="flex flex-col sm:flex-row gap-3">
                 <input id="galia-search-input" type="text" placeholder="Buscar en la Red Galia..." 
@@ -31,23 +31,20 @@
     </div>
 </main>
 
-<!-- VENTANA EMERGENTE (MODAL) -->
+<!-- VENTANA EMERGENTE (MODAL) LZ79 -->
 <div id="modal-buscador-resultado" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-8 max-w-2xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
+    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
         <button id="cerrar-modal" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
         
         <h3 class="text-xl font-black text-techCian mb-4">Resultados de Galia Bee</h3>
-        <p id="modal-query-display" class="text-sm text-gray-400 mb-6"></p>
+        <p id="modal-query-display" class="text-xs text-gray-400 mb-6"></p>
         
-        <!-- Contenedor donde Google inyectará los resultados de forma nativa -->
-        <div class="overflow-y-auto flex-1 text-gray-200">
-            <div class="gcse-searchresults-only" data-gname="galiaResults"></div>
+        <!-- Contenedor donde pintaremos los resultados con diseño oscuro -->
+        <div id="modal-resultados-lista" class="overflow-y-auto flex-1 text-gray-200 space-y-4 pr-2">
+            <p class="text-techCian animate-pulse">Buscando en la red...</p>
         </div>
     </div>
 </div>
-
-<!-- Script oficial de Google al final para evitar bloqueos de renderizado -->
-<script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -56,44 +53,42 @@
         const modal = document.getElementById("modal-buscador-resultado");
         const cerrarBtn = document.getElementById("cerrar-modal");
         const queryDisplay = document.getElementById("modal-query-display");
+        const listaResultados = document.getElementById("modal-resultados-lista");
 
-        function realizarBusqueda() {
+        async function realizarBusqueda() {
             const query = input.value.trim();
             if (!query) return;
 
-            queryDisplay.innerText = `Búsqueda: "${query}"`;
+            queryDisplay.innerText = `Resultados para: "${query}"`;
+            listaResultados.innerHTML = `<p class="text-techCian animate-pulse">Consultando Red Galia...</p>`;
             modal.classList.remove("hidden");
 
-            // Ejecutar la búsqueda en el motor de Google de forma segura
-            const interval = setInterval(() => {
-                if (window.google && window.google.search && window.google.search.cse) {
-                    const element = google.search.cse.element.getElement('galiaResults');
-                    if (element) {
-                        element.execute(query);
-                        clearInterval(interval);
-                    }
-                }
-            }, 200);
+            // Si prefieres usar la API oficial de Custom Search con clave, o simular la respuesta limpia:
+            // Nota: El ID del buscador es 03d0f2141a98347c5
+            try {
+                // Hacemos la petición a Google CSE API (requiere API Key si se usa por REST, 
+                // o podemos usar un endpoint directo). Como alternativa ultra rápida sin key expuesta, 
+                // puedes usar el redireccionamiento limpio o tu propia pasarela.
+                
+                // Si quieres que usemos el buscador nativo sin que pete, mira esta alternativa de redirección elegante:
+                listaResultados.innerHTML = `
+                    <div class="p-4 bg-gray-900 border border-gray-800 rounded-2xl text-center">
+                        <p class="text-sm text-gray-300 mb-4">Pulsa el botón para consultar el índice global de Galia Bee:</p>
+                        <a href="https://www.google.com/search?q=site:lz79freelance.com+${encodeURIComponent(query)}" target="_blank" 
+                           class="inline-block bg-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90">
+                            Ver resultados en Google
+                        </a>
+                    </div>
+                `;
+            } catch (error) {
+                listaResultados.innerHTML = `<p class="text-red-400">Error al conectar con el índice.</p>`;
+            }
         }
 
         btn.addEventListener("click", realizarBusqueda);
-
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                realizarBusqueda();
-            }
-        });
-
-        cerrarBtn.addEventListener("click", () => {
-            modal.classList.add("hidden");
-        });
-
-        // Cerrar modal al hacer clic fuera de la caja
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.classList.add("hidden");
-            }
-        });
+        input.addEventListener("keydown", (e) => { if (e.key === "Enter") realizarBusqueda(); });
+        cerrarBtn.addEventListener("click", () => modal.classList.add("hidden"));
+        modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
     });
 </script>
 
