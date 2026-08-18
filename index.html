@@ -89,10 +89,10 @@
         <p id="modal-query-text" class="text-sm text-techCian font-mono mb-6"></p>
         
         <div class="bg-[#030712] border border-gray-800 rounded-2xl p-6 mb-6">
-            <p class="text-xs text-gray-400 mb-4">Haz clic para consultar los resultados indexados en el motor oficial:</p>
+            <p class="text-xs text-gray-400 mb-4">Haz clic para consultar los resultados indexados:</p>
             <a id="btn-enlace-google" href="#" target="_blank" 
                class="inline-block w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-3.5 rounded-xl hover:opacity-90 transition-all shadow-lg text-center">
-                Consultar en Motor Oficial &rarr;
+                Consultar en Google &rarr;
             </a>
         </div>
     </div>
@@ -111,7 +111,8 @@
         if (!query) return;
 
         modalQueryText.innerText = `Término: "${query}"`;
-        btnEnlaceGoogle.href = `https://www.google.com/cse?cx=03d0f2141a98347c5&q=${encodeURIComponent(query)}`;
+        // Usamos la URL de búsqueda estándar de Google con la query limpia para forzar resultados directos
+        btnEnlaceGoogle.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         modal.classList.remove("hidden");
     }
 
