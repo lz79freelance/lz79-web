@@ -59,8 +59,8 @@
         </nav>
 
         <div class="flex items-center space-x-3">
-            <button onclick="abrirModal()" class="px-4 py-2 text-sm font-semibold rounded-lg bg-techCian/10 border border-techCian/30 hover:bg-techCian/20 transition-all text-techCian">
-                Configurar Fotos / Nombre
+            <button onclick="abrirModalConfig()" class="px-4 py-2 text-sm font-semibold rounded-lg bg-techCian/10 border border-techCian/30 hover:bg-techCian/20 transition-all text-techCian">
+                Configurar Perfil
             </button>
             <a href="mailto:contacto@lz79freelance.com" class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all text-techGreen">
                 Contacto
@@ -153,7 +153,7 @@
     </section>
 
     <!-- =================================================
-         GALIA BEE (BUSCADOR LOCAL)
+         GALIA BEE (BUSCADOR PROPIO INDEPENDIENTE)
          ================================================= -->
     <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 relative">
@@ -162,20 +162,20 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     Motor Local Integrado
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
+                <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight" id="display-titulo-buscador">GALIA BEE</h2>
                 <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional de verbenas y eventos</p>
             </div>
 
             <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
-                <div class="flex gap-3">
+                <div class="flex flex-col sm:flex-row gap-3">
                     <div class="relative flex-1">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
                         <input id="galia-search-input" type="text" placeholder="Escribe ciudad, orquesta..." 
                             class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
-                            oninput="ejecutarBusquedaGalia();">
+                            onkeypress="if(event.key === 'Enter') abrirBuscadorPropio();">
                     </div>
-                    <button type="button" onclick="abrirModal()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide">
-                        Personalizar
+                    <button type="button" onclick="abrirBuscadorPropio()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide shrink-0">
+                        Buscar en Galia
                     </button>
                 </div>
             </div>
@@ -193,7 +193,6 @@
                 <p class="text-gray-400 text-sm mt-2">Selecciona un día para consultar las actuaciones en directo en Galicia.</p>
             </div>
 
-            <!-- Selector de días / Pestañas de fechas -->
             <div class="flex overflow-x-auto gap-3 pb-4 mb-8 chat-scrollbar justify-start md:justify-center">
                 <button class="px-5 py-3 rounded-2xl bg-techGreen text-darkBg font-bold text-sm shrink-0 shadow-lg shadow-techGreen/20">
                     📅 Hoy, 18 Ago
@@ -212,9 +211,8 @@
                 </button>
             </div>
 
-            <!-- Contenedor dinámico de actuaciones -->
             <div class="space-y-4 max-w-4xl mx-auto" id="calendario-orquestas-container">
-                <div class="bg-cardBg border border-gray-800 hover:border-techGreen/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all">
+                <div class="bg-cardBg border border-gray-800 hover:border-techGreen/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all verbena-item">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen font-black text-lg">22h</div>
                         <div>
@@ -222,12 +220,10 @@
                             <p class="text-sm text-gray-400">📍 Cambados · Festa Patronal</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-                        <span class="text-xs px-3 py-1 rounded-full bg-techGreen/10 text-techGreen border border-techGreen/20 font-semibold">Confirmado</span>
-                    </div>
+                    <span class="text-xs px-3 py-1 rounded-full bg-techGreen/10 text-techGreen border border-techGreen/20 font-semibold">Confirmado</span>
                 </div>
 
-                <div class="bg-cardBg border border-gray-800 hover:border-techCian/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all">
+                <div class="bg-cardBg border border-gray-800 hover:border-techCian/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all verbena-item">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian font-black text-lg">23h</div>
                         <div>
@@ -235,12 +231,10 @@
                             <p class="text-sm text-gray-400">📍 Betanzos · Festas de San Roque</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-                        <span class="text-xs px-3 py-1 rounded-full bg-techCian/10 text-techCian border border-techCian/20 font-semibold">En Gira</span>
-                    </div>
+                    <span class="text-xs px-3 py-1 rounded-full bg-techCian/10 text-techCian border border-techCian/20 font-semibold">En Gira</span>
                 </div>
 
-                <div class="bg-cardBg border border-gray-800 hover:border-amber-500/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all">
+                <div class="bg-cardBg border border-gray-800 hover:border-amber-500/40 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-all verbena-item">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 font-black text-lg">21h</div>
                         <div>
@@ -248,9 +242,7 @@
                             <p class="text-sm text-gray-400">📍 Vigo · Verbena Popular</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-                        <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">Entrada Libre</span>
-                    </div>
+                    <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">Entrada Libre</span>
                 </div>
             </div>
         </div>
@@ -289,16 +281,50 @@
 </main>
 
 <!-- =================================================
-     PANTALLA EMERGENTE (MODAL DE CONFIGURACIÓN)
+     VENTANA EMERGENTE: RESULTADOS DEL BUSCADOR PROPIO
      ================================================= -->
-<div id="modal-personalizado" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-    <div class="bg-cardBg border border-techGreen/40 rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative">
-        <button onclick="cerrarModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold">
+<div id="modal-buscador-resultado" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
+        <button onclick="cerrarBuscadorPropio()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold z-10">
             &times;
         </button>
 
-        <h3 class="text-2xl font-black text-white mb-2">Personalizar Galia Bee</h3>
-        <p class="text-sm text-gray-400 mb-6">Introduce vuestro nombre y selecciona fotos para el ecosistema.</p>
+        <div class="flex items-center gap-4 mb-6 pr-8">
+            <div id="modal-foto-preview" class="w-12 h-12 rounded-full bg-techCian/20 border border-techCian flex items-center justify-center overflow-hidden shrink-0 text-techCian font-bold text-lg">
+                🐝
+            </div>
+            <div>
+                <span class="text-[10px] uppercase font-bold tracking-widest text-techCian" id="modal-subtitulo-perfil">Galia Bee Search Engine</span>
+                <h3 class="text-xl font-black text-white" id="modal-nombre-equipo-header">Resultados Propios</h3>
+            </div>
+        </div>
+
+        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-4 mb-4 text-sm text-gray-300">
+            Resultados de búsqueda local para: <span id="modal-query-text" class="text-techGreen font-bold"></span>
+        </div>
+
+        <div id="modal-resultados-lista" class="space-y-3 overflow-y-auto chat-scrollbar pr-1 flex-1">
+            <!-- Aquí se inyectarán los resultados de forma dinámica -->
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center text-xs text-gray-500">
+            <span>Ecosistema independiente LZ79</span>
+            <button onclick="cerrarBuscadorPropio()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-semibold transition-all">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<!-- =================================================
+     VENTANA EMERGENTE: CONFIGURACIÓN DE PERFIL Y FOTO
+     ================================================= -->
+<div id="modal-configuracion" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-cardBg border border-techGreen/40 rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+        <button onclick="cerrarModalConfig()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold">
+            &times;
+        </button>
+
+        <h3 class="text-2xl font-black text-white mb-2">Personalizar Perfil</h3>
+        <p class="text-sm text-gray-400 mb-6">Introduce vuestro nombre de equipo y sube una foto identificativa.</p>
 
         <div class="space-y-4">
             <div>
@@ -307,11 +333,11 @@
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-techCian uppercase mb-2">Subir Foto de Galicia</label>
+                <label class="block text-xs font-bold text-techCian uppercase mb-2">Foto / Imagen de Perfil</label>
                 <input type="file" id="input-foto" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-techCian/10 file:text-techCian hover:file:bg-techCian/20">
             </div>
 
-            <button type="button" onclick="guardarPersonalizacion()" class="w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black py-3 rounded-xl hover:opacity-90 transition-all text-sm mt-4">
+            <button type="button" onclick="guardarConfiguracion()" class="w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black py-3 rounded-xl hover:opacity-90 transition-all text-sm mt-4">
                 Guardar Cambios
             </button>
         </div>
@@ -323,6 +349,8 @@
 </footer>
 
 <script>
+    let fotoPerfilUrl = null;
+
     function enviarMensajeChat() {
         const input = document.getElementById("chat-input");
         const container = document.getElementById("chat-messages");
@@ -345,35 +373,75 @@
         }, 500);
     }
 
-    function ejecutarBusquedaGalia() {
-        const query = document.getElementById("galia-search-input").value.toLowerCase().trim();
-        const items = document.querySelectorAll("#calendario-orquestas-container > div");
+    function abrirBuscadorPropio() {
+        const queryInput = document.getElementById("galia-search-input").value.trim();
+        const queryText = queryInput === "" ? "Todas las actuaciones y datos recientes" : queryInput;
+        
+        document.getElementById("modal-query-text").innerText = queryText;
+
+        const listaResultados = document.getElementById("modal-resultados-lista");
+        listaResultados.innerHTML = "";
+
+        // Buscar en los elementos existentes de la página (verbenas)
+        const items = document.querySelectorAll(".verbena-item");
+        let encontrados = 0;
 
         items.forEach(item => {
-            const textoItem = item.innerText.toLowerCase();
-            if (textoItem.includes(query)) {
-                item.style.display = "flex";
-            } else {
-                item.style.display = "none";
+            const texto = item.innerText.toLowerCase();
+            if (queryInput === "" || texto.includes(queryInput.toLowerCase())) {
+                encontrados++;
+                const clon = item.cloneNode(true);
+                clon.className = "bg-gray-900/90 border border-gray-800 hover:border-techCian/50 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all";
+                listaResultados.appendChild(clon);
             }
         });
-    }
 
-    function abrirModal() {
-        document.getElementById("modal-personalizado").classList.remove("hidden");
-    }
-
-    function cerrarModal() {
-        document.getElementById("modal-personalizado").classList.add("hidden");
-    }
-
-    function guardarPersonalizacion() {
-        const nombre = document.getElementById("input-nombre").value.trim();
-        if (nombre) {
-            document.getElementById("display-nombre-equipo").innerText = nombre;
+        if (encontrados === 0) {
+            listaResultados.innerHTML = `
+                <div class="text-center py-8 text-gray-400 bg-gray-900/50 rounded-2xl border border-gray-800">
+                    <p class="text-base font-semibold text-white mb-1">No se encontraron resultados para "${queryInput}"</p>
+                    <p class="text-xs">Prueba con otra orquesta, ayuntamiento o término gallego.</p>
+                </div>
+            `;
         }
-        alert("¡Cambios guardados correctamente!");
-        cerrarModal();
+
+        document.getElementById("modal-buscador-resultado").classList.remove("hidden");
+    }
+
+    function cerrarBuscadorPropio() {
+        document.getElementById("modal-buscador-resultado").classList.add("hidden");
+    }
+
+    function abrirModalConfig() {
+        document.getElementById("modal-configuracion").classList.remove("hidden");
+    }
+
+    function cerrarModalConfig() {
+        document.getElementById("modal-configuracion").classList.add("hidden");
+    }
+
+    function guardarConfiguracion() {
+        const nombreInput = document.getElementById("input-nombre").value.trim();
+        const inputFoto = document.getElementById("input-foto");
+
+        if (nombreInput) {
+            document.getElementById("display-nombre-equipo").innerText = nombreInput;
+            document.getElementById("modal-nombre-equipo-header").innerText = nombreInput;
+            document.getElementById("display-titulo-buscador").innerText = "GALIA BEE — " + nombreInput.toUpperCase();
+        }
+
+        if (inputFoto.files && inputFoto.files[0]) {
+            const lector = new FileReader();
+            lector.onload = function(e) {
+                fotoPerfilUrl = e.target.result;
+                const previewContainer = document.getElementById("modal-foto-preview");
+                previewContainer.innerHTML = `<img src="${fotoPerfilUrl}" class="w-full h-full object-cover rounded-full">`;
+            }
+            lector.readAsDataURL(inputFoto.files[0]);
+        }
+
+        alert("¡Configuración guardada correctamente!");
+        cerrarModalConfig();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
