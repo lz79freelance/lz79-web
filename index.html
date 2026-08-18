@@ -1,565 +1,639 @@
-<!doctype html>
-<html lang="gl" class="scroll-smooth">
+```html
+<!DOCTYPE html>
+<html lang="gl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#07090e">
-    <meta name="description" content="LZ79 Ecosystem - Ecosistema Galia e solucións de alto rendemento.">
-    <title>LZ79 Ecosystem | Galia Bee Hub</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#07090e',
-                        cardBg: '#111827',
-                        techGreen: '#00ff88',
-                        techBlue: '#3B82F6',
-                        techCian: '#06B6D4'
-                    }
-                }
-            }
-        };
-    </script>
+    <title>LZ79 Freelance · Galia</title>
+    <meta name="description" content="LZ79 Freelance · Galia, buscador e asistente dixital para Galicia. Tecnoloxía, ferramentas e solucións para persoas e pequenas empresas.">
+    <meta name="theme-color" content="#05070b">
 
-    <!-- Librerías para o chat -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
-
-    <style>
-        html { color-scheme: dark; }
-        body { min-height: 100vh; overflow-x: hidden; background-color: #07090e; color: #f3f4f6; font-family: ui-sans-serif, system-ui, sans-serif; }
-        .chat-scrollbar::-webkit-scrollbar { width: 8px; }
-        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .chat-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
-
-        /* Xiro continuo de 360 graos para icom.png */
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .animate-spin-360 {
-            animation: spin-slow 12s linear infinite;
-        }
-    </style>
+    <link rel="icon" href="icom.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-darkBg text-gray-100 font-sans antialiased">
+<body>
 
-<!-- =====================================================
-     CABECEIRA FİXA
-     ===================================================== -->
-<header class="fixed top-0 w-full bg-darkBg/85 backdrop-blur-md border-b border-gray-800 z-50">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#inicio" class="flex items-center space-x-3">
-            <img src="icom.png" alt="LZ79 Icon" class="w-9 h-9 rounded-xl object-cover border border-techGreen/40 shadow-[0_0_12px_rgba(0,255,136,0.3)] animate-spin-360">
-            <span class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-techGreen to-techCian">
-                LZ79
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+    <div class="container header-inner">
+
+        <a href="#inicio" class="brand">
+            <img src="assets/logo.png" alt="LZ79 Freelance" class="brand-logo">
+            <span class="brand-text">
+                <strong>LZ79</strong>
+                <small>FREELANCE</small>
             </span>
         </a>
 
-        <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-            <a href="#portal" class="hover:text-white transition-colors">Ecosistema</a>
-            <a href="#galia-chat" class="hover:text-white transition-colors">Chat Galia</a>
-            <a href="#galia-buscador" class="hover:text-white transition-colors">Buscador Bee</a>
-            <a href="#actualidad" class="hover:text-white transition-colors">Verbenas & Tempo</a>
-            <a href="#servicios" class="hover:text-white transition-colors">Servizos</a>
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false">
+            ☰
+        </button>
+
+        <nav id="mainNav" class="main-nav">
+            <a href="#galia">Galia</a>
+            <a href="#hoxe">Hoxe</a>
+            <a href="#apps">Aplicacións</a>
+            <a href="#ia">IA</a>
+            <a href="#contacto">Contacto</a>
         </nav>
 
-        <div class="flex items-center space-x-3">
-            <button onclick="abrirModal()" class="px-4 py-2 text-sm font-semibold rounded-lg bg-techCian/10 border border-techCian/30 hover:bg-techCian/20 transition-all text-techCian cursor-pointer">
-                Configurar Nome
-            </button>
-            <a href="mailto:contacto@lz79freelance.com" class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-800 border border-gray-700 hover:bg-gray-700 transition-all text-techGreen">
-                Contacto
-            </a>
-        </div>
     </div>
 </header>
 
-<main id="inicio">
 
-    <!-- =================================================
-         PORTAL CENTRAL LIMPIO CON RUEDA INTERACTIVA E INFORMATIVA
-         ================================================= -->
-    <section id="portal" class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-12 overflow-hidden">
-        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-techGreen/10 rounded-full blur-[140px] pointer-events-none"></div>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-        <div class="text-center mb-6 z-10">
-            <span class="text-xs font-bold tracking-widest text-techGreen uppercase mb-1 block">HIGH-PERFORMANCE REVENUE HUB</span>
-            <h1 class="text-3xl md:text-5xl font-black tracking-tight">
-                Ecosistema <span class="text-transparent bg-clip-text bg-gradient-to-r from-techGreen to-techCian">LZ79 & Galia Bee</span>
+<main>
+
+<section id="inicio" class="hero">
+    <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                TECNOLOXÍA · GALICIA
+            </div>
+
+            <h1>
+                Tecnoloxía útil.
+                <span>Feita para a xente.</span>
             </h1>
-            <p class="text-gray-400 text-sm mt-2 max-w-lg mx-auto">Centro de mandos interactivo. Selecciona calquera nodo da roda para acceder ás funcións de busca, chat, pasarela e xestión.</p>
+
+            <p class="hero-description">
+                Ferramentas dixitais, aplicacións e intelixencia artificial
+                para facilitar o día a día de persoas, profesionais e pequenas empresas.
+            </p>
+
+            <div class="hero-actions">
+                <button id="heroGalia" class="btn btn-primary" type="button">
+                    🐝 Probar Galia
+                </button>
+
+                <a href="#apps" class="btn btn-secondary">
+                    Ver aplicacións
+                </a>
+            </div>
+
+            <div class="hero-note">
+                <span>✓</span> En modo probas · Sen instalación · Na nube
+            </div>
+
         </div>
 
-        <!-- RUEDA DE NODOS CENTRAL FUNCIONAL E INFORMATIVA -->
-        <div class="relative flex items-center justify-center w-full max-w-6xl px-4 z-20">
-            <div class="portal-container relative w-[680px] h-[680px] flex justify-center items-center scale-90 sm:scale-100">
-                
-                <!-- NÚCLEO CENTRAL CON ICOR.PNG GIRANDO -->
-                <div class="absolute w-[190px] h-[190px] bg-[radial-gradient(circle,rgba(0,255,136,0.35)_0%,rgba(7,9,14,0.98)_80%)] border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-techGreen text-center text-[11px] font-black uppercase tracking-wider p-4 shadow-[0_0_40px_rgba(0,255,136,0.6)] z-30 animate-pulse">
-                    <img src="icom.png" alt="Hub" class="w-10 h-10 rounded-xl object-cover mb-1 border border-techGreen/50 animate-spin-360">
-                    LZ79 HUB
-                    <span class="text-[10px] text-white mt-0.5">ACTIVO</span>
+
+        <div class="hero-visual">
+
+            <div class="hero-card">
+
+                <div class="window-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                    <small>galia · search</small>
                 </div>
 
-                <!-- 1. BUSCADOR -->
-                <a href="#galia-buscador" class="absolute top-[10px] left-[272px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">🔍</span>
-                    <span>BUSCADOR</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Filtro local</span>
-                </a>
-                
-                <!-- 2. VERBENAS -->
-                <a href="#actualidad" class="absolute top-[75px] left-[460px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">🎉</span>
-                    <span>VERBENAS</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Agenda do día</span>
-                </a>
+                <div class="galia-screen">
 
-                <!-- 3. CHAT GALIA -->
-                <a href="#galia-chat" class="absolute top-[282px] left-[540px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">⚡</span>
-                    <span>CHAT IA</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Asistente Galia</span>
-                </a>
+                    <div class="galia-brand">
+                        <img src="assets/galia.png" alt="Galia">
+                        <div>
+                            <strong>Galia</strong>
+                            <small>O teu buscador</small>
+                        </div>
+                    </div>
 
-                <!-- 4. PASARELA / PAGOS -->
-                <a href="#servicios" class="absolute top-[490px] left-[460px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">💰</span>
-                    <span>PASARELA</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Cobros & Vendas</span>
-                </a>
+                    <div class="hero-search">
+                        <input
+                            id="searchInput"
+                            type="search"
+                            placeholder="Que queres buscar?"
+                            autocomplete="off">
 
-                <!-- 5. MÉTRICAS -->
-                <a href="#portal" class="absolute top-[555px] left-[272px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">📈</span>
-                    <span>MÉTRICAS</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Rendemento</span>
-                </a>
+                        <button id="searchBtn" type="button">
+                            Buscar
+                        </button>
+                    </div>
 
-                <!-- 6. REDE -->
-                <a href="#actualidad" class="absolute top-[490px] left-[85px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">🌐</span>
-                    <span>METEO</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Mapa Galicia</span>
-                </a>
+                    <div id="searchResult" class="search-result hidden"></div>
 
-                <!-- 7. APPS EN DIRECTO -->
-                <a href="#portal" class="absolute top-[282px] left-[10px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">🚀</span>
-                    <span>APPS LIVE</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Sistemas Flet</span>
-                </a>
+                    <div class="example-searches">
+                        <button type="button" data-query="Galicia">
+                            Galicia
+                        </button>
+                        <button type="button" data-query="Vigo">
+                            Vigo
+                        </button>
+                        <button type="button" data-query="Camiño de Santiago">
+                            Camiño de Santiago
+                        </button>
+                    </div>
 
-                <!-- 8. SERVIZOS -->
-                <a href="#servicios" class="absolute top-[75px] left-[85px] w-[115px] h-[115px] bg-gradient-to-br from-techGreen/20 to-darkBg/95 border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-white text-[11px] font-bold text-center p-2 shadow-[0_0_15px_rgba(0,255,136,0.3)] hover:scale-110 hover:border-white hover:text-techGreen transition-all z-40">
-                    <span class="text-base mb-0.5">🔥</span>
-                    <span>SERVIZOS</span>
-                    <span class="text-[9px] text-gray-400 font-normal">Consultoría</span>
-                </a>
+                </div>
+
             </div>
+
         </div>
-    </section>
 
-    <!-- =================================================
-         BLOQUE UNIFICADO ABAJO: VERBENAS E MAPA METEOROLÓXICO
-         ================================================= -->
-    <section id="actualidad" class="py-20 border-t border-gray-900 bg-gradient-to-b from-black/20 to-darkBg">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold tracking-widest text-techGreen uppercase mb-2 block">PRIMEIRA PLANA GALIA BEE</span>
-                <h3 class="text-3xl font-black text-white tracking-tight">Actualidade en Directo: Verbenas e Meteoroloxía</h3>
-                <p class="text-gray-400 text-sm mt-2">Toda a información clave dun só vistazo no territorio galego.</p>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     GALIA
+========================================================= -->
+
+<section id="galia" class="section section-dark">
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-label">01 · GALIA</span>
+                <h2>Un buscador con identidade propia.</h2>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
-                
-                <!-- COLUMNA 1: FIESTAS E VERBENAS -->
-                <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
-                            <div>
-                                <span class="text-xs font-bold text-techGreen uppercase tracking-wider block">Axenda Oficial</span>
-                                <h4 class="text-xl font-black text-white mt-0.5">Festas e Verbenas</h4>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-techGreen/10 text-techGreen border border-techGreen/20 text-xs font-bold">Hoxe, 18 Ago</span>
-                        </div>
-
-                        <div class="space-y-4" id="calendario-orquestas-container">
-                            <div class="bg-gray-900/90 border border-gray-800 hover:border-techGreen/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                                <div class="flex items-center gap-3.5">
-                                    <div class="w-10 h-10 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen font-black text-sm shrink-0">22h</div>
-                                    <div>
-                                        <h5 class="font-bold text-white text-sm">Orquestra Panorama</h5>
-                                        <p class="text-xs text-gray-400">📍 Cambados · Festa Patronal</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-techGreen/10 text-techGreen font-semibold shrink-0">Confirmado</span>
-                            </div>
-
-                            <div class="bg-gray-900/90 border border-gray-800 hover:border-techCian/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                                <div class="flex items-center gap-3.5">
-                                    <div class="w-10 h-10 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian font-black text-sm shrink-0">23h</div>
-                                    <div>
-                                        <h5 class="font-bold text-white text-sm">Paris de Noia</h5>
-                                        <p class="text-xs text-gray-400">📍 Betanzos · Festas de San Roque</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-techCian/10 text-techCian font-semibold shrink-0">En Xira</span>
-                            </div>
-
-                            <div class="bg-gray-900/90 border border-gray-800 hover:border-amber-500/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                                <div class="flex items-center gap-3.5">
-                                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 font-black text-sm shrink-0">21h</div>
-                                    <div>
-                                        <h5 class="font-bold text-white text-sm">Los Satélites</h5>
-                                        <p class="text-xs text-gray-400">📍 Vigo · Verbena Popular</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 font-semibold shrink-0">Entrada Libre</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- COLUMNA 2: MAPA METEOROLÓXICO EXPANDIDO -->
-                <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
-                            <div>
-                                <span class="text-xs font-bold text-techCian uppercase tracking-wider block">MeteoGalicia</span>
-                                <h4 class="text-xl font-black text-white mt-0.5">Mapa e Previsión Territorial</h4>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-techCian/10 text-techCian border border-techCian/20 text-xs font-bold">En Directo</span>
-                        </div>
-                    </div>
-
-                    <div class="relative bg-gradient-to-b from-gray-950 to-[#030712] border border-techCian/30 rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center text-center overflow-hidden my-auto min-h-[320px] shadow-[inset_0_0_30px_rgba(6,182,212,0.1)]">
-                        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#06B6D4_2px,transparent_2px)] [background-size:24px_24px] rounded-2xl pointer-events-none"></div>
-
-                        <div class="absolute top-4 left-6 bg-gray-900/90 border border-gray-700/60 px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-lg flex items-center gap-2">
-                            <span>⛅</span> A Coruña <span class="text-techCian font-black">22°C</span>
-                        </div>
-                        <div class="absolute top-4 right-6 bg-gray-900/90 border border-gray-700/60 px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-lg flex items-center gap-2">
-                            <span>☀️</span> Lugo <span class="text-techGreen font-black">28°C</span>
-                        </div>
-                        <div class="absolute bottom-4 left-6 bg-gray-900/90 border border-gray-700/60 px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-lg flex items-center gap-2">
-                            <span>☀️</span> Vigo <span class="text-techGreen font-black">30°C</span>
-                        </div>
-                        <div class="absolute bottom-4 right-6 bg-gray-900/90 border border-gray-700/60 px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-lg flex items-center gap-2">
-                            <span>☀️</span> Ourense <span class="text-amber-400 font-black">34°C</span>
-                        </div>
-
-                        <div class="relative z-10 py-6">
-                            <div class="w-20 h-20 mx-auto rounded-3xl bg-techCian/10 border-2 border-techCian/40 flex items-center justify-center text-4xl shadow-[0_0_25px_rgba(6,182,212,0.4)] mb-4">
-                                🗺️
-                            </div>
-                            <h5 class="text-lg font-black text-white tracking-wide">Radar Territorial de Galicia</h5>
-                            <p class="text-xs text-gray-300 mt-2 max-w-sm mx-auto leading-relaxed">
-                                Visualización xeral do tempo, temperaturas máximas/mínimas e alertas meteorolóxicas oficiais actualizadas en tempo real.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="pt-6 text-center">
-                        <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full py-3.5 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all shadow-lg">
-                            🔗 Consultar Mapa Oficial en MeteoGalicia &rarr;
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+            <p>
+                Galia nace como un proxecto experimental para achegar
+                a busca e a intelixencia artificial ao contorno local.
+            </p>
         </div>
-    </section>
 
-    <!-- =================================================
-         GALIA CHAT (SECCIÓN DEDICADA)
-         ================================================= -->
-    <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Intelixencia Artificial</span>
-                <h2 class="text-3xl font-bold mb-4">Chat Galia · Modo probas</h2>
-                <p class="text-gray-400">Interactúa en tempo real co asistente intelixente do ecosistema.</p>
-            </div>
 
-            <div class="bg-cardBg border border-techGreen/30 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="font-semibold text-sm text-white" id="display-nombre-equipo">Galia Assistant</span>
-                    </div>
-                    <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1">Modo probas</span>
+        <div class="feature-grid">
+
+            <article class="feature-card feature-main">
+
+                <div class="feature-image">
+                    <img src="assets/galia-resultados.png"
+                         alt="Resultados do buscador Galia">
                 </div>
-                <div id="chat-messages" class="p-6 h-64 overflow-y-auto chat-scrollbar flex flex-col space-y-4 text-sm"></div>
-                <div class="p-4 bg-gray-900 border-t border-gray-800 flex gap-3">
-                    <input id="chat-input" type="text" placeholder="Escribe a túa consulta..." class="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techGreen">
-                    <button type="button" onclick="enviarMensajeChat()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm cursor-pointer">Enviar</button>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- =================================================
-         GALIA BEE (BUSCADOR LOCAL)
-         ================================================= -->
-    <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 relative">
-            <div class="text-center mb-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Motor Local Integrado
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
-                <p class="text-xl text-gray-300 mt-3 font-semibold">Busca rexional de verbenas e eventos</p>
-            </div>
+                <div class="feature-content">
+                    <span class="card-tag">BUSCADOR</span>
+                    <h3>Busca información real.</h3>
+                    <p>
+                        Consulta información e accede directamente ás fontes
+                        dos resultados.
+                    </p>
 
-            <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
-                <div class="flex gap-3">
-                    <div class="relative flex-1">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
-                        <input id="galia-search-input" type="text" placeholder="Escribe cidade, orquestra..." 
-                            class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
-                            oninput="ejecutarBusquedaGalia();">
-                    </div>
-                    <button type="button" onclick="abrirModal()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide cursor-pointer shadow-lg">
-                        Personalizar
+                    <button id="galiaSearchCta"
+                            class="text-button"
+                            type="button">
+                        Abrir Galia →
                     </button>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- =================================================
-         SERVIZOS
-         ================================================= -->
-    <section id="servicios" class="py-24 border-t border-gray-900 bg-black/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Liñas de Negocio LZ79</h2>
-                <p class="text-gray-400">Servizos técnicos especializados para transformar problemas complexos en sistemas eficientes.</p>
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">🐝</div>
+
+                <span class="card-tag">ASISTENTE</span>
+
+                <h3>Pregunta a Galia.</h3>
+
+                <p>
+                    Un asistente dixital pensado para conversar,
+                    probar ideas e explorar novas posibilidades.
+                </p>
+
+                <button id="openGalia"
+                        class="btn btn-small btn-primary"
+                        type="button">
+                    Probar
+                </button>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">🌿</div>
+
+                <span class="card-tag">LOCAL</span>
+
+                <h3>Primeiro o próximo.</h3>
+
+                <p>
+                    Galicia, as súas localidades, negocios,
+                    cultura, turismo e actividade.
+                </p>
+
+                <a href="#hoxe" class="text-button">
+                    Descubrir Hoxe →
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     HOXE
+========================================================= -->
+
+<section id="hoxe" class="section">
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-label">02 · HOXE</span>
+                <h2>Que pasa hoxe?</h2>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techGreen/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen mb-6 text-xl font-bold">🔌</div>
-                    <h3 class="text-xl font-semibold mb-3">API Development</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Conexión de sistemas, sincronización de plataformas e automatización do fluxo de datos en Python.</p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techCian/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian mb-6 text-xl font-bold">⚙️</div>
-                    <h3 class="text-xl font-semibold mb-3">Automation & AI</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Deseño de solucións lóxicas e integración de IA orientadas á optimización de procesos profesionais.</p>
-                </div>
-                <div class="p-8 rounded-2xl bg-cardBg border border-gray-800 hover:border-techGreen/50 transition-all">
-                    <div class="w-12 h-12 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen mb-6 text-xl font-bold">💼</div>
-                    <h3 class="text-xl font-semibold mb-3">Tech Consulting</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">Auditoría técnica, viabilidade de proxectos de enxeñaría e arquitectura de software.</p>
-                </div>
-            </div>
+            <p>
+                Un espazo pensado para descubrir actividades,
+                eventos e cousas que facer preto de ti.
+            </p>
         </div>
-    </section>
+
+
+        <div class="hoxe-card">
+
+            <div class="hoxe-copy">
+
+                <span class="card-tag">PROXIMAMENTE</span>
+
+                <h3>
+                    O que está pasando
+                    <span>ao teu redor.</span>
+                </h3>
+
+                <p>
+                    Eventos, festas, actividades, cultura,
+                    turismo e propostas locais nun único lugar.
+                </p>
+
+                <button class="btn btn-secondary" type="button">
+                    Próximamente
+                </button>
+
+            </div>
+
+            <div class="hoxe-visual">
+                <div class="calendar-icon">HOXE</div>
+                <div class="big-date">24</div>
+                <div class="calendar-month">GALICIA</div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     APLICACIÓNS
+========================================================= -->
+
+<section id="apps" class="section section-dark">
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-label">03 · LZ79 APPS</span>
+                <h2>Ferramentas que fan o traballo máis fácil.</h2>
+            </div>
+
+            <p>
+                Aplicacións sinxelas para profesionais,
+                autónomos e pequenas empresas.
+            </p>
+        </div>
+
+
+        <div class="apps-grid">
+
+            <article class="app-card">
+
+                <div class="app-image">
+                    <img src="assets/contabilidad-menu.png"
+                         alt="LZ79 Essential">
+                </div>
+
+                <div class="app-body">
+                    <span class="card-tag">XESTIÓN</span>
+
+                    <h3>LZ79 Essential</h3>
+
+                    <p>
+                        Contabilidade e xestión básica
+                        nunha aplicación sinxela.
+                    </p>
+
+                    <a href="#" class="text-button">
+                        Coñecer Essential →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="app-card">
+
+                <div class="app-image">
+                    <img src="assets/comandas-tablet.png"
+                         alt="LZ79 Comandas">
+                </div>
+
+                <div class="app-body">
+                    <span class="card-tag">HOSTALARÍA</span>
+
+                    <h3>Comandas</h3>
+
+                    <p>
+                        Xestión de comandas para restaurantes,
+                        bares e pequenos negocios.
+                    </p>
+
+                    <a href="#" class="text-button">
+                        Ver Comandas →
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="app-card">
+
+                <div class="app-image">
+                    <img src="assets/inventario-ia.png"
+                         alt="LZ79 Inventario">
+                </div>
+
+                <div class="app-body">
+                    <span class="card-tag">INVENTARIO</span>
+
+                    <h3>Inventario</h3>
+
+                    <p>
+                        Control de produtos e stock
+                        cunha visión máis moderna.
+                    </p>
+
+                    <a href="#" class="text-button">
+                        Ver Inventario →
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     IA
+========================================================= -->
+
+<section id="ia" class="section">
+    <div class="container">
+
+        <div class="ia-panel">
+
+            <div class="ia-copy">
+
+                <span class="section-label">04 · INTELIXENCIA ARTIFICIAL</span>
+
+                <h2>
+                    A IA non ten que ser complicada.
+                </h2>
+
+                <p>
+                    Queremos probar como a intelixencia artificial pode
+                    converterse nunha ferramenta útil para persoas e negocios
+                    sen facer as cousas innecesariamente difíciles.
+                </p>
+
+                <div class="ia-points">
+                    <span>✓ Fácil de usar</span>
+                    <span>✓ Na nube</span>
+                    <span>✓ En modo probas</span>
+                </div>
+
+                <button id="contactGalia"
+                        class="btn btn-primary"
+                        type="button">
+                    Probar Galia
+                </button>
+
+            </div>
+
+            <div class="ia-art">
+                <img src="assets/galia-chat.png"
+                     alt="Galia Chat">
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     CONTACTO
+========================================================= -->
+
+<section id="contacto" class="section section-dark">
+    <div class="container">
+
+        <div class="contact-panel">
+
+            <div>
+                <span class="section-label">05 · CONTACTO</span>
+
+                <h2>
+                    Tes unha idea?
+                    Falemos.
+                </h2>
+
+                <p>
+                    LZ79 Freelance é un proxecto independente.
+                    Desenvolvemento web, aplicacións e ferramentas dixitais.
+                </p>
+            </div>
+
+            <div class="contact-actions">
+
+                <a href="mailto:contacto@lz79freelance.com"
+                   class="btn btn-primary">
+                    Contactar
+                </a>
+
+                <button id="contactGalia"
+                        class="btn btn-secondary"
+                        type="button">
+                    Falar con Galia
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 </main>
 
-<!-- =================================================
-     PANTALLA EMERXENTE (MODAL DE CONFIGURACIÓN)
-     ================================================= -->
-<div id="modal-personalizado" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-    <div class="bg-cardBg border border-techGreen/40 rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative">
-        <button onclick="cerrarModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold cursor-pointer">
-            &times;
-        </button>
 
-        <h3 class="text-2xl font-black text-white mb-2">Personalizar Galia Bee</h3>
-        <p class="text-sm text-gray-400 mb-6">Introduce o voso nome ou equipo para o ecosistema.</p>
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-        <div class="space-y-4">
-            <div>
-                <label class="block text-xs font-bold text-techGreen uppercase mb-2">Nome ou Equipo</label>
-                <input type="text" id="input-nombre" placeholder="Ex. Equipo LZ79" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-techGreen">
+<footer class="site-footer">
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            <strong>LZ79 FREELANCE</strong>
+            <span>Tecnoloxía independente desde Galicia.</span>
+        </div>
+
+        <div class="footer-links">
+            <a href="#galia">Galia</a>
+            <a href="#hoxe">Hoxe</a>
+            <a href="#apps">Aplicacións</a>
+            <a href="#ia">IA</a>
+            <a href="#contacto">Contacto</a>
+            <a href="politica-privacidad.html">Privacidade</a>
+            <a href="terminos-y-condiciones.html">Termos</a>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 LZ79 Freelance · Galia en modo probas.
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- =========================================================
+     GALIA OVERLAY
+========================================================= -->
+
+<div id="galiaOverlay"
+     class="galia-overlay"
+     aria-hidden="true">
+
+    <div class="galia-window">
+
+        <div class="galia-window-header">
+
+            <div class="galia-window-brand">
+                <span>🐝</span>
+                <strong>Galia</strong>
+                <small>modo probas</small>
             </div>
 
-            <button type="button" onclick="guardarPersonalizacion()" class="w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black py-3 rounded-xl hover:opacity-90 transition-all text-sm mt-4 cursor-pointer">
-                Gardar Cambios
+            <button id="closeGalia"
+                    class="close-galia"
+                    type="button"
+                    aria-label="Pechar">
+                ×
             </button>
+
         </div>
+
+
+        <div class="galia-tabs">
+
+            <button class="tab active"
+                    data-tab="buscar"
+                    type="button">
+                Buscar
+            </button>
+
+            <button class="tab"
+                    data-tab="chat"
+                    type="button">
+                Chat
+            </button>
+
+        </div>
+
+
+        <!-- BUSCAR -->
+
+        <div id="buscar" class="tab-panel active">
+
+            <div class="overlay-search">
+
+                <input id="overlaySearch"
+                       type="search"
+                       placeholder="Que queres buscar?"
+                       autocomplete="off">
+
+                <button id="overlaySearchBtn"
+                        type="button">
+                    Buscar
+                </button>
+
+            </div>
+
+            <div id="overlayResults"
+                 class="overlay-results">
+            </div>
+
+        </div>
+
+
+        <!-- CHAT -->
+
+        <div id="chat" class="tab-panel">
+
+            <div id="chatMessages" class="chat-messages">
+
+                <div class="bubble bot">
+                    🐝 Ola! Son Galia.
+                    Estou en modo probas. Pregúntame algo.
+                </div>
+
+            </div>
+
+            <form id="chatForm" class="chat-form">
+
+                <input id="chatInput"
+                       type="text"
+                       placeholder="Escribe a túa pregunta..."
+                       autocomplete="off">
+
+                <button type="submit">
+                    Enviar
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
+
 </div>
 
-<footer class="border-t border-gray-900 py-8 bg-black/40 text-center text-xs text-gray-500">
-    © 2026 LZ79. Todos os dereitos reservados. Ecosistema Galia Bee.
-</footer>
 
-<script>
-    function enviarMensajeChat() {
-        const input = document.getElementById("chat-input");
-        const container = document.getElementById("chat-messages");
-        if (!input.value.trim()) return;
+<!-- =========================================================
+     SCRIPT
+========================================================= -->
 
-        const userMsg = document.createElement("div");
-        userMsg.className = "flex justify-end";
-        userMsg.innerHTML = `<div class="bg-techGreen text-darkBg p-3 rounded-xl max-w-[80%]">${input.value}</div>`;
-        container.appendChild(userMsg);
+<script src="script.js"></script>
 
-        const query = input.value;
-        input.value = "";
-
-        setTimeout(() => {
-            const aiMsg = document.createElement("div");
-            aiMsg.className = "flex justify-start";
-            aiMsg.innerHTML = `<div class="bg-gray-800 text-gray-200 p-3 rounded-xl max-w-[80%]">Galia Bee procesou "${query}" localmente.</div>`;
-            container.appendChild(aiMsg);
-            container.scrollTop = container.scrollHeight;
-        }, 500);
-    }
-
-    function ejecutarBusquedaGalia() {
-        const query = document.getElementById("galia-search-input").value.toLowerCase().trim();
-        const items = document.querySelectorAll("#calendario-orquestas-container > div");
-
-        items.forEach(item => {
-            const tarjetaTexto = item.innerText.toLowerCase();
-            if (tarjetaTexto.includes(query)) {
-                item.style.display = "flex";
-            } else {
-                item.style.display = "none";
-            }
-        });
-    }
-
-    function abrirModal() {
-        document.getElementById("modal-personalizado").classList.remove("hidden");
-    }
-
-    function cerrarModal() {
-        document.getElementById("modal-personalizado").classList.add("hidden");
-    }
-
-    function guardarPersonalizacion() {
-        const nombre = document.getElementById("input-nombre").value.trim();
-        if (nombre) {
-            document.getElementById("display-nombre-equipo").innerText = nombre;
-        }
-        alert("¡Cambios gardados correctamente!");
-        cerrarModal();
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const container = document.getElementById("chat-messages");
-        if(container) {
-            container.innerHTML = `<div class="bg-gray-800 text-gray-200 p-3 rounded-xl max-w-[80%]">¡Ola! Son Galia Bee. En que podo axudarte hoxe?</div>`;
-        }
-    });
-</script>
-<!-- =================================================
-         NUEVA SECCIÓN: CAPTURAS DE PANTALLA
-         ================================================= -->
-    <section id="capturas" class="py-24 border-t border-gray-900 bg-black/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest text-techGreen uppercase mb-2 block">DEMOSTRACIÓN VISUAL</span>
-                <h2 class="text-3xl font-black text-white tracking-tight">Visualiza o Ecosistema</h2>
-                <p class="text-gray-400 text-sm mt-2 max-w-md mx-auto">Capturas de pantalla detalladas da nosa aplicación en funcionamento.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Captura 1 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techGreen/50">
-                    <img src="captura1.png" alt="Captura de pantalla principal 1" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Panel de Control Principal</h4>
-                        <p class="text-xs text-gray-400 mt-1">Vista xeral do ecosistema LZ79.</p>
-                    </div>
-                </div>
-
-                <!-- Captura 2 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techCian/50">
-                    <img src="captura2.png" alt="Captura de pantalla do Chat 2" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Interface de Chat Galia</h4>
-                        <p class="text-xs text-gray-400 mt-1">Interacción co asistente intelixente.</p>
-                    </div>
-                </div>
-
-                <!-- Captura 3 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techGreen/50">
-                    <img src="captura3.png" alt="Captura de pantalla do Buscador 3" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Buscador Galia Bee</h4>
-                        <p class="text-xs text-gray-400 mt-1">Filtro e visualización de eventos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main> <!-- Cierre del main principal -->
-
-<!-- =================================================
-         NUEVA SECCIÓN: CAPTURAS DE PANTALLA
-         ================================================= -->
-    <section id="capturas" class="py-24 border-t border-gray-900 bg-black/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-xs font-bold tracking-widest text-techGreen uppercase mb-2 block">DEMOSTRACIÓN VISUAL</span>
-                <h2 class="text-3xl font-black text-white tracking-tight">Visualiza o Ecosistema</h2>
-                <p class="text-gray-400 text-sm mt-2 max-w-md mx-auto">Capturas de pantalla detalladas da nosa aplicación en funcionamento.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Captura 1 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techGreen/50">
-                    <img src="captura1.png" alt="Captura de pantalla principal 1" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Panel de Control Principal</h4>
-                        <p class="text-xs text-gray-400 mt-1">Vista xeral do ecosistema LZ79.</p>
-                    </div>
-                </div>
-
-                <!-- Captura 2 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techCian/50">
-                    <img src="captura2.png" alt="Captura de pantalla do Chat 2" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Interface de Chat Galia</h4>
-                        <p class="text-xs text-gray-400 mt-1">Interacción co asistente intelixente.</p>
-                    </div>
-                </div>
-
-                <!-- Captura 3 -->
-                <div class="group rounded-3xl border border-gray-800 p-2 bg-gray-900 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-techGreen/50">
-                    <img src="captura3.png" alt="Captura de pantalla do Buscador 3" class="rounded-2xl w-full aspect-[16/10] object-cover transition-all duration-500 group-hover:scale-[1.02]">
-                    <div class="p-4 text-center">
-                        <h4 class="font-bold text-white text-sm">Buscador Galia Bee</h4>
-                        <p class="text-xs text-gray-400 mt-1">Filtro e visualización de eventos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</main> <!-- Cierre del contenedor main principal -->
-
-<!-- =====================================================
-     FOOTER LEGAL DEFINITIVO (AHORA SÍ, CON TODO)
-     ===================================================== -->
-<footer class="border-t border-gray-900 py-12 bg-black/40 text-center">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-xs text-gray-500">
-            &copy; 2026 LZ79. Todos os dereitos reservados.
-        </div>
-        
-        <nav class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-bold text-gray-400">
-            <a href="#" class="hover:text-techGreen transition-colors">Política de Privacidade</a>
-            <a href="#" class="hover:text-techGreen">Termos e Condicións</a>
-            <a href="#" class="hover:text-techGreen">Aviso Legal</a>
-        </nav>
-    </div>
-</footer>
 </body>
 </html>
+```
