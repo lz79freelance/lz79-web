@@ -54,7 +54,7 @@
             <a href="#portal" class="hover:text-white transition-colors">Ecosistema</a>
             <a href="#galia-chat" class="hover:text-white transition-colors">Galia Chat</a>
             <a href="#galia-buscador" class="hover:text-white transition-colors">Galia Bee</a>
-            <a href="#orquestas" class="hover:text-white transition-colors">Verbenas</a>
+            <a href="#orquestas" class="hover:text-white transition-colors">Verbenas & Tiempo</a>
             <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
         </nav>
 
@@ -72,7 +72,7 @@
 <main id="inicio">
 
     <!-- =================================================
-         PORTAL CENTRAL CON MINI BLOQUE DE FIESTAS Y TIEMPO A LOS LADOS
+         PORTAL CENTRAL LIMPIO (RUEDA ORIGINAL)
          ================================================= -->
     <section id="portal" class="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-12 overflow-hidden">
         <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-techGreen/10 rounded-full blur-[140px] pointer-events-none"></div>
@@ -84,22 +84,8 @@
             </h1>
         </div>
 
-        <!-- CONTENEDOR CENTRAL: MINI TIEMPO (IZQ) + RUEDA + MINI FIESTAS (DER) -->
-        <div class="relative flex items-center justify-center w-full max-w-7xl px-4 z-20">
-            
-            <!-- WIDGET IZQUIERDO: METEOGALICIA -->
-            <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
-               class="hidden xl:flex flex-col items-center bg-cardBg/90 backdrop-blur-md border border-techCian/40 hover:border-techCian rounded-2xl p-4 shadow-2xl transition-all hover:scale-105 absolute left-4 group cursor-pointer w-48 text-center">
-                <span class="text-[10px] font-bold text-techCian uppercase tracking-wider mb-1 flex items-center gap-1">
-                    <span>⚡</span> MeteoGalicia
-                </span>
-                <div class="text-3xl my-1 group-hover:scale-110 transition-transform">☀️</div>
-                <div class="text-2xl font-black text-white leading-none">24°C</div>
-                <span class="text-[11px] text-gray-300 mt-1">Galicia · Soleado</span>
-                <span class="mt-3 text-[10px] text-techGreen font-semibold underline underline-offset-2">Ver radar &rarr;</span>
-            </a>
-
-            <!-- RUEDA DE NODOS CENTRAL -->
+        <!-- RUEDA DE NODOS CENTRAL LIMPIA -->
+        <div class="relative flex items-center justify-center w-full max-w-6xl px-4 z-20">
             <div class="portal-container relative w-[650px] h-[650px] flex justify-center items-center scale-90 sm:scale-100">
                 <div class="absolute w-[180px] h-[180px] bg-[radial-gradient(circle,rgba(0,255,136,0.35)_0%,rgba(7,9,14,0.98)_80%)] border-2 border-techGreen rounded-full flex flex-col justify-center items-center text-techGreen text-center text-[11px] font-black uppercase tracking-wider p-4 shadow-[0_0_40px_rgba(0,255,136,0.6)] z-30 animate-pulse">
                     LZ79 REVENUE
@@ -138,101 +124,11 @@
                     <span class="text-lg mb-1">🔥</span>CLOSING
                 </a>
             </div>
-
-            <!-- WIDGET DERECHO: EL MINI BLOQUE DE FIESTAS (VERSIÓN REDUCIDA DEL DE ABAJO) -->
-            <a href="#orquestas" 
-               class="hidden xl:flex flex-col bg-cardBg/90 backdrop-blur-md border border-techGreen/40 hover:border-techGreen rounded-2xl p-3.5 shadow-2xl transition-all hover:scale-105 absolute right-4 group cursor-pointer w-64">
-                <div class="flex items-center justify-between border-b border-gray-800 pb-2 mb-2.5">
-                    <span class="text-[10px] font-bold text-techGreen uppercase tracking-wider flex items-center gap-1">
-                        🎉 Fiestas · Hoy, 18 Ago
-                    </span>
-                    <span class="w-2 h-2 rounded-full bg-techGreen animate-pulse"></span>
-                </div>
-
-                <!-- Mini tarjeta 1 -->
-                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2 flex items-center gap-2.5 mb-2">
-                    <div class="w-7 h-7 rounded-lg bg-techGreen/10 flex items-center justify-center text-techGreen font-black text-[10px] shrink-0">22h</div>
-                    <div class="overflow-hidden">
-                        <h4 class="text-[11px] font-bold text-white truncate">Orquesta Panorama</h4>
-                        <p class="text-[10px] text-gray-400 truncate">📍 Cambados</p>
-                    </div>
-                </div>
-
-                <!-- Mini tarjeta 2 -->
-                <div class="bg-gray-900/90 border border-gray-800 rounded-xl p-2 flex items-center gap-2.5">
-                    <div class="w-7 h-7 rounded-lg bg-techCian/10 flex items-center justify-center text-techCian font-black text-[10px] shrink-0">23h</div>
-                    <div class="overflow-hidden">
-                        <h4 class="text-[11px] font-bold text-white truncate">Paris de Noia</h4>
-                        <p class="text-[10px] text-gray-400 truncate">📍 Betanzos</p>
-                    </div>
-                </div>
-
-                <span class="mt-2.5 text-center text-[10px] text-techGreen font-semibold underline underline-offset-2">Ver agenda completa &rarr;</span>
-            </a>
-
         </div>
     </section>
 
     <!-- =================================================
-         GALIA CHAT
-         ================================================= -->
-    <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Inteligencia Artificial</span>
-                <h2 class="text-3xl font-bold mb-4">Galia Chat · Modo pruebas</h2>
-                <p class="text-gray-400">Interactúa en tiempo real con el asistente inteligente del ecosistema.</p>
-            </div>
-
-            <div class="bg-cardBg border border-techGreen/30 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="font-semibold text-sm text-white" id="display-nombre-equipo">Galia Assistant</span>
-                    </div>
-                    <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1">Modo pruebas</span>
-                </div>
-                <div id="chat-messages" class="p-6 h-64 overflow-y-auto chat-scrollbar flex flex-col space-y-4 text-sm"></div>
-                <div class="p-4 bg-gray-900 border-t border-gray-800 flex gap-3">
-                    <input id="chat-input" type="text" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techGreen">
-                    <button type="button" onclick="enviarMensajeChat()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm cursor-pointer">Enviar</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =================================================
-         GALIA BEE (BUSCADOR LOCAL)
-         ================================================= -->
-    <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 relative">
-            <div class="text-center mb-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Motor Local Integrado
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
-                <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional de verbenas y eventos</p>
-            </div>
-
-            <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
-                <div class="flex gap-3">
-                    <div class="relative flex-1">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
-                        <input id="galia-search-input" type="text" placeholder="Escribe ciudad, orquesta..." 
-                            class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
-                            oninput="ejecutarBusquedaGalia();">
-                    </div>
-                    <button type="button" onclick="abrirModal()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide cursor-pointer shadow-lg">
-                        Personalizar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =================================================
-         CALENDARIO DE ORQUESTAS POR FECHAS
+         BLOQUE GRANDE 1: CALENDARIO DE FIESTAS Y VERBENAS
          ================================================= -->
     <section id="orquestas" class="py-20 border-t border-gray-900 bg-gradient-to-b from-black/20 to-darkBg">
         <div class="max-w-6xl mx-auto px-6">
@@ -298,6 +194,123 @@
                     <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
                         <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">Entrada Libre</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================
+         BLOQUE GRANDE 2: METEOROLOGÍA CON MAPA DE GALICIA
+         ================================================= -->
+    <section class="py-20 border-t border-gray-900 bg-black/40">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">METEOGALICIA</span>
+                <h3 class="text-3xl font-black text-white tracking-tight">Estado del Tiempo en Galicia</h3>
+                <p class="text-gray-400 text-sm mt-2">Consulta general de previsión meteorológica y mapa territorial.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center bg-cardBg border border-gray-800 rounded-3xl p-8 shadow-2xl">
+                <!-- Info general de ciudades -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-gray-900/80 rounded-2xl border border-gray-800">
+                        <div>
+                            <h4 class="font-bold text-white">Santiago de Compostela</h4>
+                            <p class="text-xs text-gray-400">Martes 18 · Despejado</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xl font-black text-techGreen">33°C</span>
+                            <span class="text-xs text-gray-400 block">Mín: 17°C</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-gray-900/80 rounded-2xl border border-gray-800">
+                        <div>
+                            <h4 class="font-bold text-white">Praia do Río Sandeu</h4>
+                            <p class="text-xs text-gray-400">Actualizado 18 Ago - 11:12h</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xl font-black text-techCian">29°C</span>
+                            <span class="text-xs text-gray-400 block">Agua: 20°C</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 text-center md:text-left">
+                        <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-bold text-techCian hover:text-white transition-colors">
+                            <span>🔗 Acceder a MeteoGalicia (Radar y Avisos Oficiales)</span> &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Simulación o contenedor visual del mapa de Galicia -->
+                <div class="relative bg-gray-950 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[280px]">
+                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#06B6D4_1px,transparent_1px)] [background-size:16px_16px] rounded-2xl"></div>
+                    <span class="text-4xl mb-3">🗺️</span>
+                    <h4 class="text-lg font-bold text-white relative z-10">Mapa Territorial Galicia</h4>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1 relative z-10">Previsión detallada por comarcas y estaciones meteorológicas oficiales.</p>
+                    <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
+                       class="mt-6 px-5 py-2.5 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all relative z-10">
+                        Ver Mapa Interactivo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================
+         GALIA CHAT
+         ================================================= -->
+    <section id="galia-chat" class="py-24 border-t border-gray-900 bg-black/40 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-techCian uppercase mb-2 block">Inteligencia Artificial</span>
+                <h2 class="text-3xl font-bold mb-4">Galia Chat · Modo pruebas</h2>
+                <p class="text-gray-400">Interactúa en tiempo real con el asistente inteligente del ecosistema.</p>
+            </div>
+
+            <div class="bg-cardBg border border-techGreen/30 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-gray-900 px-6 py-4 border-b border-gray-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="font-semibold text-sm text-white" id="display-nombre-equipo">Galia Assistant</span>
+                    </div>
+                    <span class="text-xs text-amber-400 border border-amber-500/20 bg-amber-500/10 rounded px-2 py-1">Modo pruebas</span>
+                </div>
+                <div id="chat-messages" class="p-6 h-64 overflow-y-auto chat-scrollbar flex flex-col space-y-4 text-sm"></div>
+                <div class="p-4 bg-gray-900 border-t border-gray-800 flex gap-3">
+                    <input id="chat-input" type="text" placeholder="Escribe tu consulta..." class="flex-1 bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-techGreen">
+                    <button type="button" onclick="enviarMensajeChat()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all text-sm cursor-pointer">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================
+         GALIA BEE (BUSCADOR LOCAL)
+         ================================================= -->
+    <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 relative">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Motor Local Integrado
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
+                <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional de verbenas y eventos</p>
+            </div>
+
+            <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
+                <div class="flex gap-3">
+                    <div class="relative flex-1">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
+                        <input id="galia-search-input" type="text" placeholder="Escribe ciudad, orquesta..." 
+                            class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
+                            oninput="ejecutarBusquedaGalia();">
+                    </div>
+                    <button type="button" onclick="abrirModal()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide cursor-pointer shadow-lg">
+                        Personalizar
+                    </button>
                 </div>
             </div>
         </div>
