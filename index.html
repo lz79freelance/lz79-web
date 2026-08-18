@@ -10,31 +10,38 @@
 
     <meta
         name="description"
-        content="LZ79 Freelance · tecnoloxía, aplicacións e Galia."
+        content="LZ79 Freelance · tecnoloxía, software, IA e Galia."
     >
 
-    <title>LZ79 Freelance · Galia</title>
+    <meta
+        name="theme-color"
+        content="#08090c"
+    >
+
+    <title>LZ79 Freelance · Tecnoloxía con identidade</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
 <header class="site-header">
 
     <div class="header-inner">
 
         <a href="#inicio" class="logo">
+
             <span class="logo-mark">LZ</span>
 
             <span class="logo-name">
                 LZ79
                 <small>FREELANCE</small>
             </span>
+
         </a>
 
 
@@ -53,8 +60,11 @@
             class="menu-toggle"
             aria-label="Abrir menú"
             aria-expanded="false"
+            type="button"
         >
-            ☰
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
     </div>
@@ -62,12 +72,16 @@
 </header>
 
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section id="inicio" class="hero">
 
@@ -84,10 +98,14 @@
     <div class="container hero-content">
 
 
+        <!-- HERO TEXT -->
+
         <div class="hero-copy">
 
             <div class="eyebrow">
                 LZ79 FREELANCE
+                <span class="eyebrow-line"></span>
+                GALICIA · 2026
             </div>
 
 
@@ -98,12 +116,9 @@
 
 
             <p class="hero-description">
-
-                Desenvolvemento web, aplicacións,
-                intelixencia artificial e proxectos
-                dixitais pensados para persoas,
-                autónomos e pequenas empresas.
-
+                Desenvolvemento web, software e intelixencia
+                artificial para crear ferramentas dixitais
+                útiles, simples e próximas.
             </p>
 
 
@@ -112,8 +127,10 @@
                 <button
                     id="openGalia"
                     class="btn btn-primary"
+                    type="button"
                 >
                     Probar Galia
+                    <span>→</span>
                 </button>
 
 
@@ -130,8 +147,8 @@
             <div class="hero-meta">
 
                 <span>WEB</span>
+                <span>SOFTWARE</span>
                 <span>IA</span>
-                <span>APLICACIÓNS</span>
                 <span>GALICIA</span>
 
             </div>
@@ -139,8 +156,9 @@
         </div>
 
 
-
-        <!-- GALIA HERO -->
+        <!-- =================================================
+             GALIA HERO
+        ================================================== -->
 
         <div class="hero-galia">
 
@@ -152,10 +170,18 @@
 
                 <div class="galia-card-top">
 
-                    <span class="live-dot"></span>
+                    <div class="status">
 
-                    <span>
-                        GALIA · EN PROBAS
+                        <span class="live-dot"></span>
+
+                        <span>
+                            EN PROBAS
+                        </span>
+
+                    </div>
+
+                    <span class="card-code">
+                        001 / GALIA
                     </span>
 
                 </div>
@@ -166,25 +192,24 @@
                     <img
                         src="assets/galia.png"
                         alt="Galia"
-                        onerror="this.style.display='none'"
                     >
-
-                    <div class="galia-placeholder">
-                        🐝
-                    </div>
 
                 </div>
 
 
                 <div class="galia-card-info">
 
+                    <span class="galia-small-title">
+                        LOCAL DIGITAL ASSISTANT
+                    </span>
+
                     <strong>
                         GALIA
                     </strong>
 
-                    <span>
-                        Busca · Chat · Galicia
-                    </span>
+                    <p>
+                        Busca · Chat · Contido local
+                    </p>
 
                 </div>
 
@@ -192,8 +217,10 @@
                 <button
                     id="heroGalia"
                     class="galia-open"
+                    type="button"
                 >
-                    Entrar en Galia →
+                    Entrar en Galia
+                    <span>→</span>
                 </button>
 
             </div>
@@ -202,24 +229,46 @@
 
     </div>
 
+
+    <!-- HERO BOTTOM -->
+
+    <div class="hero-bottom">
+
+        <div class="container hero-bottom-inner">
+
+            <span>
+                DIGITAL PRODUCTS
+            </span>
+
+            <span>
+                INDEPENDENT DEVELOPMENT
+            </span>
+
+            <span>
+                MADE IN GALICIA
+            </span>
+
+        </div>
+
+    </div>
+
 </section>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      GALIA
-===================================================== -->
+========================================================= -->
 
 <section id="galia" class="galia-section">
 
     <div class="container">
 
 
-        <div class="section-intro">
+        <div class="section-heading">
 
-            <span class="section-number">
+            <div class="section-index">
                 01
-            </span>
+            </div>
 
             <div>
 
@@ -232,25 +281,28 @@
                     <strong>Galia.</strong>
                 </h2>
 
-                <p>
-                    Un buscador e asistente dixital
-                    pensado para achegar información,
-                    conversación e contido nun espazo
-                    máis próximo.
-                </p>
-
             </div>
 
         </div>
 
 
-
         <div class="galia-main">
+
+
+            <!-- VISUAL -->
 
             <div class="galia-main-visual">
 
-                <div class="visual-label">
-                    GALIA / 001
+                <div class="visual-top">
+
+                    <span>
+                        GALIA / SYSTEM
+                    </span>
+
+                    <span>
+                        ONLINE
+                    </span>
+
                 </div>
 
 
@@ -259,33 +311,41 @@
                     <img
                         src="assets/galia.png"
                         alt="Galia"
-                        onerror="this.style.display='none'"
                     >
-
-                    <div class="galia-placeholder big">
-                        🐝
-                    </div>
 
                 </div>
 
 
-                <div class="visual-bottom">
-                    <span>
-                        BUSCADOR
-                    </span>
+                <div class="visual-interface">
 
-                    <span>
-                        CHAT
-                    </span>
+                    <div class="interface-line"></div>
 
-                    <span>
-                        IA
-                    </span>
+                    <div class="interface-data">
+
+                        <span>
+                            SEARCH
+                        </span>
+
+                        <span>
+                            CHAT
+                        </span>
+
+                        <span>
+                            LOCAL
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
 
 
+            <!-- CONTENT -->
 
             <div class="galia-main-content">
 
@@ -304,35 +364,61 @@
 
 
                 <p>
-                    Galia está en modo probas.
-                    A idea é crear unha ferramenta
-                    útil, sinxela e próxima.
+                    Galia é un buscador e asistente dixital
+                    pensado para achegar información,
+                    conversación e contido local nun único
+                    espazo.
                 </p>
 
 
                 <button
                     id="galiaSearchCta"
                     class="btn btn-primary"
+                    type="button"
                 >
                     Abrir Galia
+                    <span>→</span>
                 </button>
 
 
                 <div class="galia-stats">
 
                     <div>
-                        <strong>01</strong>
-                        <span>Buscador</span>
+
+                        <strong>
+                            01
+                        </strong>
+
+                        <span>
+                            Buscador
+                        </span>
+
                     </div>
 
-                    <div>
-                        <strong>02</strong>
-                        <span>Chat</span>
-                    </div>
 
                     <div>
-                        <strong>03</strong>
-                        <span>Contido local</span>
+
+                        <strong>
+                            02
+                        </strong>
+
+                        <span>
+                            Chat
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            03
+                        </strong>
+
+                        <span>
+                            Contido local
+                        </span>
+
                     </div>
 
                 </div>
@@ -346,26 +432,25 @@
 </section>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      HOXE
-===================================================== -->
+========================================================= -->
 
 <section id="hoxe" class="hoxe-section">
 
     <div class="container">
 
 
-        <div class="section-intro">
+        <div class="section-heading">
 
-            <span class="section-number">
+            <div class="section-index">
                 02
-            </span>
+            </div>
 
             <div>
 
                 <span class="section-label">
-                    PROXECTO
+                    GALIA / LOCAL
                 </span>
 
                 <h2>
@@ -373,15 +458,9 @@
                     <strong>hoxe?</strong>
                 </h2>
 
-                <p>
-                    Eventos, festas, actividades,
-                    cultura e cousas que facer.
-                </p>
-
             </div>
 
         </div>
-
 
 
         <div class="hoxe-layout">
@@ -398,7 +477,7 @@
                 </strong>
 
                 <small>
-                    AGOSTO
+                    AGO · 2026
                 </small>
 
             </div>
@@ -412,25 +491,46 @@
 
                 <h3>
                     O que está
+                    <br>
                     pasando preto
+                    <br>
                     de ti.
                 </h3>
 
                 <p>
-                    Unha futura sección de Galia
-                    para descubrir actividades,
-                    eventos e propostas locais.
+                    Eventos, festas, cultura, actividades
+                    e cousas que facer. Unha futura sección
+                    de Galia pensada para descubrir o que
+                    acontece ao noso redor.
                 </p>
 
                 <button
                     class="btn btn-outline"
                     data-query="eventos en Galicia"
+                    type="button"
                 >
-                    Explorar Hoxe →
+                    Explorar Hoxe
+                    <span>→</span>
                 </button>
 
             </div>
 
+
+            <div class="hoxe-signal">
+
+                <div class="signal-circle">
+                    <span></span>
+                </div>
+
+                <span>
+                    LOCAL
+                </span>
+
+                <small>
+                    DISCOVERY
+                </small>
+
+            </div>
 
         </div>
 
@@ -439,26 +539,25 @@
 </section>
 
 
-
-<!-- =====================================================
-     PROXECTOS
-===================================================== -->
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
 
 <section id="proyectos" class="projects-section">
 
     <div class="container">
 
 
-        <div class="section-intro">
+        <div class="section-heading">
 
-            <span class="section-number">
+            <div class="section-index">
                 03
-            </span>
+            </div>
 
             <div>
 
                 <span class="section-label">
-                    LZ79
+                    LZ79 PRODUCTS
                 </span>
 
                 <h2>
@@ -466,42 +565,98 @@
                     <strong>que serven.</strong>
                 </h2>
 
-                <p>
-                    Aplicacións pensadas para resolver
-                    problemas reais.
-                </p>
-
             </div>
 
         </div>
 
 
+        <p class="section-description">
+            Software creado para resolver problemas reais
+            de persoas, autónomos e pequenos negocios.
+        </p>
+
 
         <div class="projects-grid">
 
 
-            <!-- ESSENTIAL -->
+            <!-- =================================================
+                 ESSENTIAL
+            ================================================== -->
 
-            <article class="project project-large">
+            <article class="project project-featured">
 
-                <div class="project-image">
+                <div class="project-visual">
 
-                    <img
-                        src="imagenes/foto1.jpg"
-                        alt="LZ79 Essential"
-                    >
+                    <div class="product-window">
 
-                    <span class="project-number">
-                        01
-                    </span>
+                        <div class="window-header">
+
+                            <div class="window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span>
+                                LZ79 ESSENTIAL
+                            </span>
+
+                        </div>
+
+
+                        <div class="window-body">
+
+                            <div class="dashboard-title">
+                                Resumo
+                            </div>
+
+                            <div class="dashboard-cards">
+
+                                <div>
+                                    <small>
+                                        INGRESOS
+                                    </small>
+
+                                    <strong>
+                                        4.820 €
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <small>
+                                        GASTOS
+                                    </small>
+
+                                    <strong>
+                                        1.240 €
+                                    </strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="dashboard-chart">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
                 <div class="project-info">
 
-                    <span>
-                        CONTABILIDADE
+                    <span class="project-tag">
+                        01 · CONTABILIDADE
                     </span>
 
                     <h3>
@@ -509,13 +664,13 @@
                     </h3>
 
                     <p>
-                        Contabilidade básica
-                        sinxela para autónomos
-                        e pequenos negocios.
+                        Contabilidade básica sinxela
+                        para autónomos e pequenos negocios.
                     </p>
 
                     <a href="#">
-                        Ver aplicación →
+                        Ver aplicación
+                        <span>→</span>
                     </a>
 
                 </div>
@@ -523,29 +678,94 @@
             </article>
 
 
-
-            <!-- COMANDAS -->
+            <!-- =================================================
+                 COMANDAS
+            ================================================== -->
 
             <article class="project">
 
-                <div class="project-image">
+                <div class="project-visual">
 
-                    <img
-                        src="Captura de pantalla 2026-08-08 131854.png"
-                        alt="LZ79 Comandas"
-                    >
+                    <div class="product-window orders-window">
 
-                    <span class="project-number">
-                        02
-                    </span>
+                        <div class="window-header">
+
+                            <div class="window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span>
+                                COMANDAS
+                            </span>
+
+                        </div>
+
+
+                        <div class="order-list">
+
+                            <div class="order-item">
+
+                                <span>
+                                    #104
+                                </span>
+
+                                <strong>
+                                    Mesa 04
+                                </strong>
+
+                                <small>
+                                    3 produtos
+                                </small>
+
+                            </div>
+
+
+                            <div class="order-item">
+
+                                <span>
+                                    #105
+                                </span>
+
+                                <strong>
+                                    Mesa 08
+                                </strong>
+
+                                <small>
+                                    5 produtos
+                                </small>
+
+                            </div>
+
+
+                            <div class="order-item">
+
+                                <span>
+                                    #106
+                                </span>
+
+                                <strong>
+                                    Mesa 02
+                                </strong>
+
+                                <small>
+                                    2 produtos
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
                 <div class="project-info">
 
-                    <span>
-                        HOSTALARÍA
+                    <span class="project-tag">
+                        02 · HOSTALARÍA
                     </span>
 
                     <h3>
@@ -553,12 +773,13 @@
                     </h3>
 
                     <p>
-                        Xestión de pedidos
-                        para negocios.
+                        Xestión de pedidos sinxela
+                        para negocios de hostalaría.
                     </p>
 
                     <a href="#">
-                        Ver proxecto →
+                        Ver proxecto
+                        <span>→</span>
                     </a>
 
                 </div>
@@ -566,29 +787,95 @@
             </article>
 
 
-
-            <!-- INVENTARIO -->
+            <!-- =================================================
+                 INVENTARIO
+            ================================================== -->
 
             <article class="project">
 
-                <div class="project-image">
+                <div class="project-visual">
 
-                    <img
-                        src="Captura de pantalla 2026-08-08 131907.png"
-                        alt="LZ79 Inventario"
-                    >
+                    <div class="product-window inventory-window">
 
-                    <span class="project-number">
-                        03
-                    </span>
+                        <div class="window-header">
+
+                            <div class="window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span>
+                                INVENTARIO
+                            </span>
+
+                        </div>
+
+
+                        <div class="inventory-list">
+
+                            <div>
+
+                                <span>
+                                    Produto A
+                                </span>
+
+                                <strong>
+                                    124
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Produto B
+                                </span>
+
+                                <strong>
+                                    86
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Produto C
+                                </span>
+
+                                <strong>
+                                    32
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Produto D
+                                </span>
+
+                                <strong>
+                                    18
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
                 <div class="project-info">
 
-                    <span>
-                        XESTIÓN
+                    <span class="project-tag">
+                        03 · XESTIÓN
                     </span>
 
                     <h3>
@@ -596,12 +883,13 @@
                     </h3>
 
                     <p>
-                        Control sinxelo
-                        de produtos e stock.
+                        Control sinxelo de produtos
+                        e stock para pequenos negocios.
                     </p>
 
                     <a href="#">
-                        Ver proxecto →
+                        Ver proxecto
+                        <span>→</span>
                     </a>
 
                 </div>
@@ -616,10 +904,9 @@
 </section>
 
 
-
-<!-- =====================================================
-     IA
-===================================================== -->
+<!-- =========================================================
+     AI
+========================================================= -->
 
 <section id="ia" class="ia-section">
 
@@ -635,7 +922,7 @@
 
             <h2>
                 A IA debería
-                ser útil.
+                <span>ser útil.</span>
             </h2>
 
 
@@ -648,10 +935,25 @@
 
             <div class="ia-points">
 
-                <span>● Chat</span>
-                <span>● Busca</span>
-                <span>● Automatización</span>
-                <span>● Ferramentas</span>
+                <span>
+                    <i></i>
+                    Chat
+                </span>
+
+                <span>
+                    <i></i>
+                    Busca
+                </span>
+
+                <span>
+                    <i></i>
+                    Automatización
+                </span>
+
+                <span>
+                    <i></i>
+                    Ferramentas
+                </span>
 
             </div>
 
@@ -659,12 +961,13 @@
             <button
                 class="btn btn-primary"
                 id="contactGalia"
+                type="button"
             >
                 Falar con Galia
+                <span>→</span>
             </button>
 
         </div>
-
 
 
         <div class="ia-visual">
@@ -672,13 +975,18 @@
             <div class="ia-circle circle-one"></div>
             <div class="ia-circle circle-two"></div>
 
+
             <div class="ia-terminal">
 
                 <div class="terminal-head">
 
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <div class="terminal-dots">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
 
                     <small>
                         GALIA_AI
@@ -698,6 +1006,7 @@
                         coa tecnoloxía?
                     </p>
 
+
                     <span class="terminal-green">
                         &gt; resposta
                     </span>
@@ -705,6 +1014,7 @@
                     <p>
                         Crear cousas útiles.
                     </p>
+
 
                     <span class="terminal-cursor">
                         █
@@ -721,54 +1031,50 @@
 </section>
 
 
-
-<!-- =====================================================
-     SOBRE LZ79
-===================================================== -->
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
 <section class="about-section">
 
     <div class="container">
 
-
         <div class="about-box">
 
-            <span class="section-label">
-                05 · LZ79 FREELANCE
-            </span>
+            <div class="about-number">
+                05
+            </div>
 
 
-            <h2>
-                Pequenos proxectos.
-                <br>
-                Grandes ideas.
-            </h2>
+            <div class="about-content">
 
-
-            <p>
-                Desenvolvemento independente,
-                experimentación e ferramentas
-                dixitais creadas desde Galicia.
-            </p>
-
-
-            <div class="about-line">
-
-                <span>
-                    WEB
+                <span class="section-label">
+                    LZ79 FREELANCE
                 </span>
 
-                <span>
-                    SOFTWARE
-                </span>
 
-                <span>
-                    IA
-                </span>
+                <h2>
+                    Pequenos proxectos.
+                    <br>
+                    <span>Grandes ideas.</span>
+                </h2>
 
-                <span>
-                    PROXECTOS PROPIOS
-                </span>
+
+                <p>
+                    Desenvolvemento independente,
+                    experimentación e ferramentas
+                    dixitais creadas desde Galicia.
+                </p>
+
+
+                <div class="about-line">
+
+                    <span>WEB</span>
+                    <span>SOFTWARE</span>
+                    <span>IA</span>
+                    <span>PRODUCTOS PROPIOS</span>
+
+                </div>
 
             </div>
 
@@ -779,10 +1085,9 @@
 </section>
 
 
-
-<!-- =====================================================
-     CONTACTO
-===================================================== -->
+<!-- =========================================================
+     CONTACT
+========================================================= -->
 
 <section id="contacto" class="contact-section">
 
@@ -811,10 +1116,13 @@
 
                 <button
                     class="btn btn-primary"
-                    onclick="document.querySelector('#galiaOverlay')?.classList.add('open')"
+                    id="contactOpenGalia"
+                    type="button"
                 >
                     Abrir Galia
+                    <span>→</span>
                 </button>
+
 
                 <a
                     href="mailto:info@lz79freelance.com"
@@ -835,23 +1143,23 @@
 </main>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="site-footer">
 
     <div class="container footer-inner">
 
+
         <div class="footer-brand">
 
             <strong>
-                LZ79 FREELANCE
+                LZ79
             </strong>
 
             <span>
-                Tecnoloxía independente.
+                FREELANCE
             </span>
 
         </div>
@@ -897,10 +1205,9 @@
 </footer>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      GALIA OVERLAY
-===================================================== -->
+========================================================= -->
 
 <div
     id="galiaOverlay"
@@ -912,11 +1219,16 @@
     <div class="galia-window">
 
 
+        <!-- WINDOW HEADER -->
+
         <div class="galia-window-header">
+
 
             <div class="galia-window-brand">
 
-                <span>🐝</span>
+                <div class="galia-mini-icon">
+                    G
+                </div>
 
                 <div>
 
@@ -937,12 +1249,12 @@
                 id="closeGalia"
                 class="close-galia"
                 aria-label="Pechar Galia"
+                type="button"
             >
                 ×
             </button>
 
         </div>
-
 
 
         <!-- TABS -->
@@ -952,6 +1264,7 @@
             <button
                 class="tab active"
                 data-tab="buscar"
+                type="button"
             >
                 Buscar
             </button>
@@ -959,6 +1272,7 @@
             <button
                 class="tab"
                 data-tab="chat"
+                type="button"
             >
                 Chat
             </button>
@@ -966,8 +1280,9 @@
         </div>
 
 
-
-        <!-- BUSCAR -->
+        <!-- =================================================
+             BUSCAR
+        ================================================== -->
 
         <div
             id="buscar"
@@ -985,6 +1300,7 @@
 
                 <button
                     id="overlaySearchBtn"
+                    type="button"
                 >
                     Buscar
                 </button>
@@ -1000,7 +1316,7 @@
                 <div class="empty-state">
 
                     <strong>
-                        🐝 Ola!
+                        Ola.
                     </strong>
 
                     <p>
@@ -1014,8 +1330,9 @@
         </div>
 
 
-
-        <!-- CHAT -->
+        <!-- =================================================
+             CHAT
+        ================================================== -->
 
         <div
             id="chat"
@@ -1029,8 +1346,10 @@
 
                 <div class="bubble bot">
 
-                    🐝 Ola! Son Galia.
+                    Ola! Son Galia.
+
                     <br><br>
+
                     Estou en modo probas.
                     Pregúntame algo.
 
@@ -1065,10 +1384,9 @@
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      SCRIPTS
-===================================================== -->
+========================================================= -->
 
 <script src="script.js"></script>
 
