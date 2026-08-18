@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 Revenue Hub | Galia Bee</title>
+    <title>LZ79 Revenue Hub | Galia Bee & Módulos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,6 +22,14 @@
     <style>
         html { color-scheme: dark; }
         body { background-color: #07090e; color: #f3f4f6; font-family: sans-serif; }
+        /* Animación suave para la rueda de contenidos */
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 30s linear infinite;
+        }
     </style>
 </head>
 
@@ -49,8 +57,10 @@
 </header>
 
 <!-- CONTENIDO PRINCIPAL -->
-<main class="flex-1 flex items-center justify-center p-6">
-    <div class="w-full max-w-3xl text-center">
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-12 flex flex-col items-center justify-center">
+    
+    <!-- BLOQUE CENTRAL DE BÚSQUEDA: GALIA BEE -->
+    <div class="w-full max-w-3xl text-center mb-16">
         <span class="px-4 py-1.5 rounded-full bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold uppercase tracking-widest inline-block mb-4">
             Motor de Inteligencia & Búsqueda
         </span>
@@ -69,6 +79,51 @@
             </div>
         </div>
     </div>
+
+    <!-- SECCIÓN DINÁMICA: RUEDA DE FIESTAS Y MÓDULOS DEL ECOSISTEMA -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Módulo 1: Estado del Sistema -->
+        <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 flex flex-col justify-between shadow-lg">
+            <div>
+                <span class="text-xs font-bold text-techGreen uppercase tracking-wider block mb-2">● En Línea</span>
+                <h3 class="text-xl font-bold text-white mb-2">Núcleo LZ79</h3>
+                <p class="text-sm text-gray-400">Sincronización de bases de datos, pasarelas de pago y control de stock activas.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center text-xs text-gray-500">
+                <span>Versión 4.2.0</span>
+                <span class="text-techCian font-mono">OK</span>
+            </div>
+        </div>
+
+        <!-- Módulo 2: Rueda de Fiestas / Eventos -->
+        <div class="bg-cardBg border border-techCian/30 rounded-3xl p-6 flex flex-col items-center text-center shadow-lg relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <div class="w-24 h-24 border-4 border-techCian rounded-full animate-spin-slow"></div>
+            </div>
+            <div class="w-14 h-14 rounded-2xl bg-techCian/10 border border-techCian/30 flex items-center justify-center mb-4 text-techCian text-2xl font-bold">
+                🎉
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Rueda de Fiestas</h3>
+            <p class="text-sm text-gray-400 mb-4">Gestión automatizada de eventos locales, calendarios festivos y programaciones de temporada.</p>
+            <span class="inline-block px-3 py-1 rounded-lg bg-gray-800 text-xs text-techCian font-medium">Rotación Activa</span>
+        </div>
+
+        <!-- Módulo 3: Utilidades y Accesos -->
+        <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 flex flex-col justify-between shadow-lg">
+            <div>
+                <span class="text-xs font-bold text-techCian uppercase tracking-wider block mb-2">Conectividad</span>
+                <h3 class="text-xl font-bold text-white mb-2">Red Galia Index</h3>
+                <p class="text-sm text-gray-400">Consultas rápidas indexadas mediante motores de alta velocidad.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center text-xs text-gray-500">
+                <span>Motor CSE</span>
+                <span class="text-techGreen">Conectado</span>
+            </div>
+        </div>
+
+    </div>
+
 </main>
 
 <!-- PIE DE PÁGINA -->
@@ -76,7 +131,7 @@
     <p>&copy; 2026 LZ79 Ecosystem. Todos los derechos reservados.</p>
 </footer>
 
-<!-- FORMULARIO OCULTO QUE CONECTA DIRECTAMENTE CON GOOGLE USANDO TU ID (CX) -->
+<!-- FORMULARIO OCULTO PARA CONECTAR CON GOOGLE CSE -->
 <form id="google-search-form" action="https://www.google.com/search" method="get" target="_blank" class="hidden">
     <input type="hidden" name="cx" value="03d0f2141a98347c5">
     <input type="hidden" name="q" id="google-query-input">
@@ -125,7 +180,6 @@
         modal.classList.remove("hidden");
     }
 
-    // Al hacer clic en el botón de la modal, enviamos el formulario nativo de Google en otra pestaña
     btnLanzarGoogle.addEventListener("click", () => {
         googleQueryInput.value = textoBusqueda;
         googleForm.submit();
