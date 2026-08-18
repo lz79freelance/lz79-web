@@ -304,7 +304,7 @@
         </div>
 
         <div id="modal-resultados-lista" class="space-y-3 overflow-y-auto chat-scrollbar pr-1 flex-1">
-            <!-- Aquí se inyectarán los resultados de forma dinámica -->
+            <!-- Resultados dinámicos -->
         </div>
 
         <div class="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center text-xs text-gray-500">
@@ -382,7 +382,6 @@
         const listaResultados = document.getElementById("modal-resultados-lista");
         listaResultados.innerHTML = "";
 
-        // Buscar en los elementos existentes de la página (verbenas)
         const items = document.querySelectorAll(".verbena-item");
         let encontrados = 0;
 
