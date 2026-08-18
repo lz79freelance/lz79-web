@@ -5,73 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LZ79 Ecosystem | Galia Bee Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Script oficial de Google -->
-    <script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
     <script>
         tailwind.config = { theme: { extend: { colors: { darkBg: '#07090e', cardBg: '#111827', techGreen: '#00ff88', techCian: '#06B6D4' } } } };
     </script>
     <style>
         html { color-scheme: dark; }
         body { background-color: #07090e; color: #f3f4f6; font-family: sans-serif; }
-        /* Ajuste oscuro para los resultados de Google */
-        .gsc-control-cse { background: transparent !important; border: none !important; }
-        .gsc-results .gsc-cursor-page { color: white !important; }
     </style>
 </head>
 
-<body class="bg-darkBg text-gray-100">
+<body class="bg-darkBg text-gray-100 min-h-screen flex flex-col justify-between">
 
-<!-- Buscador oculto que procesa la petición -->
-<div class="gcse-searchresults-only" data-resultsUrl="modal-resultados-lista"></div>
-
-<main id="inicio">
-    <!-- SECCIÓN BUSCADOR -->
-    <section id="galia-buscador" class="py-24">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl font-black text-center mb-10 text-white">GALIA BEE</h2>
-            <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8">
-                <div class="flex gap-3">
-                    <input id="galia-search-input" type="text" placeholder="Buscar en la Red Galia..." 
-                        class="w-full bg-[#030712] border border-gray-700 rounded-2xl px-6 py-4 text-white focus:border-techCian outline-none">
-                    <button type="button" onclick="ejecutarBusqueda()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90">
-                        Buscar
-                    </button>
-                </div>
+<main class="flex-1 flex items-center justify-center p-6">
+    <div class="w-full max-w-3xl">
+        <h2 class="text-5xl font-black text-center mb-10 text-white tracking-wider">GALIA BEE</h2>
+        <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input id="galia-search-input" type="text" placeholder="Buscar en la Red Galia..." 
+                    class="w-full bg-[#030712] border border-gray-700 rounded-2xl px-6 py-4 text-white focus:border-techCian outline-none transition-all">
+                <button id="galia-search-btn" type="button" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all cursor-pointer">
+                    Buscar
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 </main>
 
 <!-- VENTANA EMERGENTE (MODAL) -->
 <div id="modal-buscador-resultado" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
     <div class="bg-cardBg border border-techCian/50 rounded-3xl p-8 max-w-2xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
-        <button onclick="cerrarBuscador()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+        <button id="cerrar-modal" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
         
-        <h3 class="text-xl font-black text-techCian mb-6">Resultados de Galia Bee</h3>
+        <h3 class="text-xl font-black text-techCian mb-4">Resultados de Galia Bee</h3>
+        <p id="modal-query-display" class="text-sm text-gray-400 mb-6"></p>
         
-        <!-- Aquí se inyectan los resultados de Google -->
-        <div id="modal-resultados-lista" class="overflow-y-auto flex-1 text-gray-200">
-            <div class="gcse-searchresults-only"></div>
+        <!-- Contenedor donde Google inyectará los resultados de forma nativa -->
+        <div class="overflow-y-auto flex-1 text-gray-200">
+            <div class="gcse-searchresults-only" data-gname="galiaResults"></div>
         </div>
     </div>
 </div>
 
+<!-- Script oficial de Google al final para evitar bloqueos de renderizado -->
+<script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
+
 <script>
-    function ejecutarBusqueda() {
-        const query = document.getElementById("galia-search-input").value;
-        if (!query) return;
+    document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById("galia-search-input");
+        const btn = document.getElementById("galia-search-btn");
+        const modal = document.getElementById("modal-buscador-resultado");
+        const cerrarBtn = document.getElementById("cerrar-modal");
+        const queryDisplay = document.getElementById("modal-query-display");
 
-        // Abrir el modal
-        document.getElementById("modal-buscador-resultado").classList.remove("hidden");
+        function realizarBusqueda() {
+            const query = input.value.trim();
+            if (!query) return;
 
-        // Ejecutar la búsqueda en el motor de Google
-        const element = google.search.cse.element.getElement('searchresults-only');
-        element.execute(query);
-    }
+            queryDisplay.innerText = `Búsqueda: "${query}"`;
+            modal.classList.remove("hidden");
 
-    function cerrarBuscador() {
-        document.getElementById("modal-buscador-resultado").classList.add("hidden");
-    }
+            // Ejecutar la búsqueda en el motor de Google de forma segura
+            const interval = setInterval(() => {
+                if (window.google && window.google.search && window.google.search.cse) {
+                    const element = google.search.cse.element.getElement('galiaResults');
+                    if (element) {
+                        element.execute(query);
+                        clearInterval(interval);
+                    }
+                }
+            }, 200);
+        }
+
+        btn.addEventListener("click", realizarBusqueda);
+
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                realizarBusqueda();
+            }
+        });
+
+        cerrarBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        // Cerrar modal al hacer clic fuera de la caja
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.add("hidden");
+            }
+        });
+    });
 </script>
 
 </body>
