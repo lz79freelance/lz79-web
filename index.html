@@ -3,34 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LZ79 Ecosystem | Galia Bee Hub</title>
+    <title>LZ79 Ecosystem | Galia Bee</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { darkBg: '#07090e', cardBg: '#111827', techGreen: '#00ff88', techCian: '#06B6D4' } } } };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#07090e',
+                        cardBg: '#111827',
+                        techGreen: '#00ff88',
+                        techCian: '#06B6D4'
+                    }
+                }
+            }
+        };
     </script>
     <style>
         html { color-scheme: dark; }
         body { background-color: #07090e; color: #f3f4f6; font-family: sans-serif; }
-        
-        /* Ajustes oscuros para los elementos inyectados de Google CSE */
-        .gsc-control-cse { background-color: #111827 !important; border: none !important; }
-        .gsc-result { background-color: transparent !important; border-bottom: 1px solid #1f2937 !important; }
-        .gs-title a, .gsc-snippet-metadata, .gsc-url-top { color: #06B6D4 !important; }
-        .gsc-cursor-page { color: #f3f4f6 !important; }
-        .gsc-webResult { padding: 10px 0 !important; }
     </style>
 </head>
 
 <body class="bg-darkBg text-gray-100 min-h-screen flex flex-col justify-between">
 
+<!-- PANTALLA PRINCIPAL -->
 <main class="flex-1 flex items-center justify-center p-6">
     <div class="w-full max-w-3xl text-center">
-        <h2 class="text-5xl font-black mb-10 text-white tracking-wider">GALIA BEE</h2>
-        <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
+        <h1 class="text-5xl font-black mb-8 text-white tracking-widest">GALIA BEE</h1>
+        
+        <div class="bg-cardBg border border-techCian/25 rounded-3xl p-6 sm:p-8 shadow-2xl">
             <div class="flex flex-col sm:flex-row gap-3">
-                <input id="galia-search-input" type="text" placeholder="Buscar en la Red Galia..." 
-                    class="w-full bg-[#030712] border border-gray-700 rounded-2xl px-6 py-4 text-white focus:border-techCian outline-none transition-all">
-                <button id="galia-search-btn" type="button" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all cursor-pointer">
+                <input id="galia-input" type="text" placeholder="Escribe tu búsqueda aquí..." 
+                    class="w-full bg-[#030712] border border-gray-700 rounded-2xl px-6 py-4 text-white text-lg focus:border-techCian outline-none transition-all">
+                <button id="btn-buscar" type="button" 
+                    class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all cursor-pointer text-lg shadow-lg">
                     Buscar
                 </button>
             </div>
@@ -38,53 +45,111 @@
     </div>
 </main>
 
-<!-- VENTANA EMERGENTE (MODAL) CON LOS RESULTADOS DE GOOGLE INCRUSTADOS -->
-<div id="modal-buscador-resultado" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-6 sm:p-8 max-w-3xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
-        <button id="cerrar-modal" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
+<!-- VENTANA EMERGENTE (MODAL CON SELECTOR GALIA / GOOGLE) -->
+<div id="modal-emergente" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center hidden p-2 sm:p-6">
+    <div class="bg-cardBg border border-techCian/40 rounded-3xl w-full max-w-5xl h-[90vh] shadow-2xl flex flex-col overflow-hidden">
         
-        <h3 class="text-xl font-black text-techCian mb-4">Resultados de Galia Bee</h3>
-        
-        <!-- Contenedor scrollable donde Google renderizará los resultados nativos -->
-        <div class="overflow-y-auto flex-1 pr-2">
-            <div class="gcse-searchresults-only" data-gname="galiaResults"></div>
+        <!-- BARRA SUPERIOR DE CONTROL -->
+        <div class="bg-[#0b1120] border-b border-gray-800 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            <!-- Selector de Motor -->
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Motor:</span>
+                <button id="tab-galia" onclick="cambiarModo('galia')" 
+                    class="px-4 py-1.5 rounded-xl text-sm font-bold bg-techCian text-darkBg transition-all cursor-pointer">
+                    Galia Bee
+                </button>
+                <button id="tab-google" onclick="cambiarModo('google')" 
+                    class="px-4 py-1.5 rounded-xl text-sm font-bold bg-gray-800 text-gray-300 hover:text-white transition-all cursor-pointer">
+                    Google Web
+                </button>
+            </div>
+
+            <!-- Información y Botón de Cierre -->
+            <div class="flex items-center gap-4">
+                <a id="btn-abrir-externo" href="#" target="_blank" class="text-xs text-techCian hover:underline hidden sm:inline-block">
+                    Abrir en pestaña nueva &nearr;
+                </a>
+                <button id="btn-cerrar" class="text-gray-400 hover:text-white text-2xl font-bold p-1 cursor-pointer">&times;</button>
+            </div>
         </div>
+
+        <!-- CONTENEDOR DEL RESULTADO -->
+        <div class="flex-1 bg-white relative">
+            <iframe id="iframe-resultados" class="w-full h-full border-none" src=""></iframe>
+        </div>
+        
     </div>
 </div>
 
-<!-- Script oficial de Google con el ID correcto -->
-<script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
-
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const input = document.getElementById("galia-search-input");
-        const btn = document.getElementById("galia-search-btn");
-        const modal = document.getElementById("modal-buscador-resultado");
-        const cerrarBtn = document.getElementById("cerrar-modal");
+    const input = document.getElementById("galia-input");
+    const btnBuscar = document.getElementById("btn-buscar");
+    const modal = document.getElementById("modal-emergente");
+    const btnCerrar = document.getElementById("btn-cerrar");
+    const iframe = document.getElementById("iframe-resultados");
+    const linkExterno = document.getElementById("btn-abrir-externo");
+    
+    const tabGalia = document.getElementById("tab-galia");
+    const tabGoogle = document.getElementById("tab-google");
 
-        function realizarBusqueda() {
-            const query = input.value.trim();
-            if (!query) return;
+    let busquedaActual = "";
+    let modoActual = "galia";
 
-            // Abrimos nuestra modal oscura al instante
-            modal.classList.remove("hidden");
+    function lanzarBusqueda() {
+        const query = input.value.trim();
+        if (!query) return;
 
-            // Le pedimos al elemento de Google CSE que ejecute la consulta dentro de su bloque asignado
-            const checkGoogle = setInterval(() => {
-                if (window.google && window.google.search && window.google.search.cse) {
-                    const element = google.search.cse.element.getElement('galiaResults');
-                    if (element) {
-                        element.execute(query);
-                        clearInterval(checkGoogle);
-                    }
-                }
-            }, 150);
+        busquedaActual = query;
+        modal.classList.remove("hidden");
+        cargarIframe();
+    }
+
+    function cambiarModo(nuevoModo) {
+        modoActual = nuevoModo;
+
+        if (modoActual === 'galia') {
+            tabGalia.className = "px-4 py-1.5 rounded-xl text-sm font-bold bg-techCian text-darkBg transition-all cursor-pointer";
+            tabGoogle.className = "px-4 py-1.5 rounded-xl text-sm font-bold bg-gray-800 text-gray-300 hover:text-white transition-all cursor-pointer";
+        } else {
+            tabGoogle.className = "px-4 py-1.5 rounded-xl text-sm font-bold bg-techGreen text-darkBg transition-all cursor-pointer";
+            tabGalia.className = "px-4 py-1.5 rounded-xl text-sm font-bold bg-gray-800 text-gray-300 hover:text-white transition-all cursor-pointer";
         }
 
-        btn.addEventListener("click", realizarBusqueda);
-        input.addEventListener("keydown", (e) => { if (e.key === "Enter") realizarBusqueda(); });
-        cerrarBtn.addEventListener("click", () => modal.classList.add("hidden"));
-        modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.add("hidden"); });
+        cargarIframe();
+    }
+
+    function cargarIframe() {
+        const encoded = encodeURIComponent(busquedaActual);
+        let url = "";
+
+        if (modoActual === 'galia') {
+            // Carga el motor CSE de Galia
+            url = `https://cse.google.com/cse?cx=03d0f2141a98347c5&q=${encoded}`;
+        } else {
+            // Carga la búsqueda general
+            url = `https://www.bing.com/search?q=${encoded}`;
+        }
+
+        iframe.src = url;
+        linkExterno.href = `https://www.google.com/search?q=${encoded}`;
+    }
+
+    // Eventos
+    btnBuscar.addEventListener("click", lanzarBusqueda);
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") lanzarBusqueda();
+    });
+
+    btnCerrar.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        iframe.src = "";
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+            iframe.src = "";
+        }
     });
 </script>
 
