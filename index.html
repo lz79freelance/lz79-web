@@ -11,6 +11,13 @@
     <style>
         html { color-scheme: dark; }
         body { background-color: #07090e; color: #f3f4f6; font-family: sans-serif; }
+        
+        /* Ajustes oscuros para los elementos inyectados de Google CSE */
+        .gsc-control-cse { background-color: #111827 !important; border: none !important; }
+        .gsc-result { background-color: transparent !important; border-bottom: 1px solid #1f2937 !important; }
+        .gs-title a, .gsc-snippet-metadata, .gsc-url-top { color: #06B6D4 !important; }
+        .gsc-cursor-page { color: #f3f4f6 !important; }
+        .gsc-webResult { padding: 10px 0 !important; }
     </style>
 </head>
 
@@ -31,23 +38,22 @@
     </div>
 </main>
 
-<!-- VENTANA EMERGENTE (MODAL) LZ79 100% PURA Y OSCURA -->
+<!-- VENTANA EMERGENTE (MODAL) CON LOS RESULTADOS DE GOOGLE INCRUSTADOS -->
 <div id="modal-buscador-resultado" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl relative flex flex-col text-center">
+    <div class="bg-cardBg border border-techCian/50 rounded-3xl p-6 sm:p-8 max-w-3xl w-full shadow-2xl relative max-h-[85vh] flex flex-col">
         <button id="cerrar-modal" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
         
-        <h3 class="text-2xl font-black text-techCian mb-2">Galia Bee Hub</h3>
-        <p id="modal-query-display" class="text-sm text-gray-300 mb-6 font-mono"></p>
+        <h3 class="text-xl font-black text-techCian mb-4">Resultados de Galia Bee</h3>
         
-        <div class="bg-[#030712] border border-gray-800 rounded-2xl p-6 mb-6">
-            <p class="text-gray-400 text-sm mb-4">Consulta los resultados indexados para tu búsqueda en el motor oficial:</p>
-            <a id="google-link" href="#" target="_blank" 
-               class="inline-block bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-3 rounded-xl hover:opacity-90 transition-all shadow-lg">
-                Ver en Google Search &rarr;
-            </a>
+        <!-- Contenedor scrollable donde Google renderizará los resultados nativos -->
+        <div class="overflow-y-auto flex-1 pr-2">
+            <div class="gcse-searchresults-only" data-gname="galiaResults"></div>
         </div>
     </div>
 </div>
+
+<!-- Script oficial de Google con el ID correcto -->
+<script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -55,19 +61,24 @@
         const btn = document.getElementById("galia-search-btn");
         const modal = document.getElementById("modal-buscador-resultado");
         const cerrarBtn = document.getElementById("cerrar-modal");
-        const queryDisplay = document.getElementById("modal-query-display");
-        const googleLink = document.getElementById("google-link");
 
         function realizarBusqueda() {
             const query = input.value.trim();
             if (!query) return;
 
-            // Actualizamos textos y el enlace directo al buscador con el CX correcto
-            queryDisplay.innerText = `Término: "${query}"`;
-            googleLink.href = `https://www.google.com/cse?cx=03d0f2141a98347c5&q=${encodeURIComponent(query)}`;
-            
-            // Mostramos nuestra modal oscura (sin pantallas blancas de Google)
+            // Abrimos nuestra modal oscura al instante
             modal.classList.remove("hidden");
+
+            // Le pedimos al elemento de Google CSE que ejecute la consulta dentro de su bloque asignado
+            const checkGoogle = setInterval(() => {
+                if (window.google && window.google.search && window.google.search.cse) {
+                    const element = google.search.cse.element.getElement('galiaResults');
+                    if (element) {
+                        element.execute(query);
+                        clearInterval(checkGoogle);
+                    }
+                }
+            }, 150);
         }
 
         btn.addEventListener("click", realizarBusqueda);
