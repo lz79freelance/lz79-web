@@ -34,6 +34,11 @@
         .chat-scrollbar::-webkit-scrollbar { width: 8px; }
         .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .chat-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
+        
+        /* Estilos para adaptar el buscador de Google al modo oscuro */
+        .gsc-control-cse { background-color: transparent !important; border: none !important; font-family: inherit !important; }
+        .gsc-search-box input.gsc-input { background-color: #030712 !important; border: 1px solid #374151 !important; color: white !important; border-radius: 1rem !important; padding: 12px !important; }
+        .gsc-search-button input.gsc-search-button-v2 { background: linear-gradient(to right, #00ff88, #06B6D4) !important; border: none !important; border-radius: 1rem !important; padding: 12px 24px !important; cursor: pointer !important; }
     </style>
 </head>
 
@@ -153,30 +158,23 @@
     </section>
 
     <!-- =================================================
-         GALIA BEE (BUSCADOR WEB DIRECTO)
+         GALIA BEE (BUSCADOR NATIVO EMBEBIDO CSE)
          ================================================= -->
     <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6 relative">
+        <div class="max-w-4xl mx-auto px-6 relative">
             <div class="text-center mb-10">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Motor Oficial Integrado
+                    Motor Oficial Integrado LZ79
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
                 <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional inteligente en la Red Galia</p>
             </div>
 
             <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
-                <form action="https://www.google.com/search" method="get" target="_blank" class="flex gap-3">
-                    <div class="relative flex-1">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
-                        <input name="q" type="text" placeholder="Escribe ciudad, orquesta..." 
-                            class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all">
-                    </div>
-                    <button type="submit" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide cursor-pointer shadow-lg">
-                        Buscar en Google &rarr;
-                    </button>
-                </form>
+                <!-- Script oficial de Google CSE con tu ID -->
+                <script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
+                <div class="gcse-search"></div>
             </div>
         </div>
     </section>
