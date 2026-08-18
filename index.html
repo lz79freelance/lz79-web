@@ -34,17 +34,6 @@
         .chat-scrollbar::-webkit-scrollbar { width: 8px; }
         .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .chat-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
-        
-        /* Estilos limpios para que el Buscador Programmable de Google encaje en modo oscuro */
-        .gsc-control-cse { background-color: transparent !important; border: none !important; padding: 0 !important; font-family: inherit !important; }
-        .gsc-input-box { background-color: #030712 !important; border: 1px solid #374151 !important; border-radius: 1rem !important; padding: 4px 12px !important; }
-        input.gsc-input { color: white !important; text-indent: 6px !important; }
-        .gsc-search-button-v2 { background: linear-gradient(to right, #00ff88, #06B6D4) !important; border-radius: 1rem !important; border: none !important; padding: 10px 20px !important; margin-left: 8px !important; }
-        .gsc-search-button-v2 svg { fill: #07090e !important; }
-        .gsc-results .gsc-cursor-box { text-align: center; }
-        .gs-webResult.gs-result { border-bottom: 1px solid #1f2937 !important; padding-bottom: 12px !important; margin-top: 16px !important; }
-        .gs-title b { color: #06B6D4 !important; }
-        .gs-snippet { color: #9ca3af !important; }
     </style>
 </head>
 
@@ -160,24 +149,32 @@
     </section>
 
     <!-- =================================================
-         GALIA BEE (BUSCADOR GOOGLE CSE)
+         GALIA BEE (BUSCADOR PROPIO LIBRE)
          ================================================= -->
     <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-6 relative">
             <div class="text-center mb-10">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-techCian/30 bg-techCian/5 text-techCian text-[10px] font-bold uppercase tracking-widest">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Motor Real Integrado
+                    Motor Libre Integrado
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black mt-5 tracking-tight">GALIA BEE</h2>
-                <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional y local avanzada</p>
+                <p class="text-xl text-gray-300 mt-3 font-semibold">Búsqueda regional y local avanzada sin restricciones</p>
             </div>
 
             <div class="bg-cardBg border border-techCian/25 rounded-3xl p-8 shadow-2xl">
-                <!-- Script oficial del buscador programable de Google con tu ID 03d0f2141a98347c5 -->
-                <script async src="https://cse.google.com/cse.js?cx=03d0f2141a98347c5"></script>
-                <div class="gcse-searchbox"></div>
-                <div class="gcse-searchresults"></div>
+                <!-- Buscador nativo con diseño 100% tuyo, sin scripts de Google molestos -->
+                <div class="flex gap-3">
+                    <div class="relative flex-1">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">🔍</span>
+                        <input id="galia-search-input" type="text" placeholder="¿Qué quieres buscar hoy en Galicia o en la Web?" 
+                            class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
+                            onkeypress="if(event.key === 'Enter') ejecutarBusquedaGalia();">
+                    </div>
+                    <button type="button" onclick="ejecutarBusquedaGalia()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide">
+                        Buscar
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -239,6 +236,14 @@
             container.appendChild(aiMsg);
             container.scrollTop = container.scrollHeight;
         }, 500);
+    }
+
+    function ejecutarBusquedaGalia() {
+        const query = document.getElementById("galia-search-input").value.trim();
+        if (!query) return;
+        // Abre una pestaña limpia con los resultados de Google buscando exactamente lo que el usuario ponga, sin bloqueos ni restricciones
+        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        window.open(url, '_blank');
     }
 
     document.addEventListener("DOMContentLoaded", () => {
