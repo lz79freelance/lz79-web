@@ -76,7 +76,13 @@
     <p>&copy; 2026 LZ79 Ecosystem. Todos los derechos reservados.</p>
 </footer>
 
-<!-- VENTANA EMERGENTE (MODAL LZ79 PURA) -->
+<!-- FORMULARIO OCULTO QUE CONECTA DIRECTAMENTE CON GOOGLE USANDO TU ID (CX) -->
+<form id="google-search-form" action="https://www.google.com/search" method="get" target="_blank" class="hidden">
+    <input type="hidden" name="cx" value="03d0f2141a98347c5">
+    <input type="hidden" name="q" id="google-query-input">
+</form>
+
+<!-- VENTANA EMERGENTE (MODAL LZ79) -->
 <div id="modal-emergente" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
     <div class="bg-cardBg border border-techCian/40 rounded-3xl w-full max-w-xl p-8 shadow-2xl flex flex-col relative text-center">
         <button id="btn-cerrar" class="absolute top-5 right-5 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
@@ -89,11 +95,11 @@
         <p id="modal-query-text" class="text-sm text-techCian font-mono mb-6"></p>
         
         <div class="bg-[#030712] border border-gray-800 rounded-2xl p-6 mb-6">
-            <p class="text-xs text-gray-400 mb-4">Haz clic para consultar los resultados indexados:</p>
-            <a id="btn-enlace-google" href="#" target="_blank" 
-               class="inline-block w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-3.5 rounded-xl hover:opacity-90 transition-all shadow-lg text-center">
-                Consultar en Google &rarr;
-            </a>
+            <p class="text-xs text-gray-400 mb-4">Lanzar consulta directa en el motor indexado:</p>
+            <button id="btn-lanzar-google" type="button"
+               class="w-full bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-6 py-3.5 rounded-xl hover:opacity-90 transition-all shadow-lg cursor-pointer">
+                Ver resultados en Google &rarr;
+            </button>
         </div>
     </div>
 </div>
@@ -104,21 +110,31 @@
     const modal = document.getElementById("modal-emergente");
     const btnCerrar = document.getElementById("btn-cerrar");
     const modalQueryText = document.getElementById("modal-query-text");
-    const btnEnlaceGoogle = document.getElementById("btn-enlace-google");
+    const btnLanzarGoogle = document.getElementById("btn-lanzar-google");
+    const googleForm = document.getElementById("google-search-form");
+    const googleQueryInput = document.getElementById("google-query-input");
 
-    function lanzarBusqueda() {
+    let textoBusqueda = "";
+
+    function prepararModal() {
         const query = input.value.trim();
         if (!query) return;
 
+        textoBusqueda = query;
         modalQueryText.innerText = `Término: "${query}"`;
-        // Usamos la URL de búsqueda estándar de Google con la query limpia para forzar resultados directos
-        btnEnlaceGoogle.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         modal.classList.remove("hidden");
     }
 
-    btnBuscar.addEventListener("click", lanzarBusqueda);
+    // Al hacer clic en el botón de la modal, enviamos el formulario nativo de Google en otra pestaña
+    btnLanzarGoogle.addEventListener("click", () => {
+        googleQueryInput.value = textoBusqueda;
+        googleForm.submit();
+        modal.classList.add("hidden");
+    });
+
+    btnBuscar.addEventListener("click", prepararModal);
     input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") lanzarBusqueda();
+        if (e.key === "Enter") prepararModal();
     });
 
     btnCerrar.addEventListener("click", () => modal.classList.add("hidden"));
