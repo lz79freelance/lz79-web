@@ -3,119 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#07090e">
-    <meta name="description" content="LZ79 Ecosystem - Ecosistema Galia y soluciones de alto rendimiento.">
     <title>LZ79 Ecosystem | Galia Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#07090e',
-                        cardBg: '#111827',
-                        techGreen: '#00ff88',
-                        techBlue: '#3B82F6',
-                        techCian: '#06B6D4'
-                    }
-                }
-            }
-        };
-    </script>
     <style>
-        html { color-scheme: dark; }
-        body { min-height: 100vh; overflow-x: hidden; }
-        .chat-scrollbar::-webkit-scrollbar { width: 8px; }
-        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .chat-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
+        body { background-color: #07090e; color: #f3f4f6; }
+        /* Ajuste para que el buscador de Google encaje en modo oscuro */
+        .gsc-control-cse { background-color: transparent !important; border: none !important; }
+        .gsc-input-box { background-color: #111827 !important; border: 1px solid #374151 !important; }
+        input.gsc-input { color: white !important; }
     </style>
 </head>
 
-<body class="bg-darkBg text-gray-100 font-sans antialiased">
+<body>
 
-<!-- CABECEIRA -->
 <header class="fixed top-0 w-full bg-darkBg/85 backdrop-blur-md border-b border-gray-800 z-50">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#inicio" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-techGreen to-techCian">LZ79</a>
-        <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-            <a href="#portal" class="hover:text-white">Ecosistema</a>
-            <a href="#galia-chat" class="hover:text-white">Galia Chat</a>
-            <a href="#galia-buscador" class="hover:text-white">Buscador</a>
-        </nav>
+        <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">LZ79</span>
     </div>
 </header>
 
-<main id="inicio">
-    <!-- PORTAL CENTRAL -->
-    <section id="portal" class="min-h-screen flex flex-col items-center justify-center pt-24 pb-12">
-        <h1 class="text-5xl font-black mb-12">Ecosistema <span class="text-techGreen">LZ79 & Galia</span></h1>
-        <!-- (Aquí iría tu contenedor de nodos interactivos) -->
-    </section>
+<main class="pt-32 pb-24 px-6">
+    <section id="galia-buscador" class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-black text-white">GALIA GALICIA</h2>
+            <p class="text-gray-400 mt-2">Buscador regional integrado</p>
+        </div>
 
-    <!-- GALIA BUSCADOR (REAL) -->
-    <section id="galia-buscador" class="py-24 border-t border-gray-900 bg-black/30">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-4xl font-black mb-8 text-center">GALIA GALICIA</h2>
-            <div class="bg-cardBg border border-techCian/25 rounded-3xl p-6 shadow-2xl">
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <input id="search-input" type="search" placeholder="¿Qué quieres saber de Galicia?" class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-techCian">
-                    <button id="search-button" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-7 py-4 rounded-2xl hover:opacity-90">Buscar</button>
-                </div>
-                <div id="search-status" class="mt-6 text-xs text-gray-500"></div>
-                <div id="search-results" class="mt-4 space-y-3"></div>
-            </div>
+        <div class="bg-[#111827] border border-gray-800 rounded-3xl p-8 shadow-2xl">
+            <!-- AQUÍ ESTÁ EL BUSCADOR DE GOOGLE -->
+            <script async src="https://cse.google.com/cse.js?cx=004056370420582210413:fyrjwtwatn8"></script>
+            <div class="gcse-searchbox"></div>
+            <div class="gcse-searchresults"></div>
         </div>
     </section>
 </main>
 
-<script>
-    // LÓGICA DE BÚSQUEDA REAL
-    async function ejecutarBusqueda() {
-        const input = document.getElementById("search-input");
-        const query = input.value.trim();
-        if (!query) return;
-
-        const status = document.getElementById("search-status");
-        const container = document.getElementById("search-results");
-
-        status.textContent = "Galia está consultando la red...";
-        container.innerHTML = "";
-
-        try {
-            // Llamada al backend /api/search que creamos
-            const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-            const data = await response.json();
-
-            if (!data.results || data.results.length === 0) {
-                status.textContent = `Non se atoparon resultados para: "${query}"`;
-                return;
-            }
-
-            status.textContent = `${data.results.length} resultados encontrados.`;
-
-            data.results.forEach(r => {
-                const card = document.createElement("a");
-                card.href = r.url;
-                card.target = "_blank";
-                card.className = "block bg-gray-900 border border-gray-800 hover:border-techCian/50 rounded-xl p-4 transition-all";
-                card.innerHTML = `
-                    <div class="font-bold text-white">${r.title}</div>
-                    <div class="text-techCian text-[10px]">${r.url}</div>
-                    <div class="text-sm text-gray-400 mt-2">${r.extract || "Sen descrición."}</div>
-                `;
-                container.appendChild(card);
-            });
-
-        } catch (error) {
-            status.textContent = "Erro de conexión co servidor.";
-        }
-    }
-
-    document.getElementById("search-button").addEventListener("click", ejecutarBusqueda);
-    document.getElementById("search-input").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") ejecutarBusqueda();
-    });
-</script>
+<footer class="text-center py-8 text-xs text-gray-600">
+    &copy; 2026 LZ79. Ecosistema Galia.
+</footer>
 
 </body>
 </html>
