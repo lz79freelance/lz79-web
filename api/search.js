@@ -11,12 +11,12 @@ export default async function handler(req, res) {
 
         if (!query) {
             return res.status(400).json({
-                error: "Falta la búsqueda"
+                error: "Falta a búsqueda"
             });
         }
 
         /*
-         * Por ahora usamos Wikipedia como fuente pública.
+         * Usamos Wikipedia como fuente pública.
          * No necesita API key.
          */
 
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
         if (!response.ok) {
             throw new Error(
-                `Wikipedia respondió ${response.status}`
+                `Wikipedia respondeu ${response.status}`
             );
         }
 
