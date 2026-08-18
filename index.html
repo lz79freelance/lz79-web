@@ -1,488 +1,199 @@
-```html
 <!DOCTYPE html>
 <html lang="gl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="LZ79 Freelance · tecnoloxía, aplicacións e Galia."
+    >
 
     <title>LZ79 Freelance · Galia</title>
-    <meta name="description" content="LZ79 Freelance · Galia, buscador e asistente dixital para Galicia. Tecnoloxía, ferramentas e solucións para persoas e pequenas empresas.">
-    <meta name="theme-color" content="#05070b">
 
-    <link rel="icon" href="icom.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =========================================================
+<!-- =====================================================
      HEADER
-========================================================= -->
+===================================================== -->
 
 <header class="site-header">
-    <div class="container header-inner">
 
-        <a href="#inicio" class="brand">
-            <img src="assets/logo.png" alt="LZ79 Freelance" class="brand-logo">
-            <span class="brand-text">
-                <strong>LZ79</strong>
+    <div class="header-inner">
+
+        <a href="#inicio" class="logo">
+            <span class="logo-mark">LZ</span>
+
+            <span class="logo-name">
+                LZ79
                 <small>FREELANCE</small>
             </span>
         </a>
 
+
+        <nav id="mainNav" class="main-nav">
+
+            <a href="#galia">Galia</a>
+            <a href="#hoxe">Hoxe</a>
+            <a href="#proyectos">Proxectos</a>
+            <a href="#ia">IA</a>
+            <a href="#contacto">Contacto</a>
+
+        </nav>
+
+
         <button
             class="menu-toggle"
-            type="button"
             aria-label="Abrir menú"
-            aria-expanded="false">
+            aria-expanded="false"
+        >
             ☰
         </button>
 
-        <nav id="mainNav" class="main-nav">
-            <a href="#galia">Galia</a>
-            <a href="#hoxe">Hoxe</a>
-            <a href="#apps">Aplicacións</a>
-            <a href="#ia">IA</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-
     </div>
+
 </header>
 
 
-<!-- =========================================================
+
+<!-- =====================================================
      HERO
-========================================================= -->
+===================================================== -->
 
 <main>
 
 <section id="inicio" class="hero">
-    <div class="container hero-grid">
+
+    <div class="hero-background">
+
+        <div class="hero-grid"></div>
+
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+
+    </div>
+
+
+    <div class="container hero-content">
+
 
         <div class="hero-copy">
 
             <div class="eyebrow">
-                <span class="status-dot"></span>
-                TECNOLOXÍA · GALICIA
+                LZ79 FREELANCE
             </div>
+
 
             <h1>
-                Tecnoloxía útil.
-                <span>Feita para a xente.</span>
+                Tecnoloxía
+                <span>con identidade.</span>
             </h1>
 
+
             <p class="hero-description">
-                Ferramentas dixitais, aplicacións e intelixencia artificial
-                para facilitar o día a día de persoas, profesionais e pequenas empresas.
-            </p>
 
-            <div class="hero-actions">
-                <button id="heroGalia" class="btn btn-primary" type="button">
-                    🐝 Probar Galia
-                </button>
-
-                <a href="#apps" class="btn btn-secondary">
-                    Ver aplicacións
-                </a>
-            </div>
-
-            <div class="hero-note">
-                <span>✓</span> En modo probas · Sen instalación · Na nube
-            </div>
-
-        </div>
-
-
-        <div class="hero-visual">
-
-            <div class="hero-card">
-
-                <div class="window-bar">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                    <small>galia · search</small>
-                </div>
-
-                <div class="galia-screen">
-
-                    <div class="galia-brand">
-                        <img src="assets/galia.png" alt="Galia">
-                        <div>
-                            <strong>Galia</strong>
-                            <small>O teu buscador</small>
-                        </div>
-                    </div>
-
-                    <div class="hero-search">
-                        <input
-                            id="searchInput"
-                            type="search"
-                            placeholder="Que queres buscar?"
-                            autocomplete="off">
-
-                        <button id="searchBtn" type="button">
-                            Buscar
-                        </button>
-                    </div>
-
-                    <div id="searchResult" class="search-result hidden"></div>
-
-                    <div class="example-searches">
-                        <button type="button" data-query="Galicia">
-                            Galicia
-                        </button>
-                        <button type="button" data-query="Vigo">
-                            Vigo
-                        </button>
-                        <button type="button" data-query="Camiño de Santiago">
-                            Camiño de Santiago
-                        </button>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- =========================================================
-     GALIA
-========================================================= -->
-
-<section id="galia" class="section section-dark">
-    <div class="container">
-
-        <div class="section-heading">
-            <div>
-                <span class="section-label">01 · GALIA</span>
-                <h2>Un buscador con identidade propia.</h2>
-            </div>
-
-            <p>
-                Galia nace como un proxecto experimental para achegar
-                a busca e a intelixencia artificial ao contorno local.
-            </p>
-        </div>
-
-
-        <div class="feature-grid">
-
-            <article class="feature-card feature-main">
-
-                <div class="feature-image">
-                    <img src="assets/galia-resultados.png"
-                         alt="Resultados do buscador Galia">
-                </div>
-
-                <div class="feature-content">
-                    <span class="card-tag">BUSCADOR</span>
-                    <h3>Busca información real.</h3>
-                    <p>
-                        Consulta información e accede directamente ás fontes
-                        dos resultados.
-                    </p>
-
-                    <button id="galiaSearchCta"
-                            class="text-button"
-                            type="button">
-                        Abrir Galia →
-                    </button>
-                </div>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🐝</div>
-
-                <span class="card-tag">ASISTENTE</span>
-
-                <h3>Pregunta a Galia.</h3>
-
-                <p>
-                    Un asistente dixital pensado para conversar,
-                    probar ideas e explorar novas posibilidades.
-                </p>
-
-                <button id="openGalia"
-                        class="btn btn-small btn-primary"
-                        type="button">
-                    Probar
-                </button>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">🌿</div>
-
-                <span class="card-tag">LOCAL</span>
-
-                <h3>Primeiro o próximo.</h3>
-
-                <p>
-                    Galicia, as súas localidades, negocios,
-                    cultura, turismo e actividade.
-                </p>
-
-                <a href="#hoxe" class="text-button">
-                    Descubrir Hoxe →
-                </a>
-
-            </article>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- =========================================================
-     HOXE
-========================================================= -->
-
-<section id="hoxe" class="section">
-    <div class="container">
-
-        <div class="section-heading">
-            <div>
-                <span class="section-label">02 · HOXE</span>
-                <h2>Que pasa hoxe?</h2>
-            </div>
-
-            <p>
-                Un espazo pensado para descubrir actividades,
-                eventos e cousas que facer preto de ti.
-            </p>
-        </div>
-
-
-        <div class="hoxe-card">
-
-            <div class="hoxe-copy">
-
-                <span class="card-tag">PROXIMAMENTE</span>
-
-                <h3>
-                    O que está pasando
-                    <span>ao teu redor.</span>
-                </h3>
-
-                <p>
-                    Eventos, festas, actividades, cultura,
-                    turismo e propostas locais nun único lugar.
-                </p>
-
-                <button class="btn btn-secondary" type="button">
-                    Próximamente
-                </button>
-
-            </div>
-
-            <div class="hoxe-visual">
-                <div class="calendar-icon">HOXE</div>
-                <div class="big-date">24</div>
-                <div class="calendar-month">GALICIA</div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- =========================================================
-     APLICACIÓNS
-========================================================= -->
-
-<section id="apps" class="section section-dark">
-    <div class="container">
-
-        <div class="section-heading">
-            <div>
-                <span class="section-label">03 · LZ79 APPS</span>
-                <h2>Ferramentas que fan o traballo máis fácil.</h2>
-            </div>
-
-            <p>
-                Aplicacións sinxelas para profesionais,
+                Desenvolvemento web, aplicacións,
+                intelixencia artificial e proxectos
+                dixitais pensados para persoas,
                 autónomos e pequenas empresas.
+
             </p>
-        </div>
 
 
-        <div class="apps-grid">
+            <div class="hero-buttons">
 
-            <article class="app-card">
-
-                <div class="app-image">
-                    <img src="assets/contabilidad-menu.png"
-                         alt="LZ79 Essential">
-                </div>
-
-                <div class="app-body">
-                    <span class="card-tag">XESTIÓN</span>
-
-                    <h3>LZ79 Essential</h3>
-
-                    <p>
-                        Contabilidade e xestión básica
-                        nunha aplicación sinxela.
-                    </p>
-
-                    <a href="#" class="text-button">
-                        Coñecer Essential →
-                    </a>
-                </div>
-
-            </article>
-
-
-            <article class="app-card">
-
-                <div class="app-image">
-                    <img src="assets/comandas-tablet.png"
-                         alt="LZ79 Comandas">
-                </div>
-
-                <div class="app-body">
-                    <span class="card-tag">HOSTALARÍA</span>
-
-                    <h3>Comandas</h3>
-
-                    <p>
-                        Xestión de comandas para restaurantes,
-                        bares e pequenos negocios.
-                    </p>
-
-                    <a href="#" class="text-button">
-                        Ver Comandas →
-                    </a>
-                </div>
-
-            </article>
-
-
-            <article class="app-card">
-
-                <div class="app-image">
-                    <img src="assets/inventario-ia.png"
-                         alt="LZ79 Inventario">
-                </div>
-
-                <div class="app-body">
-                    <span class="card-tag">INVENTARIO</span>
-
-                    <h3>Inventario</h3>
-
-                    <p>
-                        Control de produtos e stock
-                        cunha visión máis moderna.
-                    </p>
-
-                    <a href="#" class="text-button">
-                        Ver Inventario →
-                    </a>
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- =========================================================
-     IA
-========================================================= -->
-
-<section id="ia" class="section">
-    <div class="container">
-
-        <div class="ia-panel">
-
-            <div class="ia-copy">
-
-                <span class="section-label">04 · INTELIXENCIA ARTIFICIAL</span>
-
-                <h2>
-                    A IA non ten que ser complicada.
-                </h2>
-
-                <p>
-                    Queremos probar como a intelixencia artificial pode
-                    converterse nunha ferramenta útil para persoas e negocios
-                    sen facer as cousas innecesariamente difíciles.
-                </p>
-
-                <div class="ia-points">
-                    <span>✓ Fácil de usar</span>
-                    <span>✓ Na nube</span>
-                    <span>✓ En modo probas</span>
-                </div>
-
-                <button id="contactGalia"
-                        class="btn btn-primary"
-                        type="button">
+                <button
+                    id="openGalia"
+                    class="btn btn-primary"
+                >
                     Probar Galia
                 </button>
 
+
+                <a
+                    href="#proyectos"
+                    class="btn btn-outline"
+                >
+                    Ver proxectos
+                </a>
+
             </div>
 
-            <div class="ia-art">
-                <img src="assets/galia-chat.png"
-                     alt="Galia Chat">
+
+            <div class="hero-meta">
+
+                <span>WEB</span>
+                <span>IA</span>
+                <span>APLICACIÓNS</span>
+                <span>GALICIA</span>
+
             </div>
 
         </div>
 
-    </div>
-</section>
 
 
-<!-- =========================================================
-     CONTACTO
-========================================================= -->
+        <!-- GALIA HERO -->
 
-<section id="contacto" class="section section-dark">
-    <div class="container">
+        <div class="hero-galia">
 
-        <div class="contact-panel">
+            <div class="galia-orbit orbit-one"></div>
+            <div class="galia-orbit orbit-two"></div>
 
-            <div>
-                <span class="section-label">05 · CONTACTO</span>
 
-                <h2>
-                    Tes unha idea?
-                    Falemos.
-                </h2>
+            <div class="galia-hero-card">
 
-                <p>
-                    LZ79 Freelance é un proxecto independente.
-                    Desenvolvemento web, aplicacións e ferramentas dixitais.
-                </p>
-            </div>
+                <div class="galia-card-top">
 
-            <div class="contact-actions">
+                    <span class="live-dot"></span>
 
-                <a href="mailto:contacto@lz79freelance.com"
-                   class="btn btn-primary">
-                    Contactar
-                </a>
+                    <span>
+                        GALIA · EN PROBAS
+                    </span>
 
-                <button id="contactGalia"
-                        class="btn btn-secondary"
-                        type="button">
-                    Falar con Galia
+                </div>
+
+
+                <div class="galia-character">
+
+                    <img
+                        src="assets/galia.png"
+                        alt="Galia"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <div class="galia-placeholder">
+                        🐝
+                    </div>
+
+                </div>
+
+
+                <div class="galia-card-info">
+
+                    <strong>
+                        GALIA
+                    </strong>
+
+                    <span>
+                        Busca · Chat · Galicia
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="heroGalia"
+                    class="galia-open"
+                >
+                    Entrar en Galia →
                 </button>
 
             </div>
@@ -490,130 +201,855 @@
         </div>
 
     </div>
+
 </section>
+
+
+
+<!-- =====================================================
+     GALIA
+===================================================== -->
+
+<section id="galia" class="galia-section">
+
+    <div class="container">
+
+
+        <div class="section-intro">
+
+            <span class="section-number">
+                01
+            </span>
+
+            <div>
+
+                <span class="section-label">
+                    PROXECTO PROPIO
+                </span>
+
+                <h2>
+                    Coñece
+                    <strong>Galia.</strong>
+                </h2>
+
+                <p>
+                    Un buscador e asistente dixital
+                    pensado para achegar información,
+                    conversación e contido nun espazo
+                    máis próximo.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="galia-main">
+
+            <div class="galia-main-visual">
+
+                <div class="visual-label">
+                    GALIA / 001
+                </div>
+
+
+                <div class="galia-big-character">
+
+                    <img
+                        src="assets/galia.png"
+                        alt="Galia"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <div class="galia-placeholder big">
+                        🐝
+                    </div>
+
+                </div>
+
+
+                <div class="visual-bottom">
+                    <span>
+                        BUSCADOR
+                    </span>
+
+                    <span>
+                        CHAT
+                    </span>
+
+                    <span>
+                        IA
+                    </span>
+                </div>
+
+            </div>
+
+
+
+            <div class="galia-main-content">
+
+                <span class="mini-label">
+                    UNHA IDEA EN CONSTRUCIÓN
+                </span>
+
+
+                <h3>
+                    Pregunta.
+                    <br>
+                    Busca.
+                    <br>
+                    Descobre.
+                </h3>
+
+
+                <p>
+                    Galia está en modo probas.
+                    A idea é crear unha ferramenta
+                    útil, sinxela e próxima.
+                </p>
+
+
+                <button
+                    id="galiaSearchCta"
+                    class="btn btn-primary"
+                >
+                    Abrir Galia
+                </button>
+
+
+                <div class="galia-stats">
+
+                    <div>
+                        <strong>01</strong>
+                        <span>Buscador</span>
+                    </div>
+
+                    <div>
+                        <strong>02</strong>
+                        <span>Chat</span>
+                    </div>
+
+                    <div>
+                        <strong>03</strong>
+                        <span>Contido local</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOXE
+===================================================== -->
+
+<section id="hoxe" class="hoxe-section">
+
+    <div class="container">
+
+
+        <div class="section-intro">
+
+            <span class="section-number">
+                02
+            </span>
+
+            <div>
+
+                <span class="section-label">
+                    PROXECTO
+                </span>
+
+                <h2>
+                    Que pasa
+                    <strong>hoxe?</strong>
+                </h2>
+
+                <p>
+                    Eventos, festas, actividades,
+                    cultura e cousas que facer.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hoxe-layout">
+
+
+            <div class="hoxe-date">
+
+                <span>
+                    HOXE
+                </span>
+
+                <strong>
+                    18
+                </strong>
+
+                <small>
+                    AGOSTO
+                </small>
+
+            </div>
+
+
+            <div class="hoxe-content">
+
+                <span class="mini-label">
+                    GALICIA / LOCAL
+                </span>
+
+                <h3>
+                    O que está
+                    pasando preto
+                    de ti.
+                </h3>
+
+                <p>
+                    Unha futura sección de Galia
+                    para descubrir actividades,
+                    eventos e propostas locais.
+                </p>
+
+                <button
+                    class="btn btn-outline"
+                    data-query="eventos en Galicia"
+                >
+                    Explorar Hoxe →
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROXECTOS
+===================================================== -->
+
+<section id="proyectos" class="projects-section">
+
+    <div class="container">
+
+
+        <div class="section-intro">
+
+            <span class="section-number">
+                03
+            </span>
+
+            <div>
+
+                <span class="section-label">
+                    LZ79
+                </span>
+
+                <h2>
+                    Ferramentas
+                    <strong>que serven.</strong>
+                </h2>
+
+                <p>
+                    Aplicacións pensadas para resolver
+                    problemas reais.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="projects-grid">
+
+
+            <!-- ESSENTIAL -->
+
+            <article class="project project-large">
+
+                <div class="project-image">
+
+                    <img
+                        src="imagenes/foto1.jpg"
+                        alt="LZ79 Essential"
+                    >
+
+                    <span class="project-number">
+                        01
+                    </span>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        CONTABILIDADE
+                    </span>
+
+                    <h3>
+                        LZ79 Essential
+                    </h3>
+
+                    <p>
+                        Contabilidade básica
+                        sinxela para autónomos
+                        e pequenos negocios.
+                    </p>
+
+                    <a href="#">
+                        Ver aplicación →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- COMANDAS -->
+
+            <article class="project">
+
+                <div class="project-image">
+
+                    <img
+                        src="Captura de pantalla 2026-08-08 131854.png"
+                        alt="LZ79 Comandas"
+                    >
+
+                    <span class="project-number">
+                        02
+                    </span>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        HOSTALARÍA
+                    </span>
+
+                    <h3>
+                        Comandas
+                    </h3>
+
+                    <p>
+                        Xestión de pedidos
+                        para negocios.
+                    </p>
+
+                    <a href="#">
+                        Ver proxecto →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- INVENTARIO -->
+
+            <article class="project">
+
+                <div class="project-image">
+
+                    <img
+                        src="Captura de pantalla 2026-08-08 131907.png"
+                        alt="LZ79 Inventario"
+                    >
+
+                    <span class="project-number">
+                        03
+                    </span>
+
+                </div>
+
+
+                <div class="project-info">
+
+                    <span>
+                        XESTIÓN
+                    </span>
+
+                    <h3>
+                        Inventario
+                    </h3>
+
+                    <p>
+                        Control sinxelo
+                        de produtos e stock.
+                    </p>
+
+                    <a href="#">
+                        Ver proxecto →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     IA
+===================================================== -->
+
+<section id="ia" class="ia-section">
+
+    <div class="container ia-layout">
+
+
+        <div class="ia-copy">
+
+            <span class="section-label">
+                04 · INTELIXENCIA ARTIFICIAL
+            </span>
+
+
+            <h2>
+                A IA debería
+                ser útil.
+            </h2>
+
+
+            <p>
+                Non fai falta complicalo todo.
+                A tecnoloxía pode axudar a buscar,
+                organizar, responder e crear.
+            </p>
+
+
+            <div class="ia-points">
+
+                <span>● Chat</span>
+                <span>● Busca</span>
+                <span>● Automatización</span>
+                <span>● Ferramentas</span>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                id="contactGalia"
+            >
+                Falar con Galia
+            </button>
+
+        </div>
+
+
+
+        <div class="ia-visual">
+
+            <div class="ia-circle circle-one"></div>
+            <div class="ia-circle circle-two"></div>
+
+            <div class="ia-terminal">
+
+                <div class="terminal-head">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                    <small>
+                        GALIA_AI
+                    </small>
+
+                </div>
+
+
+                <div class="terminal-body">
+
+                    <span class="terminal-green">
+                        &gt; pregunta
+                    </span>
+
+                    <p>
+                        Que podemos facer
+                        coa tecnoloxía?
+                    </p>
+
+                    <span class="terminal-green">
+                        &gt; resposta
+                    </span>
+
+                    <p>
+                        Crear cousas útiles.
+                    </p>
+
+                    <span class="terminal-cursor">
+                        █
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SOBRE LZ79
+===================================================== -->
+
+<section class="about-section">
+
+    <div class="container">
+
+
+        <div class="about-box">
+
+            <span class="section-label">
+                05 · LZ79 FREELANCE
+            </span>
+
+
+            <h2>
+                Pequenos proxectos.
+                <br>
+                Grandes ideas.
+            </h2>
+
+
+            <p>
+                Desenvolvemento independente,
+                experimentación e ferramentas
+                dixitais creadas desde Galicia.
+            </p>
+
+
+            <div class="about-line">
+
+                <span>
+                    WEB
+                </span>
+
+                <span>
+                    SOFTWARE
+                </span>
+
+                <span>
+                    IA
+                </span>
+
+                <span>
+                    PROXECTOS PROPIOS
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACTO
+===================================================== -->
+
+<section id="contacto" class="contact-section">
+
+    <div class="container">
+
+        <div class="contact-box">
+
+            <div>
+
+                <span class="section-label">
+                    CONTACTO
+                </span>
+
+                <h2>
+                    Tes unha idea?
+                </h2>
+
+                <p>
+                    Falamos e vemos ata onde pode chegar.
+                </p>
+
+            </div>
+
+
+            <div class="contact-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="document.querySelector('#galiaOverlay')?.classList.add('open')"
+                >
+                    Abrir Galia
+                </button>
+
+                <a
+                    href="mailto:info@lz79freelance.com"
+                    class="btn btn-outline"
+                >
+                    Contactar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
-<!-- =========================================================
+
+<!-- =====================================================
      FOOTER
-========================================================= -->
+===================================================== -->
 
 <footer class="site-footer">
+
     <div class="container footer-inner">
 
         <div class="footer-brand">
-            <strong>LZ79 FREELANCE</strong>
-            <span>Tecnoloxía independente desde Galicia.</span>
+
+            <strong>
+                LZ79 FREELANCE
+            </strong>
+
+            <span>
+                Tecnoloxía independente.
+            </span>
+
         </div>
+
 
         <div class="footer-links">
-            <a href="#galia">Galia</a>
-            <a href="#hoxe">Hoxe</a>
-            <a href="#apps">Aplicacións</a>
-            <a href="#ia">IA</a>
-            <a href="#contacto">Contacto</a>
-            <a href="politica-privacidad.html">Privacidade</a>
-            <a href="terminos-y-condiciones.html">Termos</a>
+
+            <a href="#galia">
+                Galia
+            </a>
+
+            <a href="#hoxe">
+                Hoxe
+            </a>
+
+            <a href="#proyectos">
+                Proxectos
+            </a>
+
+            <a href="#ia">
+                IA
+            </a>
+
+            <a href="politica-privacidad.html">
+                Privacidade
+            </a>
+
+            <a href="terminos-y-condiciones.html">
+                Termos
+            </a>
+
         </div>
 
+
         <div class="footer-copy">
-            © 2026 LZ79 Freelance · Galia en modo probas.
+
+            © 2026 LZ79 Freelance · Galicia
+
         </div>
 
     </div>
+
 </footer>
 
 
-<!-- =========================================================
-     GALIA OVERLAY
-========================================================= -->
 
-<div id="galiaOverlay"
-     class="galia-overlay"
-     aria-hidden="true">
+<!-- =====================================================
+     GALIA OVERLAY
+===================================================== -->
+
+<div
+    id="galiaOverlay"
+    class="galia-overlay"
+    aria-hidden="true"
+>
+
 
     <div class="galia-window">
+
 
         <div class="galia-window-header">
 
             <div class="galia-window-brand">
+
                 <span>🐝</span>
-                <strong>Galia</strong>
-                <small>modo probas</small>
+
+                <div>
+
+                    <strong>
+                        GALIA
+                    </strong>
+
+                    <small>
+                        modo probas
+                    </small>
+
+                </div>
+
             </div>
 
-            <button id="closeGalia"
-                    class="close-galia"
-                    type="button"
-                    aria-label="Pechar">
+
+            <button
+                id="closeGalia"
+                class="close-galia"
+                aria-label="Pechar Galia"
+            >
                 ×
             </button>
 
         </div>
 
 
+
+        <!-- TABS -->
+
         <div class="galia-tabs">
 
-            <button class="tab active"
-                    data-tab="buscar"
-                    type="button">
+            <button
+                class="tab active"
+                data-tab="buscar"
+            >
                 Buscar
             </button>
 
-            <button class="tab"
-                    data-tab="chat"
-                    type="button">
+            <button
+                class="tab"
+                data-tab="chat"
+            >
                 Chat
             </button>
 
         </div>
 
 
+
         <!-- BUSCAR -->
 
-        <div id="buscar" class="tab-panel active">
+        <div
+            id="buscar"
+            class="tab-panel active"
+        >
 
             <div class="overlay-search">
 
-                <input id="overlaySearch"
-                       type="search"
-                       placeholder="Que queres buscar?"
-                       autocomplete="off">
+                <input
+                    id="overlaySearch"
+                    type="search"
+                    placeholder="Que queres buscar?"
+                    autocomplete="off"
+                >
 
-                <button id="overlaySearchBtn"
-                        type="button">
+                <button
+                    id="overlaySearchBtn"
+                >
                     Buscar
                 </button>
 
             </div>
 
-            <div id="overlayResults"
-                 class="overlay-results">
+
+            <div
+                id="overlayResults"
+                class="overlay-results"
+            >
+
+                <div class="empty-state">
+
+                    <strong>
+                        🐝 Ola!
+                    </strong>
+
+                    <p>
+                        Escribe algo para comezar.
+                    </p>
+
+                </div>
+
             </div>
 
         </div>
 
 
+
         <!-- CHAT -->
 
-        <div id="chat" class="tab-panel">
+        <div
+            id="chat"
+            class="tab-panel"
+        >
 
-            <div id="chatMessages" class="chat-messages">
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
 
                 <div class="bubble bot">
+
                     🐝 Ola! Son Galia.
-                    Estou en modo probas. Pregúntame algo.
+                    <br><br>
+                    Estou en modo probas.
+                    Pregúntame algo.
+
                 </div>
 
             </div>
 
-            <form id="chatForm" class="chat-form">
 
-                <input id="chatInput"
-                       type="text"
-                       placeholder="Escribe a túa pregunta..."
-                       autocomplete="off">
+            <form
+                id="chatForm"
+                class="chat-form"
+            >
+
+                <input
+                    id="chatInput"
+                    type="text"
+                    placeholder="Escribe unha pregunta..."
+                    autocomplete="off"
+                >
 
                 <button type="submit">
                     Enviar
@@ -623,17 +1059,18 @@
 
         </div>
 
+
     </div>
 
 </div>
 
 
-<!-- =========================================================
-     SCRIPT
-========================================================= -->
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
 
 <script src="script.js"></script>
 
 </body>
 </html>
-```
