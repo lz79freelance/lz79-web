@@ -128,8 +128,8 @@
     </section>
 
     <!-- =================================================
-         BLOQUE UNIFICADO (DIVIDIDO EN DOS COLUMNAS): 
-         1. FIESTAS Y VERBENAS | 2. MAPA Y TIEMPO DE GALICIA
+         BLOQUE UNIFICADO (DIVIDIDO EN DOS COLUMNAS GRANDES): 
+         1. FIESTAS Y VERBENAS | 2. MAPA METEOROLÓGICO DE GALICIA
          ================================================= -->
     <section id="actualidad" class="py-20 border-t border-gray-900 bg-gradient-to-b from-black/20 to-darkBg">
         <div class="max-w-7xl mx-auto px-6">
@@ -139,7 +139,7 @@
                 <p class="text-gray-400 text-sm mt-2">Toda la información clave de un solo vistazo en el territorio gallego.</p>
             </div>
 
-            <!-- CONTENEDOR GRID EN DOS MITADES -->
+            <!-- CONTENEDOR GRID EN DOS MITADES EQUIVALENTES -->
             <div class="grid lg:grid-cols-2 gap-8 items-stretch">
                 
                 <!-- COLUMNA 1: FIESTAS Y VERBENAS -->
@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <!-- COLUMNA 2: MAPA METEOROLÓGICO DE GALICIA -->
+                <!-- COLUMNA 2: MAPA METEOROLÓGICO GRANDE DE GALICIA -->
                 <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
@@ -202,35 +202,26 @@
                         </div>
                     </div>
 
-                    <!-- CONTENEDOR VISUAL DEL MAPA DE GALICIA -->
-                    <div class="relative bg-gray-950 border border-gray-800 rounded-2xl p-5 flex flex-col items-center justify-center text-center overflow-hidden my-auto min-h-[220px]">
-                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#06B6D4_1px,transparent_1px)] [background-size:16px_16px] rounded-2xl"></div>
+                    <!-- BLOQUE DE MAPA GRANDE Y VISUAL -->
+                    <div class="relative bg-gray-950 border border-gray-800 rounded-2xl p-8 flex flex-col items-center justify-center text-center overflow-hidden my-auto min-h-[260px]">
+                        <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#06B6D4_1.5px,transparent_1.5px)] [background-size:20px_20px] rounded-2xl"></div>
                         
-                        <!-- Miniaturas de iconos meteorológicos distribuidos simulando el mapa -->
-                        <div class="absolute top-4 left-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
-                            <span>⛅</span> <strong>Coruña</strong> 22°
-                        </div>
-                        <div class="absolute top-6 right-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
-                            <span>☀️</span> <strong>Lugo</strong> 28°
-                        </div>
-                        <div class="absolute bottom-6 left-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
-                            <span>☀️</span> <strong>Vigo</strong> 30°
-                        </div>
-                        <div class="absolute bottom-6 right-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
-                            <span>☀️</span> <strong>Ourense</strong> 34°
-                        </div>
-
-                        <div class="relative z-10 my-4">
-                            <span class="text-4xl">🗺️</span>
-                            <h5 class="text-sm font-bold text-white mt-2">Mapa Interactiu de Galicia</h5>
-                            <p class="text-[11px] text-gray-400 mt-1 max-w-xs">Previsión meteorológica oficial en tiempo real para todas las comarcas gallegas.</p>
+                        <!-- Icono de mapa grande centrado -->
+                        <div class="relative z-10 mb-4">
+                            <div class="w-16 h-16 mx-auto rounded-2xl bg-techCian/10 border border-techCian/30 flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                                🗺️
+                            </div>
+                            <h5 class="text-base font-bold text-white mt-3">Mapa Interactivo de Galicia</h5>
+                            <p class="text-xs text-gray-400 mt-1 max-w-xs mx-auto leading-relaxed">
+                                Red de estaciones meteorológicas, radar en tiempo real y predicción detallada por comarcas oficiales.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="pt-4 text-center">
+                    <div class="pt-6 text-center">
                         <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
-                           class="inline-flex items-center justify-center w-full py-3 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all">
-                            🔗 Consultar Mapa Oficial en MeteoGalicia &rarr;
+                           class="inline-flex items-center justify-center w-full py-3.5 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all shadow-lg">
+                            🔗 Abrir Mapa Oficial en MeteoGalicia &rarr;
                         </a>
                     </div>
                 </div>
