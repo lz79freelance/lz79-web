@@ -129,7 +129,7 @@
 
     <!-- =================================================
          BLOQUE UNIFICADO (DIVIDIDO EN DOS COLUMNAS): 
-         1. FIESTAS Y VERBENAS | 2. TIEMPO Y MAPA DE GALICIA
+         1. FIESTAS Y VERBENAS | 2. MAPA Y TIEMPO DE GALICIA
          ================================================= -->
     <section id="actualidad" class="py-20 border-t border-gray-900 bg-gradient-to-b from-black/20 to-darkBg">
         <div class="max-w-7xl mx-auto px-6">
@@ -140,94 +140,97 @@
             </div>
 
             <!-- CONTENEDOR GRID EN DOS MITADES -->
-            <div class="grid lg:grid-cols-2 gap-8 items-start">
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
                 
                 <!-- COLUMNA 1: FIESTAS Y VERBENAS -->
-                <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
-                    <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
-                        <div>
-                            <span class="text-xs font-bold text-techGreen uppercase tracking-wider block">Agenda Oficial</span>
-                            <h4 class="text-xl font-black text-white mt-0.5">Fiestas y Verbenas</h4>
-                        </div>
-                        <span class="px-3 py-1 rounded-full bg-techGreen/10 text-techGreen border border-techGreen/20 text-xs font-bold">Hoy, 18 Ago</span>
-                    </div>
-
-                    <div class="space-y-4" id="calendario-orquestas-container">
-                        <div class="bg-gray-900/90 border border-gray-800 hover:border-techGreen/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-10 h-10 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen font-black text-sm shrink-0">22h</div>
-                                <div>
-                                    <h5 class="font-bold text-white text-sm">Orquesta Panorama</h5>
-                                    <p class="text-xs text-gray-400">📍 Cambados · Festa Patronal</p>
-                                </div>
+                <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
+                            <div>
+                                <span class="text-xs font-bold text-techGreen uppercase tracking-wider block">Agenda Oficial</span>
+                                <h4 class="text-xl font-black text-white mt-0.5">Fiestas y Verbenas</h4>
                             </div>
-                            <span class="text-[11px] px-2.5 py-1 rounded-full bg-techGreen/10 text-techGreen font-semibold shrink-0">Confirmado</span>
+                            <span class="px-3 py-1 rounded-full bg-techGreen/10 text-techGreen border border-techGreen/20 text-xs font-bold">Hoy, 18 Ago</span>
                         </div>
 
-                        <div class="bg-gray-900/90 border border-gray-800 hover:border-techCian/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-10 h-10 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian font-black text-sm shrink-0">23h</div>
-                                <div>
-                                    <h5 class="font-bold text-white text-sm">Paris de Noia</h5>
-                                    <p class="text-xs text-gray-400">📍 Betanzos · Festas de San Roque</p>
+                        <div class="space-y-4" id="calendario-orquestas-container">
+                            <div class="bg-gray-900/90 border border-gray-800 hover:border-techGreen/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-techGreen/10 flex items-center justify-center text-techGreen font-black text-sm shrink-0">22h</div>
+                                    <div>
+                                        <h5 class="font-bold text-white text-sm">Orquesta Panorama</h5>
+                                        <p class="text-xs text-gray-400">📍 Cambados · Festa Patronal</p>
+                                    </div>
                                 </div>
+                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-techGreen/10 text-techGreen font-semibold shrink-0">Confirmado</span>
                             </div>
-                            <span class="text-[11px] px-2.5 py-1 rounded-full bg-techCian/10 text-techCian font-semibold shrink-0">En Gira</span>
-                        </div>
 
-                        <div class="bg-gray-900/90 border border-gray-800 hover:border-amber-500/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
-                            <div class="flex items-center gap-3.5">
-                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 font-black text-sm shrink-0">21h</div>
-                                <div>
-                                    <h5 class="font-bold text-white text-sm">Los Satélites</h5>
-                                    <p class="text-xs text-gray-400">📍 Vigo · Verbena Popular</p>
+                            <div class="bg-gray-900/90 border border-gray-800 hover:border-techCian/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-techCian/10 flex items-center justify-center text-techCian font-black text-sm shrink-0">23h</div>
+                                    <div>
+                                        <h5 class="font-bold text-white text-sm">Paris de Noia</h5>
+                                        <p class="text-xs text-gray-400">📍 Betanzos · Festas de San Roque</p>
+                                    </div>
                                 </div>
+                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-techCian/10 text-techCian font-semibold shrink-0">En Gira</span>
                             </div>
-                            <span class="text-[11px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 font-semibold shrink-0">Entrada Libre</span>
+
+                            <div class="bg-gray-900/90 border border-gray-800 hover:border-amber-500/40 rounded-2xl p-4 flex items-center justify-between gap-4 transition-all">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 font-black text-sm shrink-0">21h</div>
+                                    <div>
+                                        <h5 class="font-bold text-white text-sm">Los Satélites</h5>
+                                        <p class="text-xs text-gray-400">📍 Vigo · Verbena Popular</p>
+                                    </div>
+                                </div>
+                                <span class="text-[11px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 font-semibold shrink-0">Entrada Libre</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- COLUMNA 2: TIEMPO Y MAPA DE GALICIA -->
+                <!-- COLUMNA 2: MAPA METEOROLÓGICO DE GALICIA -->
                 <div class="bg-cardBg border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
                             <div>
                                 <span class="text-xs font-bold text-techCian uppercase tracking-wider block">MeteoGalicia</span>
-                                <h4 class="text-xl font-black text-white mt-0.5">Previsión y Mapa Territorial</h4>
+                                <h4 class="text-xl font-black text-white mt-0.5">Mapa y Previsión Territorial</h4>
                             </div>
-                            <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-techCian hover:underline">
-                                Web Oficial &rarr;
-                            </a>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3 mb-6">
-                            <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-3.5">
-                                <span class="text-[10px] text-gray-400 block font-semibold uppercase">Santiago</span>
-                                <div class="flex items-baseline justify-between mt-1">
-                                    <span class="text-lg font-black text-white">33°C</span>
-                                    <span class="text-xs text-techGreen font-bold">☀️ 17°</span>
-                                </div>
-                            </div>
-                            <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-3.5">
-                                <span class="text-[10px] text-gray-400 block font-semibold uppercase">Praia Sandeu</span>
-                                <div class="flex items-baseline justify-between mt-1">
-                                    <span class="text-lg font-black text-white">29°C</span>
-                                    <span class="text-xs text-techCian font-bold">🌊 20°</span>
-                                </div>
-                            </div>
+                            <span class="px-3 py-1 rounded-full bg-techCian/10 text-techCian border border-techCian/20 text-xs font-bold">En Directo</span>
                         </div>
                     </div>
 
-                    <!-- Mini mapa interactivo visual -->
-                    <div class="relative bg-gray-950 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#00FF88_1px,transparent_1px)] [background-size:14px_14px] rounded-2xl"></div>
-                        <span class="text-3xl mb-2">🗺️</span>
-                        <h5 class="text-sm font-bold text-white relative z-10">Radar Meteorológico de Galicia</h5>
-                        <p class="text-[11px] text-gray-400 mt-1 relative z-10">Consulta la predicción ampliada a varios días, temperaturas y avisos costeros.</p>
+                    <!-- CONTENEDOR VISUAL DEL MAPA DE GALICIA -->
+                    <div class="relative bg-gray-950 border border-gray-800 rounded-2xl p-5 flex flex-col items-center justify-center text-center overflow-hidden my-auto min-h-[220px]">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#06B6D4_1px,transparent_1px)] [background-size:16px_16px] rounded-2xl"></div>
+                        
+                        <!-- Miniaturas de iconos meteorológicos distribuidos simulando el mapa -->
+                        <div class="absolute top-4 left-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
+                            <span>⛅</span> <strong>Coruña</strong> 22°
+                        </div>
+                        <div class="absolute top-6 right-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
+                            <span>☀️</span> <strong>Lugo</strong> 28°
+                        </div>
+                        <div class="absolute bottom-6 left-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
+                            <span>☀️</span> <strong>Vigo</strong> 30°
+                        </div>
+                        <div class="absolute bottom-6 right-6 flex items-center gap-1.5 bg-gray-900/90 border border-gray-800 px-2.5 py-1 rounded-xl text-[10px] text-white">
+                            <span>☀️</span> <strong>Ourense</strong> 34°
+                        </div>
+
+                        <div class="relative z-10 my-4">
+                            <span class="text-4xl">🗺️</span>
+                            <h5 class="text-sm font-bold text-white mt-2">Mapa Interactiu de Galicia</h5>
+                            <p class="text-[11px] text-gray-400 mt-1 max-w-xs">Previsión meteorológica oficial en tiempo real para todas las comarcas gallegas.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 text-center">
                         <a href="https://www.meteogalicia.gal" target="_blank" rel="noopener noreferrer" 
-                           class="mt-4 px-4 py-2 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all relative z-10">
-                            Abrir Mapa Completo
+                           class="inline-flex items-center justify-center w-full py-3 rounded-xl bg-techCian/10 border border-techCian/30 text-techCian text-xs font-bold hover:bg-techCian/20 transition-all">
+                            🔗 Consultar Mapa Oficial en MeteoGalicia &rarr;
                         </a>
                     </div>
                 </div>
