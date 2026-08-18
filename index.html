@@ -174,9 +174,48 @@
                             class="w-full bg-[#030712] border border-gray-700 rounded-2xl pl-12 pr-4 py-4 text-white text-base focus:outline-none focus:border-techCian transition-all"
                             onkeypress="if(event.key === 'Enter') abrirBuscadorPropio();">
                     </div>
-                    <button type="button" onclick="abrirBuscadorPropio()" class="bg-gradient-to-r from-techGreen to-techCian text-darkBg font-black px-8 py-4 rounded-2xl hover:opacity-90 transition-all text-sm tracking-wide shrink-0">
-                        Buscar en Galia
-                    </button>
+                    <async function abrirBuscadorPropio() {
+    const queryInput = document.getElementById("galia-search-input").value.trim();
+    if (!queryInput) return;
+
+    // Abrimos el modal con un estado de carga
+    const modal = document.getElementById("modal-buscador-resultado");
+    const listaResultados = document.getElementById("modal-resultados-lista");
+    document.getElementById("modal-query-text").innerText = queryInput;
+    listaResultados.innerHTML = `<p class="text-techCian animate-pulse">Sincronizando con la Red Galia...</p>`;
+    modal.classList.remove("hidden");
+
+    // Configuración de la API (REEMPLAZA 'TU_API_KEY_AQUI' POR LA TUYA)
+    const API_KEY = 'TU_API_KEY_AQUI'; 
+    const CX = '03d0f2141a98347c5';
+    const url = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CX}&q=${encodeURIComponent(queryInput)}`;
+
+    try {
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
+
+        listaResultados.innerHTML = ""; // Limpiar carga
+
+        if (datos.items && datos.items.length > 0) {
+            datos.items.forEach(item => {
+                const resultadoDiv = document.createElement("div");
+                resultadoDiv.className = "bg-gray-900/90 border border-gray-800 hover:border-techGreen/50 rounded-2xl p-4 transition-all";
+                resultadoDiv.innerHTML = `
+                    <a href="${item.link}" target="_blank" class="block">
+                        <h4 class="text-white font-bold text-sm hover:text-techGreen">${item.title}</h4>
+                        <p class="text-xs text-gray-400 mt-1">${item.snippet}</p>
+                        <span class="text-[10px] text-techCian mt-2 block">${item.displayLink}</span>
+                    </a>
+                `;
+                listaResultados.appendChild(resultadoDiv);
+            });
+        } else {
+            listaResultados.innerHTML = `<p class="text-gray-400">No se encontraron resultados externos para "${queryInput}".</p>`;
+        }
+    } catch (error) {
+        listaResultados.innerHTML = `<p class="text-red-400">Error de conexión con la Red Galia.</p>`;
+    }
+}
                 </div>
             </div>
         </div>
