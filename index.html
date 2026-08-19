@@ -4,58 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LZ79 Freelance — Gestión Inteligente y Contabilidad</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        lz: {
-                            50: '#f4f6f8',
-                            100: '#e3e8ef',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#0f172a',
-                        }
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { lz: { 600: '#2563eb', 700: '#1d4ed8', 900: '#0f172a' } } } } }
     </script>
     <style>
-        /* Animación para el ticker de índices */
-        @keyframes ticker-indexes {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-ticker-indexes {
-            display: flex;
-            width: max-content;
-            animation: ticker-indexes 35s linear infinite;
-        }
-        .animate-ticker-indexes:hover {
-            animation-play-state: paused;
-        }
-
-        /* Animación para la marquesina de noticias (en sentido contrario o velocidad independiente) */
-        @keyframes ticker-news {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-ticker-news {
-            display: flex;
-            width: max-content;
-            animation: ticker-news 45s linear infinite;
-        }
-        .animate-ticker-news:hover {
-            animation-play-state: paused;
-        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-ticker { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+        .animate-ticker:hover { animation-play-state: paused; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
-    <!-- HEADER / NAVBAR -->
+    <!-- HEADER -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -67,188 +28,65 @@
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
                 <a href="#features" class="hover:text-lz-600 transition">Soluciones</a>
+                <a href="#market" class="hover:text-lz-600 transition">Actualidad</a>
                 <a href="#pricing" class="hover:text-lz-600 transition">Planes</a>
             </nav>
-            <div class="flex items-center space-x-4">
-                <a href="#pricing" class="bg-lz-900 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition">Empezar Ahora</a>
-            </div>
+            <a href="#pricing" class="bg-lz-900 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition">Empezar Ahora</a>
         </div>
     </header>
 
-    <!-- TICKER 1: ÍNDICES BURSÁTILES CORRIENDO DEBAJO DE LA CABECERA -->
-    <div class="bg-slate-950 text-slate-300 text-xs py-2.5 overflow-hidden border-b border-slate-800 font-mono">
-        <div class="animate-ticker-indexes space-x-12 whitespace-nowrap">
-            <!-- Bloque de índices -->
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">IBEX 35:</strong> <span class="text-emerald-400 font-semibold">11,420.50 (+0.45%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">DAX:</strong> <span class="text-emerald-400 font-semibold">18,650.20 (+0.32%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">S&P 500:</strong> <span class="text-rose-400 font-semibold">5,580.10 (-0.12%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">EUR/USD:</strong> <span class="text-emerald-400 font-semibold">1.0925 (+0.08%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">BRENT:</strong> <span class="text-rose-400 font-semibold">79.40 (-0.65%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">EUR/GBP:</strong> <span class="text-slate-400 font-semibold">0.8540 (0.00%)</span></span>
-            <!-- Duplicado para bucle continuo -->
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">IBEX 35:</strong> <span class="text-emerald-400 font-semibold">11,420.50 (+0.45%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">DAX:</strong> <span class="text-emerald-400 font-semibold">18,650.20 (+0.32%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">S&P 500:</strong> <span class="text-rose-400 font-semibold">5,580.10 (-0.12%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">EUR/USD:</strong> <span class="text-emerald-400 font-semibold">1.0925 (+0.08%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">BRENT:</strong> <span class="text-rose-400 font-semibold">79.40 (-0.65%)</span></span>
-            <span class="inline-flex items-center space-x-2"><strong class="text-white">EUR/GBP:</strong> <span class="text-slate-400 font-semibold">0.8540 (0.00%)</span></span>
-        </div>
-    </div>
-
-    <!-- TICKER 2: NOTICIAS ECONÓMICAS CORRIENDO EN VIVO -->
-    <div class="bg-blue-900 text-blue-100 text-xs py-2 overflow-hidden border-b border-blue-800 font-medium">
-        <div class="animate-ticker-news space-x-16 whitespace-nowrap">
-            <!-- Bloque de noticias -->
-            <span class="inline-flex items-center space-x-2"><span>📌</span> <strong>Actualidad:</strong> <span>Novedades clave en la deducción de gastos y suministros para autónomos este trimestre.</span></span>
-            <span class="inline-flex items-center space-x-2"><span>📈</span> <strong>Mercados:</strong> <span>El IBEX 35 mantiene el tono positivo impulsado con fuerza por el sector bancario.</span></span>
-            <span class="inline-flex items-center space-x-2"><span>💼</span> <strong>Digitalización:</strong> <span>Claves y plazos técnicos para la implantación de la facturación electrónica obligatoria.</span></span>
-            <!-- Duplicado para bucle continuo -->
-            <span class="inline-flex items-center space-x-2"><span>📌</span> <strong>Actualidad:</strong> <span>Novedades clave en la deducción de gastos y suministros para autónomos este trimestre.</span></span>
-            <span class="inline-flex items-center space-x-2"><span>📈</span> <strong>Mercados:</strong> <span>El IBEX 35 mantiene el tono positivo impulsado con fuerza por el sector bancario.</span></span>
-            <span class="inline-flex items-center space-x-2"><span>💼</span> <strong>Digitalización:</strong> <span>Claves y plazos técnicos para la implantación de la facturación electrónica obligatoria.</span></span>
-        </div>
-    </div>
-
-    <!-- HERO SECTION -->
-    <section class="relative pt-20 pb-16 md:pt-24 md:pb-24 overflow-hidden bg-white">
+    <!-- HERO SECTION (Primero para visibilidad del producto) -->
+    <section class="pt-20 pb-16 bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <!-- Badge Profesional -->
-            <div class="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium px-3.5 py-1.5 rounded-full mb-8 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Diseñado para autónomos, profesionales y pequeños negocios</span>
-            </div>
+            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 mb-6">Tu negocio <span class="text-lz-600">bajo control absoluto</span></h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">Facturación, inventario y QR integrados en una plataforma ágil para profesionales.</p>
             
-            <!-- Título Principal -->
-            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-none mb-6">
-                Tu contabilidad y negocio <br class="hidden sm:inline">
-                <span class="bg-gradient-to-r from-lz-600 to-indigo-600 bg-clip-text text-transparent">bajo control absoluto</span>
-            </h1>
-            
-            <!-- Subtítulo -->
-            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Facturación rápida, control de inventario, albaranes y escaneo QR integrados en una plataforma ligera, potente y sin fricciones.
-            </p>
-            
-            <!-- Botones de Acción (CTA) -->
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16">
-                <a href="#pricing" class="w-full sm:w-auto bg-lz-600 hover:bg-lz-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-lz-600/20 transition transform hover:-translate-y-0.5 text-center">
-                    Probar LZ79 Essential
-                </a>
-                <a href="#features" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 font-semibold px-8 py-4 rounded-xl border border-slate-200 shadow-sm transition text-center">
-                    Conocer características
-                </a>
-            </div>
-
-            <!-- GRID DE 4 FOTOS FIJAS -->
-            <div class="grid md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Dashboard" class="w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Factura" class="w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Inventario" class="w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="QR" class="w-full h-full object-cover rounded-lg">
-                </div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden"><img src="Captura de pantalla 2026-08-08 131854.png" class="w-full h-full object-cover rounded-lg"></div>
+                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden"><img src="Captura de pantalla 2026-08-08 131907.png" class="w-full h-full object-cover rounded-lg"></div>
             </div>
         </div>
     </section>
 
-    <!-- MÓDULOS / CARACTERÍSTICAS -->
-    <section id="features" class="py-24 bg-slate-50 border-t border-slate-200">
+    <!-- SECCIÓN BURSÁTIL Y NOTICIAS (Debajo para seriedad) -->
+    <section id="market" class="py-16 bg-slate-950 text-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold text-lz-600 tracking-widest uppercase mb-3">Potencia Operativa</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Todo lo que exige tu día a día profesional</h3>
-                <p class="text-slate-600 mt-4 text-lg">Herramientas precisas pensadas para ahorrar tiempo y simplificar trámites.</p>
+            <h3 class="text-xl font-bold mb-8 text-center text-slate-400 uppercase tracking-widest text-sm">Mercados & Actualidad Financiera</h3>
+            
+            <!-- Tickers -->
+            <div class="animate-ticker space-x-12 whitespace-nowrap mb-12 font-mono text-sm">
+                <span class="text-emerald-400">IBEX 35: 11,420 (+0.45%)</span>
+                <span class="text-emerald-400">DAX: 18,650 (+0.32%)</span>
+                <span class="text-rose-400">S&P 500: 5,580 (-0.12%)</span>
+                <span class="text-emerald-400">EUR/USD: 1.0925 (+0.08%)</span>
+                <span class="text-slate-400">IBEX 35: 11,420 (+0.45%)</span>
+                <span class="text-emerald-400">DAX: 18,650 (+0.32%)</span>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📄</div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Facturación & Albaranes</h4>
-                    <p class="text-slate-600 leading-relaxed text-sm">Emite facturas profesionales, gestiona notas de entrega y mantén tus registros de ventas al día sin complicaciones.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-lz-500 mb-2">Fiscalidad</h4>
+                    <p class="text-sm text-slate-400">Novedades en la deducción de gastos para autónomos este trimestre.</p>
                 </div>
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📦</div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Inventario & Stock</h4>
-                    <p class="text-slate-600 leading-relaxed text-sm">Controla tus productos, entradas y salidas de mercancía con una interfaz ágil y conectada en tiempo real.</p>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-lz-500 mb-2">Mercados</h4>
+                    <p class="text-sm text-slate-400">El sector bancario impulsa el tono positivo del selectivo español.</p>
                 </div>
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📷</div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Lector QR Integrado</h4>
-                    <p class="text-slate-600 leading-relaxed text-sm">Identifica referencias, artículos y pedidos de forma inmediata utilizando lectura de códigos QR desde cualquier dispositivo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRECIOS -->
-    <section id="pricing" class="py-24 bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold text-lz-600 tracking-widest uppercase mb-3">Planes Flexibles</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Elige el nivel ideal para tu actividad</h3>
-                <p class="text-slate-600 mt-4 text-lg">Soluciones escalables adaptadas a autónomos y pequeños equipos.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Plan Esencial -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">LZ79 Essential</h4>
-                        <p class="text-slate-600 text-sm mb-6">Para profesionales independientes que buscan control total y sencillez.</p>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-black text-slate-900">€19</span>
-                            <span class="text-slate-500 ml-2">/ mes</span>
-                        </div>
-                        <ul class="space-y-4 text-sm text-slate-600 mb-8">
-                            <li class="flex items-center">✓ Facturación y Albaranes ilimitados</li>
-                            <li class="flex items-center">✓ Control de inventario esencial</li>
-                            <li class="flex items-center">✓ Lector QR integrado</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold py-3 rounded-xl text-center transition">Comenzar Esencial</a>
-                </div>
-
-                <!-- Plan Pro (Destacado) -->
-                <div class="bg-lz-900 border border-lz-900 rounded-3xl p-8 shadow-xl text-white flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-lz-600 text-white text-[10px] font-bold px-4 py-1 rounded-bl-xl uppercase tracking-wider">Recomendado</div>
-                    <div>
-                        <h4 class="text-xl font-bold text-white mb-2">LZ79 Professional Suite</h4>
-                        <p class="text-slate-400 text-sm mb-6">Para negocios en crecimiento con necesidades avanzadas de gestión.</p>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-black text-white">€39</span>
-                            <span class="text-slate-400 ml-2">/ mes</span>
-                        </div>
-                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
-                            <li class="flex items-center">✓ Todo lo incluido en Essential</li>
-                            <li class="flex items-center">✓ Módulos avanzados de análisis financiero</li>
-                            <li class="flex items-center">✓ Soporte prioritario y actualizaciones</li>
-                        </ul>
-                    </div>
-                    <a href="#" class="w-full bg-lz-600 hover:bg-lz-700 text-white font-semibold py-3 rounded-xl text-center transition shadow-md">Elegir Plan Pro</a>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-lz-500 mb-2">Digitalización</h4>
+                    <p class="text-sm text-slate-400">Plazos técnicos para la facturación electrónica obligatoria.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-50 border-t border-slate-200 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
-            <div class="flex items-center space-x-3 mb-4 sm:mb-0">
-                <span class="font-bold text-slate-900">LZ79 Freelance</span>
-                <span>&copy; 2026. Todos los derechos reservados.</span>
-            </div>
-            <div class="flex space-x-6">
-                <a href="politica-privacidad.html" class="hover:text-lz-600 transition">Privacidad</a>
-                <a href="terminos-y-condiciones.html" class="hover:text-lz-600 transition">Términos</a>
-                <a href="#pricing" class="hover:text-lz-600 transition">Soporte</a>
-            </div>
+    <footer class="py-12 bg-white text-center text-sm text-slate-500">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="politica-privacidad.html" class="hover:text-lz-600">Privacidad</a>
+            <a href="terminos-y-condiciones.html" class="hover:text-lz-600">Términos</a>
         </div>
+        &copy; 2026 LZ79 Freelance.
     </footer>
 
 </body>
