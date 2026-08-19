@@ -11,31 +11,16 @@
             theme: {
                 extend: {
                     colors: {
-                        lz: {
-                            50: '#f4f6f8',
-                            100: '#e3e8ef',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#0f172a',
-                        }
+                        lz: { 600: '#2563eb', 700: '#1d4ed8', 900: '#0f172a' }
                     }
                 }
             }
         }
     </script>
     <style>
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-ticker {
-            display: flex;
-            width: max-content;
-            animation: ticker 35s linear infinite;
-        }
-        .animate-ticker:hover {
-            animation-play-state: paused;
-        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-ticker { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+        .animate-ticker:hover { animation-play-state: paused; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
@@ -54,86 +39,54 @@
                 <a href="#features" class="hover:text-lz-600 transition">Soluciones</a>
                 <a href="#pricing" class="hover:text-lz-600 transition">Planes</a>
             </nav>
-            <div class="flex items-center space-x-4">
-                <a href="#pricing" class="bg-lz-900 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition">Empezar Ahora</a>
-            </div>
+            <a href="#pricing" class="bg-lz-900 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition">Empezar Ahora</a>
         </div>
     </header>
 
-    <!-- BLOQUE BURSÁTIL UNIFICADO (IBEX + Actualidad en una sola barra superior) -->
-    <div class="bg-slate-950 text-slate-300 text-xs border-b border-slate-800 font-mono py-2 overflow-hidden flex items-center">
-        <!-- Etiqueta fija de sección a la izquierda -->
-        <div class="bg-lz-600 text-white px-3 py-1 font-bold text-[10px] tracking-widest uppercase shrink-0 z-10 mx-3 rounded">
-            MERCADOS & NOTICIAS
+    <!-- DOS LÍNEAS BURSÁTILES: ÍNDICES Y NOTICIAS -->
+    <div class="flex flex-col border-b border-slate-200">
+        <!-- Linea 1: Indices -->
+        <div class="bg-slate-950 text-slate-300 text-[11px] py-1.5 overflow-hidden font-mono border-b border-slate-800">
+            <div class="animate-ticker space-x-10 whitespace-nowrap px-4">
+                <span class="text-emerald-400">IBEX 35: 11,420.50 (+0.45%)</span>
+                <span class="text-emerald-400">DAX: 18,650.20 (+0.32%)</span>
+                <span class="text-rose-400">S&P 500: 5,580.10 (-0.12%)</span>
+                <span class="text-emerald-400">EUR/USD: 1.0925 (+0.08%)</span>
+                <span class="text-slate-400">BRENT: 79.40 (-0.65%)</span>
+                <!-- Duplicado -->
+                <span class="text-emerald-400">IBEX 35: 11,420.50 (+0.45%)</span>
+                <span class="text-emerald-400">DAX: 18,650.20 (+0.32%)</span>
+                <span class="text-rose-400">S&P 500: 5,580.10 (-0.12%)</span>
+            </div>
         </div>
-        
-        <!-- Contenedor del ticker que corre -->
-        <div class="animate-ticker space-x-12 whitespace-nowrap flex items-center pl-2">
-            <!-- Índices -->
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">IBEX 35:</strong> <span class="text-emerald-400 font-semibold">11,420.50 (+0.45%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">DAX:</strong> <span class="text-emerald-400 font-semibold">18,650.20 (+0.32%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">S&P 500:</strong> <span class="text-rose-400 font-semibold">5,580.10 (-0.12%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">EUR/USD:</strong> <span class="text-emerald-400 font-semibold">1.0925 (+0.08%)</span></span>
-            <!-- Mini Titulares de Noticias integrados en la misma barra -->
-            <span class="text-slate-400">|</span>
-            <span class="inline-flex items-center space-x-1"><span class="text-amber-400">📌</span> <span class="text-white">Autónomos:</span> Nuevas deducciones de gastos aprobadas este trimestre.</span>
-            <span class="inline-flex items-center space-x-1"><span class="text-amber-400">📌</span> <span class="text-white">Fiscalidad:</span> Plazos clave para la facturación electrónica obligatoria.</span>
-            
-            <!-- Duplicado idéntico para continuidad del bucle -->
-            <span class="text-slate-400">|</span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">IBEX 35:</strong> <span class="text-emerald-400 font-semibold">11,420.50 (+0.45%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">DAX:</strong> <span class="text-emerald-400 font-semibold">18,650.20 (+0.32%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">S&P 500:</strong> <span class="text-rose-400 font-semibold">5,580.10 (-0.12%)</span></span>
-            <span class="inline-flex items-center space-x-1.5"><strong class="text-white">EUR/USD:</strong> <span class="text-emerald-400 font-semibold">1.0925 (+0.08%)</span></span>
-            <span class="text-slate-400">|</span>
-            <span class="inline-flex items-center space-x-1"><span class="text-amber-400">📌</span> <span class="text-white">Autónomos:</span> Nuevas deducciones de gastos aprobadas este trimestre.</span>
-            <span class="inline-flex items-center space-x-1"><span class="text-amber-400">📌</span> <span class="text-white">Fiscalidad:</span> Plazos clave para la facturación electrónica obligatoria.</span>
+        <!-- Linea 2: Noticias -->
+        <div class="bg-slate-900 text-slate-400 text-[11px] py-1.5 overflow-hidden font-medium">
+            <div class="animate-ticker space-x-10 whitespace-nowrap px-4">
+                <span class="text-white">📌 Nuevas deducciones de gastos aprobadas este trimestre para autónomos.</span>
+                <span class="text-white">📌 El sector bancario impulsa el tono positivo del selectivo español.</span>
+                <span class="text-white">📌 Plazos clave para la facturación electrónica obligatoria.</span>
+                <!-- Duplicado -->
+                <span class="text-white">📌 Nuevas deducciones de gastos aprobadas este trimestre para autónomos.</span>
+                <span class="text-white">📌 El sector bancario impulsa el tono positivo del selectivo español.</span>
+            </div>
         </div>
     </div>
 
     <!-- HERO SECTION -->
-    <section class="relative pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden bg-white">
+    <section class="pt-20 pb-16 md:pt-28 md:pb-24 bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <!-- Badge Profesional -->
-            <div class="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium px-3.5 py-1.5 rounded-full mb-8 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Diseñado para autónomos, profesionales y pequeños negocios</span>
-            </div>
-            
-            <!-- Título Principal -->
             <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-none mb-6">
                 Tu contabilidad y negocio <br class="hidden sm:inline">
                 <span class="bg-gradient-to-r from-lz-600 to-indigo-600 bg-clip-text text-transparent">bajo control absoluto</span>
             </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-12">Facturación rápida, control de inventario y escaneo QR en una plataforma ágil y profesional.</p>
             
-            <!-- Subtítulo -->
-            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Facturación rápida, control de inventario, albaranes y escaneo QR integrados en una plataforma ligera, potente y sin fricciones.
-            </p>
-            
-            <!-- Botones de Acción (CTA) -->
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16">
-                <a href="#pricing" class="w-full sm:w-auto bg-lz-600 hover:bg-lz-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-lz-600/20 transition transform hover:-translate-y-0.5 text-center">
-                    Probar LZ79 Essential
-                </a>
-                <a href="#features" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 font-semibold px-8 py-4 rounded-xl border border-slate-200 shadow-sm transition text-center">
-                    Conocer características
-                </a>
-            </div>
-
-            <!-- GRID DE 4 FOTOS FIJAS -->
-            <div class="grid md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131854.png" alt="Dashboard" class="w-full h-full object-cover rounded-lg">
+                    <img src="Captura de pantalla 2026-08-08 131854.png" class="w-full h-full object-cover rounded-lg">
                 </div>
                 <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131907.png" alt="Factura" class="w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131918.png" alt="Inventario" class="w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
-                    <img src="Captura de pantalla 2026-08-08 131938.png" alt="QR" class="w-full h-full object-cover rounded-lg">
+                    <img src="Captura de pantalla 2026-08-08 131907.png" class="w-full h-full object-cover rounded-lg">
                 </div>
             </div>
         </div>
