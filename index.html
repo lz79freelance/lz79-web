@@ -138,16 +138,17 @@
         </div>
     </section>
 
-   <!-- CHATBOT FUNCIONAL -->
+   <!-- CHATBOT FUNCIONAL Y LISTO -->
     <div id="chatbot" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <!-- Ventana del chat -->
         <div id="chat-window" class="hidden bg-white border border-slate-200 rounded-2xl shadow-2xl w-72 mb-4 overflow-hidden transition-all duration-300">
             <div class="bg-lz-900 p-4 text-white font-bold text-sm">Asistente LZ79</div>
-            <div class="p-4 h-40 overflow-y-auto text-sm text-slate-600">
-                <p>👋 ¡Hola! ¿Necesitas ayuda con tu contabilidad hoy?</p>
+            <div id="chat-messages" class="p-4 h-40 overflow-y-auto text-sm text-slate-600 space-y-2">
+                <p class="bg-slate-100 p-2 rounded-lg">👋 ¡Hola! ¿Necesitas ayuda con tu contabilidad hoy?</p>
             </div>
-            <div class="p-3 border-t border-slate-100">
-                <input type="text" placeholder="Escribe tu duda..." class="w-full text-xs p-2 border border-slate-200 rounded-lg outline-none">
+            <div class="p-3 border-t border-slate-100 flex items-center">
+                <input id="chat-input" type="text" placeholder="Escribe tu duda..." class="w-full text-xs p-2 border border-slate-200 rounded-lg outline-none">
+                <button onclick="sendMessage()" class="ml-2 text-lz-600 font-bold text-xs">Enviar</button>
             </div>
         </div>
         
@@ -158,6 +159,23 @@
             </svg>
         </button>
     </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            if (input.value.trim() !== "") {
+                // Añadir mensaje del usuario
+                messages.innerHTML += `<p class="text-right text-lz-600 font-medium">${input.value}</p>`;
+                // Respuesta automática básica
+                setTimeout(() => {
+                    messages.innerHTML += `<p class="bg-slate-100 p-2 rounded-lg">Gracias por tu mensaje. Para una atención personalizada, escríbenos a contacto@lz79freelance.com</p>`;
+                    messages.scrollTop = messages.scrollHeight;
+                }, 500);
+                input.value = "";
+            }
+        }
+    </script>
 
     <!-- FOOTER -->
     <footer class="bg-slate-50 border-t border-slate-200 py-12">
