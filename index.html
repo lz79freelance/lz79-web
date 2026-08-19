@@ -24,7 +24,7 @@
         }
     </script>
     <style>
-        /* Animación suave y compacta para el ticker */
+        /* Animación suave para el ticker */
         @keyframes ticker {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -53,6 +53,7 @@
             </div>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
                 <a href="#features" class="hover:text-lz-600 transition">Soluciones</a>
+                <a href="#news" class="hover:text-lz-600 transition">Actualidad</a>
                 <a href="#pricing" class="hover:text-lz-600 transition">Planes</a>
             </nav>
             <div class="flex items-center space-x-4">
@@ -61,7 +62,7 @@
         </div>
     </header>
 
-    <!-- BARRA BURSÁTIL COMPACTA (Fina y elegante justo debajo del menú) -->
+    <!-- BARRA BURSÁTIL COMPACTA -->
     <div class="bg-slate-950 text-slate-300 text-xs py-2 overflow-hidden border-b border-slate-800 font-mono">
         <div class="animate-ticker space-x-12 whitespace-nowrap">
             <span class="inline-flex items-center space-x-2"><strong class="text-white">IBEX 35:</strong> <span class="text-emerald-400 font-semibold">11,420.50 (+0.45%)</span></span>
@@ -79,7 +80,7 @@
     </div>
 
     <!-- HERO SECTION -->
-    <section class="relative pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden bg-white">
+    <section class="relative pt-20 pb-16 md:pt-24 md:pb-24 overflow-hidden bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center">
             <!-- Badge Profesional -->
             <div class="inline-flex items-center space-x-2 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium px-3.5 py-1.5 rounded-full mb-8 shadow-sm">
@@ -126,8 +127,48 @@
         </div>
     </section>
 
+    <!-- ACTUALIDAD ECONÓMICA (Compacta y directa) -->
+    <section id="news" class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-10">
+                <div>
+                    <h2 class="text-xs font-bold text-lz-600 tracking-widest uppercase mb-1">Actualidad Financiera</h2>
+                    <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Claves económicas para tu día a día</h3>
+                </div>
+                <span class="text-xs font-mono text-slate-400 mt-2 md:mt-0 bg-white px-3 py-1.5 rounded-full border border-slate-200 shadow-sm">Actualizado hoy</span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Noticia 1 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-lz-600 uppercase tracking-wider block mb-2">Fiscalidad</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">Novedades en la deducción de gastos para autónomos</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Nuevas pautas sobre la fiscalidad de suministros y dietas para pequeños negocios.</p>
+                    </div>
+                </div>
+                <!-- Noticia 2 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-lz-600 uppercase tracking-wider block mb-2">Mercados</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">El IBEX 35 mantiene tono positivo por el sector bancario</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">La evolución de los tipos de interés marca el ritmo de las grandes cotizadas.</p>
+                    </div>
+                </div>
+                <!-- Noticia 3 -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-lz-600 uppercase tracking-wider block mb-2">Digitalización</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">Facturación electrónica obligatoria: plazos clave</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Adelántate a los requisitos de control digital de facturas para profesionales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- MÓDULOS / CARACTERÍSTICAS -->
-    <section id="features" class="py-24 bg-slate-50 border-t border-slate-200">
+    <section id="features" class="py-24 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-bold text-lz-600 tracking-widest uppercase mb-3">Potencia Operativa</h2>
@@ -136,18 +177,18 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📄</div>
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-white text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-sm">📄</div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Facturación & Albaranes</h4>
                     <p class="text-slate-600 leading-relaxed text-sm">Emite facturas profesionales, gestiona notas de entrega y mantén tus registros de ventas al día sin complicaciones.</p>
                 </div>
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📦</div>
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-white text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-sm">📦</div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Inventario & Stock</h4>
                     <p class="text-slate-600 leading-relaxed text-sm">Controla tus productos, entradas y salidas de mercancía con una interfaz ágil y conectada en tiempo real.</p>
                 </div>
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-lz-50 text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6">📷</div>
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-white text-lz-600 rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-sm">📷</div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Lector QR Integrado</h4>
                     <p class="text-slate-600 leading-relaxed text-sm">Identifica referencias, artículos y pedidos de forma inmediata utilizando lectura de códigos QR desde cualquier dispositivo.</p>
                 </div>
@@ -156,7 +197,7 @@
     </section>
 
     <!-- PRECIOS -->
-    <section id="pricing" class="py-24 bg-white border-t border-slate-200">
+    <section id="pricing" class="py-24 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-bold text-lz-600 tracking-widest uppercase mb-3">Planes Flexibles</h2>
@@ -166,7 +207,7 @@
 
             <div class="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Plan Esencial -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between">
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between">
                     <div>
                         <h4 class="text-xl font-bold text-slate-900 mb-2">LZ79 Essential</h4>
                         <p class="text-slate-600 text-sm mb-6">Para profesionales independientes que buscan control total y sencillez.</p>
@@ -206,7 +247,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-50 border-t border-slate-200 py-12">
+    <footer class="bg-white border-t border-slate-200 py-12">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
             <div class="flex items-center space-x-3 mb-4 sm:mb-0">
                 <span class="font-bold text-slate-900">LZ79 Freelance</span>
