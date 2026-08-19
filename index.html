@@ -1,4 +1,32 @@
-<!-- HEADER / NAVBAR -->
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LZ79 Freelance — Gestión Inteligente y Contabilidad</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lz: {
+                            50: '#f4f6f8',
+                            100: '#e3e8ef',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+
+    <!-- HEADER / NAVBAR -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -17,6 +45,7 @@
             </div>
         </div>
     </header>
+
     <!-- HERO SECTION -->
     <section class="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-white">
         <div class="max-w-5xl mx-auto px-6 text-center">
@@ -47,7 +76,7 @@
                 </a>
             </div>
 
-            <!-- GRID DE 4 FOTOS FIJAS (Sustituye al mockup estático) -->
+            <!-- GRID DE 4 FOTOS FIJAS -->
             <div class="grid md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
                 <!-- Foto 1 -->
                 <div class="bg-slate-900 p-2 rounded-2xl shadow-xl border border-slate-700 aspect-video overflow-hidden">
@@ -117,7 +146,7 @@
                         <h4 class="text-xl font-bold text-slate-900 mb-2">LZ79 Essential</h4>
                         <p class="text-slate-600 text-sm mb-6">Para profesionales independientes que buscan control total y sencillez.</p>
                         <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-black text-slate-900">€0</span>
+                            <span class="text-4xl font-black text-slate-900">€19</span>
                             <span class="text-slate-500 ml-2">/ mes</span>
                         </div>
                         <ul class="space-y-4 text-sm text-slate-600 mb-8">
@@ -136,7 +165,7 @@
                         <h4 class="text-xl font-bold text-white mb-2">LZ79 Professional Suite</h4>
                         <p class="text-slate-400 text-sm mb-6">Para negocios en crecimiento con necesidades avanzadas de gestión.</p>
                         <div class="flex items-baseline mb-6">
-                            <span class="text-4xl font-black text-white">€4</span>
+                            <span class="text-4xl font-black text-white">€39</span>
                             <span class="text-slate-400 ml-2">/ mes</span>
                         </div>
                         <ul class="space-y-4 text-sm text-slate-300 mb-8">
