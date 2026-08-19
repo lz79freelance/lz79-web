@@ -138,13 +138,24 @@
         </div>
     </section>
 
-    <!-- CHATBOT -->
-    <div id="chatbot" class="fixed bottom-6 right-6 z-50">
-        <div id="chat-bubble" class="hidden absolute bottom-20 right-0 bg-white border border-slate-200 p-4 rounded-2xl shadow-xl w-64 mb-2">
-            <p class="text-sm text-slate-700 font-medium">👋 ¡Hola! ¿Necesitas ayuda con tu contabilidad?</p>
+   <!-- CHATBOT FUNCIONAL -->
+    <div id="chatbot" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Ventana del chat -->
+        <div id="chat-window" class="hidden bg-white border border-slate-200 rounded-2xl shadow-2xl w-72 mb-4 overflow-hidden transition-all duration-300">
+            <div class="bg-lz-900 p-4 text-white font-bold text-sm">Asistente LZ79</div>
+            <div class="p-4 h-40 overflow-y-auto text-sm text-slate-600">
+                <p>👋 ¡Hola! ¿Necesitas ayuda con tu contabilidad hoy?</p>
+            </div>
+            <div class="p-3 border-t border-slate-100">
+                <input type="text" placeholder="Escribe tu duda..." class="w-full text-xs p-2 border border-slate-200 rounded-lg outline-none">
+            </div>
         </div>
-        <button onclick="document.getElementById('chat-bubble').classList.toggle('hidden')" class="bg-lz-600 hover:bg-lz-700 text-white p-4 rounded-full shadow-lg shadow-lz-600/30 transition transform hover:scale-105">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+        
+        <!-- Botón -->
+        <button onclick="document.getElementById('chat-window').classList.toggle('hidden')" class="bg-lz-600 hover:bg-lz-700 text-white p-4 rounded-full shadow-lg shadow-lz-600/30 transition transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
         </button>
     </div>
 
