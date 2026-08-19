@@ -78,31 +78,30 @@
                     Conocer características
                 </a>
             </div>
-<!-- CARRUSEL DE ANCHO TOTAL (A PRUEBA DE ERRORES) -->
-<section class="py-16 bg-white w-full">
-    <div class="w-full px-4 md:px-12">
+<!-- GRID FIJO: 4 FOTOS QUE SE VERÁN BIEN SÍ O SÍ -->
+<section class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
         
-        <!-- Carrusel: Flex horizontal que no se encoge -->
-        <div class="flex space-x-8 overflow-x-auto pb-10 snap-x">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <!-- Bloque de Imagen: Ancho adaptable al contenido -->
-            <!-- Quitamos md:w-[850px] para que la imagen mande el ancho -->
-            <div class="flex-none w-[90vw] md:w-[70vw] snap-center">
-                <div class="bg-slate-900 p-6 rounded-3xl shadow-2xl border border-slate-700">
-                    <img src="c0.png" alt="Workspace" class="w-full h-auto object-contain rounded-xl">
-                </div>
+            <!-- Foto 1 -->
+            <div class="bg-blue-500 p-2 rounded-xl shadow-lg border-4 border-slate-900">
+                <img src="c1.png" alt="Foto 1" class="w-full h-auto rounded-lg bg-slate-200">
             </div>
 
-            <div class="flex-none w-[90vw] md:w-[70vw] snap-center">
-                <div class="bg-slate-900 p-6 rounded-3xl shadow-2xl border border-slate-700">
-                    <img src="c1.png" alt="Dashboard" class="w-full h-auto object-contain rounded-xl">
-                </div>
+            <!-- Foto 2 -->
+            <div class="bg-blue-500 p-2 rounded-xl shadow-lg border-4 border-slate-900">
+                <img src="c2.png" alt="Foto 2" class="w-full h-auto rounded-lg bg-slate-200">
             </div>
 
-            <div class="flex-none w-[90vw] md:w-[70vw] snap-center">
-                <div class="bg-slate-900 p-6 rounded-3xl shadow-2xl border border-slate-700">
-                    <img src="c2.png" alt="Facturas" class="w-full h-auto object-contain rounded-xl">
-                </div>
+            <!-- Foto 3 -->
+            <div class="bg-blue-500 p-2 rounded-xl shadow-lg border-4 border-slate-900">
+                <img src="c3.png" alt="Foto 3" class="w-full h-auto rounded-lg bg-slate-200">
+            </div>
+
+            <!-- Foto 4 -->
+            <div class="bg-blue-500 p-2 rounded-xl shadow-lg border-4 border-slate-900">
+                <img src="c4.png" alt="Foto 4" class="w-full h-auto rounded-lg bg-slate-200">
             </div>
 
         </div>
